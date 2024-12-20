@@ -1,5 +1,3 @@
-[Youtube Trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
-
 A simple engine for creating games that run directly in the terminal. Built in C++, without any graphics libraries. 
 
 - Framerate-independent simulation (delta-time based)
@@ -17,6 +15,7 @@ A simple engine for creating games that run directly in the terminal. Built in C
 - Requires you to install [OpenAL DLL](https://www.openal.org/downloads/)
 
 #
+[Youtube Trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
 
 <img src="screenshots/screen1.png" style="height:500px; max-width:100%;">
 <img src="screenshots/screen2.png" style="height:250px; max-width:100%;">
