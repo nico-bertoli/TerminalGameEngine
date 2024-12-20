@@ -1,4 +1,7 @@
 # TerminalGameEngine
+
+[![Termnal Game Engine](https://img.youtube.com/vi/TqpGVI95oNU/0.jpg)](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
+
 <b>About:</b>
 
 A simple engine for creating games that run directly in the terminal. Built in C++, without any graphics libraries. 
