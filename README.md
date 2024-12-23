@@ -3,7 +3,7 @@ A simple engine for creating games that run directly in the terminal. Built in C
 - Framerate-independent simulation (delta-time based)
 - Efficient rendering
 - Particle system
-- Collision system, (OnCollisionEnter/Exit)
+- Collision system (OnCollisionEnter/Exit)
 - Sorting layer system
 - Audio manager (based of SFML)
 - Easy to add new levels / objects
