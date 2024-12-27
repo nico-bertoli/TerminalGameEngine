@@ -11,7 +11,7 @@ namespace Engine
     {
         friend class Singleton;
 
-        //---------------------------------------------------------- Fields
+//---------------------------------------------------------- Fields
     public:
         const static int WHITE_DARK;
         const static int RED_DARK;
@@ -34,7 +34,7 @@ namespace Engine
     private:
         int currentColor;
 
-        //---------------------------------------------------------- Fields
+//---------------------------------------------------------- Methods
     public:
         void Clear();
         void SetColor(int color);
