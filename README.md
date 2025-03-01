@@ -1,4 +1,4 @@
-Enables the creation of terminal-based games, developed entirely in C++ without graphics libraries.
+An engine for creating 2D terminal-based games, built without any graphics libraries.
 
 - Framerate-independent simulation (delta-time based)
 - Efficient rendering
