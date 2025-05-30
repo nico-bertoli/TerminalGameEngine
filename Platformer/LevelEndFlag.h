@@ -4,13 +4,12 @@
 
 namespace Engine {class Level;}
 
+using std::shared_ptr;
+using Engine::Direction;
+using Engine::Level;
+
 namespace Platformer
 {
-    //class Engine::Level;
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using Direction = Engine::Direction;
-    using Level = Engine::Level;
-
     class LevelEndFlag : public Engine::Collider
     {
         //---------------------------------------------------------- Fieldds

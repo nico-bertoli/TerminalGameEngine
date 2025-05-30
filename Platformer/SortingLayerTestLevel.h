@@ -1,11 +1,6 @@
 #pragma once
 #include "Level.h"
 
-namespace Engine
-{
-    class Bunny;
-}
-
 namespace Platformer
 {
     class SortingLayerTestLevel : public Engine::Level

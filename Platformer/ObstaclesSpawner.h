@@ -2,10 +2,10 @@
 #include "ISimulationEntity.h"
 #include <vector>
 
+using std::vector;
+
 namespace Platformer
 {
-    template<typename T> using vector = std::vector<T>;
-
     class ObstaclesSpawner : public Engine::ISimulationEntity
     {
         //---------------------------------------------------------- Fields

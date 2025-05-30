@@ -4,13 +4,13 @@
 #include "Event.h"
 #include <string>
 
+using std::shared_ptr;
+using std::weak_ptr;
+using Engine::Model;
+using Engine::Direction;
+
 namespace Platformer
 {
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    template<typename T> using weak_ptr = std::weak_ptr<T>;
-    using Model = Engine::Model;
-    using Direction = Engine::Direction;
-
     class Bunny : public Engine::Collider
     {
         enum class State

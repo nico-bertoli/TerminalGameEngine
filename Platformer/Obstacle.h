@@ -1,12 +1,12 @@
 #pragma once
 #include "MovingStraightObject.h"
 
+using std::shared_ptr;
+using Engine::Model;
+using Engine::Direction;
+
 namespace Platformer
 {
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using Model = Engine::Model;
-    using Direction = Engine::Direction;
-
     class Obstacle : public Engine::MovingStraightObject
     {
     private:

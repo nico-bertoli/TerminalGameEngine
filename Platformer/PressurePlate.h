@@ -2,11 +2,11 @@
 #include "Collider.h"
 #include "Event.h"
 
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace Platformer
 {
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using Direction = Engine::Direction;
-
     class PressurePlate : public Engine::Collider
     {
         //---------------------------------------------------------- Fields

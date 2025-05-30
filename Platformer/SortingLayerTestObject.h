@@ -2,10 +2,10 @@
 #include "GameObject.h"
 #include <optional>
 
+using Engine::Direction;
+
 namespace Platformer
 {
-	using Engine::Direction;
-
 	class SortingLayerTestObject : public Engine::GameObject
 	{
 	private:
@@ -16,7 +16,6 @@ namespace Platformer
 		size_t sortingLayer;
 		double moveSpeed;
 		std::optional<Direction> mainDirection;
-
 		Engine::Model model;
 
 	public:
