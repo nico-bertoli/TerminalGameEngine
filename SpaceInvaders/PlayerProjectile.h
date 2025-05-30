@@ -3,13 +3,11 @@
 
 namespace SpaceInvaders
 {
-	using Model = Engine::Model;
-
 	class PlayerProjectile : public Projectile
 	{
 		//---------------------------------------------------------- Fields
 	private:
-		static const Model MODEL;
+		static const Engine::Model MODEL;
 
 		//---------------------------------------------------------- Methodss
 	public:
@@ -18,6 +16,6 @@ namespace SpaceInvaders
 	protected:
 		int GetColor() const override { return Engine::Terminal::GREEN; }
 		void InitModel() override { SetModel(MODEL); }
-		void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override;
+		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
 	};
 }

@@ -1,6 +1,9 @@
 #include "EnemyProjectile.h"
 #include "PlayerTank.h"
 
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace SpaceInvaders
 {
 	using Model = Engine::Model;

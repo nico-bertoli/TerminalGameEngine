@@ -14,12 +14,16 @@
 
 #include <string>
 
+using WindowPosition = Engine::UIPrinter::WindowPosition;
+using Engine::Simulation;
+using Engine::Direction;
+using std::string;
+using std::shared_ptr;
+using std::vector;
+
 namespace SpaceInvaders
 {
-	using WindowPosition = Engine::UIPrinter::WindowPosition;
-	using Simulation = Engine::Simulation;
-	using string = std::string;
-	template<typename T> using shared_ptr = std::shared_ptr<T>;
+
 
 	int SpaceInvadersLevel::GetWorldSizeX() const
 	{

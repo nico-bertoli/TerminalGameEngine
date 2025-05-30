@@ -1,6 +1,10 @@
 #include "AliensFrontline.h"
 #include "Alien.h"
 
+using std::weak_ptr;
+using std::shared_ptr;
+using Engine::Vector2D;
+
 namespace SpaceInvaders
 {
 	size_t AliensFrontline::GetMinY()

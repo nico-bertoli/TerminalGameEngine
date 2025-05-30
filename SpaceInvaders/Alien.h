@@ -4,10 +4,6 @@
 
 namespace SpaceInvaders
 {
-	using Model = Engine::Model;
-	template<typename T> using shared_ptr = std::shared_ptr<T>;
-	template<typename T> using weak_ptr = std::weak_ptr<T>;
-
 	class Alien : public Enemy
 	{
 		friend class AliensController;
@@ -18,11 +14,11 @@ namespace SpaceInvaders
 
 		//------------------------------------------------------ Fields
 	public:
-		Event<weak_ptr<Collider>> OnDestroyEvent;
+		Event<std::weak_ptr<Collider>> OnDestroyEvent;
 
 	protected:
-		const Model* animationModel1;
-		const Model* animationModel2;
+		const Engine::Model* animationModel1;
+		const Engine::Model* animationModel2;
 
 	private:
 		size_t gridIndexX;

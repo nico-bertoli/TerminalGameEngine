@@ -4,6 +4,9 @@
 #include "Projectile.h"
 #include "AudioManager.h"
 
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace SpaceInvaders
 {
     void ShieldPart::OnCollisionEnter(shared_ptr<Collider>other, Direction collisionDir)

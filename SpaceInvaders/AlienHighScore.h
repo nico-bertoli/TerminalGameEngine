@@ -6,8 +6,8 @@ namespace SpaceInvaders
 	class AlienHighScore : public Alien
 	{
 	private:
-		static const Model MODEL_1;
-		static const Model MODEL_2;
+		static const Engine::Model MODEL_1;
+		static const Engine::Model MODEL_2;
 		//------------------------------------------------------ Methods
 	public:
 		using Alien::Alien;
@@ -24,7 +24,7 @@ namespace SpaceInvaders
 		}
 	};
 
-	const Model AlienHighScore::MODEL_1
+	const Engine::Model AlienHighScore::MODEL_1
 	(
 		4,
 		{
@@ -33,7 +33,7 @@ namespace SpaceInvaders
 		}
 	);
 
-	const Model AlienHighScore::MODEL_2
+	const Engine::Model AlienHighScore::MODEL_2
 	(
 		4,
 		{

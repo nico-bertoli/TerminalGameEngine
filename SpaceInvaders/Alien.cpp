@@ -4,6 +4,9 @@
 #include "EnemyProjectile.h"
 #include "Simulation.h"
 
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace SpaceInvaders
 {
 	void Alien::OnDestroy()

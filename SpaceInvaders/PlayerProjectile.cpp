@@ -3,6 +3,10 @@
 #include "Enemy.h"
 #include "SpaceInvadersLevel.h"
 
+using Engine::Model;
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace SpaceInvaders
 {
 	const Model PlayerProjectile::MODEL(1, { '|' });

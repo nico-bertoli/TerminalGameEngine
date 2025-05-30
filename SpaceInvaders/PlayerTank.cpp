@@ -7,6 +7,10 @@
 #include "AudioManager.h"
 #include "SpaceInvadersLevel.h"
 
+using Engine::Direction;
+using Engine::Model;
+using std::shared_ptr;
+
 namespace SpaceInvaders
 {
     using namespace Engine::InputUtils;

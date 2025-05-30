@@ -2,6 +2,10 @@
 #include "RandomUtils.h"
 #include "AudioManager.h"
 
+using Engine::Model;
+using Engine::Direction;
+using std::shared_ptr;
+
 namespace SpaceInvaders
 {
 	const std::array<size_t, 6> Ufo::POSSIBLE_SCORES = { 50,100,150,200,250,300 };

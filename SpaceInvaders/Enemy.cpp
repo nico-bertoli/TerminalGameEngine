@@ -3,6 +3,8 @@
 #include "Simulation.h"
 #include "SpaceInvadersLevel.h"
 
+using std::shared_ptr;
+
 namespace SpaceInvaders
 {
 	void Enemy::OnDestroy()

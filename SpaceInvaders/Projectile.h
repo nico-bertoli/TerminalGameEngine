@@ -6,9 +6,6 @@
 
 namespace SpaceInvaders
 {
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using Direction = Engine::Direction;
-
     class Projectile : public Engine::MovingStraightObject
     {
         //---------------------------------------------------------- Methods
@@ -18,12 +15,12 @@ namespace SpaceInvaders
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override
         {
             MovingStraightObject::OnCollisionEnter(other, collisionDir);
-            Direction collisionOppositeDirection = DirectionUtils::GetInverseDirection(collisionDir);
+            Engine::Direction collisionOppositeDirection = DirectionUtils::GetInverseDirection(collisionDir);
 
-            shared_ptr<Enemy> otherEnemy = std::dynamic_pointer_cast<Enemy>(other);
+            std::shared_ptr<Enemy> otherEnemy = std::dynamic_pointer_cast<Enemy>(other);
             if (otherEnemy == nullptr)
             {
                 Engine::Simulation::Instance().SpawnParticles

@@ -5,7 +5,6 @@
 namespace SpaceInvaders
 {
     class SpaceInvadersLevel;
-    using Model = Engine::Model;
 
     class PlayerTank : public Engine::Collider
     {
@@ -21,7 +20,7 @@ namespace SpaceInvaders
         Event<size_t> OnDamageTaken;
 
     private:
-        static const Model MODEL;
+        static const Engine::Model MODEL;
         SpaceInvadersLevel* level;
         double lastTimeShot = -1;
         size_t health = MAX_HEALTH;

@@ -5,6 +5,9 @@
 #include "RandomUtils.h"
 #include "DebugManager.h"
 
+using Engine::Direction;
+using std::shared_ptr;
+
 namespace SpaceInvaders
 {
 	using TimeHelper = Engine::TimeHelper;

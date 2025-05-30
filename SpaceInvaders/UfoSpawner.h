@@ -4,8 +4,6 @@
 
 namespace SpaceInvaders
 {
-	using Direction = Engine::Direction;
-
 	class UfoSpawner : public Engine::ISimulationEntity
 	{
 		//---------------------------------------------------------- Settings
@@ -17,13 +15,13 @@ namespace SpaceInvaders
 	private:
 		int xSpawnPos;
 		int ySpawnPos;
-		Direction ufoMoveDirection;
+		Engine::Direction ufoMoveDirection;
 		double lastTimeSpawned = -1;
 		double nextSpawnTime = -1;
 
 		//---------------------------------------------------------- Methods
 	public:
-		UfoSpawner(int xSpawnPos, int ySpawnPos, Direction ufoMoveDirection);
+		UfoSpawner(int xSpawnPos, int ySpawnPos, Engine::Direction ufoMoveDirection);
 	protected:
 		void Update()override;
 	private:

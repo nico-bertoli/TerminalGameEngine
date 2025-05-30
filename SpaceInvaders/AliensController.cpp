@@ -10,10 +10,16 @@
 #include "GameObject.h"
 #include <cassert>
 
+using std::string;
+using std::shared_ptr;
+using std::weak_ptr;
+using Engine::Collider;
+using Engine::Direction;
+using Engine::GameObject;
+
 namespace SpaceInvaders
 {
-	using string = std::string;
-	using Collider = Engine::Collider;
+	
 
 	double AliensController::GetSpeedX() const
 	{

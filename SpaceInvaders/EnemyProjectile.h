@@ -17,6 +17,6 @@ namespace SpaceInvaders
 	protected:
 		int GetColor() const override { return Engine::Terminal::RED; }
 		void InitModel() override { SetModel(MODEL); }
-		void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override;
+		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
 	};
 }
