@@ -11,8 +11,6 @@
 
 namespace Engine
 {
-	template<typename T> using shared_ptr = std::shared_ptr<T>;
-	template<typename T> using weak_ptr = std::weak_ptr<T>;
 	using Model = Engine::Vector2D<char>;
 
 	class GameObject : public ISimulationEntity
@@ -21,7 +19,7 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	public:
-		Event<weak_ptr<GameObject>, Direction> OnMove;
+		Event<std::weak_ptr<GameObject>, Direction> OnMove;
 		// generic on destroy event could be added
 
 	protected:
@@ -55,8 +53,8 @@ namespace Engine
 		size_t GetModelHeight()const { return model->GetSizeY(); }
 		const Model& GetModel()const { return *model; }
 		virtual bool CanExitScreenSpace() const = 0;
-		static void InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<shared_ptr<GameObject>>& list, bool(*InsertRule)(shared_ptr<GameObject> newItem, shared_ptr<GameObject> listItem));
-		static void InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<weak_ptr<GameObject>>& list, bool(*InsertRule)(shared_ptr<GameObject> newItem, shared_ptr<GameObject> listItem));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::shared_ptr<GameObject>>& list, bool(*InsertRule)(std::shared_ptr<GameObject> newItem, std::shared_ptr<GameObject> listItem));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::weak_ptr<GameObject>>& list, bool(*InsertRule)(std::shared_ptr<GameObject> newItem, std::shared_ptr<GameObject> listItem));
 
 	protected:
 		virtual void InitModel() = 0;

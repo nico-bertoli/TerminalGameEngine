@@ -10,8 +10,6 @@
 
 namespace Engine
 {
-    using string = std::string;
-
     class Frame
     {
     public:
@@ -22,10 +20,10 @@ namespace Engine
         size_t GetSizeX() const { return chars.GetSizeX(); }
 
         void ReadFromFile(const char* fileName);
-        void WriteString(const string& writenString, char writeOverChar);
+        void WriteString(const std::string& writenString, char writeOverChar);
         bool IsSetup() { return GetSizeY() > 0; }
 
-        void RemoveNotAllowedChars(string& str);
+        void RemoveNotAllowedChars(std::string& str);
     };
 }
 

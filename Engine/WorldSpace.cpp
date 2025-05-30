@@ -1,6 +1,9 @@
 #include "WorldSpace.h"
 #include "Collider.h"
 
+using std::shared_ptr;
+using std::unordered_set;
+
 namespace Engine
 {
 	shared_ptr<FakeCollider> WorldSpace::WORLD_MARGIN = std::make_shared<FakeCollider>();
@@ -123,7 +126,7 @@ namespace Engine
 			}
 	}
 
-	bool WorldSpace::IsCollidersAreaEmpty(int startingX, int startingY, size_t width, size_t height, uset<shared_ptr<Collider>>& outAreaObjects) const
+	bool WorldSpace::IsCollidersAreaEmpty(int startingX, int startingY, size_t width, size_t height, unordered_set<shared_ptr<Collider>>& outAreaObjects) const
 	{
 		for (int y = startingY; y < startingY + height; ++y)
 		{
@@ -169,7 +172,7 @@ namespace Engine
 	(
 		shared_ptr<const GameObject> object,
 		Direction direction,
-		uset<shared_ptr<Collider>>& collidingObjects
+		unordered_set<shared_ptr<Collider>>& collidingObjects
 	) const
 	{
 		shared_ptr<const Collider> colliderObj = std::dynamic_pointer_cast<const Collider>(object);
@@ -277,14 +280,14 @@ namespace Engine
 		}
 	}
 
-	uset<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(shared_ptr<GameObject> obj)
+	unordered_set<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(shared_ptr<GameObject> obj)
 	{
 		return GetAreaTopLayerObjects(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight());
 	}
 
-	uset<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(int startingX, int startingY, size_t width, size_t height)
+	unordered_set<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(int startingX, int startingY, size_t width, size_t height)
 	{
-		uset<shared_ptr<GameObject>> objects;
+		unordered_set<shared_ptr<GameObject>> objects;
 		for (int y = startingY; y < startingY + height; ++y)
 		{
 			for (int x = startingX; x < startingX + width; ++x)

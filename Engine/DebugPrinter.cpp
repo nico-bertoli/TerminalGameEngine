@@ -1,5 +1,7 @@
 #include "DebugPrinter.h"
 
+using std::string;
+
 namespace Engine
 {
     void DebugPrinter::PrintCoutCallsCount(size_t coutCallsCount)

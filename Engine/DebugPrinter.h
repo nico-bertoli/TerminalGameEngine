@@ -7,8 +7,6 @@
 
 namespace Engine
 {
-    using string = std::string;
-
     class DebugPrinter : public Printer
     {
         //------------------------------------------ Settings
@@ -25,7 +23,7 @@ namespace Engine
     public:
         void PrintCoutCallsCount(size_t coutCallsCount);
         void PrintFpsString(size_t fps);
-        void PrintGenericLog(const string& log, int lineIndex);
+        void PrintGenericLog(const std::string& log, int lineIndex);
 
     };
 }

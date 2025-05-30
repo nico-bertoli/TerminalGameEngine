@@ -4,8 +4,6 @@
 
 namespace Engine
 {
-    template<typename T> using vector = std::vector<T>;
-
     /// <summary>
     /// Implementation of a 2D vector using monodimensional vector for
     /// better performance (cache)
@@ -17,7 +15,7 @@ namespace Engine
         // -------------------------------------------------------------------- Fields
     private:
         size_t width = 0;
-        vector<T> vector;
+        std::vector<T> vector;
 
         // -------------------------------------------------------------------- Methods
     public:

@@ -5,6 +5,8 @@
 #include "Terminal.h"
 #include "TimeHelper.h"
 
+using std::string;
+
 namespace Engine
 {
 	void DebugManager::PrintGenericLog(const string& str, int lineIndex) { debugPrinter->PrintGenericLog(str, lineIndex); }

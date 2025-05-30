@@ -13,6 +13,9 @@
 #include <cassert>
 #include <algorithm>
 
+using std::shared_ptr;
+using std::string;
+
 namespace Engine
 {
     SimulationPrinter::SimulationPrinter

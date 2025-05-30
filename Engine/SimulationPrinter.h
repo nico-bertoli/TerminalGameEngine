@@ -9,8 +9,6 @@
 
 namespace Engine
 {
-	template<typename T> using shared_ptr = std::shared_ptr<T>;
-	using string = std::string;
 	class GameObject;
 	class Frame;
 
@@ -30,12 +28,12 @@ namespace Engine
 			const char* backgroundFileName = ""
 		);
 
-		void PrintObject(shared_ptr<GameObject> obj);
-		void ClearObject(shared_ptr<GameObject> obj);
+		void PrintObject(std::shared_ptr<GameObject> obj);
+		void ClearObject(std::shared_ptr<GameObject> obj);
 		void ClearArea(int worldXPos, int worldYPos, size_t xSize, size_t ySize);
 
 	private:
-		void PrintInternal(int worldXPos, int worldYPos, size_t xSize, size_t ySize, shared_ptr<GameObject> go);
+		void PrintInternal(int worldXPos, int worldYPos, size_t xSize, size_t ySize, std::shared_ptr<GameObject> go);
 		void InitBackground(const char* backgroundFileName);
 		void PrintBackground();
 	};

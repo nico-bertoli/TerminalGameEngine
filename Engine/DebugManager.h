@@ -11,9 +11,6 @@
 
 namespace Engine
 {
-	using string = std::string;
-	template<typename T> using unique_ptr = std::unique_ptr<T>;
-
 	class DebugManager : public Singleton<DebugManager>
 	{
 		friend class Singleton;
@@ -21,7 +18,7 @@ namespace Engine
 	private:
 		static constexpr double REFRESH_FPS_EVERY_SECONDS = 0.5;
 		//---------------------------------------------------------- Fields
-		unique_ptr<DebugPrinter> debugPrinter;
+		std::unique_ptr<DebugPrinter> debugPrinter;
 
 		//fps
 		std::list<double> fpsRecord;
@@ -35,7 +32,7 @@ namespace Engine
 		void Reset(size_t screenSizeX, size_t screenSizeY, size_t screenPadding);
 		void ShowAverageFPS();
 		void IncrementCoutCalls();
-		void PrintGenericLog(const string& str, int lineIndex);
+		void PrintGenericLog(const std::string& str, int lineIndex);
 
 	private:
 		size_t GetAverageFps();

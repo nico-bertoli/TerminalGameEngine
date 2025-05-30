@@ -3,6 +3,9 @@
 #include "TimeHelper.h"
 #include "Simulation.h"
 
+using time_point = std::chrono::steady_clock::time_point;
+using hr_clock = std::chrono::high_resolution_clock;
+
 namespace Engine
 {
 

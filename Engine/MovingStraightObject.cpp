@@ -1,5 +1,7 @@
 #include "MovingStraightObject.h"
 
+
+
 namespace Engine
 {
 	MovingStraightObject::MovingStraightObject(int xPos, int yPos, Direction moveDir, double moveSpeed)

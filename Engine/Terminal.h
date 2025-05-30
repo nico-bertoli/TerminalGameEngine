@@ -5,8 +5,6 @@
 
 namespace Engine
 {
-    using string = std::string;
-
     class Terminal : public Singleton<Terminal>
     {
         friend class Singleton;
@@ -43,7 +41,7 @@ namespace Engine
         void SetCursorPosition(size_t x, size_t y);
         COORD GetCursorPosition();
 
-        void Cout(const string& s) const;
+        void Cout(const std::string& s) const;
         void Cout(char c) const;
 
     protected:

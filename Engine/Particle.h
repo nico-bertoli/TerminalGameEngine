@@ -7,13 +7,11 @@
 
 namespace Engine
 {
-	template<typename T, std::size_t N> using array = std::array<T, N>;
-
 	class Particle : public GameObject
 	{
 	private:
-		array<Direction, 2> moveDirections;
-		array<double, 2> moveSpeeds;
+		std::array<Direction, 2> moveDirections;
+		std::array<double, 2> moveSpeeds;
 
 		char modelChar;
 		size_t remainingMovementsBeforeDestruction;

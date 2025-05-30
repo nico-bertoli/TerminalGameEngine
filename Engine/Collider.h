@@ -6,10 +6,6 @@
 
 namespace Engine
 {
-	template<typename T> using uset = std::unordered_set<T>;
-	template<typename T> using weak_ptr = std::weak_ptr<T>;
-	template<typename T> using list = std::list<T>;
-
 	class Collider : public GameObject
 	{
 		friend class Simulation;
@@ -17,7 +13,7 @@ namespace Engine
 		//---------------------------------------------------------- Fields
 
 	protected:
-		std::array<list<weak_ptr<Collider>>, 4> collisions;
+		std::array<std::list<std::weak_ptr<Collider>>, 4> collisions;
 
 		//---------------------------------------------------------- Methods
 	public:
@@ -25,12 +21,12 @@ namespace Engine
 
 	protected:
 
-		virtual void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) {}
+		virtual void OnCollisionEnter(std::shared_ptr<Collider> other, Direction collisionDir) {}
 		virtual void OnCollisionExit(Direction endingCollisionDir) {}
 
 	private:
-		void CALLED_BY_SIM_NotifyCollisionEnter(uset<shared_ptr<Collider>>collidingObjects, Direction collisionDir);
-		void CALLED_BY_SIM_NotifyCollisionEnter(shared_ptr<Collider> collidingObject, Direction collisionDir);
-		void CALLED_BY_SIM_UpdateEndedCollisions(const std::array<uset<shared_ptr<Collider>>, 4>& newCollisions);
+		void CALLED_BY_SIM_NotifyCollisionEnter(std::unordered_set<std::shared_ptr<Collider>>collidingObjects, Direction collisionDir);
+		void CALLED_BY_SIM_NotifyCollisionEnter(std::shared_ptr<Collider> collidingObject, Direction collisionDir);
+		void CALLED_BY_SIM_UpdateEndedCollisions(const std::array<std::unordered_set<std::shared_ptr<Collider>>, 4>& newCollisions);
 	};
 }

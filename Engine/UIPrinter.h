@@ -19,7 +19,7 @@ namespace Engine
     public:
         UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, int marginsColor);
         void PrintWindow(const Frame& window, int color, WindowPosition windowPosition);
-        void PrintOnHeader(const string& header, int xPos, int color);
+        void PrintOnHeader(const std::string& header, int xPos, int color);
 
     private:
         void DrawMargins(int color);

@@ -6,8 +6,6 @@
 
 namespace Engine
 {
-    using Frame = Engine::Frame;
-
     class Level : public ISimulationEntity
     {
         friend class Simulation;
@@ -24,7 +22,7 @@ namespace Engine
         bool isTerminated = false;
 
     protected:
-        Frame gameOverWindow;
+        Engine::Frame gameOverWindow;
 
         //---------------------------------------------------------- Methods
 

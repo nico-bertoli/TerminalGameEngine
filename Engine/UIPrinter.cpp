@@ -1,8 +1,9 @@
 #include "UIPrinter.h"
 
+using std::string;
+
 namespace Engine
 {
-
     UIPrinter::UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, int marginsColor) :
         Printer(screenSizeX, screenSizeY, screenPadding)
     {

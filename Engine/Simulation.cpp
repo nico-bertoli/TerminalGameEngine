@@ -14,7 +14,10 @@
 #include <stdexcept>
 #include <array>
 
-template<typename T> using uset = std::unordered_set<T>;
+using std::shared_ptr;
+using std::weak_ptr;
+using std::unordered_set;
+using std::list;
 
 namespace Engine
 {
@@ -224,7 +227,7 @@ namespace Engine
 		size_t height = collider->GetModelHeight();
 		bool canExitScreen = collider->CanExitScreenSpace();
 
-		std::array<uset<shared_ptr<Collider>>, 4> collisions;
+		std::array<unordered_set<shared_ptr<Collider>>, 4> collisions;
 
 		//screen collisions
 		if (!canExitScreen && !IsCoordinateInsideScreenSpace(xPos, yMax + 1))
@@ -290,7 +293,7 @@ namespace Engine
 
 	bool Simulation::TryMoveObjectAtDirection(shared_ptr<GameObject> obj, Direction direction)
 	{
-		uset<shared_ptr<Collider>> outCollidingObjects;
+		unordered_set<shared_ptr<Collider>> outCollidingObjects;
 
 		shared_ptr<Collider> colliderObj = std::dynamic_pointer_cast<Collider>(obj);
 

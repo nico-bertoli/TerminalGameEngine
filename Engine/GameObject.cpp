@@ -2,6 +2,9 @@
 #include "TimeHelper.h"
 #include "Simulation.h"
 
+using std::shared_ptr;
+using std::weak_ptr;
+
 namespace Engine
 {
 	GameObject::GameObject(int xPos, int yPos) :

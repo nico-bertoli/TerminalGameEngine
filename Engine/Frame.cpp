@@ -2,6 +2,8 @@
 #include "StringUtils.h"
 #include <cassert>
 
+using std::string;
+
 namespace Engine
 {
     void Frame::ReadFromFile(const char* fileName)

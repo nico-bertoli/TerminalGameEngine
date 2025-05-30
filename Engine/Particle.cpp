@@ -3,6 +3,8 @@
 #include "DirectionUtils.h"
 #include "Simulation.h"
 
+using std::weak_ptr;
+
 namespace Engine
 {
 	Particle::Particle

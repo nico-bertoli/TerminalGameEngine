@@ -5,10 +5,10 @@
 
 namespace Engine
 {
-	class FakeCollider : public Collider
+	class FakeCollider : public Engine::Collider
 	{
 	public:
-		FakeCollider() : Collider(0, 0) {}
+		FakeCollider() : Engine::Collider(0, 0) {}
 	private:
 		bool CanExitScreenSpace() const override { assert(false); return true; }
 		double GetGravityScale() const override { assert(false); return 0; }
