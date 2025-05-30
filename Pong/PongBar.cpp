@@ -3,11 +3,11 @@
 #include "Simulation.h"
 #include "Level.h"
 
+using namespace Engine::InputUtils;
+using Engine::Direction;
+
 namespace Pong
 {
-    using namespace Engine::InputUtils;
-    using Direction = Engine::Direction;
-
     PongBar::PongBar
     (
         int xPos,

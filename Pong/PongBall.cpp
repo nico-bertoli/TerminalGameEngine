@@ -5,6 +5,10 @@
 #include "PongLevel.h"
 #include "RandomUtils.h"
 
+using Engine::Model;
+using std::shared_ptr;
+using Engine::Direction;
+
 namespace Pong
 {
     const Model PongBall::MODEL(1, { -37 });

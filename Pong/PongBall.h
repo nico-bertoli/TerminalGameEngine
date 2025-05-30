@@ -7,10 +7,6 @@ namespace Pong
     class PongBar;
     class PongLevel;
 
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using Model = Engine::Model;
-    using Direction = Engine::Direction;
-
     class PongBall : public Engine::Collider
     {
         //---------------------------------------------------------- Fields
@@ -21,7 +17,7 @@ namespace Pong
         double ySpeed;
         double xSpeed;
         bool iSFirstLaunch;
-        static const Model MODEL;
+        static const Engine::Model MODEL;
 
         //---------------------------------------------------------- Methods
     public:
@@ -31,12 +27,12 @@ namespace Pong
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override;
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
         void Update() override;
         void InitModel() override { SetModel(MODEL); }
 
     private:
-        void HandleBarCollision(shared_ptr<PongBar> collidingBar);
+        void HandleBarCollision(std::shared_ptr<PongBar> collidingBar);
     };
 }
 
