@@ -1,11 +1,10 @@
 An engine for creating 2D terminal-based games, built without any graphics libraries.
 
 - Framerate-independent simulation (delta-time based)
-- Efficient rendering
+- Efficient rendering (only the changing parts of the terminal are reprinted)
 - Particle system
 - Collision system (OnCollisionEnter/Exit)
 - Sorting layer system
-- Audio manager (based of SFML)
 - Easy to add new levels / objects
 - Backgrounds support
 
