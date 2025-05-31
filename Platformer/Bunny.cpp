@@ -6,6 +6,10 @@
 #include "Simulation.h"
 #include "Obstacle.h"
 
+using Engine::Model;
+using Engine::Direction;
+using std::weak_ptr;
+
 namespace Platformer
 {
     template<typename T> using shared_ptr = std::shared_ptr<T>;

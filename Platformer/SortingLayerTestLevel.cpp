@@ -4,6 +4,8 @@
 #include "Bunny.h"
 #include "SortingLayerTestObject.h"
 
+using std::shared_ptr;
+
 namespace Platformer
 {
     void SortingLayerTestLevel::LoadInSimulation()

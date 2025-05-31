@@ -2,6 +2,8 @@
 #include "AudioManager.h"
 #include "RandomUtils.h"
 
+
+
 namespace Engine
 {
 	AudioManager::AudioManager()
@@ -47,11 +49,11 @@ namespace Engine
 #endif
 	}
 
-	bool AudioManager::TryGetBufferAndSound(SoundBuffer*& outBuffer, Sound*& outSound)
+	bool AudioManager::TryGetBufferAndSound(sf::SoundBuffer * &outBuffer, sf::Sound*& outSound)
 	{
 		for (int i = 0; i < sounds.size(); ++i)
 		{
-			if (sounds[i].getStatus() == SoundSource::Status::Stopped)
+			if (sounds[i].getStatus() == sf::SoundSource::Status::Stopped)
 			{
 				outBuffer = &buffers[i];
 				outSound = &sounds[i];

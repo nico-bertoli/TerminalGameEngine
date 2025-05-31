@@ -4,6 +4,8 @@
 #include "Obstacle.h"
 #include "ObstaclesSpawner.h"
 
+using std::shared_ptr;
+
 namespace Platformer
 {
     template <typename T> using vector = std::vector<T>;

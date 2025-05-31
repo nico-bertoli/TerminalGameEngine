@@ -6,15 +6,14 @@
 template <typename... Args>
 class Event
 {
-    using EventHandler = std::function<void(Args...)>;
     
 //---------------------------------------------------------- Fields
 private:
-    std::vector<EventHandler> handlers;
+    std::vector< std::function<void(Args...)>> handlers;
 
 //---------------------------------------------------------- Methods
 public:
-    void Subscribe(EventHandler handler)
+    void Subscribe(std::function<void(Args...)> handler)
     { 
         handlers.push_back(handler);
     }

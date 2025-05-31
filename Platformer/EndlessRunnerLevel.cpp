@@ -12,11 +12,12 @@
 #include "RandomUtils.h"
 #include <string>
 
+using std::string;
+using std::shared_ptr;
+using WindowPosition = Engine::UIPrinter::WindowPosition;
+
 namespace Platformer
 {
-    using string = std::string;
-    using WindowPosition = Engine::UIPrinter::WindowPosition;
-
     const std::array<const char*, EndlessRunnerLevel::MUSIC_FILES_COUNT> EndlessRunnerLevel::MUSIC_FILES =
     {
         "Resources/Music/1.wav",

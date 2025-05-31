@@ -9,7 +9,7 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     private:
-        Model model = CreteModelUsingChar('@', 4, 2);
+        Engine::Model model = CreteModelUsingChar('@', 4, 2);
         //---------------------------------------------------------- Methods
     public:
         using Collider::Collider;
@@ -19,9 +19,9 @@ namespace Platformer
 
     protected:
         void InitModel() override { SetModel(model); }
-        void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)override
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir)override
         {
-            if (collisionDir == Direction::right || collisionDir == Direction::left)
+            if (collisionDir == Engine::Direction::right || collisionDir == Engine::Direction::left)
             {
                 TryMove(DirectionUtils::GetInverseDirection(collisionDir), 9999);
                 collisions[collisionDir].clear();

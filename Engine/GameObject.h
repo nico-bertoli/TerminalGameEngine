@@ -11,7 +11,7 @@
 
 namespace Engine
 {
-	using Model = Engine::Vector2D<char>;
+	using Model = Engine::Vector2D<char>; //todo remove this
 
 	class GameObject : public ISimulationEntity
 	{

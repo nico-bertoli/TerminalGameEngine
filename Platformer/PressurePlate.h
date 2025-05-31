@@ -2,9 +2,6 @@
 #include "Collider.h"
 #include "Event.h"
 
-using std::shared_ptr;
-using Engine::Direction;
-
 namespace Platformer
 {
     class PressurePlate : public Engine::Collider
@@ -27,8 +24,8 @@ namespace Platformer
         int GetColor() const override { return Engine::Terminal::CYAN; }
 
     protected:
-        void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override;
-        void OnCollisionExit(Direction endingCollisionDir) override;
+        void OnCollisionEnter(std::shared_ptr<Engine::Collider> other, Engine::Direction collisionDir) override;
+        void OnCollisionExit(Engine::Direction endingCollisionDir) override;
         void InitModel() override { SetModel(unpressedModel); }
     };
 }

@@ -2,6 +2,10 @@
 #include "AudioManager.h"
 #include "TimeHelper.h"
 
+using std::shared_ptr;
+using Engine::Model;
+using Engine::Direction;
+
 namespace Platformer
 {
     Model Obstacle::model = {};

@@ -4,11 +4,6 @@
 #include "Event.h"
 #include <string>
 
-using std::shared_ptr;
-using std::weak_ptr;
-using Engine::Model;
-using Engine::Direction;
-
 namespace Platformer
 {
     class Bunny : public Engine::Collider
@@ -29,13 +24,13 @@ namespace Platformer
         static const char CHAR_GAMEOVER_EYE = '*';
         static const char CHAR_CHEST = ':';
 
-        static const Model MODEL_WALK_LEFT;
-        static const Model MODEL_WALK_RIGHT;
-        static const Model MODEL_JUMP_RIGHT;
-        static const Model MODEL_JUMP_LEFT;
-        static const Model MODEL_DEFEATED;
-        static const Model MODEL_IDLE_RIGHT;
-        static const Model MODEL_IDLE_LEFT;
+        static const Engine::Model MODEL_WALK_LEFT;
+        static const Engine::Model MODEL_WALK_RIGHT;
+        static const Engine::Model MODEL_JUMP_RIGHT;
+        static const Engine::Model MODEL_JUMP_LEFT;
+        static const Engine::Model MODEL_DEFEATED;
+        static const Engine::Model MODEL_IDLE_RIGHT;
+        static const Engine::Model MODEL_IDLE_LEFT;
 
         //---------------------------------------------------------- Settings
     private:
@@ -55,9 +50,9 @@ namespace Platformer
         int previousPositionX;
         int jumpStartingY = -1;
 
-        Model activeModelJump;
-        Model activeModelIdle;
-        Model activeModelWalk;
+        Engine::Model activeModelJump;
+        Engine::Model activeModelIdle;
+        Engine::Model activeModelWalk;
         //---------------------------------------------------------- Methods
     public:
         Bunny(int xPos, int yPos);
@@ -68,7 +63,7 @@ namespace Platformer
 
     protected:
         void Update() override;
-        void OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir) override;
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
         void InitModel() override { SetModel(MODEL_IDLE_LEFT); }
 
     private:
@@ -79,9 +74,9 @@ namespace Platformer
         void HandleVerticalMovement();
         void HandleHorizontalMovement();
         void HandleSounds(State oldState, State newState);
-        bool IsTouchingGround() { return collisions[Direction::down].size() > 0; }
+        bool IsTouchingGround() { return collisions[Engine::Direction::down].size() > 0; }
         bool IsJumping() { return state == State::jumpingDown || state == State::jumpingUp; }
         void ActivateLeftModels(bool activate);
-        void OnMoveCallback(Direction dir);
+        void OnMoveCallback(Engine::Direction dir);
     };
 }

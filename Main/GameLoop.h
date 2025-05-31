@@ -2,14 +2,12 @@
 
 #include "Level.h"
 
-using Level = Engine::Level;
-
 class GameLoop
 {
     //---------------------------------------------------------- Methods
 public:
     GameLoop();
 private:
-    std::shared_ptr<Level> ShowLevelSelection();
-    bool LoopSimulation(std::shared_ptr<Level> level);
+    std::shared_ptr<Engine::Level> ShowLevelSelection();
+    bool LoopSimulation(std::shared_ptr<Engine::Level> level);
 };

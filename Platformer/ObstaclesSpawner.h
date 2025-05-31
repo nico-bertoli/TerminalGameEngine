@@ -2,8 +2,6 @@
 #include "ISimulationEntity.h"
 #include <vector>
 
-using std::vector;
-
 namespace Platformer
 {
     class ObstaclesSpawner : public Engine::ISimulationEntity
@@ -11,10 +9,10 @@ namespace Platformer
         //---------------------------------------------------------- Fields
     private:
         int xPos;
-        vector<double> minSpawnDelays;
-        vector<double> maxSpawnDelays;
-        vector<double> speeds;
-        vector<int> ySpawnPoints;
+        std::vector<double> minSpawnDelays;
+        std::vector<double> maxSpawnDelays;
+        std::vector<double> speeds;
+        std::vector<int> ySpawnPoints;
         size_t spawnIntensity = 0;
         double stopSpawningWhenPhaseChangesDuration;
         double increaseIntensityEverySeconds;
@@ -26,10 +24,10 @@ namespace Platformer
         ObstaclesSpawner
         (
             int xPos,
-            const vector<double>& minSpawnDelays,
-            const vector<double>& maxSpawnDelays,
-            const vector<double>& speeds,
-            const vector<int>& ySpawnPoints,
+            const std::vector<double>& minSpawnDelays,
+            const std::vector<double>& maxSpawnDelays,
+            const std::vector<double>& speeds,
+            const std::vector<int>& ySpawnPoints,
             double increaseIntensityEverySeconds = -1,
             double stopSpawningWhenPhaseChangesDuration = 0
         );
@@ -39,7 +37,7 @@ namespace Platformer
             int xPos,
             double spawnDelay,
             double speed,
-            const vector<int>& ySpawnPoints
+            const std::vector<int>& ySpawnPoints
         );
 
     protected:

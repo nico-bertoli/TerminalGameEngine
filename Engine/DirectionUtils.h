@@ -9,44 +9,43 @@ namespace Engine
 
 namespace DirectionUtils
 {
-	using Direction = Engine::Direction;
-	inline Direction GetInverseDirection(Direction direction)
+	inline Engine::Direction GetInverseDirection(Engine::Direction direction)
 	{
 		switch (direction)
 		{
-		case Direction::up:
-			return Direction::down;
-		case Direction::down:
-			return Direction::up;
-		case Direction::left:
-			return Direction::right;
-		case Direction::right:
-			return Direction::left;
+		case Engine::Direction::up:
+			return Engine::Direction::down;
+		case Engine::Direction::down:
+			return Engine::Direction::up;
+		case Engine::Direction::left:
+			return Engine::Direction::right;
+		case Engine::Direction::right:
+			return Engine::Direction::left;
 		default:
 			throw std::invalid_argument("Invalid direction");
 		}
 	}
 
-	inline Direction GetClockwiseDirection(Direction direction)
+	inline Engine::Direction GetClockwiseDirection(Engine::Direction direction)
 	{
 		switch (direction)
 		{
-		case Direction::up:
-			return Direction::right;
-		case Direction::down:
-			return Direction::left;
-		case Direction::left:
-			return Direction::up;
-		case Direction::right:
-			return Direction::down;
+		case Engine::Direction::up:
+			return Engine::Direction::right;
+		case Engine::Direction::down:
+			return Engine::Direction::left;
+		case Engine::Direction::left:
+			return Engine::Direction::up;
+		case Engine::Direction::right:
+			return Engine::Direction::down;
 		default:
 			throw std::invalid_argument("Invalid direction");
 		}
 	}
 
-	inline bool IsDirectionHorizontal(Direction dir)
+	inline bool IsDirectionHorizontal(Engine::Direction dir)
 	{
-		assert(dir != Direction::COUNT);
-		return dir == Direction::left || dir == Direction::right;
+		assert(dir != Engine::Direction::COUNT);
+		return dir == Engine::Direction::left || dir == Engine::Direction::right;
 	}
 }

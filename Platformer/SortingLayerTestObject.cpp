@@ -1,5 +1,7 @@
 #include "SortingLayerTestObject.h"
 
+using Engine::Direction;
+
 namespace Platformer
 {
 	SortingLayerTestObject::SortingLayerTestObject

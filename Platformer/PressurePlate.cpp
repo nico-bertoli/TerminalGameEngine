@@ -1,10 +1,11 @@
 #include "PressurePlate.h"
 #include "AudioManager.h"
 
+using std::shared_ptr;
+using Direction = Engine::Direction;
+
 namespace Platformer
 {
-    using Direction = Engine::Direction;
-
     PressurePlate::PressurePlate(int xPos, int yPos, size_t width) : Collider(xPos, yPos)
     {
         unpressedModel = CreteModelUsingChar('=', width, 1);

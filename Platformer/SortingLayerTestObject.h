@@ -2,8 +2,6 @@
 #include "GameObject.h"
 #include <optional>
 
-using Engine::Direction;
-
 namespace Platformer
 {
 	class SortingLayerTestObject : public Engine::GameObject
@@ -15,7 +13,7 @@ namespace Platformer
 		int color;
 		size_t sortingLayer;
 		double moveSpeed;
-		std::optional<Direction> mainDirection;
+		std::optional<Engine::Direction> mainDirection;
 		Engine::Model model;
 
 	public:
@@ -29,7 +27,7 @@ namespace Platformer
 			int color,
 			size_t sortingLayer,
 			double moveSpeed = 0,
-			std::optional<Direction> mainDirection = std::nullopt
+			std::optional<Engine::Direction> mainDirection = std::nullopt
 		);
 
 		bool CanExitScreenSpace() const override { return true; }

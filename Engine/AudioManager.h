@@ -7,8 +7,6 @@
 
 namespace Engine
 {
-	using namespace sf;
-
 	class AudioManager : public Singleton<AudioManager>
 	{
 		friend class Singleton;
@@ -16,9 +14,9 @@ namespace Engine
 		//---------------------------------------------------------- Fields
 	private:
 		static const size_t SOUND_SOURCES_SIZE = 6;
-		std::array<Sound, SOUND_SOURCES_SIZE> sounds;
-		std::array<SoundBuffer, SOUND_SOURCES_SIZE> buffers;
-		Music music;
+		std::array<sf::Sound, SOUND_SOURCES_SIZE> sounds;
+		std::array<sf::SoundBuffer, SOUND_SOURCES_SIZE> buffers;
+		sf::Music music;
 		//---------------------------------------------------------- Methods
 	public:
 		void PlayFx(const char* fileName, double randomPitch = 0.0);
@@ -27,6 +25,6 @@ namespace Engine
 
 	private:
 		AudioManager();
-		bool TryGetBufferAndSound(SoundBuffer*& outBuffer, Sound*& outSound);
+		bool TryGetBufferAndSound(sf::SoundBuffer*& outBuffer, sf::Sound*& outSound);
 	};
 }

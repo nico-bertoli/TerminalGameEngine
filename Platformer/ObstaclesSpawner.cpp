@@ -6,10 +6,12 @@
 #include "Collider.h"
 #include <cstdlib>
 
+using Engine::Collider;
+using Engine::Direction;
+using std::shared_ptr;
+
 namespace Platformer
 {
-    using Collider = Engine::Collider;
-
     ObstaclesSpawner::ObstaclesSpawner
     (
         int xPos,
