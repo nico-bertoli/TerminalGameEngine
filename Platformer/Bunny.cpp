@@ -6,15 +6,15 @@
 #include "Simulation.h"
 #include "Obstacle.h"
 
+using namespace Engine::InputUtils;
 using Engine::Model;
 using Engine::Direction;
 using std::weak_ptr;
+using std::shared_ptr;
+
 
 namespace Platformer
 {
-    template<typename T> using shared_ptr = std::shared_ptr<T>;
-    using namespace Engine::InputUtils;
-
     //---------------------------------------------------------- Models
     const Model Bunny::MODEL_WALK_LEFT
     (

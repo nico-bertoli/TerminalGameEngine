@@ -10,11 +10,10 @@
 using Engine::Direction;
 using Engine::Model;
 using std::shared_ptr;
+using namespace Engine::InputUtils;
 
 namespace SpaceInvaders
 {
-    using namespace Engine::InputUtils;
-
     const Model PlayerTank::MODEL
     (
         5,

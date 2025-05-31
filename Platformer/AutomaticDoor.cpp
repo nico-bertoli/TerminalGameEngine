@@ -1,9 +1,9 @@
 #include "AutomaticDoor.h"
 
+using Direction = Engine::Direction;
+
 namespace Platformer
 {
-    using Direction = Engine::Direction;
-
     AutomaticDoor::AutomaticDoor
     (
         int xPos,

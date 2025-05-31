@@ -6,12 +6,11 @@
 #include "DebugManager.h"
 
 using Engine::Direction;
+using Engine::TimeHelper;
 using std::shared_ptr;
 
 namespace SpaceInvaders
 {
-	using TimeHelper = Engine::TimeHelper;
-
 	UfoSpawner::UfoSpawner(int xSpawnPos, int ySpawnPos, Direction ufoMoveDirection)
 		: xSpawnPos(xSpawnPos), ySpawnPos(ySpawnPos), ufoMoveDirection(ufoMoveDirection)
 	{

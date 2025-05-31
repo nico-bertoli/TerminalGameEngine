@@ -7,7 +7,6 @@ using Engine::Direction;
 using Engine::Level;
 using std::shared_ptr;
 
-
 namespace Platformer
 {
     const Model LevelEndFlag::flagModel

@@ -9,10 +9,10 @@
 #include "AudioManager.h"
 #include "PushableObject.h"
 
+using StaticCollider = Engine::StaticCollider;
+
 namespace Platformer
 {
-    using StaticCollider = Engine::StaticCollider;
-    
     void PuzzleLevel::LoadInSimulation()
     {
         Level::LoadInSimulation();

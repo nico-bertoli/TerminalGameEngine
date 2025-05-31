@@ -5,11 +5,10 @@
 #include "ObstaclesSpawner.h"
 
 using std::shared_ptr;
+using std::vector;
 
 namespace Platformer
 {
-    template <typename T> using vector = std::vector<T>;
-
     void CollisionsTestLevel::LoadInSimulation()
     {
         Level::LoadInSimulation();

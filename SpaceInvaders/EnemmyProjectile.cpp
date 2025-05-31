@@ -3,11 +3,10 @@
 
 using std::shared_ptr;
 using Engine::Direction;
+using Engine::Model;
 
 namespace SpaceInvaders
 {
-	using Model = Engine::Model;
-
 	const Model EnemyProjectile::MODEL(1, { '|' });
 
 	void EnemyProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
