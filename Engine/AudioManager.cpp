@@ -20,8 +20,8 @@ namespace Engine
 	void AudioManager::PlayFx(const char* fileName, const double randomPitch)
 	{
 #if ALLOW_SOUNDS
-		Sound* sound = nullptr;
-		SoundBuffer* buffer = nullptr;
+		sf::Sound* sound = nullptr;
+		sf::SoundBuffer* buffer = nullptr;
 
 		//if all sound sources are already playing, sound is not played
 		if (TryGetBufferAndSound(buffer, sound) == false)
