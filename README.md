@@ -9,8 +9,15 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 - Backgrounds support
 
 #
+<b>How to build (cmake):</b>
+
+Enter EngineDemo/build and run this commands:
+- cmake -S ../ -O ./
+- cmake --build .
+
+#
 <b>Notes:</b>
-- Windows only
+- Windows only (project depends on windows terminal API)
 - Requires you to install [OpenAL DLL](https://www.openal.org/downloads/)
 
 #
