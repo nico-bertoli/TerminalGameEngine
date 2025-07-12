@@ -21,7 +21,6 @@ Makefile
 [Rr]elease*/
 x64/
 x86/
-[Bb]in/
 [Oo]bj/
 
 # Ignore common C++ intermediate and output files
@@ -30,7 +29,6 @@ x86/
 *.so
 *.a
 *.lib
-# *.dll //don't remove dll files
 *.exe
 *.pdb
 *.idb
