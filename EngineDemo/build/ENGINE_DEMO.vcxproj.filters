@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\GameLoop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\AutomaticDoor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\Bunny.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\CollisionsTestLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\EndlessRunnerLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\LevelEndFlag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\Obstacle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\ObstaclesSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\PressurePlate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\PuzzleLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\SortingLayerTestLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Platformer\SortingLayerTestObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Pong\PongBall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Pong\PongBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\Pong\PongLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\Alien.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\AliensController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\AliensFrontline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\EnemmyProjectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\PlayerProjectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\PlayerTank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\ShieldPart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\SpaceInvadersLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\Ufo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\Levels\SpaceInvaders\UfoSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineDemo\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9EA828BB-1DBB-304B-B00E-81A72F02B5C2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

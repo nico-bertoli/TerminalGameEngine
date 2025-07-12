@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/cmake_install.cmake",
+		"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/Engine/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
