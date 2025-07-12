@@ -8,7 +8,7 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 - Easy to add new levels / objects
 - Backgrounds support
 
-Note: for now this works on Windows only (project depends on windows terminal API)
+Note: for now this works on Windows only (project depends on Windows terminal API)
 
 [Youtube Trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
 
