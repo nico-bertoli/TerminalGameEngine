@@ -26,3 +26,10 @@ Enter EngineDemo/build and run this commands:
 <img src="screenshots/screen1.png" style="height:500px; max-width:100%;">
 <img src="screenshots/screen2.png" style="height:250px; max-width:100%;">
 <img src="screenshots/screen3.png" style="height:250px; max-width:100%;">
+
+#
+This project uses SFML (Simple and Fast Multimedia Library). https://www.sfml-dev.org
+
+SFML is developed by Laurent Gomila and contributors.
+Copyright (C) 2007-2023 Laurent Gomila - laurent@sfml-dev.org
+SFML is licensed under the zlib/libpng license.
