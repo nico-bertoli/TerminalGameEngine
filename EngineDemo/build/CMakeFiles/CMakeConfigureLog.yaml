@@ -24,7 +24,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.14+a129329f1 for .NET Framework
-      Build started 7/12/2025 11:37:16 PM.
+      Build started 7/12/2025 11:55:58 PM.
       
       Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\4.0.3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -53,7 +53,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.30
+      Time Elapsed 00:00:00.48
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -79,7 +79,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.14+a129329f1 for .NET Framework
-      Build started 7/12/2025 11:37:16 PM.
+      Build started 7/12/2025 11:55:59 PM.
       
       Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\4.0.3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -108,7 +108,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.31
+      Time Elapsed 00:00:00.35
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -127,8 +127,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-kmrfp3"
-      binary: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-kmrfp3"
+      source: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-qitx6y"
+      binary: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-qitx6y"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -137,40 +137,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-kmrfp3'
+        Change Dir: 'C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-qitx6y'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_c8d16.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_aafb9.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.14+a129329f1 for .NET Framework
-        Build started 7/12/2025 11:37:17 PM.
+        Build started 7/12/2025 11:56:00 PM.
         
-        Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kmrfp3\\cmTC_c8d16.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qitx6y\\cmTC_aafb9.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_c8d16.dir\\Debug\\".
+          Creating directory "cmTC_aafb9.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kmrfp3\\Debug\\".
-          Creating directory "cmTC_c8d16.dir\\Debug\\cmTC_c8d16.tlog\\".
+          Creating directory "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qitx6y\\Debug\\".
+          Creating directory "cmTC_aafb9.dir\\Debug\\cmTC_aafb9.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_c8d16.dir\\Debug\\cmTC_c8d16.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_c8d16.dir\\Debug\\cmTC_c8d16.tlog\\unsuccessfulbuild".
+          Creating "cmTC_aafb9.dir\\Debug\\cmTC_aafb9.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_aafb9.dir\\Debug\\cmTC_aafb9.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c8d16.dir\\Debug\\\\" /Fd"cmTC_c8d16.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_aafb9.dir\\Debug\\\\" /Fd"cmTC_aafb9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35211 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c8d16.dir\\Debug\\\\" /Fd"cmTC_c8d16.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_aafb9.dir\\Debug\\\\" /Fd"cmTC_aafb9.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kmrfp3\\Debug\\cmTC_c8d16.exe" /INCREMENTAL /ILK:"cmTC_c8d16.dir\\Debug\\cmTC_c8d16.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-kmrfp3/Debug/cmTC_c8d16.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-kmrfp3/Debug/cmTC_c8d16.lib" /MACHINE:X64  /machine:x64 cmTC_c8d16.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_c8d16.vcxproj -> C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kmrfp3\\Debug\\cmTC_c8d16.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qitx6y\\Debug\\cmTC_aafb9.exe" /INCREMENTAL /ILK:"cmTC_aafb9.dir\\Debug\\cmTC_aafb9.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-qitx6y/Debug/cmTC_aafb9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-qitx6y/Debug/cmTC_aafb9.lib" /MACHINE:X64  /machine:x64 cmTC_aafb9.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_aafb9.vcxproj -> C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qitx6y\\Debug\\cmTC_aafb9.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_c8d16.dir\\Debug\\cmTC_c8d16.tlog\\unsuccessfulbuild".
-          Touching "cmTC_c8d16.dir\\Debug\\cmTC_c8d16.tlog\\cmTC_c8d16.lastbuildstate".
-        Done Building Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kmrfp3\\cmTC_c8d16.vcxproj" (default targets).
+          Deleting file "cmTC_aafb9.dir\\Debug\\cmTC_aafb9.tlog\\unsuccessfulbuild".
+          Touching "cmTC_aafb9.dir\\Debug\\cmTC_aafb9.tlog\\cmTC_aafb9.lastbuildstate".
+        Done Building Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-qitx6y\\cmTC_aafb9.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.29
+        Time Elapsed 00:00:00.31
         
       exitCode: 0
   -
@@ -210,8 +210,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-773zeg"
-      binary: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-773zeg"
+      source: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-tx95l4"
+      binary: "C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-tx95l4"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -221,40 +221,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-773zeg'
+        Change Dir: 'C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-tx95l4'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2fe34.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_4cf54.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.14+a129329f1 for .NET Framework
-        Build started 7/12/2025 11:37:17 PM.
+        Build started 7/12/2025 11:56:01 PM.
         
-        Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-773zeg\\cmTC_2fe34.vcxproj" on node 1 (default targets).
+        Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tx95l4\\cmTC_4cf54.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_2fe34.dir\\Debug\\".
+          Creating directory "cmTC_4cf54.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-773zeg\\Debug\\".
-          Creating directory "cmTC_2fe34.dir\\Debug\\cmTC_2fe34.tlog\\".
+          Creating directory "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tx95l4\\Debug\\".
+          Creating directory "cmTC_4cf54.dir\\Debug\\cmTC_4cf54.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_2fe34.dir\\Debug\\cmTC_2fe34.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_2fe34.dir\\Debug\\cmTC_2fe34.tlog\\unsuccessfulbuild".
+          Creating "cmTC_4cf54.dir\\Debug\\cmTC_4cf54.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_4cf54.dir\\Debug\\cmTC_4cf54.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2fe34.dir\\Debug\\\\" /Fd"cmTC_2fe34.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4cf54.dir\\Debug\\\\" /Fd"cmTC_4cf54.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35211 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2fe34.dir\\Debug\\\\" /Fd"cmTC_2fe34.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_4cf54.dir\\Debug\\\\" /Fd"cmTC_4cf54.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-773zeg\\Debug\\cmTC_2fe34.exe" /INCREMENTAL /ILK:"cmTC_2fe34.dir\\Debug\\cmTC_2fe34.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-773zeg/Debug/cmTC_2fe34.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-773zeg/Debug/cmTC_2fe34.lib" /MACHINE:X64  /machine:x64 cmTC_2fe34.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_2fe34.vcxproj -> C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-773zeg\\Debug\\cmTC_2fe34.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tx95l4\\Debug\\cmTC_4cf54.exe" /INCREMENTAL /ILK:"cmTC_4cf54.dir\\Debug\\cmTC_4cf54.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-tx95l4/Debug/cmTC_4cf54.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/nico/Desktop/TerminalGameEngine/EngineDemo/build/CMakeFiles/CMakeScratch/TryCompile-tx95l4/Debug/cmTC_4cf54.lib" /MACHINE:X64  /machine:x64 cmTC_4cf54.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_4cf54.vcxproj -> C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tx95l4\\Debug\\cmTC_4cf54.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_2fe34.dir\\Debug\\cmTC_2fe34.tlog\\unsuccessfulbuild".
-          Touching "cmTC_2fe34.dir\\Debug\\cmTC_2fe34.tlog\\cmTC_2fe34.lastbuildstate".
-        Done Building Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-773zeg\\cmTC_2fe34.vcxproj" (default targets).
+          Deleting file "cmTC_4cf54.dir\\Debug\\cmTC_4cf54.tlog\\unsuccessfulbuild".
+          Touching "cmTC_4cf54.dir\\Debug\\cmTC_4cf54.tlog\\cmTC_4cf54.lastbuildstate".
+        Done Building Project "C:\\Users\\nico\\Desktop\\TerminalGameEngine\\EngineDemo\\build\\CMakeFiles\\CMakeScratch\\TryCompile-tx95l4\\cmTC_4cf54.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.30
+        Time Elapsed 00:00:00.29
         
       exitCode: 0
   -
