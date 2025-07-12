@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\AudioManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\DebugManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\DebugPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\MovingStraightObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\SimulationPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\StaticCollider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\Terminal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\TimeHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\UIPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\WorldSpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9690BAC7-BF2E-3886-B7C1-572EAC8A1DA9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

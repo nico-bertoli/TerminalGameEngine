@@ -1,3 +1,0 @@
-C:/Users/nico/Desktop/TerminalGameEngine/Engine/build/CMakeFiles/ENGINE.dir
-C:/Users/nico/Desktop/TerminalGameEngine/Engine/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/nico/Desktop/TerminalGameEngine/Engine/build/CMakeFiles/ZERO_CHECK.dir

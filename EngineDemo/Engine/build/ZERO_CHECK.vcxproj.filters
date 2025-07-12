@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\nico\Desktop\TerminalGameEngine\EngineUsageDemo\Engine\build\CMakeFiles\5b9a5b37eb9e9d13643a1889990fed5c\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AB37D5FB-1598-39AD-9B63-B61A89BEF3F7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
