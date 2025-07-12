@@ -18,7 +18,7 @@ Note: for now this works on Windows only (project depends on Windows terminal AP
 
 
 #
-<b>How to build (cmake):</b>
+<b>How to build (CMake):</b>
 
 Enter EngineDemo/build and run this commands:
 - cmake -S ../ -O ./
