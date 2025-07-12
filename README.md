@@ -8,6 +8,8 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 - Easy to add new levels / objects
 - Backgrounds support
 
+Note: this engine Windows only (project depends on windows terminal API)
+
 [Youtube Trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
 
 <img src="screenshots/screen1.png" style="height:500px; max-width:100%;">
@@ -21,11 +23,6 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 Enter EngineDemo/build and run this commands:
 - cmake -S ../ -O ./
 - cmake --build .
-
-#
-<b>Notes:</b>
-- Windows only (project depends on windows terminal API)
-- Requires you to install [OpenAL DLL](https://www.openal.org/downloads/)
 
 #
 This project uses SFML (Simple and Fast Multimedia Library). https://www.sfml-dev.org
