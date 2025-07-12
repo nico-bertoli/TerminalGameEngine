@@ -30,7 +30,7 @@ x86/
 *.so
 *.a
 *.lib
-*.dll
+# *.dll //don't remove dll files
 *.exe
 *.pdb
 *.idb
@@ -85,4 +85,3 @@ packages/
 # Ignore other common unnecessary files
 *.log
 *.csv
-
