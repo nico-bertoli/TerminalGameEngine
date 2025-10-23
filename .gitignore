@@ -1,27 +1,13 @@
-# Ignore build directories (common CMake build folder)
-build/
-cmake-build-*/
-
-# CMake generated files
+# CMake
+**/build/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
 
-# Ignore Visual Studio files and folders
-.vs/
-*.vcxproj.user
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-# Ignore Visual Studio build output folders
-[Dd]ebug*/
-[Rr]elease*/
-x64/
-x86/
-[Oo]bj/
+# Visual Studio
+.vscode/
+*.code-workspace
 
 # Ignore common C++ intermediate and output files
 *.obj
@@ -30,7 +16,6 @@ x86/
 *.a
 *.lib
 *.exe
-*.pdb
 *.idb
 *.ipdb
 *.iobj
@@ -46,6 +31,7 @@ x86/
 *.log
 *.vspscc
 *.vssscc
+*.csv
 
 # Ignore cache files
 *.cache
@@ -73,13 +59,3 @@ x86/
 *.idea/
 *.vscode/
 *.code-workspace
-
-# Ignore package managers (if any)
-build/*.nupkg
-packages/
-*.nuget.props
-*.nuget.targets
-
-# Ignore other common unnecessary files
-*.log
-*.csv
