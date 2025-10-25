@@ -15,7 +15,7 @@ namespace Engine
 
 		char modelChar;
 		size_t remainingMovementsBeforeDestruction;
-		int color;
+		TerminalColor color;
 		Model model;
 
 	public:
@@ -24,7 +24,7 @@ namespace Engine
 			int xPos,
 			int yPos,
 			char modelChar,
-			int color,
+			TerminalColor color,
 			double moveSpeed,
 			size_t movementLifeTime,
 			std::optional<Direction> mainDirection
@@ -32,7 +32,7 @@ namespace Engine
 
 		bool CanExitScreenSpace() const override { return true; }
 		double GetGravityScale() const override { return 0; }
-		int GetColor() const override { return color; }
+		TerminalColor GetColor() const override { return color; }
 		size_t GetSortingLayer() const override { return 200; }
 
 	protected:

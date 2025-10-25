@@ -18,11 +18,11 @@ namespace Engine
         //---------------------------------------------------------- Methods
     public:
         UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, int marginsColor);
-        void PrintWindow(const Frame& window, int color, WindowPosition windowPosition);
-        void PrintOnHeader(const std::string& header, int xPos, int color);
+        void PrintWindow(const Frame& window, TerminalColor color, WindowPosition windowPosition);
+        void PrintOnHeader(const std::string& header, int xPos, TerminalColor color);
 
     private:
-        void DrawMargins(int color);
+        void DrawMargins(TerminalColor color);
         void DrawHorizontalMargin();
     };
 }

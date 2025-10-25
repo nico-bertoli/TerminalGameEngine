@@ -6,8 +6,8 @@
 #include "Event.h"
 #include "Vector2D.h"
 
+#include <list>
 #include <memory>
-#include <Windows.h>
 
 namespace Engine
 {
@@ -40,7 +40,7 @@ namespace Engine
 	public:
 		GameObject(int xPos, int yPos);
 
-		virtual int GetColor() const { return Terminal::WHITE; }
+		virtual TerminalColor GetColor() const { return TerminalColor::WHITE; }
 		virtual size_t GetSortingLayer() const { return 100; }
 		void Init() { InitModel(); }
 		int GetPosX() const { return xPos; }

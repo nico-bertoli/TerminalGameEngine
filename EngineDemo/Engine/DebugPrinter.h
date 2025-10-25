@@ -11,7 +11,7 @@ namespace Engine
     {
         //------------------------------------------ Settings
     private:
-        const int DEBUG_COLOR = Terminal::CYAN;
+        const TerminalColor DEBUG_COLOR = TerminalColor::CYAN;
         const size_t FPS_POSITION = 1;
         const size_t POSITION_COUT_CALLS = 2;
         const size_t GENERIC_LOG_POSITION = 3;

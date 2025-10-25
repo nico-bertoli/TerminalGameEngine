@@ -12,7 +12,7 @@ namespace Engine
 		int xPos,
 		int yPos,
 		char modelChar,
-		int color,
+		TerminalColor color,
 		double moveSpeed,
 		size_t movesBeforeDestruction,
 		std::optional<Direction> mainDirection

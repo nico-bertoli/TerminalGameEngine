@@ -27,7 +27,7 @@ namespace Pong
 
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        int GetColor() const override { return Engine::Terminal::CYAN; }
+        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::CYAN; }
 
         double GetDeflectBallFactor() { return deflectBallFactor; }
 

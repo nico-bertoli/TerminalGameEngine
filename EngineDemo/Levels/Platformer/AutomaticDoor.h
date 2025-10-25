@@ -28,7 +28,7 @@ namespace Platformer
         bool IsOpen() const { return energySourcesCounter > 0; }
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        int GetColor() const { return Engine::Terminal::CYAN; }
+        TerminalColor GetColor() const { return Engine::TerminalColor::CYAN; }
         void AddEnergySource() { ++energySourcesCounter; }
         void RemoveEnergySource();
 

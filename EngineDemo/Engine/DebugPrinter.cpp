@@ -1,4 +1,5 @@
 #include "DebugPrinter.h"
+#include "Vector2Int.h"
 
 using std::string;
 
@@ -6,8 +7,8 @@ namespace Engine
 {
     void DebugPrinter::PrintCoutCallsCount(size_t coutCallsCount)
     {
-        int startingColor = Terminal::Instance().GetColor();
-        COORD cursorStartingPos = terminal.GetCursorPosition();
+        TerminalColor startingColor = Terminal::Instance().GetColor();
+        Vector2Int cursorStartingPos = terminal.GetCursorPosition();
 
         Terminal::Instance().SetColor(DEBUG_COLOR);
         terminal.SetCursorPosition(0, GetMaxTerminalY() + POSITION_COUT_CALLS);

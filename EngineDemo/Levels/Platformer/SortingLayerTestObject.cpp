@@ -11,7 +11,7 @@ namespace Platformer
 		size_t sizeX,
 		size_t sizeY,
 		char modelChar,
-		int color,
+		TerminalColor color,
 		size_t sortingLayer,
 		double moveSpeed,
 		std::optional<Direction> mainDirection

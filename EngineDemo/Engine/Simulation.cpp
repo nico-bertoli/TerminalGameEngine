@@ -9,7 +9,6 @@
 #include "RandomUtils.h"
 #include "Particle.h"
 
-#include <Windows.h>
 #include <cassert>
 #include <stdexcept>
 #include <array>
@@ -36,7 +35,7 @@ namespace Engine
 		size_t width,
 		size_t height,
 		char modelChar,
-		int color,
+		TerminalColor color,
 		double speed,
 		size_t movementLifeTime,
 		double density,

@@ -10,7 +10,7 @@ namespace Engine
         DrawMargins(marginsColor);
     };
 
-    void UIPrinter::PrintWindow(const Frame& window, int color, WindowPosition windowPosition)
+    void UIPrinter::PrintWindow(const Frame& window, TerminalColor color, WindowPosition windowPosition)
     {
         if (window.GetSizeY() == 0)
             return;
@@ -43,14 +43,14 @@ namespace Engine
         }
     }
 
-    void UIPrinter::PrintOnHeader(const string& header, int xPos, int color)
+    void UIPrinter::PrintOnHeader(const string& header, int xPos, TerminalColor color)
     {
         terminal.SetColor(color);
         terminal.SetCursorPosition(xPos, 0);
         terminal.Cout(header);
     }
 
-    void UIPrinter::DrawMargins(int color)
+    void UIPrinter::DrawMargins(TerminalColor color)
     {
         terminal.SetColor(color);
 

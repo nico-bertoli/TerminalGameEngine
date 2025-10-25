@@ -105,7 +105,7 @@ namespace SpaceInvaders
 
 		gameOverWindow.WriteString(message, '$');
 
-		Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::Terminal::WHITE, WindowPosition::CenterX_CenterY);
+		Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::TerminalColor::WHITE, WindowPosition::CenterX_CenterY);
 	}
 
 	void SpaceInvadersLevel::IncreasePlayerScore(size_t increment)
@@ -124,7 +124,7 @@ namespace SpaceInvaders
 	{
 		string scoreString = "score: " + std::to_string(score);
 		int xPos = static_cast<int>(Simulation::Instance().GetScreenSizeX() / 2 - scoreString.size() / 2);
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(scoreString, xPos, Engine::Terminal::WHITE);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(scoreString, xPos, Engine::TerminalColor::WHITE);
 	}
 
 	void SpaceInvadersLevel::PrintHealth(size_t health)
@@ -135,7 +135,7 @@ namespace SpaceInvaders
 		for (int i = 1; i <= PlayerTank::MAX_HEALTH; i++)
 			healthStr += i <= health ? "<3 " : "  ";
 
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(healthStr, xPos, Engine::Terminal::RED);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(healthStr, xPos, Engine::TerminalColor::RED);
 	}
 
 	void SpaceInvadersLevel::PrintWave()
@@ -144,7 +144,7 @@ namespace SpaceInvaders
 		string waveStr = "wave: " + std::to_string(waveNumber);
 
 		int waveStringPosX = static_cast<int>(uiPrinter.GetMaxTerminalX() - waveStr.length());
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(waveStr, waveStringPosX, Engine::Terminal::WHITE);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(waveStr, waveStringPosX, Engine::TerminalColor::WHITE);
 	}
 
 
