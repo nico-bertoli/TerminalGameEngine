@@ -1,14 +1,14 @@
 #include "EndlessRunnerLevel.h"
-#include "Simulation.h"
-#include "StaticCollider.h"
-#include "Persistence.h"
+#include "Core/Simulation.h"
+#include "SimEntities/StaticCollider.h"
+#include "Managers/PersistenceManager.h"
 #include "InputManager/InputManager.h"
-#include "AudioManager.h"
+#include "Managers/AudioManager.h"
 #include "Bunny.h"
 #include "ObstaclesSpawner.h"
-#include "SimulationPrinter.h"
-#include "UIPrinter.h"
-#include "Frame.h"
+#include "Printers/SimulationPrinter.h"
+#include "Printers/UIPrinter.h"
+#include "Core/Frame.h"
 #include "Utils/RandomUtils.h"
 #include <string>
 
@@ -30,9 +30,9 @@ namespace Platformer
         Level::OnPostGameOverDelayEnded();
         int score = static_cast<int>(GetLevelTime());
 
-        int savedBestScore = Engine::Persistence::LoadBestScore(GetPersistenceFilePath());
+        int savedBestScore = Engine::PersistenceManager::LoadBestScore(GetPersistenceFilePath());
         if (score > savedBestScore)
-            Engine::Persistence::SaveBestScore(GetPersistenceFilePath(), score);
+            Engine::PersistenceManager::SaveBestScore(GetPersistenceFilePath(), score);
 
         ShowGameOverScreen(score, savedBestScore);
         Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Platform/ShowEndScreen.wav");

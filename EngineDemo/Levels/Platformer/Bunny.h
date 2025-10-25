@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "Collider.h"
+#include "SimEntities/Collider.h"
 #include "General/Vector2Int.h"
 #include <string>
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "VariableSizeCollider.h"
+#include "SimEntities/VariableSizeCollider.h"
 
 namespace Platformer
 {

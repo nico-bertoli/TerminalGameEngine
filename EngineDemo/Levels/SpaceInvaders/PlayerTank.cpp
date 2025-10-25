@@ -1,10 +1,10 @@
 #include "PlayerTank.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "InputManager/InputManager.h"
 #include "PlayerProjectile.h"
-#include "TimeHelper.h"
-#include "Level.h"
-#include "AudioManager.h"
+#include "Managers/TimeManager.h"
+#include "SimEntities/Level.h"
+#include "Managers/AudioManager.h"
 #include "SpaceInvadersLevel.h"
 
 using Engine::Direction;
@@ -46,7 +46,7 @@ namespace SpaceInvaders
 
         if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE))
         {
-            double time = Engine::TimeHelper::Instance().GetTime();
+            double time = Engine::TimeManager::Instance().GetTime();
 
 #if CHEAT_SPACEINV_FAST_FIRE
             if (time - lastTimeShot > 0.08)
@@ -55,7 +55,7 @@ namespace SpaceInvaders
 
             if (time - lastTimeShot > SHOTS_DELAY)
             {
-                lastTimeShot = Engine::TimeHelper::Instance().GetTime();
+                lastTimeShot = Engine::TimeManager::Instance().GetTime();
                 shared_ptr<PlayerProjectile> projectile = std::make_shared<PlayerProjectile>(GetMidPosX(), GetMaxPosY() + 1, Direction::up, PROJECTILE_SPEED);
                 Engine::Simulation::Instance().TryAddEntity(projectile);
                 Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/Shot1.wav");

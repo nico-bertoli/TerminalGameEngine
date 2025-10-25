@@ -1,6 +1,6 @@
 #include "CollisionsTestLevel.h"
 #include "Config.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "Obstacle.h"
 #include "ObstaclesSpawner.h"
 

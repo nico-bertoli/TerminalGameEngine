@@ -1,5 +1,5 @@
 #pragma once
-#include "TimeHelper.h"
+#include "Managers/TimeManager.h"
 #include <cmath>
 
 namespace RandomUtils

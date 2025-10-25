@@ -6,8 +6,8 @@
 #include "CollisionsTestLevel.h"
 #include "PongLevel.h"
 #include "InputManager/InputManager.h"
-#include "AudioManager.h"
-#include "Simulation.h"
+#include "Managers/AudioManager.h"
+#include "Core/Simulation.h"
 #include "SpaceInvadersLevel.h"
 #include "SortingLayerTestLevel.h"
 
@@ -68,7 +68,7 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
 #if DEBUG_MODE
     cout << "5 -> collisions test" << endl;
     cout << "6 -> sorting layer test" << endl;
-#endif;
+#endif
     cout << "esc -> return to main menu" << endl;
 
     cout << endl << endl << endl;

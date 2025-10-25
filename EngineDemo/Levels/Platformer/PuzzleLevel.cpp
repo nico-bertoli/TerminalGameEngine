@@ -1,12 +1,11 @@
-#pragma once
 #include "PuzzleLevel.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "Bunny.h"
-#include "StaticCollider.h"
+#include "SimEntities/StaticCollider.h"
 #include "AutomaticDoor.h"
 #include "PressurePlate.h"
 #include "LevelEndFlag.h"
-#include "AudioManager.h"
+#include "Managers/AudioManager.h"
 #include "PushableObject.h"
 
 using StaticCollider = Engine::StaticCollider;

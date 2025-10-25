@@ -1,6 +1,6 @@
 #include "Enemy.h"
-#include "TimeHelper.h"
-#include "Simulation.h"
+#include "Managers/TimeManager.h"
+#include "Core/Simulation.h"
 #include "SpaceInvadersLevel.h"
 
 using std::shared_ptr;

@@ -1,5 +1,5 @@
 #pragma once
-#include "VariableSizeCollider.h"
+#include "SimEntities/VariableSizeCollider.h"
 
 namespace Pong
 {

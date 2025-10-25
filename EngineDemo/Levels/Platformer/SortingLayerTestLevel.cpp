@@ -1,6 +1,6 @@
 #include "SortingLayerTestLevel.h"
-#include "Level.h"
-#include "Simulation.h"
+#include "SimEntities/Level.h"
+#include "Core/Simulation.h"
 #include "Bunny.h"
 #include "SortingLayerTestObject.h"
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Collider.h"
+#include "SimEntities/Collider.h"
 #include "Bunny.h"
-#include "AudioManager.h"
+#include "Managers/AudioManager.h"
 
 namespace Platformer
 {

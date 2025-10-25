@@ -1,5 +1,5 @@
 #include "BaseTerminal.h"
-#include "Debug/DebugManager.h"
+#include "Managers/DebugManager.h"
 
 namespace Engine
 {

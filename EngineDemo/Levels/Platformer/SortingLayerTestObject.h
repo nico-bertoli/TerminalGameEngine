@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "SimEntities/GameObject.h"
 #include <optional>
 
 namespace Platformer

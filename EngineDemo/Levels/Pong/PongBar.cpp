@@ -1,7 +1,7 @@
 #include "PongBar.h"
 #include "InputManager/InputManager.h"
-#include "Simulation.h"
-#include "Level.h"
+#include "Core/Simulation.h"
+#include "SimEntities/Level.h"
 
 using Engine::Direction;
 

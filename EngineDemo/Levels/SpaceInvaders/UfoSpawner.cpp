@@ -1,12 +1,12 @@
 #include "UfoSpawner.h"
-#include "TimeHelper.h"
+#include "Managers/TimeManager.h"
 #include "Ufo.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "Utils/RandomUtils.h"
-#include "Debug/DebugManager.h"
+#include "Managers/DebugManager.h"
 
 using Engine::Direction;
-using Engine::TimeHelper;
+using Engine::TimeManager;
 using std::shared_ptr;
 
 namespace SpaceInvaders
@@ -19,11 +19,11 @@ namespace SpaceInvaders
 
 	void UfoSpawner::Update()
 	{
-		if (TimeHelper::Instance().GetTime() > nextSpawnTime)
+		if (TimeManager::Instance().GetTime() > nextSpawnTime)
 		{
 			shared_ptr<Ufo> ufo = std::make_shared<Ufo>(xSpawnPos, ySpawnPos, ufoMoveDirection);
 			Engine::Simulation::Instance().TryAddEntity(ufo);
-			lastTimeSpawned = TimeHelper::Instance().GetTime();
+			lastTimeSpawned = TimeManager::Instance().GetTime();
 			SetNextSpawnDelay();
 		}
 	}
@@ -31,7 +31,7 @@ namespace SpaceInvaders
 	void UfoSpawner::SetNextSpawnDelay()
 	{
 		nextSpawnTime =
-			TimeHelper::Instance().GetTime() +
+			TimeManager::Instance().GetTime() +
 			RandomUtils::GetRandomDouble(MIN_SPAWN_DELAY, MAX_SPAWN_DELAY);
 	}
 }

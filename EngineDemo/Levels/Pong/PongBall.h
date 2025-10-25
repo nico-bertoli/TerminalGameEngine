@@ -1,5 +1,5 @@
 #pragma once
-#include "Collider.h"	
+#include "SimEntities/Collider.h"	
 #include "General/Vector2Int.h"
 
 namespace Pong

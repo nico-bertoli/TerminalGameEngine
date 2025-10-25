@@ -1,6 +1,6 @@
 #pragma once
 #include "Projectile.h"
-#include "GameObject.h"
+#include "SimEntities/GameObject.h"
 
 namespace SpaceInvaders
 {

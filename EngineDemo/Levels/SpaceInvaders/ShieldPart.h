@@ -1,5 +1,5 @@
 #pragma once
-#include "StaticCollider.h"
+#include "SimEntities/StaticCollider.h"
 
 namespace SpaceInvaders
 {

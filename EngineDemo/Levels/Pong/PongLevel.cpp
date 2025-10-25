@@ -1,9 +1,9 @@
 #include "PongLevel.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "PongBar.h"
 #include "PongBall.h"
-#include "AudioManager.h"
-#include "UIPrinter.h"
+#include "Managers/AudioManager.h"
+#include "Printers/UIPrinter.h"
 
 namespace Pong
 {

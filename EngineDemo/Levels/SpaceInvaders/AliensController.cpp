@@ -1,13 +1,12 @@
-#pragma once
 #include "Config.h"
 #include "AliensController.h"
 #include "Alien.h"
-#include "Level.h"
-#include "TimeHelper.h"
+#include "SimEntities/Level.h"
+#include "Managers/TimeManager.h"
 #include "SpaceInvadersLevel.h"
-#include "Debug/DebugManager.h"
+#include "Managers/DebugManager.h"
 #include "Utils/RandomUtils.h"
-#include "GameObject.h"
+#include "SimEntities/GameObject.h"
 #include <cassert>
 
 using std::string;
@@ -141,13 +140,13 @@ namespace SpaceInvaders
 
 	void AliensController::HandleShooting()
 	{
-		if (Engine::TimeHelper::Instance().GetTime() - lastShotTime > shotDelay)
+		if (Engine::TimeManager::Instance().GetTime() - lastShotTime > shotDelay)
 		{
 			shared_ptr<Alien> frontLineAlien = frontLine.GetRandom();
 			if (frontLineAlien == nullptr)
 				return;
 			frontLineAlien->Shot();
-			lastShotTime = Engine::TimeHelper::Instance().GetTime();
+			lastShotTime = Engine::TimeManager::Instance().GetTime();
 			shotDelay = GetNextShotDelay();
 		}
 	}

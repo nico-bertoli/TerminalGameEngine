@@ -1,14 +1,14 @@
 #include "SpaceInvadersLevel.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "AlienLowScore.h"
 #include "AlienMidScore.h"
 #include "AlienHighScore.h"
 #include "PlayerTank.h"
 #include "AliensController.h"
-#include "AudioManager.h"
-#include "Persistence.h"
-#include "UIPrinter.h"
-#include "Printer.h"
+#include "Managers/AudioManager.h"
+#include "Managers/PersistenceManager.h"
+#include "Printers/UIPrinter.h"
+#include "Printers/Printer.h"
 #include "ShieldPart.h"
 #include "UfoSpawner.h"
 
@@ -85,9 +85,9 @@ namespace SpaceInvaders
 	{
 		Level::OnPostGameOverDelayEnded();
 
-		int savedBestScore = Engine::Persistence::LoadBestScore(GetPersistenceFilePath());
+		int savedBestScore = Engine::PersistenceManager::LoadBestScore(GetPersistenceFilePath());
 		if (score > savedBestScore)
-			Engine::Persistence::SaveBestScore(GetPersistenceFilePath(), score);
+			Engine::PersistenceManager::SaveBestScore(GetPersistenceFilePath(), score);
 
 		ShowGameOverScreen(score, savedBestScore);
 		Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/ShowEndScreen.wav");
@@ -256,12 +256,12 @@ namespace SpaceInvaders
 		isLoadingWave = true;
 		waveNumber++;
 		PrintWave();
-		startedLoadingWaveTime = Engine::TimeHelper::Instance().GetTime();
+		startedLoadingWaveTime = Engine::TimeManager::Instance().GetTime();
 	}
 
 	void SpaceInvadersLevel::LoadNewWave()
 	{
-		if (isLoadingWave && Engine::TimeHelper::Instance().GetTime() - startedLoadingWaveTime > LOAD_WAVE_TIME)
+		if (isLoadingWave && Engine::TimeManager::Instance().GetTime() - startedLoadingWaveTime > LOAD_WAVE_TIME)
 		{
 			LoadAliens();
 			isLoadingWave = false;

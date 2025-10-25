@@ -1,5 +1,5 @@
 #pragma once
-#include "MovingStraightObject.h"
+#include "SimEntities/MovingStraightObject.h"
 
 namespace Platformer
 {

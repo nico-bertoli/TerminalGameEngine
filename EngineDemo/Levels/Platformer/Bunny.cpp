@@ -1,9 +1,9 @@
 #include "Bunny.h"
-#include "Level.h"
+#include "SimEntities/Level.h"
 #include "InputManager/InputManager.h"
-#include "TimeHelper.h"
-#include "AudioManager.h"
-#include "Simulation.h"
+#include "Managers/TimeManager.h"
+#include "Managers/AudioManager.h"
+#include "Core/Simulation.h"
 #include "Obstacle.h"
 
 using Engine::Model;
@@ -106,7 +106,7 @@ namespace Platformer
         if (state == State::walking && GetPosX() != previousPositionX)
         {
             previousPositionX = GetPosX();
-            bool isTimeForLeftModel = Engine::TimeHelper::Instance().IsTimeForFirstOfTwoModels(STEP_ANIM_EVERY_SECONDS);
+            bool isTimeForLeftModel = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(STEP_ANIM_EVERY_SECONDS);
             ActivateLeftModels(isTimeForLeftModel);
         }
 
@@ -152,7 +152,7 @@ namespace Platformer
 
     void Bunny::SwitchWalkIdleState()
     {
-        if (Engine::TimeHelper::Instance().GetTime() - lastTimeMovedOnX > 0.2)
+        if (Engine::TimeManager::Instance().GetTime() - lastTimeMovedOnX > 0.2)
         {
             if (state == State::walking)
                 SetState(State::idle);
@@ -248,7 +248,7 @@ namespace Platformer
     void Bunny::OnMoveCallback(Direction dir)
     {
         if (dir == Direction::right || dir == Direction::left)
-            lastTimeMovedOnX = Engine::TimeHelper::Instance().GetTime();
+            lastTimeMovedOnX = Engine::TimeManager::Instance().GetTime();
     }
 
     void Bunny::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
