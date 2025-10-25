@@ -1,6 +1,6 @@
 #include "Particle.h"
-#include "RandomUtils.h"
-#include "DirectionUtils.h"
+#include "Utils/RandomUtils.h"
+#include "Utils/DirectionUtils.h"
 #include "Simulation.h"
 
 using std::weak_ptr;

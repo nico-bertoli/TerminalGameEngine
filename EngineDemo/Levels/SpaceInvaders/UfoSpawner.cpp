@@ -2,8 +2,8 @@
 #include "TimeHelper.h"
 #include "Ufo.h"
 #include "Simulation.h"
-#include "RandomUtils.h"
-#include "DebugManager.h"
+#include "Utils/RandomUtils.h"
+#include "Debug/DebugManager.h"
 
 using Engine::Direction;
 using Engine::TimeHelper;

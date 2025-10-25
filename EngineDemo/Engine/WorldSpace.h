@@ -1,7 +1,7 @@
 #pragma once
-#include "DirectionUtils.h"
+#include "Utils/DirectionUtils.h"
 #include "FakeCollider.h"
-#include "Vector2D.h"
+#include "General/Vector2D.h"
 #include <memory>
 
 #include <cassert>

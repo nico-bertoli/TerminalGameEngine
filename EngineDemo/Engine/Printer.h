@@ -1,5 +1,5 @@
 #pragma once
-#include "TerminalManager.h"
+#include "Terminal/Terminal.h"
 
 namespace Engine
 {

@@ -1,9 +1,10 @@
 #pragma once
 #include "ISimulationEntity.h"
-#include "DirectionUtils.h"
+#include "Utils/DirectionUtils.h"
 #include "AliensFrontline.h"
-#include "Event.h"
-#include "Vector2D.h"
+#include "General/Vector2Int.h"
+#include "General/Vector2D.h"
+#include "General/Event.h"
 
 namespace Engine
 {

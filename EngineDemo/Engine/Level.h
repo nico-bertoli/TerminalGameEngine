@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ISimulationEntity.h"
-#include "TerminalManager.h"
+#include "Terminal/Terminal.h"
 #include "Frame.h"
 
 namespace Engine

@@ -2,7 +2,7 @@
 #include "Obstacle.h"
 #include "Simulation.h"
 #include "TimeHelper.h"
-#include "RandomUtils.h"
+#include "Utils/RandomUtils.h"
 #include "Collider.h"
 #include <cstdlib>
 

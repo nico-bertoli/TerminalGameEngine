@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "Singleton.h"
+#include "General/Singleton.h"
 
 #include <array>
 #include <SFML/Audio.hpp>

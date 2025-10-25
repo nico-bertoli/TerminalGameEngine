@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "DebugManager.h"
+#include "Debug/DebugManager.h"
 #include <string>
 
 namespace Engine

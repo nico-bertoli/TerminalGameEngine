@@ -5,8 +5,8 @@
 #include "Level.h"
 #include "TimeHelper.h"
 #include "SpaceInvadersLevel.h"
-#include "DebugManager.h"
-#include "RandomUtils.h"
+#include "Debug/DebugManager.h"
+#include "Utils/RandomUtils.h"
 #include "GameObject.h"
 #include <cassert>
 

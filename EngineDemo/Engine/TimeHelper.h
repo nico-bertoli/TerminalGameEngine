@@ -1,5 +1,5 @@
 #pragma once
-#include "Singleton.h"
+#include "General/Singleton.h"
 
 #include <chrono>
 #include <math.h>

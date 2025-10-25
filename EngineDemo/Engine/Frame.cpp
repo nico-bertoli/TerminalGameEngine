@@ -1,5 +1,5 @@
 #include "Frame.h"
-#include "StringUtils.h"
+#include "Utils/StringUtils.h"
 #include <cassert>
 
 using std::string;

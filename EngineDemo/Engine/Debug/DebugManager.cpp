@@ -1,8 +1,8 @@
-#include "DebugManager.h"
+#include "Debug/DebugManager.h"
 
 #if DEBUG_MODE
 
-#include "TerminalManager.h"
+#include "Terminal/Terminal.h"
 #include "TimeHelper.h"
 
 namespace Engine

@@ -1,6 +1,6 @@
 #pragma once
 #include "Enemy.h"
-#include "Event.h"
+#include "General/Vector2Int.h"
 
 namespace SpaceInvaders
 {

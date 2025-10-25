@@ -6,8 +6,7 @@
 #include "Config.h"
 #include "Level.h"
 #include "TimeHelper.h"
-#include "TerminalManager.h"
-#include "DebugManager.h"
+#include "Debug/DebugManager.h"
 
 #include <cassert>
 #include <algorithm>

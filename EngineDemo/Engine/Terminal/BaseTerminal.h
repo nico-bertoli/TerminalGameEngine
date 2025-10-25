@@ -2,8 +2,8 @@
 #include <string>
 #include <iostream>
 
-#include "Singleton.h"
-#include "Vector2Int.h"
+#include "General/Singleton.h"
+#include "General/Vector2Int.h"
 
 namespace Engine
 {

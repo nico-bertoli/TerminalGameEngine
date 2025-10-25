@@ -2,8 +2,8 @@
 
 #if IS_LINUX_BUILD
 
-#include "TerminalManager.h"
-#include "DebugManager.h"
+#include "Terminal.h"
+#include "Debug/DebugManager.h"
 
 #include <iostream>
 #include <string>

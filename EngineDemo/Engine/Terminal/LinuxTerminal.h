@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseTerminal.h"
-#include "Singleton.h"
+#include "General/Singleton.h"
 
 namespace Engine
 {

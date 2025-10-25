@@ -9,7 +9,7 @@
 #include "SimulationPrinter.h"
 #include "UIPrinter.h"
 #include "Frame.h"
-#include "RandomUtils.h"
+#include "Utils/RandomUtils.h"
 #include <string>
 
 using std::string;

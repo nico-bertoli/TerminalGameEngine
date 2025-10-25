@@ -1,5 +1,8 @@
-#include "DebugPrinter.h"
-#include "Vector2Int.h"
+#include <string>
+
+#include "Debug/DebugManager.h"
+#include "Debug/DebugPrinter.h"
+#include "General/Vector2Int.h"
 
 using std::string;
 

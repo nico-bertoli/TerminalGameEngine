@@ -8,7 +8,7 @@
 
 #include <unordered_map>
 
-#include "Singleton.h"
+#include "General/Singleton.h"
 #include "BaseInputManager.h"
 
 namespace Engine

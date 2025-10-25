@@ -3,8 +3,8 @@
 
 #if DEBUG_MODE
 
-#include "Singleton.h"
-#include "DebugPrinter.h"
+#include "General/Singleton.h"
+#include "Debug/DebugManager.h"
 #include <list>
 #include <string>
 #include <memory>

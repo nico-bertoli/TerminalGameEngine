@@ -1,6 +1,6 @@
 #pragma once
 #include "ISimulationEntity.h"
-#include "DirectionUtils.h"
+#include "Utils/DirectionUtils.h"
 
 namespace SpaceInvaders
 {

@@ -1,7 +1,7 @@
 #include "Collider.h"
 #include "TimeHelper.h"
 #include "Simulation.h"
-#include "SmartPointersListUtils.h"
+#include "Utils/SmartPointersListUtils.h"
 
 using std::weak_ptr;
 using std::shared_ptr;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Config.h"
 #include "Frame.h"
-#include "TerminalManager.h"
+#include "Terminal/Terminal.h"
 #include "Printer.h"
 #include <list>
 #include <string>

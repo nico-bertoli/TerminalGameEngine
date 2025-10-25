@@ -1,6 +1,6 @@
 #pragma once
 #include <windows.h>
-#include "Singleton.h"
+#include "General/Singleton.h"
 #include "BaseInputManager.h"
 
 namespace Engine

@@ -3,7 +3,7 @@
 #if !IS_LINUX_BUILD
 
 #include "BaseTerminal.h"
-#include "DebugManager.h"
+#include "Debug/DebugManager.h"
 
 #include <iostream>
 #include <string>

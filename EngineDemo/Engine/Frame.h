@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "Vector2D.h"
+#include "General/Vector2D.h"
 
 #include <vector>
 #include <fstream>

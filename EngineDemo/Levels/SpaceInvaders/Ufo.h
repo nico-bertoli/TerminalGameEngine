@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
-#include "TerminalManager.h"
-#include "DirectionUtils.h"
+#include "Terminal/Terminal.h"
+#include "Utils/DirectionUtils.h"
 #include <array>
 
 namespace SpaceInvaders

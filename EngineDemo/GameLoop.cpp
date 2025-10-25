@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "EndlessRunnerLevel.h"
 #include "PuzzleLevel.h"
-#include "TerminalManager.h"
+#include "Terminal/Terminal.h"
 #include "CollisionsTestLevel.h"
 #include "PongLevel.h"
 #include "InputManager/InputManager.h"

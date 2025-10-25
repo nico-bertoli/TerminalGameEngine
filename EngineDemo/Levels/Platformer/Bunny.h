@@ -1,7 +1,7 @@
 #pragma once
 #include "Config.h"
 #include "Collider.h"
-#include "Event.h"
+#include "General/Vector2Int.h"
 #include <string>
 
 namespace Platformer

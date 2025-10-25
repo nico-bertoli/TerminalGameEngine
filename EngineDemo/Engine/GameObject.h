@@ -1,10 +1,11 @@
 #pragma once
 #include "Config.h"
-#include "DirectionUtils.h"
+#include "Utils/DirectionUtils.h"
 #include "ISimulationEntity.h"
-#include "TerminalManager.h"
-#include "Event.h"
-#include "Vector2D.h"
+#include "Terminal/Terminal.h"
+#include "General/Vector2Int.h"
+#include "General/Vector2D.h"
+#include "General/Event.h"
 
 #include <list>
 #include <memory>
