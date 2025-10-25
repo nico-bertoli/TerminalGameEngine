@@ -27,3 +27,8 @@ target_link_libraries(${PROJECT_NAME}
     sfml-system$<$<CONFIG:Debug>:-d>
     sfml-audio$<$<CONFIG:Debug>:-d>
 )
+
+if(UNIX AND NOT APPLE)
+    find_package(X11 REQUIRED)
+    target_link_libraries(${PROJECT_NAME} X11::X11)
+endif()
