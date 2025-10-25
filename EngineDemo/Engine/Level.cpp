@@ -1,7 +1,7 @@
 #include "Level.h"
 
 #include "TimeHelper.h"
-#include "InputUtils.h"
+#include "InputManager/InputManager.h"
 #include "Simulation.h"
 #include "AudioManager.h"
 
@@ -50,7 +50,7 @@ namespace Engine
 
         if (IsPostGameOverPauseEnded() && hasCalledOnPostGameOverDelayEnded == false)
             OnPostGameOverDelayEnded();
-        else if (CanPlayerPressKeyToRestartGame() && InputUtils::IsAnyKeyPressed())
+        else if (CanPlayerPressKeyToRestartGame() && InputManager::Instance().IsAnyKeyPressed())
             Terminate();
     }
 }

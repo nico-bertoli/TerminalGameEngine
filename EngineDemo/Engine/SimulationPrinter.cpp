@@ -6,10 +6,9 @@
 #include "Config.h"
 #include "Level.h"
 #include "TimeHelper.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "DebugManager.h"
 
-#include <Windows.h>
 #include <cassert>
 #include <algorithm>
 
@@ -23,7 +22,7 @@ namespace Engine
         size_t screenSizeX,
         size_t screenSizeY,
         size_t screenPadding,
-        int backgroundColor,
+        TerminalColor backgroundColor,
         const char* backgroundFileName
     ) : Printer(screenSizeX, screenSizeY, screenPadding), backgroundColor(backgroundColor)
     {

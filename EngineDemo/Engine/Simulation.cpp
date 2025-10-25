@@ -344,13 +344,13 @@ namespace Engine
 		Terminal::Instance().Clear();
 
 		simulationPrinter = std::make_unique<SimulationPrinter>
-			(
-				GetScreenSizeX(),
-				GetScreenSizeY(),
-				GetScreenPadding(),
-				level->GetBackgroundColor(),
-				level->GetBackgroundFileName()
-			);
+		(
+			GetScreenSizeX(),
+			GetScreenSizeY(),
+			GetScreenPadding(),
+			level->GetBackgroundColor(),
+			level->GetBackgroundFileName()
+		);
 
 		uiPrinter.reset();
 		uiPrinter = std::make_unique<UIPrinter>(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding(), level->GetMarginsColor());

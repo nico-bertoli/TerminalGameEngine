@@ -4,7 +4,7 @@ using std::string;
 
 namespace Engine
 {
-    UIPrinter::UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, int marginsColor) :
+    UIPrinter::UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, TerminalColor marginsColor) :
         Printer(screenSizeX, screenSizeY, screenPadding)
     {
         DrawMargins(marginsColor);

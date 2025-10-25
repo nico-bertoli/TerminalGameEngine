@@ -1,9 +1,7 @@
 #pragma once
 #include "Collider.h"
 #include <iostream>
-#include <Windows.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <cassert>
 
 namespace Engine

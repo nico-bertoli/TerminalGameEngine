@@ -1,12 +1,11 @@
 #include "Bunny.h"
 #include "Level.h"
-#include "InputUtils.h"
+#include "InputManager/InputManager.h"
 #include "TimeHelper.h"
 #include "AudioManager.h"
 #include "Simulation.h"
 #include "Obstacle.h"
 
-using namespace Engine::InputUtils;
 using Engine::Model;
 using Engine::Direction;
 using std::weak_ptr;
@@ -167,7 +166,7 @@ namespace Platformer
 
     void  Bunny::HandleVerticalMovement()
     {
-        bool isPressingSpace = IsKeyPressed(Key::SPACE);
+        bool isPressingSpace = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE);
 
         if (isPressingSpace == false && IsTouchingGround() && IsJumping())
             SetState(State::walking);
@@ -204,8 +203,8 @@ namespace Platformer
 
     void Bunny::HandleHorizontalMovement()
     {
-        bool isPressingA = IsKeyPressed(Key::A);
-        bool isPressingD = IsKeyPressed(Key::D);
+        bool isPressingA = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A);
+        bool isPressingD = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D);
 
         if ((isPressingA && isPressingD) || state == State::defeated)
             return;
@@ -240,7 +239,7 @@ namespace Platformer
         if (state == State::jumpingUp)
             return 0;
 
-        if (IsKeyPressed(Key::SPACE) && state == State::jumpingDown)
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE) && state == State::jumpingDown)
             return MOVE_DOWN_CONTROLLED_SPEED;
 
         return MOVE_DOWN_SPEED;

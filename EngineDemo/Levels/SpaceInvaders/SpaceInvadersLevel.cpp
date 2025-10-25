@@ -20,6 +20,7 @@ using Engine::Direction;
 using std::string;
 using std::shared_ptr;
 using std::vector;
+using std::type_info;
 
 namespace SpaceInvaders
 {

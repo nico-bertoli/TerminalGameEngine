@@ -17,7 +17,7 @@ namespace Engine
 
         //---------------------------------------------------------- Methods
     public:
-        UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, int marginsColor);
+        UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, TerminalColor marginsColor);
         void PrintWindow(const Frame& window, TerminalColor color, WindowPosition windowPosition);
         void PrintOnHeader(const std::string& header, int xPos, TerminalColor color);
 

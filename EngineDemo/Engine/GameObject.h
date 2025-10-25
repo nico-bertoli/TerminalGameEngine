@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "DirectionUtils.h"
 #include "ISimulationEntity.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "Event.h"
 #include "Vector2D.h"
 

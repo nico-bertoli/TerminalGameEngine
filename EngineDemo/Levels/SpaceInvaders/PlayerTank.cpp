@@ -1,6 +1,6 @@
 #include "PlayerTank.h"
 #include "Simulation.h"
-#include "InputUtils.h"
+#include "InputManager/InputManager.h"
 #include "PlayerProjectile.h"
 #include "TimeHelper.h"
 #include "Level.h"
@@ -10,7 +10,6 @@
 using Engine::Direction;
 using Engine::Model;
 using std::shared_ptr;
-using namespace Engine::InputUtils;
 
 namespace SpaceInvaders
 {
@@ -34,9 +33,9 @@ namespace SpaceInvaders
 
     void PlayerTank::HandleMovement()
     {
-        if (IsKeyPressed(Key::A) || IsKeyPressed(Key::ARROW_LEFT))
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_LEFT))
             TryMove(Direction::left, MOVE_SPEED);
-        else if (IsKeyPressed(Key::D) || IsKeyPressed(Key::ARROW_RIGHT))
+        else if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_RIGHT))
             TryMove(Direction::right, MOVE_SPEED);
     }
 
@@ -45,7 +44,7 @@ namespace SpaceInvaders
         if (level->IsLoadingWave())
             return;
 
-        if (IsKeyPressed(Key::SPACE))
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE))
         {
             double time = Engine::TimeHelper::Instance().GetTime();
 

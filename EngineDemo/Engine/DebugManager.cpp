@@ -2,7 +2,7 @@
 
 #if DEBUG_MODE
 
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "TimeHelper.h"
 
 namespace Engine

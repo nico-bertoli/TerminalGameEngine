@@ -2,7 +2,7 @@
 
 #if IS_LINUX_BUILD
 
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "DebugManager.h"
 
 #include <iostream>
@@ -33,9 +33,9 @@ namespace Engine
         std::string setCursorPositionStr;
         setCursorPositionStr.reserve(32); // optional but good
         setCursorPositionStr.append("\033[");
-        setCursorPositionStr.append(std::to_string(position.x));
+        setCursorPositionStr.append(std::to_string(position.X));
         setCursorPositionStr.append(";");
-        setCursorPositionStr.append(std::to_string(position.y));
+        setCursorPositionStr.append(std::to_string(position.Y));
         setCursorPositionStr.append("H");
 
         cout<<setCursorPositionStr;

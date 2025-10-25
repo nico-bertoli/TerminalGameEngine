@@ -1,6 +1,6 @@
 #pragma once
 #include "Enemy.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "DirectionUtils.h"
 #include <array>
 

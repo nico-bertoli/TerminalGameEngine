@@ -2,7 +2,7 @@
 #include "Simulation.h"
 #include "StaticCollider.h"
 #include "Persistence.h"
-#include "InputUtils.h"
+#include "InputManager/InputManager.h"
 #include "AudioManager.h"
 #include "Bunny.h"
 #include "ObstaclesSpawner.h"

@@ -2,7 +2,7 @@
 
 #if !IS_LINUX_BUILD
 
-#include "Terminal.h"
+#include "BaseTerminal.h"
 #include "DebugManager.h"
 
 #include <iostream>

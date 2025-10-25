@@ -2,10 +2,10 @@
 #include "Config.h"
 #include "EndlessRunnerLevel.h"
 #include "PuzzleLevel.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "CollisionsTestLevel.h"
 #include "PongLevel.h"
-#include "InputUtils.h"
+#include "InputManager/InputManager.h"
 #include "AudioManager.h"
 #include "Simulation.h"
 #include "SpaceInvadersLevel.h"
@@ -13,7 +13,6 @@
 
 using namespace std;
 using namespace Engine;
-using namespace Engine::InputUtils;
 
 GameLoop::GameLoop()
 {
@@ -38,7 +37,7 @@ bool GameLoop::LoopSimulation(std::shared_ptr<Level> level)
     while (level->IsTerminated() == false)
     {
         Simulation::Instance().Step();
-        if (IsKeyPressed(Key::ESC))
+        if (InputManager::Instance().IsKeyPressed(Key::ESC))
             return true;
     }
     return false;
@@ -91,33 +90,33 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
 
     while (true)
     {
-        if (IsKeyPressed(Key::NUM_1))
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_1))
         {
             return std::make_unique<SpaceInvaders::SpaceInvadersLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_2))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_2))
         {
             return std::make_unique<Platformer::EndlessRunnerLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_3))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_3))
         {
             return std::make_unique<Platformer::PuzzleLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_4))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_4))
         {
             return std::make_unique<Pong::PongLevel>();
             break;
         }
 #if DEBUG_MODE
-        else if (IsKeyPressed(Key::NUM_5))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_5))
         {
             return std::make_unique<Platformer::CollisionsTestLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_6))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_6))
         {
             return std::make_unique<Platformer::SortingLayerTestLevel>();
             break;

@@ -10,7 +10,7 @@ namespace SpaceInvaders
 
 		//------------------------------------------------------ Settings
 	private:
-		static const size_t PROJECTILE_SPEED = 8;
+		static constexpr size_t PROJECTILE_SPEED = 8;
 
 		//------------------------------------------------------ Fields
 	public:

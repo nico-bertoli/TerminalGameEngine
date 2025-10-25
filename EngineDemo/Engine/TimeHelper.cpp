@@ -1,14 +1,14 @@
-#pragma once
-
 #include "TimeHelper.h"
 #include "Simulation.h"
 
-using time_point = std::chrono::steady_clock::time_point;
-using hr_clock = std::chrono::high_resolution_clock;
+#include <chrono>
+#include <cmath>
+
+using std::chrono::steady_clock;
+using std::chrono::time_point;
 
 namespace Engine
 {
-
     void TimeHelper::OnFrameGenerated()
     {
         double currentTime = GetTime();
@@ -23,12 +23,12 @@ namespace Engine
         if (time == 0)
             return false;
 
-        return fmod(time, changeModelEverySeconds) < changeModelEverySeconds / 2;
+        return std::fmod(time, changeModelEverySeconds) < changeModelEverySeconds / 2;
     }
 
     double TimeHelper::GetTime() const
     {
-        time_point now = hr_clock::now();
+        time_point now = steady_clock::now();
         std::chrono::duration<double> elapsed = now - startTime;
         return elapsed.count();
     }
@@ -36,6 +36,6 @@ namespace Engine
     TimeHelper::TimeHelper()
     {
         Simulation::Instance().OnFrameGenerated.Subscribe([this]() { OnFrameGenerated(); });
-        startTime = hr_clock::now();
+        startTime = steady_clock::now();
     }
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "Printer.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 
 #include <iostream>
 #include <string>

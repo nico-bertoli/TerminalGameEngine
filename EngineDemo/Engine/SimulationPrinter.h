@@ -1,7 +1,7 @@
 #pragma once
 #include "Config.h"
 #include "Frame.h"
-#include "Terminal.h"
+#include "TerminalManager.h"
 #include "Printer.h"
 #include <list>
 #include <string>
@@ -15,7 +15,7 @@ namespace Engine
 	class SimulationPrinter : public Printer
 	{
 		//---------------------------------------------------------- Fields
-		int backgroundColor;
+		TerminalColor backgroundColor;
 		Frame background;
 		//---------------------------------------------------------- Methods
 	public:
@@ -24,7 +24,7 @@ namespace Engine
 			size_t screenSizeX,
 			size_t screenSizeY,
 			size_t screenPadding,
-			int backgroundColor,
+			TerminalColor backgroundColor,
 			const char* backgroundFileName = ""
 		);
 

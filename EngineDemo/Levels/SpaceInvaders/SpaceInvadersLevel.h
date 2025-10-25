@@ -1,5 +1,6 @@
 #pragma once
 #include "Level.h"
+#include <typeinfo>
 
 namespace SpaceInvaders
 {
@@ -65,9 +66,9 @@ namespace SpaceInvaders
         void PrintScore();
         void PrintHealth(size_t health);
         void PrintWave();
-        const type_info& GetAlienTypeForRow(int rowIndex);
+        const std::type_info& GetAlienTypeForRow(int rowIndex);
         void AddAliensRowToSimulation(int yPos, int rowIndex);
-        std::shared_ptr<Alien> CreateAlienOfType(const type_info& alienType, int xPos, int yPos, int xIndex, int yIndex);
+        std::shared_ptr<Alien> CreateAlienOfType(const std::type_info& alienType, int xPos, int yPos, int xIndex, int yIndex);
         void OnWaveCompleted();
         void LoadNewWave();
         void OnPlayerTakesDamage(size_t remainingHealth);
