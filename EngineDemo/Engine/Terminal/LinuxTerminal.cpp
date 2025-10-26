@@ -16,9 +16,8 @@ namespace Engine
 {
     void LinuxTerminal::Clear()
     {
-        cout << "\033[2J\033[3J";
+        cout << CLEAR_TERMINAL;
         SetCursorPosition(0, 0);
-        cout.flush();
     }
 
     void LinuxTerminal::SetColor(TerminalColor color)
@@ -31,7 +30,6 @@ namespace Engine
     void LinuxTerminal::SetCursorPosition(const Vector2Int& position)
     {
         printf("\033[%d;%dH", position.Y + 1, position.X + 1);
-        fflush(stdout);
     }
 
     Vector2Int LinuxTerminal::GetCursorPosition()
@@ -87,7 +85,7 @@ return Vector2Int(col - 1, row - 1);
             case TerminalColor::WHITE:          return WHITE;
 
             default:
-                return RESET;
+                return RESET_COLOR;
         }
     }
 }

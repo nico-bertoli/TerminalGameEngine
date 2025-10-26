@@ -27,8 +27,9 @@ namespace Engine
         static constexpr const char* CYAN   = "\033[96m";
         static constexpr const char* WHITE  = "\033[97m";
 
-        // Reset color
-        static constexpr const char* RESET  = "\033[0m";
+        static constexpr const char* RESET_COLOR  = "\033[0m";
+
+        static constexpr const char* CLEAR_TERMINAL = "\033[2J\033[3J";
 
 
     //================================================================= Override Methods
