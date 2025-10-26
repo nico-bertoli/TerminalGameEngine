@@ -16,14 +16,16 @@ namespace Engine
 {
     void LinuxTerminal::Clear()
     {
-        cout << "\033[2J\033[1;1H";
+        cout << "\033[2J\033[3J";
+        SetCursorPosition(0, 0);
         cout.flush();
     }
 
     void LinuxTerminal::SetColor(TerminalColor color)
     {
         const char* linuxColor = ToLinuxColor(color);
-        cout<<linuxColor;
+        currentColor = color;
+        cout << linuxColor;
     }
 
     void LinuxTerminal::SetCursorPosition(const Vector2Int& position)
@@ -33,12 +35,13 @@ namespace Engine
         std::string setCursorPositionStr;
         setCursorPositionStr.reserve(32); // optional but good
         setCursorPositionStr.append("\033[");
-        setCursorPositionStr.append(std::to_string(position.X));
+        setCursorPositionStr.append(std::to_string(position.Y + 1));
         setCursorPositionStr.append(";");
-        setCursorPositionStr.append(std::to_string(position.Y));
+        setCursorPositionStr.append(std::to_string(position.X + 1));
         setCursorPositionStr.append("H");
 
-        cout<<setCursorPositionStr;
+        cout << setCursorPositionStr;
+        cout.flush();
     }
 
     Vector2Int LinuxTerminal::GetCursorPosition()
@@ -51,7 +54,7 @@ namespace Engine
 
         std::cout << "\033[6n" << std::flush; // request cursor position
 
-        int row = 0, col = 0;
+        int row = 1, col = 1;
         char ch;
         std::string response;
 
@@ -61,12 +64,12 @@ namespace Engine
         }
 
         // response format: ESC[row;col
-        if (response[0] == '\033' && response[1] == '[') {
+        if (response.size() >= 2 && response[0] == '\033' && response[1] == '[') {
             sscanf(response.c_str(), "\033[%d;%d", &row, &col);
         }
 
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-        return Vector2Int(row,col);
+        return Vector2Int(col - 1, row - 1);
     }
 
     const char* LinuxTerminal::ToLinuxColor(TerminalColor color)

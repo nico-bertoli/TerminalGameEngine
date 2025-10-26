@@ -5,7 +5,7 @@
 
 // settings
 #define ALLOW_SOUNDS 1
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 // debug details
 #define SHOW_COUT_CALLS 1

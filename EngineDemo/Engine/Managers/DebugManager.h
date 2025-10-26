@@ -5,6 +5,7 @@
 
 #include "General/Singleton.h"
 #include "Managers/DebugManager.h"
+#include "Printers/DebugPrinter.h"
 #include <list>
 #include <string>
 #include <memory>
