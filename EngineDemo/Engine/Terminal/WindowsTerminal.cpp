@@ -89,10 +89,32 @@ namespace Engine
         SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
     }
 
-    int WindowsTerminal::ConvertToWindowsColor(TerminalColor color)const
+    int WindowsTerminal::ConvertToWindowsColor(TerminalColor color) const
     {
-        return WHITE; //todo implement
+        switch(color)
+        {
+            case TerminalColor::WHITE_DARK:   return WHITE_DARK;
+            case TerminalColor::RED_DARK:     return RED_DARK;
+            case TerminalColor::GREEN_DARK:   return GREEN_DARK;
+            case TerminalColor::BLUE_DARK:    return BLUE_DARK;
+            case TerminalColor::CYAN_DARK:    return CYAN_DARK;
+            case TerminalColor::MAGENTA_DARK: return MAGENTA_DARK;
+            case TerminalColor::YELLOW_DARK:  return YELLOW_DARK;
+
+            case TerminalColor::WHITE:   return WHITE;
+            case TerminalColor::RED:     return RED;
+            case TerminalColor::GREEN:   return GREEN;
+            case TerminalColor::BLUE:    return BLUE;
+            case TerminalColor::CYAN:    return CYAN;
+            case TerminalColor::MAGENTA: return MAGENTA;
+            case TerminalColor::YELLOW:  return YELLOW;
+            case TerminalColor::GREY:    return GREY;
+            case TerminalColor::BLACK:   return BLACK;
+            
+            default: return WHITE;
+        }
     }
+
 }
 
 #endif //!IS_LINUX_BUILD
