@@ -30,46 +30,38 @@ namespace Engine
 
     void LinuxTerminal::SetCursorPosition(const Vector2Int& position)
     {
-        // std::cout << "\033[10;5H"    <--- sets cursor at 10-5
-
-        std::string setCursorPositionStr;
-        setCursorPositionStr.reserve(32); // optional but good
-        setCursorPositionStr.append("\033[");
-        setCursorPositionStr.append(std::to_string(position.Y + 1));
-        setCursorPositionStr.append(";");
-        setCursorPositionStr.append(std::to_string(position.X + 1));
-        setCursorPositionStr.append("H");
-
-        cout << setCursorPositionStr;
-        cout.flush();
+        printf("\033[%d;%dH", position.Y + 1, position.X + 1);
+        fflush(stdout);
     }
 
     Vector2Int LinuxTerminal::GetCursorPosition()
     {
-        struct termios oldt, newt;
+        struct termios oldt, raw;
         tcgetattr(STDIN_FILENO, &oldt);
-        newt = oldt;
-        newt.c_lflag &= ~(ICANON | ECHO); // turn off canonical mode and echo
-        tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+        raw = oldt;
+        raw.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 
-        std::cout << "\033[6n" << std::flush; // request cursor position
+        std::cout << "\033[6n" << std::flush;
 
         int row = 1, col = 1;
         char ch;
-        std::string response;
+        char buf[32];
+        int i = 0;
 
-        while (read(STDIN_FILENO, &ch, 1) == 1) {
+        while (i < (int)sizeof(buf) - 1 && read(STDIN_FILENO, &ch, 1) == 1) {
+            buf[i++] = ch;
             if (ch == 'R') break;
-            response += ch;
         }
-
-        // response format: ESC[row;col
-        if (response.size() >= 2 && response[0] == '\033' && response[1] == '[') {
-            sscanf(response.c_str(), "\033[%d;%d", &row, &col);
-        }
+        buf[i] = '\0';
 
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-        return Vector2Int(col - 1, row - 1);
+
+        if (buf[0] == '\033' && buf[1] == '[') {
+            sscanf(buf + 2, "%d;%d", &row, &col);
+}
+
+return Vector2Int(col - 1, row - 1);
     }
 
     const char* LinuxTerminal::ToLinuxColor(TerminalColor color)
