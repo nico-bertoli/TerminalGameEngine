@@ -38,3 +38,16 @@ public:
     };
 
 }
+
+//allows using Key in hash maps
+namespace std
+{
+    template <>
+    struct hash<Engine::Key>
+    {
+        size_t operator()(const Engine::Key& k) const noexcept
+        {
+            return std::hash<int>()(static_cast<int>(k));
+        }
+    };
+}

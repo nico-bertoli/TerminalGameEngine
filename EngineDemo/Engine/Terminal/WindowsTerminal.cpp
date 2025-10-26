@@ -4,6 +4,7 @@
 
 #include "BaseTerminal.h"
 #include "Managers/DebugManager.h"
+#include "General/Vector2Int.h" 
 
 #include <iostream>
 #include <string>
@@ -50,7 +51,7 @@ namespace Engine
         GetConsoleScreenBufferInfo(hConsole, &csbi);
         FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coord, &cCharsWritten);
 
-        SetCursorPosition(coord);
+        SetCursorPosition(coord.X,coord.Y);
     }
 
     void WindowsTerminal::SetColor(TerminalColor color)
@@ -58,18 +59,18 @@ namespace Engine
         int windowsColor = ConvertToWindowsColor(color);
         currentColor = color;
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, color);
+        SetConsoleTextAttribute(hConsole, ConvertToWindowsColor(color));
     }
 
-    void WindowsTerminal::SetCursorPosition(const Vector2& position)
+    void WindowsTerminal::SetCursorPosition(const Vector2Int& position)
     {
         COORD coord;
-        coord.X = static_cast<short>(position.x);
-        coord.Y = static_cast<short>(position.y);
+        coord.X = static_cast<short>(position.X);
+        coord.Y = static_cast<short>(position.Y);
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
     }
 
-    Vector2 WindowsTerminal::GetCursorPosition()
+    Vector2Int WindowsTerminal::GetCursorPosition()
     {
         CONSOLE_SCREEN_BUFFER_INFO csbi;
         COORD coord = { -1, -1 };  // Default to invalid position
@@ -77,7 +78,7 @@ namespace Engine
         {
             coord = csbi.dwCursorPosition;
         }
-        return Vector2(coord.x,coord.y);
+        return Vector2Int(coord.X,coord.Y);
     }
 
     void WindowsTerminal::HideCursor()

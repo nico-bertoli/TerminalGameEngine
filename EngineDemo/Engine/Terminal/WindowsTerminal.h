@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseTerminal.h"
 #include "General/Singleton.h"
+#include "General/Vector2D.h"
 
 namespace Engine
 {
@@ -34,8 +35,8 @@ namespace Engine
         void Clear() override;
         void SetColor(TerminalColor color) override;
         TerminalColor GetColor() override { return currentColor; };
-        void SetCursorPosition(const Vector2& position) override;
-        Vector2 GetCursorPosition() override;
+        void SetCursorPosition(const Vector2Int& position) override;
+        Vector2Int GetCursorPosition() override;
 
     protected:
         void HideCursor() override;

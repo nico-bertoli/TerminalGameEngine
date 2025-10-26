@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include <unordered_map>
 #include "General/Singleton.h"
 #include "BaseInputManager.h"
 
@@ -9,7 +10,7 @@ namespace Engine
 class WindowsInputManager : public Singleton<WindowsInputManager>, public BaseInputManager
 {
 private:
-    static std::unordered_map<Key, int> keyMap =
+    inline static const  std::unordered_map<Key, int> keyMap =
     {
         {Key::SPACE, VK_SPACE},
         {Key::W, 0x57},
@@ -37,9 +38,8 @@ public:
     inline bool IsKeyPressed(Key key)
     {
         if (keyMap.find(key) != keyMap.end())
-        {
-            return GetAsyncKeyState(keyMap[key]) & 0x8000;
-        }
+            return GetAsyncKeyState(keyMap.at(key)) & 0x8000;
+
         return false;
     }
 
