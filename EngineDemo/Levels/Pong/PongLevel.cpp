@@ -1,9 +1,9 @@
 #include "PongLevel.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "PongBar.h"
 #include "PongBall.h"
-#include "AudioManager.h"
-#include "UIPrinter.h"
+#include "Managers/AudioManager.h"
+#include "Printers/UIPrinter.h"
 
 namespace Pong
 {
@@ -74,7 +74,7 @@ namespace Pong
 	void PongLevel::RefreshHeader()
 	{
 		Engine::Simulation::Instance().GetUIPrinter().
-			PrintOnHeader(std::to_string(scorePlayer1) + " - " + std::to_string(scorePlayer2), 0, Engine::Terminal::WHITE);
+			PrintOnHeader(std::to_string(scorePlayer1) + " - " + std::to_string(scorePlayer2), 0, Engine::TerminalColor::WHITE);
 	}
 
 	void PongLevel::OnPostGameOverDelayEnded()

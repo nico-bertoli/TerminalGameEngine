@@ -1,9 +1,8 @@
 #include "PongBar.h"
-#include "InputUtils.h"
-#include "Simulation.h"
-#include "Level.h"
+#include "InputManager/InputManager.h"
+#include "Core/Simulation.h"
+#include "SimEntities/Level.h"
 
-using namespace Engine::InputUtils;
 using Engine::Direction;
 
 namespace Pong
@@ -31,9 +30,9 @@ namespace Pong
         if (Engine::Simulation::Instance().GetActiveLevel()->IsGameOver())
             return;
 
-        if ((isBottomBar && IsKeyPressed(Key::A)) || !isBottomBar && IsKeyPressed(Key::ARROW_LEFT))
+        if ((isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A)) || !isBottomBar && Engine::InputManager::Instance().Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_LEFT))
             TryMove(Direction::left, moveSpeed);
-        else if ((isBottomBar && IsKeyPressed(Key::D)) || (!isBottomBar && IsKeyPressed(Key::ARROW_RIGHT)))
+        else if ((isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D)) || (!isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_RIGHT)))
             TryMove(Direction::right, moveSpeed);
     }
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "MovingStraightObject.h"
-#include "Simulation.h"
+#include "SimEntities/MovingStraightObject.h"
+#include "Core/Simulation.h"
 #include "Enemy.h"
 #include "ShieldPart.h"
 

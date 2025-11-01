@@ -1,8 +1,8 @@
 #include "Alien.h"
-#include "TimeHelper.h"
-#include "AudioManager.h"
+#include "Managers/TimeManager.h"
+#include "Managers/AudioManager.h"
 #include "EnemyProjectile.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 
 using std::shared_ptr;
 using Engine::Direction;
@@ -24,7 +24,7 @@ namespace SpaceInvaders
 
 	void Alien::Update()
 	{
-		bool showFirstAnimFrameNew = Engine::TimeHelper::Instance().IsTimeForFirstOfTwoModels(1);
+		bool showFirstAnimFrameNew = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(1);
 		if (isFirsAnimationFrameTime != showFirstAnimFrameNew)
 		{
 			StepAnimation();

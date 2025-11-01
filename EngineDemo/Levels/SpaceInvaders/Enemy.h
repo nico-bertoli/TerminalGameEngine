@@ -1,5 +1,5 @@
 #pragma once
-#include "Collider.h"
+#include "SimEntities/Collider.h"
 
 namespace SpaceInvaders
 {
@@ -18,6 +18,6 @@ namespace SpaceInvaders
 	protected:
 		double GetGravityScale() const override { return 0; }
 		void OnDestroy() override;
-		virtual int GetDestroyedParticlesColor() { return Engine::Terminal::GREEN; }
+		virtual Engine::TerminalColor GetDestroyedParticlesColor() { return Engine::TerminalColor::GREEN; }
 	};
 }

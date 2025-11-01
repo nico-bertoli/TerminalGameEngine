@@ -2,18 +2,17 @@
 #include "Config.h"
 #include "EndlessRunnerLevel.h"
 #include "PuzzleLevel.h"
-#include "Terminal.h"
+#include "Terminal/Terminal.h"
 #include "CollisionsTestLevel.h"
 #include "PongLevel.h"
-#include "InputUtils.h"
-#include "AudioManager.h"
-#include "Simulation.h"
+#include "InputManager/InputManager.h"
+#include "Managers/AudioManager.h"
+#include "Core/Simulation.h"
 #include "SpaceInvadersLevel.h"
 #include "SortingLayerTestLevel.h"
 
 using namespace std;
 using namespace Engine;
-using namespace Engine::InputUtils;
 
 GameLoop::GameLoop()
 {
@@ -38,7 +37,7 @@ bool GameLoop::LoopSimulation(std::shared_ptr<Level> level)
     while (level->IsTerminated() == false)
     {
         Simulation::Instance().Step();
-        if (IsKeyPressed(Key::ESC))
+        if (InputManager::Instance().IsKeyPressed(Key::ESC))
             return true;
     }
     return false;
@@ -48,7 +47,7 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
 {
     Terminal::Instance().Clear();
 
-    Terminal::Instance().SetColor(Terminal::WHITE);
+    Terminal::Instance().SetColor(TerminalColor::WHITE);
     cout << "==========================" << endl;
     cout << "   Terminal Game Engine   " << endl;
     cout << "==========================" << endl << endl;
@@ -56,20 +55,20 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
     cout << "! please maximize window !" << endl << endl;
 
     cout << "Select a demo game:" << endl;
-    Terminal::Instance().SetColor(Terminal::RED);
+    Terminal::Instance().SetColor(TerminalColor::RED);
     cout << "1 -> space invaders" << endl;
-    Terminal::Instance().SetColor(Terminal::GREEN);
+    Terminal::Instance().SetColor(TerminalColor::GREEN);
     cout << "2 -> endless runner" << endl;
-    Terminal::Instance().SetColor(Terminal::CYAN_DARK);
+    Terminal::Instance().SetColor(TerminalColor::CYAN_DARK);
     cout << "3 -> puzzle game" << endl;
-    Terminal::Instance().SetColor(Terminal::YELLOW);
+    Terminal::Instance().SetColor(TerminalColor::YELLOW);
     cout << "4 -> pong (local multiplayer)" << endl;
 
-    Terminal::Instance().SetColor(Terminal::WHITE);
+    Terminal::Instance().SetColor(TerminalColor::WHITE);
 #if DEBUG_MODE
     cout << "5 -> collisions test" << endl;
     cout << "6 -> sorting layer test" << endl;
-#endif;
+#endif
     cout << "esc -> return to main menu" << endl;
 
     cout << endl << endl << endl;
@@ -91,33 +90,33 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
 
     while (true)
     {
-        if (IsKeyPressed(Key::NUM_1))
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_1))
         {
             return std::make_unique<SpaceInvaders::SpaceInvadersLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_2))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_2))
         {
             return std::make_unique<Platformer::EndlessRunnerLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_3))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_3))
         {
             return std::make_unique<Platformer::PuzzleLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_4))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_4))
         {
             return std::make_unique<Pong::PongLevel>();
             break;
         }
 #if DEBUG_MODE
-        else if (IsKeyPressed(Key::NUM_5))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_5))
         {
             return std::make_unique<Platformer::CollisionsTestLevel>();
             break;
         }
-        else if (IsKeyPressed(Key::NUM_6))
+        else if (InputManager::Instance().IsKeyPressed(Key::NUM_6))
         {
             return std::make_unique<Platformer::SortingLayerTestLevel>();
             break;

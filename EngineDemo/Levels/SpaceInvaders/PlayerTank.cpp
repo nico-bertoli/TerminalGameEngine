@@ -1,16 +1,15 @@
 #include "PlayerTank.h"
-#include "Simulation.h"
-#include "InputUtils.h"
+#include "Core/Simulation.h"
+#include "InputManager/InputManager.h"
 #include "PlayerProjectile.h"
-#include "TimeHelper.h"
-#include "Level.h"
-#include "AudioManager.h"
+#include "Managers/TimeManager.h"
+#include "SimEntities/Level.h"
+#include "Managers/AudioManager.h"
 #include "SpaceInvadersLevel.h"
 
 using Engine::Direction;
 using Engine::Model;
 using std::shared_ptr;
-using namespace Engine::InputUtils;
 
 namespace SpaceInvaders
 {
@@ -34,9 +33,9 @@ namespace SpaceInvaders
 
     void PlayerTank::HandleMovement()
     {
-        if (IsKeyPressed(Key::A) || IsKeyPressed(Key::ARROW_LEFT))
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_LEFT))
             TryMove(Direction::left, MOVE_SPEED);
-        else if (IsKeyPressed(Key::D) || IsKeyPressed(Key::ARROW_RIGHT))
+        else if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_RIGHT))
             TryMove(Direction::right, MOVE_SPEED);
     }
 
@@ -45,9 +44,9 @@ namespace SpaceInvaders
         if (level->IsLoadingWave())
             return;
 
-        if (IsKeyPressed(Key::SPACE))
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE))
         {
-            double time = Engine::TimeHelper::Instance().GetTime();
+            double time = Engine::TimeManager::Instance().GetTime();
 
 #if CHEAT_SPACEINV_FAST_FIRE
             if (time - lastTimeShot > 0.08)
@@ -56,7 +55,7 @@ namespace SpaceInvaders
 
             if (time - lastTimeShot > SHOTS_DELAY)
             {
-                lastTimeShot = Engine::TimeHelper::Instance().GetTime();
+                lastTimeShot = Engine::TimeManager::Instance().GetTime();
                 shared_ptr<PlayerProjectile> projectile = std::make_shared<PlayerProjectile>(GetMidPosX(), GetMaxPosY() + 1, Direction::up, PROJECTILE_SPEED);
                 Engine::Simulation::Instance().TryAddEntity(projectile);
                 Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/Shot1.wav");

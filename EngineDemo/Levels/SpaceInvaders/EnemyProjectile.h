@@ -1,6 +1,6 @@
 #pragma once
 #include "Projectile.h"
-#include "GameObject.h"
+#include "SimEntities/GameObject.h"
 
 namespace SpaceInvaders
 {
@@ -15,7 +15,7 @@ namespace SpaceInvaders
 		using Projectile::Projectile;
 
 	protected:
-		int GetColor() const override { return Engine::Terminal::RED; }
+		Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::RED; }
 		void InitModel() override { SetModel(MODEL); }
 		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
 	};

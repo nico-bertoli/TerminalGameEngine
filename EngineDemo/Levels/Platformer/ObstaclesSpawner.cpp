@@ -1,9 +1,9 @@
 #include "ObstaclesSpawner.h"
 #include "Obstacle.h"
-#include "Simulation.h"
-#include "TimeHelper.h"
-#include "RandomUtils.h"
-#include "Collider.h"
+#include "Core/Simulation.h"
+#include "Managers/TimeManager.h"
+#include "Utils/RandomUtils.h"
+#include "SimEntities/Collider.h"
 #include <cstdlib>
 
 using Engine::Collider;
@@ -32,7 +32,7 @@ namespace Platformer
     {
         assert(maxSpawnDelays.size() == speeds.size() && minSpawnDelays.size() == speeds.size());
         spawnNextProjectileTime = GetNextSpawnObstacleTime();
-        lastTimeIncreasedIntensity = Engine::TimeHelper::Instance().GetTime();
+        lastTimeIncreasedIntensity = Engine::TimeManager::Instance().GetTime();
     }
 
     ObstaclesSpawner::ObstaclesSpawner
@@ -54,7 +54,7 @@ namespace Platformer
 
     void ObstaclesSpawner::Update()
     {
-        double time = Engine::TimeHelper::Instance().GetTime();
+        double time = Engine::TimeManager::Instance().GetTime();
         if (time >= spawnNextProjectileTime)
         {
             TryIncreaseIntensity(time);
@@ -89,6 +89,6 @@ namespace Platformer
 
     double ObstaclesSpawner::GetNextSpawnObstacleTime() const
     {
-        return Engine::TimeHelper::Instance().GetTime() + RandomUtils::GetRandomDouble(GetCurrentMinSpawnDelay(), GetCurrentMaxSpawnDelay());
+        return Engine::TimeManager::Instance().GetTime() + RandomUtils::GetRandomDouble(GetCurrentMinSpawnDelay(), GetCurrentMaxSpawnDelay());
     }
 }

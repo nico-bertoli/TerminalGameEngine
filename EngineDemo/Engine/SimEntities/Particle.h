@@ -1,0 +1,45 @@
+#pragma once
+#include "SimEntities/ISimulationEntity.h"
+#include "Utils/DirectionUtils.h"
+#include "SimEntities/GameObject.h"
+#include <array>
+#include <optional>
+
+namespace Engine
+{
+	class Particle : public GameObject
+	{
+	private:
+		std::array<Direction, 2> moveDirections;
+		std::array<double, 2> moveSpeeds;
+
+		char modelChar;
+		size_t remainingMovementsBeforeDestruction;
+		TerminalColor color;
+		Model model;
+
+	public:
+		Particle
+		(
+			int xPos,
+			int yPos,
+			char modelChar,
+			TerminalColor color,
+			double moveSpeed,
+			size_t movementLifeTime,
+			std::optional<Direction> mainDirection
+		);
+
+		bool CanExitScreenSpace() const override { return true; }
+		double GetGravityScale() const override { return 0; }
+		TerminalColor GetColor() const override { return color; }
+		size_t GetSortingLayer() const override { return 200; }
+
+	protected:
+		void InitModel()override;
+		void Update()override;
+
+	private:
+		void OnMoveCallback();
+	};
+}

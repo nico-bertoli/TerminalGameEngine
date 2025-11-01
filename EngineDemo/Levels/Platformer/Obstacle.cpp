@@ -1,6 +1,6 @@
 #include "Obstacle.h"
-#include "AudioManager.h"
-#include "TimeHelper.h"
+#include "Managers/AudioManager.h"
+#include "Managers/TimeManager.h"
 
 using std::shared_ptr;
 using Engine::Model;

@@ -1,14 +1,14 @@
 #include "SpaceInvadersLevel.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "AlienLowScore.h"
 #include "AlienMidScore.h"
 #include "AlienHighScore.h"
 #include "PlayerTank.h"
 #include "AliensController.h"
-#include "AudioManager.h"
-#include "Persistence.h"
-#include "UIPrinter.h"
-#include "Printer.h"
+#include "Managers/AudioManager.h"
+#include "Managers/PersistenceManager.h"
+#include "Printers/UIPrinter.h"
+#include "Printers/Printer.h"
 #include "ShieldPart.h"
 #include "UfoSpawner.h"
 
@@ -20,6 +20,7 @@ using Engine::Direction;
 using std::string;
 using std::shared_ptr;
 using std::vector;
+using std::type_info;
 
 namespace SpaceInvaders
 {
@@ -84,9 +85,9 @@ namespace SpaceInvaders
 	{
 		Level::OnPostGameOverDelayEnded();
 
-		int savedBestScore = Engine::Persistence::LoadBestScore(GetPersistenceFilePath());
+		int savedBestScore = Engine::PersistenceManager::LoadBestScore(GetPersistenceFilePath());
 		if (score > savedBestScore)
-			Engine::Persistence::SaveBestScore(GetPersistenceFilePath(), score);
+			Engine::PersistenceManager::SaveBestScore(GetPersistenceFilePath(), score);
 
 		ShowGameOverScreen(score, savedBestScore);
 		Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/ShowEndScreen.wav");
@@ -105,7 +106,7 @@ namespace SpaceInvaders
 
 		gameOverWindow.WriteString(message, '$');
 
-		Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::Terminal::WHITE, WindowPosition::CenterX_CenterY);
+		Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::TerminalColor::WHITE, WindowPosition::CenterX_CenterY);
 	}
 
 	void SpaceInvadersLevel::IncreasePlayerScore(size_t increment)
@@ -124,7 +125,7 @@ namespace SpaceInvaders
 	{
 		string scoreString = "score: " + std::to_string(score);
 		int xPos = static_cast<int>(Simulation::Instance().GetScreenSizeX() / 2 - scoreString.size() / 2);
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(scoreString, xPos, Engine::Terminal::WHITE);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(scoreString, xPos, Engine::TerminalColor::WHITE);
 	}
 
 	void SpaceInvadersLevel::PrintHealth(size_t health)
@@ -135,7 +136,7 @@ namespace SpaceInvaders
 		for (int i = 1; i <= PlayerTank::MAX_HEALTH; i++)
 			healthStr += i <= health ? "<3 " : "  ";
 
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(healthStr, xPos, Engine::Terminal::RED);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(healthStr, xPos, Engine::TerminalColor::RED);
 	}
 
 	void SpaceInvadersLevel::PrintWave()
@@ -144,7 +145,7 @@ namespace SpaceInvaders
 		string waveStr = "wave: " + std::to_string(waveNumber);
 
 		int waveStringPosX = static_cast<int>(uiPrinter.GetMaxTerminalX() - waveStr.length());
-		Simulation::Instance().GetUIPrinter().PrintOnHeader(waveStr, waveStringPosX, Engine::Terminal::WHITE);
+		Simulation::Instance().GetUIPrinter().PrintOnHeader(waveStr, waveStringPosX, Engine::TerminalColor::WHITE);
 	}
 
 
@@ -255,12 +256,12 @@ namespace SpaceInvaders
 		isLoadingWave = true;
 		waveNumber++;
 		PrintWave();
-		startedLoadingWaveTime = Engine::TimeHelper::Instance().GetTime();
+		startedLoadingWaveTime = Engine::TimeManager::Instance().GetTime();
 	}
 
 	void SpaceInvadersLevel::LoadNewWave()
 	{
-		if (isLoadingWave && Engine::TimeHelper::Instance().GetTime() - startedLoadingWaveTime > LOAD_WAVE_TIME)
+		if (isLoadingWave && Engine::TimeManager::Instance().GetTime() - startedLoadingWaveTime > LOAD_WAVE_TIME)
 		{
 			LoadAliens();
 			isLoadingWave = false;

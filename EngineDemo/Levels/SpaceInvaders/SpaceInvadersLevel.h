@@ -1,5 +1,6 @@
 #pragma once
-#include "Level.h"
+#include "SimEntities/Level.h"
+#include <typeinfo>
 
 namespace SpaceInvaders
 {
@@ -50,7 +51,7 @@ namespace SpaceInvaders
     protected:
         void Update()override;
         double ShowGameOverScreenDelay() const override { return 0.2; }
-        const char* GetPersistenceFilePath() override { return "Resources/Persistence/SpaceInvaders.txt"; }
+        const char* GetPersistenceFilePath() override { return "Resources/PersistenceManager/SpaceInvaders.txt"; }
         const char* GetGameOverWindowPath() override { return "Resources/GameOverWindows/SpaceInvaders.txt"; }
         void OnPostGameOverDelayEnded() override;
         void ShowGameOverScreen(int score, int savedBestScore) override;
@@ -65,9 +66,9 @@ namespace SpaceInvaders
         void PrintScore();
         void PrintHealth(size_t health);
         void PrintWave();
-        const type_info& GetAlienTypeForRow(int rowIndex);
+        const std::type_info& GetAlienTypeForRow(int rowIndex);
         void AddAliensRowToSimulation(int yPos, int rowIndex);
-        std::shared_ptr<Alien> CreateAlienOfType(const type_info& alienType, int xPos, int yPos, int xIndex, int yIndex);
+        std::shared_ptr<Alien> CreateAlienOfType(const std::type_info& alienType, int xPos, int yPos, int xIndex, int yIndex);
         void OnWaveCompleted();
         void LoadNewWave();
         void OnPlayerTakesDamage(size_t remainingHealth);

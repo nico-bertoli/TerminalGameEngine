@@ -1,7 +1,7 @@
 #pragma once
 #include "Config.h"
-#include "Collider.h"
-#include "Event.h"
+#include "SimEntities/Collider.h"
+#include "General/Vector2Int.h"
 #include <string>
 
 namespace Platformer
@@ -59,7 +59,7 @@ namespace Platformer
 
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override;
-        int GetColor() const override { return Engine::Terminal::GREEN; }
+        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::GREEN; }
 
     protected:
         void Update() override;

@@ -5,8 +5,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-file(GLOB ENGINE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+# gather .cpp from subfolders too
+file(GLOB_RECURSE ENGINE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 add_library(${PROJECT_NAME} ${ENGINE_SRC})
+
+# make the engine source dir and subfolders available for #include "Header.h"
+target_include_directories(${PROJECT_NAME} PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/TerminalManager"
+)
 
 # ---------------------------------------- SFML
 set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Dependencies/SFML")
@@ -20,3 +27,8 @@ target_link_libraries(${PROJECT_NAME}
     sfml-system$<$<CONFIG:Debug>:-d>
     sfml-audio$<$<CONFIG:Debug>:-d>
 )
+
+if(UNIX AND NOT APPLE)
+    find_package(X11 REQUIRED)
+    target_link_libraries(${PROJECT_NAME} X11::X11)
+endif()

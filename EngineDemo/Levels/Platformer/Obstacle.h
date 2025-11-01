@@ -1,5 +1,5 @@
 #pragma once
-#include "MovingStraightObject.h"
+#include "SimEntities/MovingStraightObject.h"
 
 namespace Platformer
 {
@@ -13,7 +13,7 @@ namespace Platformer
 
         bool CanExitScreenSpace() const override { return true; }
         double GetGravityScale() const override { return 0; }
-        int GetColor() const override { return Engine::Terminal::RED; }
+        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::RED; }
 
     protected:
         void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;

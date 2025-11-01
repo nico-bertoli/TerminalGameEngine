@@ -1,5 +1,5 @@
 #pragma once
-#include "ISimulationEntity.h"
+#include "SimEntities/ISimulationEntity.h"
 #include <vector>
 
 namespace Platformer

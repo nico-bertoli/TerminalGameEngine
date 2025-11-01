@@ -1,5 +1,5 @@
 #pragma once
-#include "GameObject.h"
+#include "SimEntities/GameObject.h"
 #include <optional>
 
 namespace Platformer
@@ -10,7 +10,7 @@ namespace Platformer
 		size_t sizeX;
 		size_t sizeY;
 		char modelChar;
-		int color;
+		Engine::TerminalColor color;
 		size_t sortingLayer;
 		double moveSpeed;
 		std::optional<Engine::Direction> mainDirection;
@@ -24,7 +24,7 @@ namespace Platformer
 			size_t sizeX,
 			size_t sizeY,
 			char modelChar,
-			int color,
+			Engine::TerminalColor color,
 			size_t sortingLayer,
 			double moveSpeed = 0,
 			std::optional<Engine::Direction> mainDirection = std::nullopt
@@ -32,7 +32,7 @@ namespace Platformer
 
 		bool CanExitScreenSpace() const override { return true; }
 		double GetGravityScale() const override { return 0; }
-		int GetColor() const override { return color; }
+		Engine::TerminalColor GetColor() const override { return color; }
 		size_t GetSortingLayer() const override { return sortingLayer; }
 
 	protected:

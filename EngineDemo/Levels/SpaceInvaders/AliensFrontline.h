@@ -1,6 +1,6 @@
 #pragma once
-#include "RandomUtils.h"
-#include "Vector2D.h"
+#include "Utils/RandomUtils.h"
+#include "General/Vector2D.h"
 #include <vector>
 
 namespace SpaceInvaders

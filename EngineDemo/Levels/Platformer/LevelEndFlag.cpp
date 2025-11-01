@@ -1,6 +1,6 @@
 #include "LevelEndFlag.h"
 #include "Bunny.h"
-#include "Level.h"
+#include "SimEntities/Level.h"
 
 using Engine::Model;
 using Engine::Direction;

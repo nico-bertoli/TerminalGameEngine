@@ -1,9 +1,9 @@
 #include "PongBall.h"
 #include "PongBar.h"
-#include "Simulation.h"
-#include "AudioManager.h"
+#include "Core/Simulation.h"
+#include "Managers/AudioManager.h"
 #include "PongLevel.h"
-#include "RandomUtils.h"
+#include "Utils/RandomUtils.h"
 
 using Engine::Model;
 using std::shared_ptr;

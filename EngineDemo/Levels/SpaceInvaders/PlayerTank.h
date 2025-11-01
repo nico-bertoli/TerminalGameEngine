@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "Collider.h"
+#include "SimEntities/Collider.h"
 
 namespace SpaceInvaders
 {
@@ -31,7 +31,7 @@ namespace SpaceInvaders
 
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        int GetColor() const override { return Engine::Terminal::GREEN; }
+        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::GREEN; }
         void InitModel() override { SetModel(MODEL); }
         void HandleMovement();
         void HandleShooting();

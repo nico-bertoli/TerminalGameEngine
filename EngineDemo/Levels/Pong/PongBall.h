@@ -1,6 +1,6 @@
 #pragma once
-#include "Collider.h"	
-#include "Event.h"
+#include "SimEntities/Collider.h"	
+#include "General/Vector2Int.h"
 
 namespace Pong
 {
@@ -22,7 +22,7 @@ namespace Pong
         //---------------------------------------------------------- Methods
     public:
         PongBall(PongLevel* level, int xPos, int yPos, double ySpeed);
-        int GetColor() const override { return Engine::Terminal::GREEN; }
+        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::GREEN; }
 
     protected:
         bool CanExitScreenSpace() const override { return false; }

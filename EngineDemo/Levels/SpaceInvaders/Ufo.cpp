@@ -1,6 +1,6 @@
 #include "Ufo.h"
-#include "RandomUtils.h"
-#include "AudioManager.h"
+#include "Utils/RandomUtils.h"
+#include "Managers/AudioManager.h"
 
 using Engine::Model;
 using Engine::Direction;

@@ -1,8 +1,8 @@
 #include "ShieldPart.h"
-#include "Simulation.h"
+#include "Core/Simulation.h"
 #include "Alien.h"
 #include "Projectile.h"
-#include "AudioManager.h"
+#include "Managers/AudioManager.h"
 
 using std::shared_ptr;
 using Engine::Direction;
