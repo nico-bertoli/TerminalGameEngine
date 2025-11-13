@@ -97,7 +97,7 @@ namespace Engine
 
     void SimulationPrinter::InitBackground(const char* backgroundFileName)
     {
-        if (backgroundFileName == "")
+        if (backgroundFileName[0] == '\0')
             return;
 
         background.ReadFromFile(backgroundFileName);

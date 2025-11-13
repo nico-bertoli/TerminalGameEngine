@@ -8,7 +8,7 @@ namespace Engine
 {
     void Frame::ReadFromFile(const char* fileName)
     {
-        if (fileName == "")
+        if (fileName[0] == '\0')
             return;
 
         std::ifstream file(fileName, std::ios::binary);

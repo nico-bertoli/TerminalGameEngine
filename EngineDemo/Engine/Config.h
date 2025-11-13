@@ -1,7 +1,7 @@
 #pragma once
 
 // build settings
-#define IS_LINUX_BUILD 0
+#define IS_LINUX_BUILD 1
 
 // settings
 #define ALLOW_SOUNDS 1
