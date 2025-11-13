@@ -55,11 +55,10 @@ namespace Engine
 
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
-        if (buf[0] == '\033' && buf[1] == '[') {
+        if (buf[0] == '\033' && buf[1] == '[')
             sscanf(buf + 2, "%d;%d", &row, &col);
-}
 
-return Vector2Int(col - 1, row - 1);
+        return Vector2Int(col - 1, row - 1);
     }
 
     const char* LinuxTerminal::ToLinuxColor(TerminalColor color)

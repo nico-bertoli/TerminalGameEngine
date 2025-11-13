@@ -44,8 +44,8 @@ namespace Engine
         virtual void SetCursorPosition(int x, int y){SetCursorPosition(Vector2Int(x,y));}
         virtual Vector2Int GetCursorPosition() = 0;
 
-        virtual void Cout(const std::string& s) const;
-        virtual void Cout(char c) const;
+        void Cout(std::string_view s) const;
+        void Cout(char c) const;
 
     protected:
         BaseTerminal() { HideCursor(); }
