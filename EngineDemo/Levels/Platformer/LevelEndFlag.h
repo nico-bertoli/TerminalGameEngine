@@ -20,7 +20,7 @@ namespace Platformer
         //---------------------------------------------------------- Methods
     public:
         LevelEndFlag(Engine::Level* level, int xPos, int yPos);
-        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::GREEN; }
+        Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
 
     protected:
         bool CanExitScreenSpace() const override { return false; }

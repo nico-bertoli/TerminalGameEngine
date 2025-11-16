@@ -15,7 +15,7 @@ namespace Platformer
         using Collider::Collider;
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 8; }
-        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::BLUE; }
+        Engine::TerminalColor GetColor() const override { return Engine::Color::BLUE; }
 
     protected:
         void InitModel() override { SetModel(model); }

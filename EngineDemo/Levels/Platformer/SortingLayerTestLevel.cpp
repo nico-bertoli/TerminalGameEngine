@@ -26,7 +26,7 @@ namespace Platformer
             30,     //sizex
             5,      //sizey
             -37,    //char
-            Engine::TerminalColor::RED,
+            Engine::Color::RED,
             200     //sorting layer
         );
         simulation.TryAddEntity(sortingLayerTestObjFront);
@@ -39,7 +39,7 @@ namespace Platformer
             30,      //sizex
             5,      //sizey
             -37,     //char
-            Engine::TerminalColor::BLUE,
+            Engine::Color::BLUE,
             0       //sorting layer
         );
         simulation.TryAddEntity(sortingLayerTestObjBack);

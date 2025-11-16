@@ -18,6 +18,6 @@ namespace SpaceInvaders
 	protected:
 		double GetGravityScale() const override { return 0; }
 		void OnDestroy() override;
-		virtual Engine::TerminalColor GetDestroyedParticlesColor() { return Engine::TerminalColor::GREEN; }
+		virtual Engine::TerminalColor GetDestroyedParticlesColor() { return Engine::Color::GREEN; }
 	};
 }

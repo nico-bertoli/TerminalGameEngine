@@ -4,7 +4,7 @@
 #define IS_LINUX_BUILD 1
 
 // settings
-#define ALLOW_SOUNDS 1
+#define ALLOW_SOUNDS 0
 #define DEBUG_MODE 1
 
 // debug details

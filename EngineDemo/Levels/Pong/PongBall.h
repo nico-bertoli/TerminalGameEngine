@@ -22,7 +22,7 @@ namespace Pong
         //---------------------------------------------------------- Methods
     public:
         PongBall(PongLevel* level, int xPos, int yPos, double ySpeed);
-        Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::GREEN; }
+        Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
 
     protected:
         bool CanExitScreenSpace() const override { return false; }

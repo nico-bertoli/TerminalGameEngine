@@ -74,7 +74,7 @@ namespace Pong
 	void PongLevel::RefreshHeader()
 	{
 		Engine::Simulation::Instance().GetUIPrinter().
-			PrintOnHeader(std::to_string(scorePlayer1) + " - " + std::to_string(scorePlayer2), 0, Engine::TerminalColor::WHITE);
+			PrintOnHeader(std::to_string(scorePlayer1) + " - " + std::to_string(scorePlayer2), 0, Engine::Color::WHITE);
 	}
 
 	void PongLevel::OnPostGameOverDelayEnded()

@@ -14,24 +14,6 @@ using string = std::string;
 
 namespace Engine
 {
-    const int WindowsTerminal::WHITE_DARK = FOREGROUND_BLUE | FOREGROUND_RED | FOREGROUND_GREEN;
-    const int WindowsTerminal::RED_DARK = FOREGROUND_RED;
-    const int WindowsTerminal::GREEN_DARK = FOREGROUND_GREEN;
-    const int WindowsTerminal::BLUE_DARK = FOREGROUND_BLUE;
-    const int WindowsTerminal::CYAN_DARK = FOREGROUND_GREEN | FOREGROUND_BLUE;
-    const int WindowsTerminal::MAGENTA_DARK = FOREGROUND_RED | FOREGROUND_BLUE;
-    const int WindowsTerminal::YELLOW_DARK = FOREGROUND_RED | FOREGROUND_GREEN;
-    const int WindowsTerminal::BLACK = 0;
-
-    const int WindowsTerminal::WHITE = WHITE_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::RED = RED_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::GREEN = GREEN_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::BLUE = BLUE_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::CYAN = CYAN_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::MAGENTA = MAGENTA_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::YELLOW = YELLOW_DARK | FOREGROUND_INTENSITY;
-    const int WindowsTerminal::GREY = BLACK | FOREGROUND_INTENSITY;
-
     void WindowsTerminal::Clear()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -52,14 +34,6 @@ namespace Engine
         FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coord, &cCharsWritten);
 
         SetCursorPosition(coord.X,coord.Y);
-    }
-
-    void WindowsTerminal::SetColor(TerminalColor color)
-    {
-        int windowsColor = ConvertToWindowsColor(color);
-        currentColor = color;
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, ConvertToWindowsColor(color));
     }
 
     void WindowsTerminal::SetCursorPosition(const Vector2Int& position)
@@ -88,33 +62,6 @@ namespace Engine
         cursorInfo.bVisible = false; // Hide cursor
         SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
     }
-
-    int WindowsTerminal::ConvertToWindowsColor(TerminalColor color) const
-    {
-        switch(color)
-        {
-            case TerminalColor::WHITE_DARK:   return WHITE_DARK;
-            case TerminalColor::RED_DARK:     return RED_DARK;
-            case TerminalColor::GREEN_DARK:   return GREEN_DARK;
-            case TerminalColor::BLUE_DARK:    return BLUE_DARK;
-            case TerminalColor::CYAN_DARK:    return CYAN_DARK;
-            case TerminalColor::MAGENTA_DARK: return MAGENTA_DARK;
-            case TerminalColor::YELLOW_DARK:  return YELLOW_DARK;
-
-            case TerminalColor::WHITE:   return WHITE;
-            case TerminalColor::RED:     return RED;
-            case TerminalColor::GREEN:   return GREEN;
-            case TerminalColor::BLUE:    return BLUE;
-            case TerminalColor::CYAN:    return CYAN;
-            case TerminalColor::MAGENTA: return MAGENTA;
-            case TerminalColor::YELLOW:  return YELLOW;
-            case TerminalColor::GREY:    return GREY;
-            case TerminalColor::BLACK:   return BLACK;
-            
-            default: return WHITE;
-        }
-    }
-
 }
 
 #endif //!IS_LINUX_BUILD

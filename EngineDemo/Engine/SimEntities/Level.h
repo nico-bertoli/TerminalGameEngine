@@ -30,9 +30,9 @@ namespace Engine
         virtual int GetWorldSizeX() const = 0;
         virtual int GetWorldSizeY() const = 0;
         virtual int GetScreenPadding() const = 0;
-        virtual TerminalColor GetMarginsColor() const { return TerminalColor::BLUE_DARK; }
+        virtual TerminalColor GetMarginsColor() const { return Color::BLUE_DARK; }
         virtual const char* GetBackgroundFileName()const { return ""; }
-        virtual TerminalColor GetBackgroundColor() const { return TerminalColor::BLUE_DARK; }
+        virtual TerminalColor GetBackgroundColor() const { return Color::BLUE_DARK; }
         double GetLevelTime() const;
         bool IsGameOver() const { return gameOverTime > -1; }
         bool IsTerminated() const { return isTerminated; }

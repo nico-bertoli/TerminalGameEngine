@@ -20,13 +20,13 @@ namespace SpaceInvaders
 		Ufo(int xPos, int yPos, Engine::Direction moveDirection) : Enemy(xPos, yPos), moveDirection(moveDirection) {};
 
 		bool CanExitScreenSpace() const override { return true; }
-		Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::RED; }
+		Engine::TerminalColor GetColor() const override { return Engine::Color::RED; }
 		void InitModel() override { SetModel(MODEL_1); }
 		size_t GetScore() const override;
 
 	protected:
 		void Update() override;
 		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
-		Engine::TerminalColor GetDestroyedParticlesColor() override { return Engine::TerminalColor::RED; }
+		Engine::TerminalColor GetDestroyedParticlesColor() override { return Engine::Color::RED; }
 	};
 }

@@ -52,7 +52,7 @@ namespace Platformer
 
         gameOverWindow.WriteString(message, '$');
 
-        Engine::Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::TerminalColor::WHITE, WindowPosition::CenterX_TopY);
+        Engine::Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::Color::WHITE, WindowPosition::CenterX_TopY);
     }
 
     void EndlessRunnerLevel::OnGameOver()
@@ -141,7 +141,7 @@ namespace Platformer
         if (shownTime != newTime)
         {
             string header = "TIME: " + std::to_string(newTime);
-            Engine::Simulation::Instance().GetUIPrinter().PrintOnHeader(header, 0, Engine::TerminalColor::WHITE);
+            Engine::Simulation::Instance().GetUIPrinter().PrintOnHeader(header, 0, Engine::Color::WHITE);
             shownTime = newTime;
         }
     }

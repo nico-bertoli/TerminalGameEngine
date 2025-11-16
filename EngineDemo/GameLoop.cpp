@@ -47,7 +47,7 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
 {
     Terminal::Instance().Clear();
 
-    Terminal::Instance().SetColor(TerminalColor::WHITE);
+    Terminal::Instance().SetColor(Color::WHITE);
     cout << "==========================" << endl;
     cout << "   Terminal Game Engine   " << endl;
     cout << "==========================" << endl << endl;
@@ -55,16 +55,16 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
     cout << "! please maximize window !" << endl << endl;
 
     cout << "Select a demo game:" << endl;
-    Terminal::Instance().SetColor(TerminalColor::RED);
+    Terminal::Instance().SetColor(Color::RED);
     cout << "1 -> space invaders" << endl;
-    Terminal::Instance().SetColor(TerminalColor::GREEN);
+    Terminal::Instance().SetColor(Color::GREEN);
     cout << "2 -> endless runner" << endl;
-    Terminal::Instance().SetColor(TerminalColor::CYAN_DARK);
+    Terminal::Instance().SetColor(Color::CYAN_DARK);
     cout << "3 -> puzzle game" << endl;
-    Terminal::Instance().SetColor(TerminalColor::YELLOW);
+    Terminal::Instance().SetColor(Color::YELLOW);
     cout << "4 -> pong (local multiplayer)" << endl;
 
-    Terminal::Instance().SetColor(TerminalColor::WHITE);
+    Terminal::Instance().SetColor(Color::WHITE);
 #if DEBUG_MODE
     cout << "5 -> collisions test" << endl;
     cout << "6 -> sorting layer test" << endl;

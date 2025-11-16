@@ -15,7 +15,7 @@ namespace SpaceInvaders
 		using Projectile::Projectile;
 
 	protected:
-		Engine::TerminalColor GetColor() const override { return Engine::TerminalColor::RED; }
+		Engine::TerminalColor GetColor() const override { return Engine::Color::RED; }
 		void InitModel() override { SetModel(MODEL); }
 		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
 	};
