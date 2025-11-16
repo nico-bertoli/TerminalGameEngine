@@ -25,7 +25,7 @@ namespace Platformer
             1,      //posy
             30,     //sizex
             5,      //sizey
-            -37,    //char
+            '#',    //char
             Engine::Color::RED,
             200     //sorting layer
         );
@@ -38,7 +38,7 @@ namespace Platformer
             1,      //posy
             30,      //sizex
             5,      //sizey
-            -37,     //char
+            '#',     //char
             Engine::Color::BLUE,
             0       //sorting layer
         );

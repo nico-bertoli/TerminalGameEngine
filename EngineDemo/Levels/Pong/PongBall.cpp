@@ -11,7 +11,7 @@ using Engine::Direction;
 
 namespace Pong
 {
-    const Model PongBall::MODEL(1, { -37 });
+    const Model PongBall::MODEL(1, { '@' });
 
     PongBall::PongBall(PongLevel* level, int xPos, int yPos, double ySpeed)
         :

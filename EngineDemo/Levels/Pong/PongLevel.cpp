@@ -16,7 +16,7 @@ namespace Pong
 		Engine::Simulation& simulation = Engine::Simulation::Instance();
 
 		//--------------- bars general settings
-		char barsChar = -37;
+		char barsChar = '#';
 		int startingPosX = GetWorldSizeX() / 2 - 1;
 		int barsSize = 8;
 		double barsMoveSpeed = 32;

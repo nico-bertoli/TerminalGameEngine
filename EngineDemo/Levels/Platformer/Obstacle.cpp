@@ -18,7 +18,7 @@ namespace Platformer
     void Obstacle::InitModel()
     {
         if (model.GetSizeY() == 0)
-            model = CreteModelUsingChar(-37, size_t(4), size_t(2));
+            model = CreteModelUsingChar('#', size_t(4), size_t(2));
         SetModel(model);
     }
 
