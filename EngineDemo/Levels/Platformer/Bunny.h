@@ -23,6 +23,7 @@ namespace Platformer
         static const char CHAR_EYE = 'O';
         static const char CHAR_GAMEOVER_EYE = '*';
         static const char CHAR_CHEST = ':';
+        static const char CHAR_FOOT_UP = '@';
 
         static const Engine::Model MODEL_WALK_LEFT;
         static const Engine::Model MODEL_WALK_RIGHT;

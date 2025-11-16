@@ -19,9 +19,9 @@ namespace Platformer
     (
         5,
         {
-            '(',  92, '(',  92, ' ' ,
+            '(', '\\', '(', '\\', ' ' ,
             '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-            '/', -36, CHAR_CHEST, '_', '|'
+            '/', CHAR_FOOT_UP, CHAR_CHEST, '_', '|'
         }
     );
 
@@ -32,7 +32,7 @@ namespace Platformer
         {
             ' ', '/', ')', '/', ')' ,
             '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')' ,
-            '|', '_', CHAR_CHEST, -36, 92
+            '|', '_', CHAR_CHEST, CHAR_FOOT_UP, '\\'
         }
     );
 
@@ -43,7 +43,7 @@ namespace Platformer
         {
             ' ', '/', ')', '/', ')' ,
              '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')' ,
-             92, -36, CHAR_CHEST, -36, '/'
+             '\\', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '/'
         }
     );
 
@@ -51,9 +51,9 @@ namespace Platformer
     (
         5,
         {
-            '(', 92, '(', 92, ' ',
+            '(', '\\', '(', '\\', ' ',
             '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-            92, -36, CHAR_CHEST, -36, '/'
+            '\\', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '/'
         }
     );
 
@@ -63,7 +63,7 @@ namespace Platformer
         {
             ' ', '/', ')', '/', ')',
             '(', CHAR_GAMEOVER_EYE, CHAR_NOSE, CHAR_GAMEOVER_EYE, ')',
-            '|', -36, CHAR_CHEST, -36, '|'
+            '|', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '|'
         }
     );
 
@@ -81,7 +81,7 @@ namespace Platformer
     (
         5,
         {
-         '(', 92, '(', 92, ' ',
+         '(', '\\', '(', '\\', ' ',
          '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
          '|', '_', CHAR_CHEST, '_', '|'
         }
