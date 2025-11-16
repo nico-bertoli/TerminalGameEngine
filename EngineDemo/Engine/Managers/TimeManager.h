@@ -8,7 +8,7 @@ namespace Engine
 {
     class TimeManager : public Singleton<TimeManager>
     {
-        friend class Singleton;
+        friend class Singleton<TimeManager>;
 
         //---------------------------------------------------------- Fields
     private:

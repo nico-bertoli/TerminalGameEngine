@@ -6,7 +6,7 @@ namespace Engine
 {
     class LinuxTerminal : public Singleton<LinuxTerminal>, public BaseTerminal
     {
-        friend class Singleton;
+        friend class Singleton<LinuxTerminal>;
 
         //================================================================= Fields
         static constexpr const char* BLACK   = "\033[30m";

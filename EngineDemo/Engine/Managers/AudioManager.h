@@ -9,7 +9,7 @@ namespace Engine
 {
 	class AudioManager : public Singleton<AudioManager>
 	{
-		friend class Singleton;
+		friend class Singleton<AudioManager>;
 
 		//---------------------------------------------------------- Fields
 	private:

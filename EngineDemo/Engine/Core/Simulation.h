@@ -22,7 +22,7 @@ namespace Engine
 	class Simulation : public Singleton<Simulation>
 	{
 		//------------------------------------------------------------------------------------ Friend Classes
-		friend class Singleton;
+		friend class Singleton<Simulation>;
 		friend class GameObject;
 
 		//------------------------------------------------------------------------------------ Structs

@@ -7,7 +7,7 @@ namespace Engine
 {
     class WindowsTerminal : public Singleton<WindowsTerminal>, public BaseTerminal
     {
-        friend class Singleton;
+        friend class Singleton<WindowsTerminal>;
 
     //================================================================= Fields
     private:    

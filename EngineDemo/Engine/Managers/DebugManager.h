@@ -14,7 +14,7 @@ namespace Engine
 {
 	class DebugManager : public Singleton<DebugManager>
 	{
-		friend class Singleton;
+		friend class Singleton<DebugManager>;
 		//---------------------------------------------------------- Settings
 	private:
 		static constexpr double REFRESH_FPS_EVERY_SECONDS = 0.5;
