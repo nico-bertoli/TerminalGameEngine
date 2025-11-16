@@ -87,36 +87,23 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
     while (true)
     {
         if (InputManager::Instance().IsKeyPressed(Key::NUM_1))
-        {
-            return std::make_unique<SpaceInvaders::SpaceInvadersLevel>();
-            break;
-        }
-        else if (InputManager::Instance().IsKeyPressed(Key::NUM_2))
-        {
-            return std::make_unique<Platformer::EndlessRunnerLevel>();
-            break;
-        }
-        else if (InputManager::Instance().IsKeyPressed(Key::NUM_3))
-        {
-            return std::make_unique<Platformer::PuzzleLevel>();
-            break;
-        }
-        else if (InputManager::Instance().IsKeyPressed(Key::NUM_4))
-        {
-            return std::make_unique<Pong::PongLevel>();
-            break;
-        }
+            return std::make_shared<SpaceInvaders::SpaceInvadersLevel>();
+
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_2))
+            return std::make_shared<Platformer::EndlessRunnerLevel>();
+
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_3))
+            return std::make_shared<Platformer::PuzzleLevel>();
+    
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_4))
+            return std::make_shared<Pong::PongLevel>();
+        
 #if DEBUG_MODE
-        else if (InputManager::Instance().IsKeyPressed(Key::NUM_5))
-        {
-            return std::make_unique<Platformer::CollisionsTestLevel>();
-            break;
-        }
-        else if (InputManager::Instance().IsKeyPressed(Key::NUM_6))
-        {
-            return std::make_unique<Platformer::SortingLayerTestLevel>();
-            break;
-        }
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_5))
+            return std::make_shared<Platformer::CollisionsTestLevel>();
+            
+        if (InputManager::Instance().IsKeyPressed(Key::NUM_6))
+            return std::make_shared<Platformer::SortingLayerTestLevel>();
 #endif
     }
 }
