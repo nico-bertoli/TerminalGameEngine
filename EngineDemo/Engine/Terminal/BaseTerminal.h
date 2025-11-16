@@ -48,7 +48,6 @@ namespace Engine
         virtual void Clear() = 0;
         virtual void SetCursorPosition(const Vector2Int& position) = 0;
         virtual void SetCursorPosition(int x, int y){SetCursorPosition(Vector2Int(x,y));}
-        virtual Vector2Int GetCursorPosition() = 0;
 
         void Cout(std::string_view s) const;
         void Cout(char c) const;

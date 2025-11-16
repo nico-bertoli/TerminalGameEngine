@@ -15,7 +15,6 @@ namespace Engine
     public:
         void Clear() override;
         void SetCursorPosition(const Vector2Int& position) override;
-        Vector2Int GetCursorPosition() override;
 
     protected:
         void HideCursor() override { std::cout << "\033[?25l"; };

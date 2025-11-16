@@ -11,7 +11,6 @@ namespace Engine
     void DebugPrinter::PrintCoutCallsCount(size_t coutCallsCount)
     {
         TerminalColor startingColor = Terminal::Instance().GetColor();
-        Vector2Int cursorStartingPos = terminal.GetCursorPosition();
 
         Terminal::Instance().SetColor(DEBUG_COLOR);
         terminal.SetCursorPosition(0, GetMaxTerminalY() + POSITION_COUT_CALLS);
@@ -19,7 +18,6 @@ namespace Engine
         string output = "COUT CALLS: " + std::to_string(coutCallsCount) + string("     ");
         std::cout << output;
 
-        terminal.SetCursorPosition(cursorStartingPos);
         terminal.SetColor(startingColor);
     }
 

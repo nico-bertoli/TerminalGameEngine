@@ -44,17 +44,6 @@ namespace Engine
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
     }
 
-    Vector2Int WindowsTerminal::GetCursorPosition()
-    {
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        COORD coord = { -1, -1 };  // Default to invalid position
-        if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
-        {
-            coord = csbi.dwCursorPosition;
-        }
-        return Vector2Int(coord.X,coord.Y);
-    }
-
     void WindowsTerminal::HideCursor()
     {
         CONSOLE_CURSOR_INFO cursorInfo;
