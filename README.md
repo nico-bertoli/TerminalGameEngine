@@ -13,14 +13,6 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 <img src="screenshots/screen2.png" style="height:250px; max-width:100%;">
 <img src="screenshots/screen3.png" style="height:250px; max-width:100%;">
 
-
-#
-<b>How to build (CMake):</b>
-
-Enter EngineDemo/build and run this commands:
-- cmake -S ../ -O ./
-- cmake --build .
-
 #
 This project uses SFML (Simple and Fast Multimedia Library). https://www.sfml-dev.org
 
