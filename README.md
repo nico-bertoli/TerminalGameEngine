@@ -14,7 +14,7 @@ An engine for creating 2D terminal-based games, built without any graphics libra
 <img src="screenshots/screen3.png" style="height:250px; max-width:100%;">
 
 #
-This project uses SFML (Simple and Fast Multimedia Library). https://www.sfml-dev.org
+This project uses SFML for handling sounds: https://www.sfml-dev.org
 
 SFML is developed by Laurent Gomila and contributors.
 Copyright (C) 2007-2023 Laurent Gomila - laurent@sfml-dev.org
