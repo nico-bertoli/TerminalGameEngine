@@ -1,14 +1,11 @@
 An engine for creating 2D terminal-based games, built without any graphics libraries.
 
+- Cross platform (Linux/Windows)
 - Framerate-independent simulation (delta-time based)
-- Efficient rendering (only the changing parts of the terminal are reprinted)
 - Particle system
 - Collision system (OnCollisionEnter/Exit)
-- Sorting layer system
-- Easy to add new levels / objects
+- Sorting order system 
 - Backgrounds support
-
-Note: for now this works on Windows only (project depends on Windows terminal API)
 
 [Youtube Trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
 
