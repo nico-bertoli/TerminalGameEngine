@@ -16,6 +16,13 @@ namespace Engine
         lastTimeFrameGenerated = currentTime;
     }
 
+    void TimeManager::OnSimulationStepped()
+    {
+        double currentTime = GetTime();
+        fixedDeltaTime = currentTime - lastTimeSimulationStepped;
+        lastTimeSimulationStepped = currentTime;
+    }
+
     bool TimeManager::IsTimeForFirstOfTwoModels(double changeModelEverySeconds) const
     {
         double time = GetTime();
@@ -36,6 +43,7 @@ namespace Engine
     TimeManager::TimeManager()
     {
         Simulation::Instance().OnFrameGenerated.Subscribe([this]() { OnFrameGenerated(); });
+        Simulation::Instance().OnSimulationStepped.Subscribe([this]() { OnSimulationStepped(); });
         startTime = steady_clock::now();
     }
 }

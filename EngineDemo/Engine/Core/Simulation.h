@@ -39,6 +39,7 @@ namespace Engine
 		//------------------------------------------------------------------------------------ Fields
 	public:
 		Event<> OnFrameGenerated;
+		Event<> OnSimulationStepped;
 
 	private:
 		std::unique_ptr<SimulationPrinter> simulationPrinter;
@@ -91,7 +92,7 @@ namespace Engine
 		void UpdateAllEntities();
 		void ExecuteMoveRequests();
 		void UpdateAllObjectsEndedCollisions();
-		void PrintObjects();
+		bool PrintObjects();
 		void RemoveMarkedEntities();
 
 		bool IsInsideScreenX(int xPos) const;

@@ -38,7 +38,7 @@ namespace Engine
 			return;
 
 		moveSpeed = abs(moveSpeed);
-		double deltaTime = TimeManager::Instance().GetDeltaTime();
+		double deltaTime = TimeManager::Instance().GetFixedDeltaTime();
 
 		switch (direction)
 		{

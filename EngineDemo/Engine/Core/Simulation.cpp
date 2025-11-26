@@ -85,8 +85,16 @@ namespace Engine
 
 		UpdateAllObjectsEndedCollisions();
 
-		PrintObjects();
+		bool hasNewFrameBeenGenerated = PrintObjects();
+		if(hasNewFrameBeenGenerated);
+		{
+			OnFrameGenerated.Notify();
+			#if DEBUG_MODE && SHOW_FPS
+						DebugManager::Instance().ShowAverageFPS();
+			#endif
+		}
 
+		OnSimulationStepped.Notify();
 	}
 
 	void Simulation::RequestMovement(shared_ptr<GameObject> applicantObj, Direction moveDir, double moveSpeed)
@@ -174,7 +182,7 @@ namespace Engine
 		}
 	}
 
-	void Simulation::PrintObjects()
+	bool Simulation::PrintObjects()
 	{
 		list<shared_ptr<GameObject>> toBePrintedObjects;
 
@@ -197,19 +205,11 @@ namespace Engine
 			UnmarkObjectToReprint(obj);
 		}
 
+		// force all objects to be printed before proceding if needed
 		if(toBePrintedObjects.size() > 0)
-		{
-			// force all objects to be printed before proceding
-			Terminal::Instance().Flush();
-			
-			// consider new frame only if some object has been reprinted
-			// otherwise framerate would be wrongly extermelly high
-			OnFrameGenerated.Notify();
+			Terminal::Instance().Flush(); 
 
-#if DEBUG_MODE && SHOW_FPS
-			DebugManager::Instance().ShowAverageFPS();
-#endif
-		}
+		return toBePrintedObjects.size() > 0;
 	}
 
 
