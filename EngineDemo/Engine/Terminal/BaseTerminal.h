@@ -51,6 +51,7 @@ namespace Engine
 
         void Cout(std::string_view s) const;
         void Cout(char c) const;
+        void Flush() const { std::cout << std::flush; } //grants cout termination before proceeding
 
     protected:
         BaseTerminal() { HideCursor(); }

@@ -8,6 +8,7 @@
 #include "Managers/DebugManager.h"
 #include "Utils/RandomUtils.h"
 #include "SimEntities/Particle.h"
+#include "Terminal/Terminal.h"
 
 #include <cassert>
 #include <stdexcept>
@@ -86,11 +87,6 @@ namespace Engine
 
 		PrintObjects();
 
-		OnFrameGenerated.Notify();
-
-#if DEBUG_MODE && SHOW_FPS
-		DebugManager::Instance().ShowAverageFPS();
-#endif
 	}
 
 	void Simulation::RequestMovement(shared_ptr<GameObject> applicantObj, Direction moveDir, double moveSpeed)
@@ -194,11 +190,25 @@ namespace Engine
 				);
 		}
 
-				//print objects
+		//print objects
 		for (auto obj : toBePrintedObjects)
 		{
 			simulationPrinter->PrintObject(obj);
 			UnmarkObjectToReprint(obj);
+		}
+
+		if(toBePrintedObjects.size() > 0)
+		{
+			// force all objects to be printed before proceding
+			Terminal::Instance().Flush();
+			
+			// consider new frame only if some object has been reprinted
+			// otherwise framerate would be wrongly extermelly high
+			OnFrameGenerated.Notify();
+
+#if DEBUG_MODE && SHOW_FPS
+			DebugManager::Instance().ShowAverageFPS();
+#endif
 		}
 	}
 

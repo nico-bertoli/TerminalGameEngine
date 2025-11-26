@@ -3,6 +3,7 @@
 #include "Core/Simulation.h"
 #include "Obstacle.h"
 #include "ObstaclesSpawner.h"
+#include "Bunny.h"
 
 using std::shared_ptr;
 using std::vector;
@@ -14,9 +15,12 @@ namespace Platformer
         Level::LoadInSimulation();
         Engine::Simulation& simulation = Engine::Simulation::Instance();
 
+        std::shared_ptr<Bunny> bunny = std::make_shared<Bunny>(5, 8);
+        simulation.TryAddEntity(bunny);
+
         //----------------------- spawners settings
-        double spawnDelay = 0.15;
-        double speed = 32;
+        double spawnDelay = 0.01;
+        double speed = 2;
 
         //----------------------- right spawner
         int xPosRight = GetWorldSizeX() - 2;
