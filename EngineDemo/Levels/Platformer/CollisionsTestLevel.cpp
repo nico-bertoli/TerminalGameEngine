@@ -19,8 +19,12 @@ namespace Platformer
         double speed = 32;
 
         //----------------------- right spawner
-        int xPosRight = 96;
-        vector<int>ySpawnPoints = { 20,18,16,14 };
+        int xPosRight = GetWorldSizeX() - 2;
+
+        vector<int>ySpawnPoints;
+        for(int i = 4; i<GetWorldSizeY()-2; i+=2)
+            ySpawnPoints.push_back(i);
+
         shared_ptr<ObstaclesSpawner> spawnerRight = std::make_shared<ObstaclesSpawner>
         (
             xPosRight,
