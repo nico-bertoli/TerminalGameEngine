@@ -194,10 +194,7 @@ namespace Engine
 				);
 		}
 
-		if (toBePrintedObjects.size() > 1)
-			int tododelete = 2;
-
-		//print objects
+				//print objects
 		for (auto obj : toBePrintedObjects)
 		{
 			simulationPrinter->PrintObject(obj);
