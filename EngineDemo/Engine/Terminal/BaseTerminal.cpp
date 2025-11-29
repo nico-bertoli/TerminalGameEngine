@@ -18,4 +18,23 @@ namespace Engine
         DebugManager::Instance().IncrementCoutCalls();
 #endif
     }
+
+    void BaseTerminal::SetColor(const char* frontColor, const char* backColor)
+    {
+        if(frontColor == nullptr)
+            frontColor = Color::DEFAULT;
+        if(backColor == nullptr)
+            backColor = Color::BG_DEFAULT;
+
+        if(this->frontColor != frontColor)
+        {
+             std::cout<<frontColor;
+             this->frontColor = frontColor;
+        }
+        if(this->backColor != backColor)
+        {
+            std::cout<<backColor;
+            this->backColor = backColor;
+        }
+    }
 }

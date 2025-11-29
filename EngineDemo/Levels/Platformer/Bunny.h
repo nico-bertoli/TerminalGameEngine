@@ -61,6 +61,7 @@ namespace Platformer
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override;
         Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
+        Engine::TerminalColor GetBackColor() const override { return Engine::Color::BG_RED; }
 
     protected:
         void Update() override;

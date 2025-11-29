@@ -10,7 +10,8 @@ namespace Engine
 {
     void DebugPrinter::PrintCoutCallsCount(size_t coutCallsCount)
     {
-        TerminalColor startingColor = Terminal::Instance().GetColor();
+        TerminalColor originalFrontColor = Terminal::Instance().GetFrontColor();
+        TerminalColor originalBackColor = Terminal::Instance().GetBackColor();
 
         Terminal::Instance().SetColor(DEBUG_COLOR);
         terminal.SetCursorPosition(0, GetMaxTerminalY() + POSITION_COUT_CALLS);
@@ -18,7 +19,7 @@ namespace Engine
         string output = "COUT CALLS: " + std::to_string(coutCallsCount) + string("     ");
         std::cout << output;
 
-        terminal.SetColor(startingColor);
+        terminal.SetColor(originalFrontColor, originalBackColor);
     }
 
     void DebugPrinter::PrintFpsString(size_t fps)

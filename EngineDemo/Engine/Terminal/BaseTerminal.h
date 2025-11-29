@@ -27,23 +27,49 @@ namespace Engine
         static constexpr const char* MAGENTA = "\033[95m";
         static constexpr const char* CYAN   = "\033[96m";
         static constexpr const char* WHITE  = "\033[97m";
+
+        static constexpr const char* DEFAULT  = "\033[0m";
+
+        // Background colors (standard)
+        static constexpr const char* BG_BLACK   = "\033[40m";
+        static constexpr const char* BG_RED_DARK = "\033[41m";
+        static constexpr const char* BG_GREEN_DARK = "\033[42m";
+        static constexpr const char* BG_YELLOW_DARK = "\033[43m";
+        static constexpr const char* BG_BLUE_DARK = "\033[44m";
+        static constexpr const char* BG_MAGENTA_DARK = "\033[45m";
+        static constexpr const char* BG_CYAN_DARK = "\033[46m";
+        static constexpr const char* BG_WHITE_DARK = "\033[47m";
+
+        // Background colors (bright)
+        static constexpr const char* BG_GREY   = "\033[100m";
+        static constexpr const char* BG_RED    = "\033[101m";
+        static constexpr const char* BG_GREEN  = "\033[102m";
+        static constexpr const char* BG_YELLOW = "\033[103m";
+        static constexpr const char* BG_BLUE   = "\033[104m";
+        static constexpr const char* BG_MAGENTA = "\033[105m";
+        static constexpr const char* BG_CYAN   = "\033[106m";
+        static constexpr const char* BG_WHITE  = "\033[107m";
+
+        static constexpr const char* BG_DEFAULT = "\033[49m";
     }
 
     ////////////////////////////////////////////////////////////////// BaseTerminal
     class BaseTerminal
     {
     protected:
-        const char* currentColor;
+        const char* frontColor;
+        const char* backColor;
+        
 
         //================================================================= ANSI Color Constants
 
-        static constexpr const char* RESET_COLOR  = "\033[0m";
 
     public:
         virtual ~BaseTerminal() = default;
 
-        const char* GetColor(){ return currentColor; };
-        virtual void SetColor(const char* color){std::cout<<color; currentColor = color;}
+        const char* GetFrontColor(){ return frontColor; };
+        const char* GetBackColor(){ return backColor; };
+        void SetColor(const char* frontColor = nullptr, const char* backColor = nullptr);
 
         virtual void Clear() = 0;
         virtual void SetCursorPosition(const Vector2Int& position) = 0;
@@ -54,7 +80,7 @@ namespace Engine
         void Flush() const { std::cout << std::flush; } //grants cout termination before proceeding
 
     protected:
-        BaseTerminal() { HideCursor(); }
+        BaseTerminal() : frontColor(Color::DEFAULT), backColor(Color::DEFAULT) { HideCursor(); }
         virtual void HideCursor() {}
     };
 }

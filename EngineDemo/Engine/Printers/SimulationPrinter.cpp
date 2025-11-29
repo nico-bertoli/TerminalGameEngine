@@ -32,7 +32,7 @@ namespace Engine
     {
         Model model = go->GetModel();
         assert(model.GetSizeX() > 0 && model.GetSizeY() > 0);
-        terminal.SetColor(go->GetColor());
+        terminal.SetColor(go->GetColor(), go->GetBackColor());
         PrintInternal(go->GetPosX(), go->GetPosY(), go->GetModelWidth(), go->GetModelHeight(), go);
     }
 
@@ -48,7 +48,7 @@ namespace Engine
 
     void SimulationPrinter::PrintInternal(int worldXPos, int worldYPos, size_t xSize, size_t ySize, shared_ptr<GameObject> go)
     {
-        terminal.SetColor(go == nullptr ? backgroundColor : go->GetColor());
+        terminal.SetColor(go == nullptr ? backgroundColor : go->GetColor(), go == nullptr ? backgroundColor : go->GetBackColor());
         for (int yScreen = ConvertWorldPosToScreenPos(worldYPos), yModel = 0; yModel < ySize && yScreen < screenSizeY; ++yScreen, ++yModel)
         {
             if (yScreen + TOP_MARGIN_SIZE < TOP_MARGIN_SIZE) continue;
