@@ -32,7 +32,6 @@ namespace Engine
     {
         Model model = go->GetModel();
         assert(model.GetSizeX() > 0 && model.GetSizeY() > 0);
-        terminal.SetColor(go->GetColor(), go->GetBackColor());
         PrintInternal(go->GetPosX(), go->GetPosY(), go->GetModelWidth(), go->GetModelHeight(), go);
     }
 

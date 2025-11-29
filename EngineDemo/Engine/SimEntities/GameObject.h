@@ -42,7 +42,7 @@ namespace Engine
 		GameObject(int xPos, int yPos);
 
 		virtual TerminalColor GetColor() const { return Color::WHITE; }
-		virtual TerminalColor GetBackColor() const { return Color::DEFAULT; }
+		virtual TerminalColor GetBackColor() const { return Color::BG_DEFAULT; }
 		virtual size_t GetSortingLayer() const { return 100; }
 		void Init() { InitModel(); }
 		int GetPosX() const { return xPos; }
