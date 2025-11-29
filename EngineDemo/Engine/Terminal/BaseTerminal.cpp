@@ -22,9 +22,9 @@ namespace Engine
     void BaseTerminal::SetColor(const char* frontColor, const char* backColor)
     {
         if(frontColor == nullptr)
-            frontColor = Color::DEFAULT;
+            frontColor = defaultFrontColor;
         if(backColor == nullptr)
-            backColor = Color::BG_DEFAULT;
+            backColor = defaultBackColor;
 
         if(this->frontColor != frontColor)
         {

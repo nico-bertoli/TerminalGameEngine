@@ -28,7 +28,7 @@ namespace Engine
         static constexpr const char* CYAN   = "\033[96m";
         static constexpr const char* WHITE  = "\033[97m";
 
-        static constexpr const char* DEFAULT  = "\033[0m";
+        static constexpr const char* USER_TERMINAL  = "\033[0m";
 
         // Background colors (standard)
         static constexpr const char* BG_BLACK   = "\033[40m";
@@ -49,8 +49,8 @@ namespace Engine
         static constexpr const char* BG_MAGENTA = "\033[105m";
         static constexpr const char* BG_CYAN   = "\033[106m";
         static constexpr const char* BG_WHITE  = "\033[107m";
-
-        static constexpr const char* BG_DEFAULT = "\033[49m";
+        
+        static constexpr const char* BG_USER_TERMINAL = "\033[49m";
     }
 
     ////////////////////////////////////////////////////////////////// BaseTerminal
@@ -59,17 +59,21 @@ namespace Engine
     protected:
         const char* frontColor;
         const char* backColor;
-        
+
+        const char* defaultFrontColor = Color::WHITE;
+        const char* defaultBackColor = Color::BG_BLACK;
 
         //================================================================= ANSI Color Constants
 
-
     public:
-        virtual ~BaseTerminal() = default;
+        virtual ~BaseTerminal(){SetColor(Color::USER_TERMINAL, Color::BG_USER_TERMINAL);}
 
         const char* GetFrontColor(){ return frontColor; };
         const char* GetBackColor(){ return backColor; };
         void SetColor(const char* frontColor = nullptr, const char* backColor = nullptr);
+
+        void SetDefaultFrontColor(const char* color){defaultFrontColor = color;}
+        void SetDefaultBackColor(const char* color){defaultBackColor = color;}
 
         virtual void Clear() = 0;
         virtual void SetCursorPosition(const Vector2Int& position) = 0;
@@ -80,7 +84,7 @@ namespace Engine
         void Flush() const { std::cout << std::flush; } //grants cout termination before proceeding
 
     protected:
-        BaseTerminal() : frontColor(Color::DEFAULT), backColor(Color::DEFAULT) { HideCursor(); }
+        BaseTerminal() : frontColor(Color::WHITE), backColor(Color::BG_BLACK), defaultBackColor(Color::BG_BLACK) { HideCursor(); }
         virtual void HideCursor() {}
     };
 }
