@@ -1,3 +1,4 @@
+#include <cassert>
 #include "BaseTerminal.h"
 #include "Managers/DebugManager.h"
 
@@ -36,5 +37,16 @@ namespace Engine
             std::cout<<backColor;
             this->backColor = backColor;
         }
+    }
+
+    void BaseTerminal::SetDefaultColors(const char* frontColor, const char* backColor)
+    {
+        assert(frontColor != nullptr);
+        assert(backColor != nullptr);
+
+        defaultFrontColor = frontColor;
+        defaultBackColor = backColor;
+
+        SetColor(defaultFrontColor, defaultBackColor);
     }
 }

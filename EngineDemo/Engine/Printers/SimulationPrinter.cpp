@@ -21,9 +21,9 @@ namespace Engine
         size_t screenSizeX,
         size_t screenSizeY,
         size_t screenPadding,
-        TerminalColor backgroundColor,
+        TerminalColor bgCharsColor,
         const char* backgroundFileName
-    ) : Printer(screenSizeX, screenSizeY, screenPadding), backgroundColor(backgroundColor)
+    ) : Printer(screenSizeX, screenSizeY, screenPadding), bgCharsColor(bgCharsColor)
     {
         InitBackground(backgroundFileName);
     }
@@ -47,7 +47,7 @@ namespace Engine
 
     void SimulationPrinter::PrintInternal(int worldXPos, int worldYPos, size_t xSize, size_t ySize, shared_ptr<GameObject> go)
     {
-        terminal.SetColor(go == nullptr ? backgroundColor : go->GetColor(), go == nullptr ? backgroundColor : go->GetBackColor());
+        terminal.SetColor(go == nullptr ? nullptr : go->GetColor(), go == nullptr ? nullptr : go->GetBackColor());
         for (int yScreen = ConvertWorldPosToScreenPos(worldYPos), yModel = 0; yModel < ySize && yScreen < screenSizeY; ++yScreen, ++yModel)
         {
             if (yScreen + TOP_MARGIN_SIZE < TOP_MARGIN_SIZE) continue;
@@ -75,7 +75,7 @@ namespace Engine
         if (!background.IsSetup())
             return;
 
-        terminal.SetColor(backgroundColor);
+        terminal.SetColor(bgCharsColor);
 
         string line = "";
 

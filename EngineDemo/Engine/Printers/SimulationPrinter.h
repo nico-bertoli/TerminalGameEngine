@@ -15,7 +15,7 @@ namespace Engine
 	class SimulationPrinter : public Printer
 	{
 		//---------------------------------------------------------- Fields
-		TerminalColor backgroundColor;
+		TerminalColor bgCharsColor;
 		Frame background;
 		//---------------------------------------------------------- Methods
 	public:
@@ -24,7 +24,7 @@ namespace Engine
 			size_t screenSizeX,
 			size_t screenSizeY,
 			size_t screenPadding,
-			TerminalColor backgroundColor,
+			TerminalColor bgCharsColor,
 			const char* backgroundFileName = ""
 		);
 

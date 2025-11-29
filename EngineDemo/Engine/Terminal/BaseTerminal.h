@@ -71,9 +71,7 @@ namespace Engine
         const char* GetFrontColor(){ return frontColor; };
         const char* GetBackColor(){ return backColor; };
         void SetColor(const char* frontColor = nullptr, const char* backColor = nullptr);
-
-        void SetDefaultFrontColor(const char* color){defaultFrontColor = color;}
-        void SetDefaultBackColor(const char* color){defaultBackColor = color;}
+        void SetDefaultColors(const char* frontColor, const char* backColor);
 
         virtual void Clear() = 0;
         virtual void SetCursorPosition(const Vector2Int& position) = 0;

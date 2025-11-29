@@ -341,13 +341,13 @@ namespace Engine
 #if DEBUG_MODE
 		DebugManager::Instance().Reset(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding());
 #endif
-
 		ResetPrinters(level);
 		level->LoadInSimulation();
 	}
 
 	void Simulation::ResetPrinters(shared_ptr<const Level> level)
 	{
+		Terminal::Instance().SetDefaultColors(level->GetDefaultFrontColor(), level->GetDefaultBackColor());
 		Terminal::Instance().Clear();
 
 		simulationPrinter = std::make_unique<SimulationPrinter>
@@ -355,7 +355,7 @@ namespace Engine
 			GetScreenSizeX(),
 			GetScreenSizeY(),
 			GetScreenPadding(),
-			level->GetBackgroundColor(),
+			level->GetBackgroundCharsColor(),
 			level->GetBackgroundFileName()
 		);
 
