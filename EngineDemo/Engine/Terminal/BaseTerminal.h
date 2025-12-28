@@ -24,7 +24,7 @@ namespace Engine
         static constexpr const char* GREEN  = "\033[92m";
         static constexpr const char* YELLOW = "\033[93m";
         static constexpr const char* BLUE   = "\033[94m";
-        static constexpr const char* MAGENTA = "\033[95m";
+        static constexpr const char* MAGENTA = "\033[38;2;255;0;255m";
         static constexpr const char* CYAN   = "\033[96m";
         static constexpr const char* WHITE  = "\033[97m";
 
