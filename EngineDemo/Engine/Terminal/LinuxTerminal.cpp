@@ -14,15 +14,22 @@ using std::cout;
 
 namespace Engine
 {
+    LinuxTerminal::LinuxTerminal()
+    {
+        struct termios newTermios;
+        if (tcgetattr(STDIN_FILENO, &newTermios) == 0)
+        {
+            // Disable echo and canonical mode (prevents characters from being printed)
+            newTermios.c_lflag &= ~(ICANON | ECHO);
+            tcsetattr(STDIN_FILENO, TCSANOW, &newTermios);
+        }
+        
+        HideCursor();
+    }
+
     void LinuxTerminal::HideCursor()
     {
         std::cout << "\033[?25l";
-        std::cout.flush();
-    }
-
-    void LinuxTerminal::ShowCursor()
-    {
-        std::cout << "\033[?25h";
         std::cout.flush();
     }
 

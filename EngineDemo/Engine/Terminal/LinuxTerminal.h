@@ -14,8 +14,7 @@ namespace Engine
 
     //================================================================= Constructor/Destructor
     protected:
-        LinuxTerminal()  {HideCursor();}
-        ~LinuxTerminal() {ShowCursor();}
+        LinuxTerminal();
 
     //================================================================= Override Methods
     public:
@@ -28,6 +27,5 @@ namespace Engine
     //================================================================= Methods
     public:
         using BaseTerminal::SetCursorPosition;
-        void ShowCursor();
     };
 }
