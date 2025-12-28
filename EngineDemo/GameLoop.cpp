@@ -48,11 +48,8 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
     Terminal::Instance().Clear();
 
     Terminal::Instance().SetColor(Color::WHITE);
-    cout << "==========================\n";
-    cout << "   Terminal Game Engine   \n";
-    cout << "==========================\n\n";
+    cout << "--------------------------- Games:\n";
 
-    cout << "Select a demo game:\n";
     Terminal::Instance().SetColor(Color::RED);
     cout << "1 -> space invaders\n";
     Terminal::Instance().SetColor(Color::GREEN);
@@ -74,14 +71,13 @@ std::shared_ptr<Level> GameLoop::ShowLevelSelection()
     cout << "Space invaders:\n";
     cout << "wasd: move, space bar: shoot\n\n";
 
-    cout << "Platformers:\n";
+    cout << "Bunny:\n";
     cout << "wasd: move, spacebar: jump\n\n";
 
     cout << "Pong:\n";
     cout << "a/d: Player 1 move, left/right arrow: Player 2 move\n\n";
 
     cout << "--------------------------- Credits:\n";
-
     cout << "Music by 'Cody O'Quinn'\n";
 
     while (true)
