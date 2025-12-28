@@ -14,11 +14,24 @@ using std::cout;
 
 namespace Engine
 {
+    void LinuxTerminal::HideCursor()
+    {
+        std::cout << "\033[?25l";
+        std::cout.flush();
+    }
+
+    void LinuxTerminal::ShowCursor()
+    {
+        std::cout << "\033[?25h";
+        std::cout.flush();
+    }
+
     void LinuxTerminal::Clear()
     {
         cout << CLEAR_TERMINAL;
         cout << "\033[2J\033[H"; //apply bg color
         SetCursorPosition(0, 0);
+        HideCursor();
     }
 
     void LinuxTerminal::SetCursorPosition(const Vector2Int& position)
