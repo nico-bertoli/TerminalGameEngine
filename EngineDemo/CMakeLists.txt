@@ -13,7 +13,9 @@ file(GLOB SPACE_INVADERS_SRC "Levels/SpaceInvaders/*.cpp")
 # Main sources
 file(GLOB ENGINE_DEMO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 
-add_executable(${PROJECT_NAME}
+add_executable
+(
+    ${PROJECT_NAME}
     ${ENGINE_DEMO_SRC}
     ${PLATF0RMER_SRC}
     ${PONG_SRC}
