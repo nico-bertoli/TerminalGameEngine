@@ -36,7 +36,8 @@ target_link_directories(${PROJECT_NAME} PUBLIC "${SFML_DIR}/lib") #working
 
 # ----------------------------------------
 target_link_libraries(${PROJECT_NAME}
-    PUBLIC NbaseKit
+    PUBLIC
+        NbaseKit
     PRIVATE
         sfml-system$<$<CONFIG:Debug>:-d>
         sfml-audio$<$<CONFIG:Debug>:-d>
