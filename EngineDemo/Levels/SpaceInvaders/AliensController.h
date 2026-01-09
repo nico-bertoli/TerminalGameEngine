@@ -3,8 +3,8 @@
 #include "Utils/DirectionUtils.h"
 #include "AliensFrontline.h"
 #include "General/Vector2Int.h"
-#include "General/Vector2D.h"
-#include "General/Event.h"
+#include <NbaseKit/Matrix.h>
+#include <NbaseKit/Event.h>
 
 namespace Engine
 {
@@ -32,12 +32,12 @@ namespace SpaceInvaders
 		const double MIN_SHOW_DELAY = 0.1;
 		//------------------------------------------------------------------- Fields
 	public:
-		Event<> OnWaveCompleted;
-		Event<> OnGroundTouched;
+		NbaseKit::Event<> OnWaveCompleted;
+		NbaseKit::Event<> OnGroundTouched;
 
 	private:
 		std::shared_ptr<SpaceInvadersLevel> level;
-		Engine::Vector2D<std::weak_ptr<Alien>> aliensGrid;
+		NbaseKit::Matrix<std::weak_ptr<Alien>> aliensGrid;
 		AliensFrontline frontLine;
 
 		size_t aliensCount = 0;

@@ -11,7 +11,7 @@ namespace Pong
     {
         //---------------------------------------------------------- Fields
     public:
-        Event<> OnGoal;
+        NbaseKit::Event<> OnGoal;
     private:
         PongLevel* level;
         double ySpeed;

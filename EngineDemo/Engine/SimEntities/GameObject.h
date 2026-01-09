@@ -4,15 +4,15 @@
 #include "SimEntities/ISimulationEntity.h"
 #include "Terminal/Terminal.h"
 #include "General/Vector2Int.h"
-#include "General/Vector2D.h"
-#include "General/Event.h"
+#include <NbaseKit/Matrix.h>
+#include <NbaseKit/Event.h>
 
 #include <list>
 #include <memory>
 
 namespace Engine
 {
-	using Model = Vector2D<char>;
+	using Model = NbaseKit::Matrix<char>;
 
 	class GameObject : public ISimulationEntity
 	{
@@ -20,7 +20,7 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	public:
-		Event<std::weak_ptr<GameObject>, Direction> OnMove;
+		NbaseKit::Event<std::weak_ptr<GameObject>, Direction> OnMove;
 		// generic on destroy event could be added
 
 	protected:

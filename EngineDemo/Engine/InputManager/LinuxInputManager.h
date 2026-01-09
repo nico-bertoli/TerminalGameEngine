@@ -8,13 +8,13 @@
 
 #include <unordered_map>
 
-#include "General/Singleton.h"
+#include <NbaseKit/Singleton.h>
 #include "BaseInputManager.h"
 
 namespace Engine
 {
 
-class LinuxInputManager : public Singleton<LinuxInputManager>, public BaseInputManager
+class LinuxInputManager : public NbaseKit::Singleton<LinuxInputManager>, public BaseInputManager
 {
 private:
     inline static const std::unordered_map<Key, KeySym> keyMap =

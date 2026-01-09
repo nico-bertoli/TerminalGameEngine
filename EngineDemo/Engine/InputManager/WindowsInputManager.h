@@ -1,13 +1,13 @@
 #pragma once
 #include <windows.h>
 #include <unordered_map>
-#include "General/Singleton.h"
+#include <NbaseKit/Singleton.h>
 #include "BaseInputManager.h"
 
 namespace Engine
 {
 
-class WindowsInputManager : public Singleton<WindowsInputManager>, public BaseInputManager
+class WindowsInputManager : public NbaseKit::Singleton<WindowsInputManager>, public BaseInputManager
 {
 private:
     inline static const  std::unordered_map<Key, int> keyMap =

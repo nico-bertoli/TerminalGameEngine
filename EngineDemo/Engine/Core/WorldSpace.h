@@ -1,7 +1,7 @@
 #pragma once
 #include "Utils/DirectionUtils.h"
 #include "SimEntities/FakeCollider.h"
-#include "General/Vector2D.h"
+#include <NbaseKit/Matrix.h>
 #include <memory>
 
 #include <cassert>
@@ -31,7 +31,7 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	public:
-		Vector2D<Cell> space;
+		NbaseKit::Matrix<Cell> space;
 		size_t screenPadding;
 		//---------------------------------------------------------- Methods
 	public:

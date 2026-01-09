@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include "General/Vector2D.h"
+#include <NbaseKit/Matrix.h>
 
 #include <vector>
 #include <fstream>
@@ -13,7 +13,7 @@ namespace Engine
     class Frame
     {
     public:
-        Vector2D<char> chars;
+        NbaseKit::Matrix<char> chars;
 
     public:
         size_t GetSizeY() const { return chars.GetSizeY(); }

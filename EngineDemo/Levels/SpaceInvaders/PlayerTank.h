@@ -17,7 +17,7 @@ namespace SpaceInvaders
 
         //---------------------------------------------------------- Fields
     public:
-        Event<size_t> OnDamageTaken;
+        NbaseKit::Event<size_t> OnDamageTaken;
 
     private:
         static const Engine::Model MODEL;

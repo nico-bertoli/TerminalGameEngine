@@ -1,6 +1,6 @@
 #pragma once
 #include "Utils/RandomUtils.h"
-#include "General/Vector2D.h"
+#include <NbaseKit/Matrix.h>
 #include <vector>
 
 namespace SpaceInvaders
@@ -17,6 +17,6 @@ namespace SpaceInvaders
 		std::shared_ptr<Alien> GetRandom();
 		void Set(size_t pos, std::shared_ptr<Alien> alien) { frontLine[pos] = alien; }
 		size_t GetMinY();
-		void ReplaceDestroyedElement(std::shared_ptr<Alien> destroyedAlien, const Engine::Vector2D<std::weak_ptr<Alien>>& aliensGrid);
+		void ReplaceDestroyedElement(std::shared_ptr<Alien> destroyedAlien, const NbaseKit::Matrix<std::weak_ptr<Alien>>& aliensGrid);
 	};
 }

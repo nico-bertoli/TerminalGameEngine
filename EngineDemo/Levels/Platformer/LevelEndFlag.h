@@ -11,7 +11,7 @@ namespace Platformer
         //---------------------------------------------------------- Fieldds
 
     public:
-        Event<> OnTouchBunny;
+        NbaseKit::Event<> OnTouchBunny;
 
     private:
         static const Engine::Model flagModel;
