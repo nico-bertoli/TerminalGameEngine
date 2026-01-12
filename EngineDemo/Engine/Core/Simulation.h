@@ -8,7 +8,7 @@
 #include <unordered_set>
 #include <optional>
 #include <memory>
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 
 namespace Engine
 {
@@ -20,10 +20,10 @@ namespace Engine
 	class UIPrinter;
 	class Level;
 
-	class Simulation : public NbaseKit::Singleton<Simulation>
+	class Simulation : public nbase_kit::Singleton<Simulation>
 	{
 		//------------------------------------------------------------------------------------ Friend Classes
-		friend class NbaseKit::Singleton<Simulation>;
+		friend class nbase_kit::Singleton<Simulation>;
 		friend class GameObject;
 
 		//------------------------------------------------------------------------------------ Structs
@@ -39,8 +39,8 @@ namespace Engine
 
 		//------------------------------------------------------------------------------------ Fields
 	public:
-		NbaseKit::Event<> OnFrameGenerated;
-		NbaseKit::Event<> OnSimulationStepped;
+		nbase_kit::Event<> OnFrameGenerated;
+		nbase_kit::Event<> OnSimulationStepped;
 
 	private:
 		std::unique_ptr<SimulationPrinter> simulationPrinter;

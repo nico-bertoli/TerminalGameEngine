@@ -1,13 +1,13 @@
 #pragma once
 #include "BaseTerminal.h"
-#include <NbaseKit/Singleton.h>
-#include <NbaseKit/Matrix.h>
+#include <nbase_kit/singleton.h>
+#include <nbase_kit/matrix.h>
 
 namespace Engine
 {
-    class WindowsTerminal : public NbaseKit::Singleton<WindowsTerminal>, public BaseTerminal
+    class WindowsTerminal : public nbase_kit::Singleton<WindowsTerminal>, public BaseTerminal
     {
-        friend class NbaseKit::Singleton<WindowsTerminal>;
+        friend class nbase_kit::Singleton<WindowsTerminal>;
 
     //================================================================= Override Methods
     public:

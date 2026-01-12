@@ -1,14 +1,14 @@
 #pragma once
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 
 #include <chrono>
 #include <math.h>
 
 namespace Engine
 {
-    class TimeManager : public NbaseKit::Singleton<TimeManager>
+    class TimeManager : public nbase_kit::Singleton<TimeManager>
     {
-        friend class NbaseKit::Singleton<TimeManager>;
+        friend class nbase_kit::Singleton<TimeManager>;
 
         //---------------------------------------------------------- Fields
     private:

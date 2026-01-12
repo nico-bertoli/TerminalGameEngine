@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 #include "General/Vector2Int.h"
 
 namespace Engine

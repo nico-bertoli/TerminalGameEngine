@@ -1,15 +1,15 @@
 #pragma once
 #include "Config.h"
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 
 #include <array>
 #include <SFML/Audio.hpp>
 
 namespace Engine
 {
-	class AudioManager : public NbaseKit::Singleton<AudioManager>
+	class AudioManager : public nbase_kit::Singleton<AudioManager>
 	{
-		friend class NbaseKit::Singleton<AudioManager>;
+		friend class nbase_kit::Singleton<AudioManager>;
 
 		//---------------------------------------------------------- Fields
 	private:

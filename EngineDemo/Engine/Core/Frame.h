@@ -1,6 +1,6 @@
 #pragma once
 #include "Config.h"
-#include <NbaseKit/Matrix.h>
+#include <nbase_kit/matrix.h>
 
 #include <vector>
 #include <fstream>
@@ -13,7 +13,7 @@ namespace Engine
     class Frame
     {
     public:
-        NbaseKit::Matrix<char> chars;
+        nbase_kit::Matrix<char> chars;
 
     public:
         size_t GetSizeY() const { return chars.GetSizeY(); }

@@ -3,7 +3,7 @@
 
 #if DEBUG_MODE
 
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 #include "Managers/DebugManager.h"
 #include "Printers/DebugPrinter.h"
 #include <list>
@@ -12,9 +12,9 @@
 
 namespace Engine
 {
-	class DebugManager : public NbaseKit::Singleton<DebugManager>
+	class DebugManager : public nbase_kit::Singleton<DebugManager>
 	{
-		friend class NbaseKit::Singleton<DebugManager>;
+		friend class nbase_kit::Singleton<DebugManager>;
 		//---------------------------------------------------------- Settings
 	private:
 		static constexpr double REFRESH_FPS_EVERY_SECONDS = 0.5;

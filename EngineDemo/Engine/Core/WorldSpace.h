@@ -1,7 +1,7 @@
 #pragma once
 #include "Utils/DirectionUtils.h"
 #include "SimEntities/FakeCollider.h"
-#include <NbaseKit/Matrix.h>
+#include <nbase_kit/matrix.h>
 #include <memory>
 
 #include <cassert>
@@ -31,7 +31,7 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	public:
-		NbaseKit::Matrix<Cell> space;
+		nbase_kit::Matrix<Cell> space;
 		size_t screenPadding;
 		//---------------------------------------------------------- Methods
 	public:

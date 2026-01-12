@@ -1,12 +1,12 @@
 #pragma once
 #include "BaseTerminal.h"
-#include <NbaseKit/Singleton.h>
+#include <nbase_kit/singleton.h>
 
 namespace Engine
 {
-    class LinuxTerminal : public NbaseKit::Singleton<LinuxTerminal>, public BaseTerminal
+    class LinuxTerminal : public nbase_kit::Singleton<LinuxTerminal>, public BaseTerminal
     {
-        friend class NbaseKit::Singleton<LinuxTerminal>;
+        friend class nbase_kit::Singleton<LinuxTerminal>;
 
         //================================================================= Fields
         static constexpr const char* CLEAR_TERMINAL = "\033[2J\033[3J";

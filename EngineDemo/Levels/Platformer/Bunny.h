@@ -44,7 +44,7 @@ namespace Platformer
 
         //---------------------------------------------------------- Fields
     public:
-        NbaseKit::Event<> OnObstacleHit;
+        nbase_kit::Event<> OnObstacleHit;
     private:
         State state;
         double lastTimeMovedOnX = 0;

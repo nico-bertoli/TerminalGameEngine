@@ -1,7 +1,7 @@
 #pragma once
 #include "Enemy.h"
 #include "General/Vector2Int.h"
-#include <NbaseKit/Event.h>
+#include <nbase_kit/event.h>
 
 namespace SpaceInvaders
 {
@@ -15,7 +15,7 @@ namespace SpaceInvaders
 
 		//------------------------------------------------------ Fields
 	public:
-		NbaseKit::Event<std::weak_ptr<Collider>> OnDestroyEvent;
+		nbase_kit::Event<std::weak_ptr<Collider>> OnDestroyEvent;
 
 	protected:
 		const Engine::Model* animationModel1;

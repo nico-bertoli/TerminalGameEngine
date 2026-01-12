@@ -1,6 +1,6 @@
 #include "AliensFrontline.h"
 #include "Alien.h"
-#include <NbaseKit/Matrix.h>
+#include <nbase_kit/matrix.h>
 
 using std::weak_ptr;
 using std::shared_ptr;
@@ -19,7 +19,7 @@ namespace SpaceInvaders
 		return min;
 	}
 
-	void AliensFrontline::ReplaceDestroyedElement(shared_ptr<Alien> destroyedAlien, const NbaseKit::Matrix<std::weak_ptr<Alien>>& aliensGrid)
+	void AliensFrontline::ReplaceDestroyedElement(shared_ptr<Alien> destroyedAlien, const nbase_kit::Matrix<std::weak_ptr<Alien>>& aliensGrid)
 	{
 		size_t destroyedX = destroyedAlien->GetIndexInGridX();
 

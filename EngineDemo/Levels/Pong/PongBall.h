@@ -11,7 +11,7 @@ namespace Pong
     {
         //---------------------------------------------------------- Fields
     public:
-        NbaseKit::Event<> OnGoal;
+        nbase_kit::Event<> OnGoal;
     private:
         PongLevel* level;
         double ySpeed;
@@ -35,4 +35,3 @@ namespace Pong
         void HandleBarCollision(std::shared_ptr<PongBar> collidingBar);
     };
 }
-

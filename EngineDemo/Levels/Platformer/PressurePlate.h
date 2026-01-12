@@ -8,8 +8,8 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     public:
-        NbaseKit::Event<> OnPress;
-        NbaseKit::Event<> OnRelease;
+        nbase_kit::Event<> OnPress;
+        nbase_kit::Event<> OnRelease;
 
     private:
         Engine::Model pressedModel;
