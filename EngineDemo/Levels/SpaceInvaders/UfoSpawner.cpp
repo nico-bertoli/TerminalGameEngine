@@ -32,6 +32,6 @@ namespace SpaceInvaders
 	{
 		nextSpawnTime =
 			TimeManager::Instance().GetTime() +
-			RandomUtils::GetRandomDouble(MIN_SPAWN_DELAY, MAX_SPAWN_DELAY);
+			RandomUtils::GetRandomDouble(kMinSpawnDelay, kMaxSpawnDelay);
 	}
 }

@@ -17,7 +17,7 @@ namespace Engine
 class LinuxInputManager : public nbase_kit::Singleton<LinuxInputManager>, public BaseInputManager
 {
 private:
-    inline static const std::unordered_map<Key, KeySym> keyMap =
+    inline static const std::unordered_map<Key, KeySym> kKeyMap =
     {
         {Key::kSpace,      XK_space},
         {Key::kW,          XK_w},
@@ -64,8 +64,8 @@ public:
         if (display == nullptr)
             return false;
 
-        auto mapping = keyMap.find(key);
-        if (mapping == keyMap.end())
+        auto mapping = kKeyMap.find(key);
+        if (mapping == kKeyMap.end())
             return false;
 
         const KeyCode keyCode = XKeysymToKeycode(display, mapping->second);

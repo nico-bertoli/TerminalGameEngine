@@ -14,7 +14,7 @@ namespace Platformer
         nbase_kit::Event<> OnTouchBunny;
 
     private:
-        static inline const Engine::Model flag_model_ = Engine::Model
+        static inline const Engine::Model kFlagModel = Engine::Model
         (
             2,
             {
@@ -34,6 +34,6 @@ namespace Platformer
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
         void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override;
-        void InitModel() override { SetModel(flag_model_); }
+        void InitModel() override { SetModel(kFlagModel); }
     };
 }

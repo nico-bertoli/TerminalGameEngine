@@ -8,8 +8,8 @@ namespace SpaceInvaders
 	{
 		//---------------------------------------------------------- Settings
 	private:
-		static const int MIN_SPAWN_DELAY = 15;
-		static const int MAX_SPAWN_DELAY = 25;
+		static constexpr int kMinSpawnDelay = 15;
+		static constexpr int kMaxSpawnDelay = 25;
 
 		//---------------------------------------------------------- Fields
 	private:

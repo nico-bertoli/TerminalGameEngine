@@ -13,9 +13,8 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	private:
-		static const size_t SOUND_SOURCES_SIZE = 6;
-		std::array<sf::Sound, SOUND_SOURCES_SIZE> sounds;
-		std::array<sf::SoundBuffer, SOUND_SOURCES_SIZE> buffers;
+		std::array<sf::Sound, 6> sounds;
+		std::array<sf::SoundBuffer, 6> buffers;
 		sf::Music music;
 		//---------------------------------------------------------- Methods
 	public:

@@ -35,7 +35,7 @@ namespace Engine
 
     void LinuxTerminal::Clear()
     {
-        cout << CLEAR_TERMINAL;
+        cout << kClearTerminal;
         cout << "\033[2J\033[H"; //apply bg color
         SetCursorPosition(0, 0);
         HideCursor();

@@ -33,7 +33,7 @@ namespace Engine
 		double fps = TimeManager::Instance().GetFPS();
 		fpsRecord.push_back(fps);
 
-		if (TimeManager::Instance().GetTime() - lastTimePrintedFps > REFRESH_FPS_EVERY_SECONDS)
+		if (TimeManager::Instance().GetTime() - lastTimePrintedFps > kRefreshFpsEverySeconds)
 		{
 			averageFPS = 0;
 

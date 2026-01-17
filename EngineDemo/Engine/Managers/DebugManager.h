@@ -17,7 +17,7 @@ namespace Engine
 		friend class nbase_kit::Singleton<DebugManager>;
 		//---------------------------------------------------------- Settings
 	private:
-		static constexpr double REFRESH_FPS_EVERY_SECONDS = 0.5;
+		static constexpr double kRefreshFpsEverySeconds = 0.5;
 		//---------------------------------------------------------- Fields
 		std::unique_ptr<DebugPrinter> debugPrinter;
 

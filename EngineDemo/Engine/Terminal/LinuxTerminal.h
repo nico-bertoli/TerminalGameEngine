@@ -9,7 +9,7 @@ namespace Engine
         friend class nbase_kit::Singleton<LinuxTerminal>;
 
         //================================================================= Fields
-        static constexpr const char* CLEAR_TERMINAL = "\033[2J\033[3J";
+        static constexpr const char* kClearTerminal = "\033[2J\033[3J";
 
     //================================================================= Constructor/Destructor
     protected:

@@ -17,7 +17,7 @@ namespace Pong
         double y_speed_;
         double x_speed_;
         bool is_first_launch_;
-        static inline const Engine::Model MODEL = Engine::Model(1, { '@' });
+        static inline const Engine::Model kModel = Engine::Model(1, { '@' });
 
         //---------------------------------------------------------- Methods
     public:
@@ -29,7 +29,7 @@ namespace Pong
         double GetGravityScale() const override { return 0; }
         void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override;
         void Update() override;
-        void InitModel() override { SetModel(MODEL); }
+        void InitModel() override { SetModel(kModel); }
 
     private:
         void HandleBarCollision(std::shared_ptr<PongBar> colliding_bar);

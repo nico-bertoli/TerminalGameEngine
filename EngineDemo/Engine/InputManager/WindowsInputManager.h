@@ -10,7 +10,7 @@ namespace Engine
 class WindowsInputManager : public nbase_kit::Singleton<WindowsInputManager>, public BaseInputManager
 {
 private:
-    inline static const  std::unordered_map<Key, int> keyMap =
+    inline static const std::unordered_map<Key, int> kKeyMap =
     {
         {Key::kSpace, VK_SPACE},
         {Key::kW, 0x57},
@@ -37,8 +37,8 @@ private:
 public:
     inline bool IsKeyPressed(Key key)
     {
-        if (keyMap.find(key) != keyMap.end())
-            return GetAsyncKeyState(keyMap.at(key)) & 0x8000;
+        if (kKeyMap.find(key) != kKeyMap.end())
+            return GetAsyncKeyState(kKeyMap.at(key)) & 0x8000;
 
         return false;
     }
