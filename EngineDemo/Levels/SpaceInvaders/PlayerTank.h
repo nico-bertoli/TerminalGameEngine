@@ -20,7 +20,7 @@ namespace SpaceInvaders
         nbase_kit::Event<size_t> on_damage_taken;
 
     private:
-        static const Engine::Model MODEL;
+        static const Engine::Model kModel;
         SpaceInvadersLevel* level_;
         double last_time_shot_ = -1;
         size_t health_ = kMaxHealth;
@@ -32,7 +32,7 @@ namespace SpaceInvaders
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
         Engine::TerminalColor GetColor() const override { return Engine::color::kGreen; }
-        void InitModel() override { SetModel(MODEL); }
+        void InitModel() override { SetModel(kModel); }
         void HandleMovement();
         void HandleShooting();
         void TakeDamage();
