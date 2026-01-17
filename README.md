@@ -1,3 +1,5 @@
+# TERME (Terminal Engine)
+
 An engine for creating 2D terminal rendered games, built without any graphics libraries.
 
 - Cross platform (Linux/Windows)
