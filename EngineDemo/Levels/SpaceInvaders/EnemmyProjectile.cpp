@@ -7,8 +7,6 @@ using Engine::Model;
 
 namespace SpaceInvaders
 {
-	const Model EnemyProjectile::kModel(1, { '|' });
-
 	void EnemyProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
 	{
 		Projectile::OnCollisionEnter(other, collision_dir);

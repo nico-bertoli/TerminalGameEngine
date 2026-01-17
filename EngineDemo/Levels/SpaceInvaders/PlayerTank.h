@@ -20,7 +20,14 @@ namespace SpaceInvaders
         nbase_kit::Event<size_t> on_damage_taken;
 
     private:
-        static const Engine::Model kModel;
+        static inline const Engine::Model kModel = Engine::Model
+        (
+            5,
+            {
+                ' ', '_', '^', '_', ' ',
+                '/', '_', '_', '_', '\\'
+            }
+        );
         SpaceInvadersLevel* level_;
         double last_time_shot_ = -1;
         size_t health_ = kMaxHealth;

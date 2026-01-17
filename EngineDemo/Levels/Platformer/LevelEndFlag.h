@@ -14,7 +14,15 @@ namespace Platformer
         nbase_kit::Event<> OnTouchBunny;
 
     private:
-        static const Engine::Model flag_model_;
+        static inline const Engine::Model flag_model_ = Engine::Model
+        (
+            2,
+            {
+                '|','\\',
+                '|','/',
+                '|',' '
+            }
+        );
         Engine::Level* level_;
 
         //---------------------------------------------------------- Methods

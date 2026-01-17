@@ -10,7 +10,14 @@ namespace SpaceInvaders
 	{
 		//------------------------------------------------------ Fields
 	private:
-		static const Engine::Model model_1;
+		static inline const Engine::Model kModel1 = Engine::Model
+		(
+			4,
+			{
+				'/', '(', ')', '\\',
+				'\\', '_', '_', '/'
+			}
+		);
 		static inline constexpr std::array<size_t, 6> kPossibleScores = { 50,100,150,200,250,300 };
 		static constexpr size_t kMoveSpeed = 8;
 
@@ -21,7 +28,7 @@ namespace SpaceInvaders
 
 		bool CanExitScreenSpace() const override { return true; }
 		Engine::TerminalColor GetColor() const override { return Engine::color::kRed; }
-		void InitModel() override { SetModel(model_1); }
+		void InitModel() override { SetModel(kModel1); }
 		size_t GetScore() const override;
 
 	protected:

@@ -6,8 +6,22 @@ namespace SpaceInvaders
 	class AlienHighScore : public Alien
 	{
 	private:
-		static const Engine::Model kModel1;
-		static const Engine::Model kModel2;
+		static inline const Engine::Model kModel1 = Engine::Model
+		(
+			4,
+			{
+				'/', 'O',  'o',  '\\',
+				'/', '\'', '\'', '\\'
+			}
+		);
+		static inline const Engine::Model kModel2 = Engine::Model
+		(
+			4,
+			{
+				'/', 'o', 'O', '\\',
+				'|', '\'', '\'', '|'
+			}
+		);
 		//------------------------------------------------------ Methods
 	public:
 		using Alien::Alien;
@@ -23,22 +37,4 @@ namespace SpaceInvaders
 			SetModel(kModel1);
 		}
 	};
-
-	const Engine::Model AlienHighScore::kModel1
-	(
-		4,
-		{
-			'/', 'O',  'o',  '\\',
-			'/', '\'', '\'', '\\'
-		}
-	);
-
-	const Engine::Model AlienHighScore::kModel2
-	(
-		4,
-		{
-			'/', 'o', 'O', '\\',
-			'|', '\'', '\'', '|'
-		}
-	);
 }

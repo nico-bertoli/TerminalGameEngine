@@ -13,15 +13,6 @@ using std::shared_ptr;
 
 namespace SpaceInvaders
 {
-    const Model PlayerTank::kModel
-    (
-        5,
-        {
-            ' ', '_', '^', '_', ' ',
-            '/', '_', '_', '_', '\\'
-        }
-    );
-
     void PlayerTank::Update()
     {
         if (Engine::Simulation::Instance().GetActiveLevel()->IsGameOver())

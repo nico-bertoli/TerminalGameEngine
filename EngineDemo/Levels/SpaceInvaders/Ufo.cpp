@@ -8,16 +8,6 @@ using std::shared_ptr;
 
 namespace SpaceInvaders
 {
-
-	const Model Ufo::model_1
-	(
-		4,
-		{
-			'/', '(', ')', '\\',
-			'\\', '_', '_', '/'
-		}
-	);
-
 	size_t Ufo::GetScore() const
 	{
 		int random_index = RandomUtils::GetRandomInt(0, static_cast<int>(kPossibleScores.size() - 1));

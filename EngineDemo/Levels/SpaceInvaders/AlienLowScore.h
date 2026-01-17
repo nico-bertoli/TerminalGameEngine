@@ -6,8 +6,22 @@ namespace SpaceInvaders
 	class AlienLowScore : public Alien
 	{
 	private:
-		static const Engine::Model kModel1;
-		static const Engine::Model kModel2;
+		static inline const Engine::Model kModel1 = Engine::Model
+		(
+			4,
+			{
+				'[', ':', ':', ']',
+				'/', '"', '"', '\\'
+			}
+		);
+		static inline const Engine::Model kModel2 = Engine::Model
+		(
+			4,
+			{
+				'[', '.', '.', ']',
+				'\\', '"', '"', '/'
+			}
+		);
 		//------------------------------------------------------ Methods
 	public:
 		using Alien::Alien;
@@ -24,22 +38,4 @@ namespace SpaceInvaders
 		}
 
 	};
-
-	const Engine::Model AlienLowScore::kModel1
-	(
-		4,
-		{
-			'[', ':', ':', ']',
-			'/', '"', '"', '\\'
-		}
-	);
-
-	const Engine::Model AlienLowScore::kModel2
-	(
-		4,
-		{
-			'[', '.', '.', ']',
-			'\\', '"', '"', '/'
-		}
-	);
 }

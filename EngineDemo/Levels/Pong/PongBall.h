@@ -17,7 +17,7 @@ namespace Pong
         double y_speed_;
         double x_speed_;
         bool is_first_launch_;
-        static const Engine::Model MODEL;
+        static inline const Engine::Model MODEL = Engine::Model(1, { '@' });
 
         //---------------------------------------------------------- Methods
     public:

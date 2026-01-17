@@ -9,8 +9,6 @@ using Engine::Direction;
 
 namespace SpaceInvaders
 {
-	const Model PlayerProjectile::kModel(1, { '|' });
-
 	void PlayerProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
 	{
 		Projectile::OnCollisionEnter(other, collision_dir);

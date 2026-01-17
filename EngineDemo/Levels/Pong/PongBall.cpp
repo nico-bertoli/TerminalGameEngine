@@ -11,8 +11,6 @@ using Engine::Direction;
 
 namespace Pong
 {
-    const Model PongBall::MODEL(1, { '@' });
-
     PongBall::PongBall(PongLevel* level, int x_pos, int y_pos, double y_speed)
         :
         Collider(x_pos, y_pos),

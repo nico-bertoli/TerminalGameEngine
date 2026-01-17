@@ -7,7 +7,7 @@ namespace SpaceInvaders
 	{
 		//---------------------------------------------------------- Fields
 	private:
-		static const Engine::Model kModel;
+		static inline const Engine::Model kModel = Engine::Model(1, { '|' });
 
 		//---------------------------------------------------------- Methodss
 	public:
