@@ -8,8 +8,8 @@ namespace Pong
     {
         //---------------------------------------------------------- Methods
     private:
-        static size_t scorePlayer1;
-        static size_t scorePlayer2;
+        static size_t score_player_1_;
+        static size_t score_player_2_;
         //---------------------------------------------------------- Methods
     public:
         int GetWorldSizeX() const override { return 50; }

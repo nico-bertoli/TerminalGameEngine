@@ -18,14 +18,14 @@ namespace Engine
 {
     SimulationPrinter::SimulationPrinter
     (
-        size_t screenSizeX,
-        size_t screenSizeY,
-        size_t screenPadding,
-        TerminalColor bgCharsColor,
-        const char* backgroundFileName
-    ) : Printer(screenSizeX, screenSizeY, screenPadding), bgCharsColor(bgCharsColor)
+        size_t screen_size_x,
+        size_t screen_size_y,
+        size_t screen_padding,
+        TerminalColor bg_chars_color,
+        const char* background_file_name
+    ) : Printer(screen_size_x, screen_size_y, screen_padding), bg_chars_color_(bg_chars_color)
     {
-        InitBackground(backgroundFileName);
+        InitBackground(background_file_name);
     }
 
     void SimulationPrinter::PrintObject(shared_ptr<GameObject> go)
@@ -40,66 +40,66 @@ namespace Engine
         PrintInternal(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), nullptr);
     }
 
-    void SimulationPrinter::ClearArea(int worldXPos, int worldYPos, size_t xSize, size_t ySize)
+    void SimulationPrinter::ClearArea(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size)
     {
-        PrintInternal(worldXPos, worldYPos, xSize, ySize, nullptr);
+        PrintInternal(world_x_pos, world_y_pos, x_size, y_size, nullptr);
     }
 
-    void SimulationPrinter::PrintInternal(int worldXPos, int worldYPos, size_t xSize, size_t ySize, shared_ptr<GameObject> go)
+    void SimulationPrinter::PrintInternal(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size, shared_ptr<GameObject> go)
     {
-        terminal.SetColor(go == nullptr ? nullptr : go->GetColor(), go == nullptr ? nullptr : go->GetBackColor());
-        for (int yScreen = ConvertWorldPosToScreenPos(worldYPos), yModel = 0; yModel < ySize && yScreen < screenSizeY; ++yScreen, ++yModel)
+        terminal_.SetColor(go == nullptr ? nullptr : go->GetColor(), go == nullptr ? nullptr : go->GetBackColor());
+        for (int y_screen = ConvertWorldPosToScreenPos(world_y_pos), y_model = 0; y_model < y_size && y_screen < screen_size_y_; ++y_screen, ++y_model)
         {
-            if (yScreen + TOP_MARGIN_SIZE < TOP_MARGIN_SIZE) continue;
-            int lineTerminalPosX = ConvertWorldPosToScreenPos(worldXPos) + LEFT_MARGIN_SIZE;
+            if (y_screen + kTopMarginSize < kTopMarginSize) continue;
+            int line_terminal_pos_x = ConvertWorldPosToScreenPos(world_x_pos) + kLeftMarginSize;
             string line = "";
 
-            for (int xScreen = ConvertWorldPosToScreenPos(worldXPos), xModel = 0; xModel < xSize && xScreen < screenSizeX; ++xScreen, ++xModel)
+            for (int x_screen = ConvertWorldPosToScreenPos(world_x_pos), x_model = 0; x_model < x_size && x_screen < screen_size_x_; ++x_screen, ++x_model)
             {
-                if (xScreen + LEFT_MARGIN_SIZE < LEFT_MARGIN_SIZE)continue;
+                if (x_screen + kLeftMarginSize < kLeftMarginSize)continue;
 
                 if (go == nullptr)
-                    line += background.IsSetup() ? background.chars.Get(xScreen, screenSizeY - yScreen - 1) : ' ';
+                    line += background_.IsSetup() ? background_.chars.Get(x_screen, screen_size_y_ - y_screen - 1) : ' ';
                 else
-                    line += go->GetModel().Get(xModel, go->GetModelHeight() - 1 - yModel);
+                    line += go->GetModel().Get(x_model, go->GetModelHeight() - 1 - y_model);
             }
-            if (lineTerminalPosX < LEFT_MARGIN_SIZE)
-                lineTerminalPosX = LEFT_MARGIN_SIZE;
-            terminal.SetCursorPosition(lineTerminalPosX, screenSizeY - yScreen + BOTTOM_MARGIN_SIZE);
-            terminal.Cout(line);
+            if (line_terminal_pos_x < kLeftMarginSize)
+                line_terminal_pos_x = kLeftMarginSize;
+            terminal_.SetCursorPosition(line_terminal_pos_x, screen_size_y_ - y_screen + kBottomMarginSize);
+            terminal_.Cout(line);
         }
     }
 
     void SimulationPrinter::PrintBackground()
     {
-        if (!background.IsSetup())
+        if (!background_.IsSetup())
             return;
 
-        terminal.SetColor(bgCharsColor);
+        terminal_.SetColor(bg_chars_color_);
 
         string line = "";
 
 
-        for (int y = 0; y < screenSizeY; ++y)
+        for (int y = 0; y < screen_size_y_; ++y)
         {
-            for (int x = 0; x < screenSizeX; ++x)
+            for (int x = 0; x < screen_size_x_; ++x)
             {
                 //reversing y order
-                char charToPrint = background.chars.Get(x, y);
-                line += charToPrint;
+                char char_to_print = background_.chars.Get(x, y);
+                line += char_to_print;
             }
-            terminal.SetCursorPosition(LEFT_MARGIN_SIZE, y + TOP_MARGIN_SIZE);
-            terminal.Cout(line);
+            terminal_.SetCursorPosition(kLeftMarginSize, y + kTopMarginSize);
+            terminal_.Cout(line);
             line.clear();
         }
     }
 
-    void SimulationPrinter::InitBackground(const char* backgroundFileName)
+    void SimulationPrinter::InitBackground(const char* background_file_name)
     {
-        if (backgroundFileName[0] == '\0')
+        if (background_file_name[0] == '\0')
             return;
 
-        background.ReadFromFile(backgroundFileName);
+        background_.ReadFromFile(background_file_name);
         PrintBackground();
     }
 }

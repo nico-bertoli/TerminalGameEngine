@@ -6,15 +6,15 @@ using std::string;
 
 namespace Engine
 {
-    void Frame::ReadFromFile(const char* fileName)
+    void Frame::ReadFromFile(const char* file_name)
     {
-        if (fileName[0] == '\0')
+        if (file_name[0] == '\0')
             return;
 
-        std::ifstream file(fileName, std::ios::binary);
+        std::ifstream file(file_name, std::ios::binary);
         if (!file)
         {
-            std::cerr << "Error opening frame file: " << fileName << std::endl;
+            std::cerr << "Error opening frame file: " << file_name << std::endl;
             return;
         }
 
@@ -49,7 +49,7 @@ namespace Engine
         StringUtils::RemoveInstancesOfChar(str, '\0');
     }
 
-    void Frame::WriteString(const string& writenString, char writeOverChar)
+    void Frame::WriteString(const string& written_string, char write_over_char)
     {
         for (size_t y = 0; y < GetSizeY(); ++y)
         {
@@ -58,12 +58,12 @@ namespace Engine
                 char c = chars.Get(x, y);
 
                 // insert score message
-                if (c == writeOverChar)
+                if (c == write_over_char)
                 {
-                    for (int insertIt = 0; insertIt < writenString.size(); ++insertIt)
-                        chars.Get(x + insertIt, y) = writenString[insertIt];
+                    for (int insert_it = 0; insert_it < written_string.size(); ++insert_it)
+                        chars.Get(x + insert_it, y) = written_string[insert_it];
 
-                    x += writenString.size() - 1;
+                    x += written_string.size() - 1;
                 }
             }
         }

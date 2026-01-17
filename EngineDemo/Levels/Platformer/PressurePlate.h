@@ -8,24 +8,24 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     public:
-        nbase_kit::Event<> OnPress;
-        nbase_kit::Event<> OnRelease;
+        nbase_kit::Event<> on_press;
+        nbase_kit::Event<> on_release;
 
     private:
-        Engine::Model pressedModel;
-        Engine::Model unpressedModel;
+        Engine::Model pressed_model_;
+        Engine::Model unpressed_model_;
 
         //---------------------------------------------------------- Methods
     public:
-        PressurePlate(int xPos, int yPos, size_t width);
+        PressurePlate(int x_pos, int y_pos, size_t width);
 
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        Engine::TerminalColor GetColor() const override { return Engine::Color::CYAN; }
+        Engine::TerminalColor GetColor() const override { return Engine::color::kCyan; }
 
     protected:
-        void OnCollisionEnter(std::shared_ptr<Engine::Collider> other, Engine::Direction collisionDir) override;
-        void OnCollisionExit(Engine::Direction endingCollisionDir) override;
-        void InitModel() override { SetModel(unpressedModel); }
+        void OnCollisionEnter(std::shared_ptr<Engine::Collider> other, Engine::Direction collision_dir) override;
+        void OnCollisionExit(Engine::Direction ending_collision_dir) override;
+        void InitModel() override { SetModel(unpressed_model_); }
     };
 }

@@ -7,7 +7,7 @@ namespace SpaceInvaders
     {
         //---------------------------------------------------------- Fields
     private:
-        Engine::Model model = CreteModelUsingChar('=', 1, 1);
+        Engine::Model model_ = CreteModelUsingChar('=', 1, 1);
 
         //---------------------------------------------------------- Methods
     public:
@@ -16,8 +16,8 @@ namespace SpaceInvaders
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
-        void InitModel() override { SetModel(model); }
-        void OnCollisionEnter(std::shared_ptr<Collider>other, Engine::Direction collisionDir)override;
+        Engine::TerminalColor GetColor() const override { return Engine::color::kGreen; }
+        void InitModel() override { SetModel(model_); }
+        void OnCollisionEnter(std::shared_ptr<Collider>other, Engine::Direction collision_dir)override;
     };
 }

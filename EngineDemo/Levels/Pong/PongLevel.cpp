@@ -7,8 +7,8 @@
 
 namespace Pong
 {
-	size_t PongLevel::scorePlayer1 = 0;
-	size_t PongLevel::scorePlayer2 = 0;
+	size_t PongLevel::score_player_1_ = 0;
+	size_t PongLevel::score_player_2_ = 0;
 
 	void PongLevel::LoadInSimulation()
 	{
@@ -16,65 +16,65 @@ namespace Pong
 		Engine::Simulation& simulation = Engine::Simulation::Instance();
 
 		//--------------- bars general settings
-		char barsChar = '#';
-		int startingPosX = GetWorldSizeX() / 2 - 1;
-		int barsSize = 8;
-		double barsMoveSpeed = 32;
-		double deflectFactor = 2.5;
+		char bars_char = '#';
+		int starting_pos_x = GetWorldSizeX() / 2 - 1;
+		int bars_size = 8;
+		double bars_move_speed = 32;
+		double deflect_factor = 2.5;
 
 		//--------------- bottom bar
 
-		auto bottomBar = std::make_shared<PongBar>
+		auto bottom_bar = std::make_shared<PongBar>
 		(
-			startingPosX,
+			starting_pos_x,
 			GetScreenPadding(),
-			barsSize,
+			bars_size,
 			1,
-			barsChar,
-			barsMoveSpeed,
-			deflectFactor,
+			bars_char,
+			bars_move_speed,
+			deflect_factor,
 			true
 		);
-		simulation.TryAddEntity(bottomBar);
+		simulation.TryAddEntity(bottom_bar);
 
 		//--------------- top bar
-		auto topBar = std::make_shared<PongBar>
+		auto top_bar = std::make_shared<PongBar>
 		(
-			startingPosX,
+			starting_pos_x,
 			GetWorldSizeY() - GetScreenPadding() - 1,
-			barsSize,
+			bars_size,
 			1,
-			barsChar,
-			barsMoveSpeed,
-			deflectFactor,
+			bars_char,
+			bars_move_speed,
+			deflect_factor,
 			false
 		);
-		simulation.TryAddEntity(topBar);
+		simulation.TryAddEntity(top_bar);
 
 		//--------------- ball
-		double ballSpeed = 16;
-		auto pongBall = std::make_shared<PongBall>(this, GetWorldSizeX() / 2, GetWorldSizeY() / 2, ballSpeed);
-		pongBall->OnGoal.Subscribe([this]() { OnGameOver(); });
-		simulation.TryAddEntity(pongBall);
+		double ball_speed = 16;
+		auto pong_ball = std::make_shared<PongBall>(this, GetWorldSizeX() / 2, GetWorldSizeY() / 2, ball_speed);
+		pong_ball->on_goal.Subscribe([this]() { OnGameOver(); });
+		simulation.TryAddEntity(pong_ball);
 		RefreshHeader();
 	}
 
 	void PongLevel::IncreaseP1Score()
 	{
-		++scorePlayer1;
+		++score_player_1_;
 		RefreshHeader();
 	}
 
 	void PongLevel::IncreaseP2Score()
 	{
-		++scorePlayer2;
+		++score_player_2_;
 		RefreshHeader();
 	}
 
 	void PongLevel::RefreshHeader()
 	{
 		Engine::Simulation::Instance().GetUIPrinter().
-			PrintOnHeader(std::to_string(scorePlayer1) + " - " + std::to_string(scorePlayer2), 0, Engine::Color::WHITE);
+			PrintOnHeader(std::to_string(score_player_1_) + " - " + std::to_string(score_player_2_), 0, Engine::color::kWhite);
 	}
 
 	void PongLevel::OnPostGameOverDelayEnded()

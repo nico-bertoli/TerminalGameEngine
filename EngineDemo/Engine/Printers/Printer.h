@@ -7,36 +7,36 @@ namespace Engine
 	{
 		//---------------------------------------------------------- Margins
 	public:
-		static const size_t LEFT_MARGIN_SIZE = 1;
-		static const size_t TOP_MARGIN_SIZE = 2;
-		static const size_t BOTTOM_MARGIN_SIZE = 1;
+		static constexpr size_t kLeftMarginSize = 1;
+		static constexpr size_t kTopMarginSize = 2;
+		static constexpr size_t kBottomMarginSize = 1;
 
 		//---------------------------------------------------------- Fields
 	protected:
-		size_t screenSizeX;
-		size_t screenSizeY;
-		size_t padding;
+		size_t screen_size_x_;
+		size_t screen_size_y_;
+		size_t padding_;
 
-		Terminal& terminal = Terminal::Instance();
+		Terminal& terminal_ = Terminal::Instance();
 
 		//---------------------------------------------------------- Methods
 	public:
 		Printer
 		(
-			size_t screenSizeX,
-			size_t screenSizeY,
-			size_t screenPadding
+			size_t screen_size_x,
+			size_t screen_size_y,
+			size_t screen_padding
 		) :
-			screenSizeX(screenSizeX),
-			screenSizeY(screenSizeY),
-			padding(screenPadding)
+			screen_size_x_(screen_size_x),
+			screen_size_y_(screen_size_y),
+			padding_(screen_padding)
 		{
 		}
 
-		size_t GetMaxTerminalX() const { return screenSizeX + LEFT_MARGIN_SIZE; }
-		size_t GetMaxTerminalY() const { return screenSizeY + TOP_MARGIN_SIZE; }
+		size_t GetMaxTerminalX() const { return screen_size_x_ + kLeftMarginSize; }
+		size_t GetMaxTerminalY() const { return screen_size_y_ + kTopMarginSize; }
 
 	protected:
-		int ConvertWorldPosToScreenPos(int worldPos) const { return worldPos - static_cast<int>(padding); }
+		int ConvertWorldPosToScreenPos(int world_pos) const { return world_pos - static_cast<int>(padding_); }
 	};
 }

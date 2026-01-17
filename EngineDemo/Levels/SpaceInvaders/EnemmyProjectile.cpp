@@ -7,14 +7,14 @@ using Engine::Model;
 
 namespace SpaceInvaders
 {
-	const Model EnemyProjectile::MODEL(1, { '|' });
+	const Model EnemyProjectile::kModel(1, { '|' });
 
-	void EnemyProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+	void EnemyProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
 	{
-		Projectile::OnCollisionEnter(other, collisionDir);
+		Projectile::OnCollisionEnter(other, collision_dir);
 
-		shared_ptr<PlayerTank> otherTank = std::dynamic_pointer_cast<PlayerTank>(other);
-		if (otherTank != nullptr)
-			otherTank->TakeDamage();
+		shared_ptr<PlayerTank> other_tank = std::dynamic_pointer_cast<PlayerTank>(other);
+		if (other_tank != nullptr)
+			other_tank->TakeDamage();
 	}
 }

@@ -5,29 +5,29 @@ namespace Engine
 {
     enum class Key
         {
-            SPACE,
-            W,
-            A,
-            S,
-            D,
+            kSpace,
+            kW,
+            kA,
+            kS,
+            kD,
 
-            ARROW_UP,
-            ARROW_DOWN,
-            ARROW_LEFT,
-            ARROW_RIGHT,
+            kArrowUp,
+            kArrowDown,
+            kArrowLeft,
+            kArrowRight,
 
-            NUM_0,
-            NUM_1,
-            NUM_2,
-            NUM_3,
-            NUM_4,
-            NUM_5,
-            NUM_6,
-            NUM_7,
-            NUM_8,
-            NUM_9,
+            kNum0,
+            kNum1,
+            kNum2,
+            kNum3,
+            kNum4,
+            kNum5,
+            kNum6,
+            kNum7,
+            kNum8,
+            kNum9,
 
-            ESC,
+            kEsc,
         };
 
     class BaseInputManager 

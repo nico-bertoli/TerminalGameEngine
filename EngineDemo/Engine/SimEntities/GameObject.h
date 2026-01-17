@@ -20,55 +20,55 @@ namespace Engine
 
 		//---------------------------------------------------------- Fields
 	public:
-		nbase_kit::Event<std::weak_ptr<GameObject>, Direction> OnMove;
+		nbase_kit::Event<std::weak_ptr<GameObject>, Direction> on_move;
 		// generic on destroy event could be added
 
 	protected:
-		bool canMove = true;
+		bool can_move_ = true;
 
 	private:
-		int xPos;
-		int yPos;
+		int x_pos_;
+		int y_pos_;
 
-		double xPosContinuous;
-		double yPosContinuous;
+		double x_pos_continuous_;
+		double y_pos_continuous_;
 
 		/// never set this value directly, use simulation MarkObjectToReprint
-		bool mustBeReprinted = true;
-		const Model* model = nullptr;
+		bool must_be_reprinted_ = true;
+		const Model* model_ = nullptr;
 
 		//---------------------------------------------------------- Methods
 	public:
-		GameObject(int xPos, int yPos);
+		GameObject(int x_pos, int y_pos);
 
 		virtual TerminalColor GetColor() const { return nullptr; }
 		virtual TerminalColor GetBackColor() const { return nullptr; }
 		virtual size_t GetSortingLayer() const { return 100; }
 		void Init() { InitModel(); }
-		int GetPosX() const { return xPos; }
-		int GetPosY() const { return yPos; }
-		int GetMaxPosX()const { return xPos + static_cast<int>(GetModelWidth()) - 1; }
-		int GetMaxPosY()const { return yPos + static_cast<int>(GetModelHeight()) - 1; }
+		int GetPosX() const { return x_pos_; }
+		int GetPosY() const { return y_pos_; }
+		int GetMaxPosX()const { return x_pos_ + static_cast<int>(GetModelWidth()) - 1; }
+		int GetMaxPosY()const { return y_pos_ + static_cast<int>(GetModelHeight()) - 1; }
 		int GetMidPosX() { return GetPosX() + static_cast<int>(GetModelWidth()) / 2; }
 		int GetMidPosY() { return GetPosY() + static_cast<int>(GetModelHeight()) / 2; }
-		size_t GetModelWidth()const { return model->GetSizeX(); };
-		size_t GetModelHeight()const { return model->GetSizeY(); }
-		const Model& GetModel()const { return *model; }
+		size_t GetModelWidth()const { return model_->GetSizeX(); };
+		size_t GetModelHeight()const { return model_->GetSizeY(); }
+		const Model& GetModel()const { return *model_; }
 		virtual bool CanExitScreenSpace() const = 0;
-		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::shared_ptr<GameObject>>& list, bool(*InsertRule)(std::shared_ptr<GameObject> newItem, std::shared_ptr<GameObject> listItem));
-		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::weak_ptr<GameObject>>& list, bool(*InsertRule)(std::shared_ptr<GameObject> newItem, std::shared_ptr<GameObject> listItem));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::shared_ptr<GameObject>>& list, bool(*insert_rule)(std::shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::weak_ptr<GameObject>>& list, bool(*insert_rule)(std::shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item));
 
 	protected:
 		virtual void InitModel() = 0;
 		virtual double GetGravityScale() const = 0;
 		virtual void OnDestroy() {} // called by simulation
-		virtual void TryMove(Direction direction, double moveSpeed);
+		virtual void TryMove(Direction direction, double move_speed);
 		void Update()override;
-		Model CreteModelUsingChar(char modelChar, size_t sizeX, size_t sizeY) const;
-		void SetModel(const Model& newModel);
+		Model CreteModelUsingChar(char model_char, size_t size_x, size_t size_y) const;
+		void SetModel(const Model& new_model);
 
 	private:
-		void ResetPartialMovement() { xPosContinuous = xPos; yPosContinuous = yPos; }
+		void ResetPartialMovement() { x_pos_continuous_ = x_pos_; y_pos_continuous_ = y_pos_; }
 		void ApplyGravity();
 		void CALLED_BY_SIM_Move(Direction direction);
 	};

@@ -11,27 +11,27 @@ namespace Pong
     {
         //---------------------------------------------------------- Fields
     public:
-        nbase_kit::Event<> OnGoal;
+        nbase_kit::Event<> on_goal;
     private:
-        PongLevel* level;
-        double ySpeed;
-        double xSpeed;
-        bool iSFirstLaunch;
+        PongLevel* level_;
+        double y_speed_;
+        double x_speed_;
+        bool is_first_launch_;
         static const Engine::Model MODEL;
 
         //---------------------------------------------------------- Methods
     public:
-        PongBall(PongLevel* level, int xPos, int yPos, double ySpeed);
-        Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
+        PongBall(PongLevel* level, int x_pos, int y_pos, double y_speed);
+        Engine::TerminalColor GetColor() const override { return Engine::color::kGreen; }
 
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override;
         void Update() override;
         void InitModel() override { SetModel(MODEL); }
 
     private:
-        void HandleBarCollision(std::shared_ptr<PongBar> collidingBar);
+        void HandleBarCollision(std::shared_ptr<PongBar> colliding_bar);
     };
 }

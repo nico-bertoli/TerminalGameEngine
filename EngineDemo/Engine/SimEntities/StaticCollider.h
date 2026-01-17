@@ -10,11 +10,11 @@ namespace Engine
     public:
         StaticCollider
         (
-            int xPos,
-            int yPos,
-            size_t sizeX,
-            size_t sizeY,
-            char modelChar
+            int x_pos,
+            int y_pos,
+            size_t size_x,
+            size_t size_y,
+            char model_char
         );
 
         bool CanExitScreenSpace() const override { return true; }

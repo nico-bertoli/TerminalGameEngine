@@ -4,13 +4,13 @@ namespace Engine
 {
     StaticCollider::StaticCollider
     (
-        int xPos,
-        int yPos,
-        size_t sizeX,
-        size_t sizeY,
-        char modelChar
-    ) : VariableSizeCollider(xPos, yPos, sizeX, sizeY, modelChar)
+        int x_pos,
+        int y_pos,
+        size_t size_x,
+        size_t size_y,
+        char model_char
+    ) : VariableSizeCollider(x_pos, y_pos, size_x, size_y, model_char)
     {
-        canMove = false;
+        can_move_ = false;
     }
 }

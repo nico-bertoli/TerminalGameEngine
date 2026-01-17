@@ -9,22 +9,22 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     private:
-        Engine::Model model = CreteModelUsingChar('@', 4, 2);
+        Engine::Model model_ = CreteModelUsingChar('@', 4, 2);
         //---------------------------------------------------------- Methods
     public:
         using Collider::Collider;
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 8; }
-        Engine::TerminalColor GetColor() const override { return Engine::Color::BLUE; }
+        Engine::TerminalColor GetColor() const override { return Engine::color::kBlue; }
 
     protected:
-        void InitModel() override { SetModel(model); }
-        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir)override
+        void InitModel() override { SetModel(model_); }
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir)override
         {
-            if (collisionDir == Engine::Direction::right || collisionDir == Engine::Direction::left)
+            if (collision_dir == Engine::Direction::kRight || collision_dir == Engine::Direction::kLeft)
             {
-                TryMove(DirectionUtils::GetInverseDirection(collisionDir), 9999);
-                collisions[collisionDir].clear();
+                TryMove(DirectionUtils::GetInverseDirection(collision_dir), 9999);
+                collisions_[collision_dir].clear();
             }
             else
             {

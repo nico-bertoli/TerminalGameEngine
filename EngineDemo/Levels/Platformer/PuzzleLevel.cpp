@@ -47,7 +47,7 @@ namespace Platformer
 
         //------------ pressure plate left
         auto pressurePlate1 = std::make_shared<PressurePlate>(14, 4, 8);
-        pressurePlate1->OnPress.Subscribe
+        pressurePlate1->on_press.Subscribe
         (
             [this]()
             {
@@ -59,14 +59,14 @@ namespace Platformer
 
         //------------ pressure plate center
         auto openDoorPressurePlateLeft = std::make_shared<PressurePlate>(37, 4, 8);
-        openDoorPressurePlateLeft->OnPress.Subscribe([automaticDoor]() { automaticDoor->AddEnergySource(); });
-        openDoorPressurePlateLeft->OnRelease.Subscribe([automaticDoor]() { automaticDoor->RemoveEnergySource(); });
+        openDoorPressurePlateLeft->on_press.Subscribe([automaticDoor]() { automaticDoor->AddEnergySource(); });
+        openDoorPressurePlateLeft->on_release.Subscribe([automaticDoor]() { automaticDoor->RemoveEnergySource(); });
         simulation.TryAddEntity(openDoorPressurePlateLeft);
 
         //------------ pressure plate right
         auto openDoorPressurePlateRight = std::make_shared<PressurePlate>(86, 4, 8);
-        openDoorPressurePlateRight->OnPress.Subscribe([automaticDoor]() { automaticDoor->AddEnergySource(); });
-        openDoorPressurePlateRight->OnRelease.Subscribe([automaticDoor]() { automaticDoor->RemoveEnergySource(); });
+        openDoorPressurePlateRight->on_press.Subscribe([automaticDoor]() { automaticDoor->AddEnergySource(); });
+        openDoorPressurePlateRight->on_release.Subscribe([automaticDoor]() { automaticDoor->RemoveEnergySource(); });
         simulation.TryAddEntity(openDoorPressurePlateRight);
     }
 

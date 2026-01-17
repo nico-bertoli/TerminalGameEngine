@@ -9,30 +9,32 @@ namespace Engine
 {
 	class Particle : public GameObject
 	{
+	//----------------------------------------- Fields
 	private:
-		std::array<Direction, 2> moveDirections;
-		std::array<double, 2> moveSpeeds;
+		std::array<Direction, 2> move_directions_;
+		std::array<double, 2> move_speeds_;
 
-		char modelChar;
-		size_t remainingMovementsBeforeDestruction;
-		TerminalColor color;
-		Model model;
+		char model_char_;
+		size_t remaining_movements_before_destruction_;
+		TerminalColor color_;
+		Model model_;
 
+	//----------------------------------------- Methods
 	public:
 		Particle
 		(
-			int xPos,
-			int yPos,
-			char modelChar,
+			int x_pos,
+			int y_pos,
+			char model_char,
 			TerminalColor color,
-			double moveSpeed,
-			size_t movementLifeTime,
-			std::optional<Direction> mainDirection
+			double move_speed,
+			size_t movement_life_time,
+			std::optional<Direction> main_direction
 		);
 
 		bool CanExitScreenSpace() const override { return true; }
 		double GetGravityScale() const override { return 0; }
-		TerminalColor GetColor() const override { return color; }
+		TerminalColor GetColor() const override { return color_; }
 		size_t GetSortingLayer() const override { return 200; }
 
 	protected:

@@ -15,13 +15,13 @@ namespace SpaceInvaders
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override
         {
-            MovingStraightObject::OnCollisionEnter(other, collisionDir);
-            Engine::Direction collisionOppositeDirection = DirectionUtils::GetInverseDirection(collisionDir);
+            MovingStraightObject::OnCollisionEnter(other, collision_dir);
+            Engine::Direction collision_opposite_direction = DirectionUtils::GetInverseDirection(collision_dir);
 
-            std::shared_ptr<Enemy> otherEnemy = std::dynamic_pointer_cast<Enemy>(other);
-            if (otherEnemy == nullptr)
+            std::shared_ptr<Enemy> other_enemy = std::dynamic_pointer_cast<Enemy>(other);
+            if (other_enemy == nullptr)
             {
                 Engine::Simulation::Instance().SpawnParticles
                 (
@@ -34,7 +34,7 @@ namespace SpaceInvaders
                     8,     //speed
                     3,      //movement life
                     4,      //density
-                    collisionOppositeDirection
+                    collision_opposite_direction
                 );
             }
 

@@ -10,9 +10,14 @@ namespace Platformer
     {
         //---------------------------------------------------------- Settings
     private:
-        static const size_t MUSIC_FILES_COUNT = 3;
-        static const std::array<const char*, MUSIC_FILES_COUNT> MUSIC_FILES;
-        int shownTime = -1;
+        static inline constexpr std::array<const char*, 3> kMusicFiles =
+        {
+            "Resources/Music/1.wav",
+            "Resources/Music/2.wav",
+            "Resources/Music/3.wav"
+        };
+
+        int shown_time_ = -1;
 
         //---------------------------------------------------------- Methods
     public:

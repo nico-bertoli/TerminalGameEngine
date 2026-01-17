@@ -6,29 +6,29 @@ namespace Engine
     class VariableSizeCollider : public Collider
     {
         //---------------------------------------------------------- Fields
-        char modelChar;
-        size_t modelSizeX;
-        size_t modelSizeY;
-        Model model;
+        char model_char_;
+        size_t model_size_x_;
+        size_t model_size_y_;
+        Model model_;
         //---------------------------------------------------------- Methods
     public:
         VariableSizeCollider
         (
-            int xPos,
-            int yPos,
-            size_t modelSizeX,
-            size_t modelSizeY,
-            char modelChar
+            int x_pos,
+            int y_pos,
+            size_t model_size_x,
+            size_t model_size_y,
+            char model_char
         ) :
-            Collider(xPos, yPos),
-            modelSizeX(modelSizeX),
-            modelSizeY(modelSizeY),
-            modelChar(modelChar)
+            Collider(x_pos, y_pos),
+            model_size_x_(model_size_x),
+            model_size_y_(model_size_y),
+            model_char_(model_char)
         {
-            model = CreteModelUsingChar(modelChar, modelSizeX, modelSizeY);
+            model_ = CreteModelUsingChar(model_char, model_size_x, model_size_y);
         }
 
     protected:
-        void InitModel() override { SetModel(model); }
+        void InitModel() override { SetModel(model_); }
     };
 }

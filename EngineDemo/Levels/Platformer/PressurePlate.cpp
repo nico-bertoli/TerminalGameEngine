@@ -6,28 +6,28 @@ using Direction = Engine::Direction;
 
 namespace Platformer
 {
-    PressurePlate::PressurePlate(int xPos, int yPos, size_t width) : Collider(xPos, yPos)
+    PressurePlate::PressurePlate(int x_pos, int y_pos, size_t width) : Collider(x_pos, y_pos)
     {
-        unpressedModel = CreteModelUsingChar('=', width, 1);
-        pressedModel = CreteModelUsingChar('_', width, 1);
+        unpressed_model_ = CreteModelUsingChar('=', width, 1);
+        pressed_model_ = CreteModelUsingChar('_', width, 1);
     }
 
-    void PressurePlate::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+    void PressurePlate::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
     {
-        if (collisionDir == Direction::up && collisions[Direction::up].size() == 1)
+        if (collision_dir == Direction::kUp && collisions_[Direction::kUp].size() == 1)
         {
-            OnPress.Notify();
-            SetModel(pressedModel);
+            on_press.Notify();
+            SetModel(pressed_model_);
             Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Platform/ButtonPress.wav");
         }
     }
 
-    void PressurePlate::OnCollisionExit(Direction endingCollisionDir)
+    void PressurePlate::OnCollisionExit(Direction ending_collision_dir)
     {
-        if (endingCollisionDir == Direction::up && collisions[Direction::up].size() == 0)
+        if (ending_collision_dir == Direction::kUp && collisions_[Direction::kUp].size() == 0)
         {
-            OnRelease.Notify();
-            SetModel(unpressedModel);
+            on_release.Notify();
+            SetModel(unpressed_model_);
             Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Platform/ButtonRelease.wav");
         }
 

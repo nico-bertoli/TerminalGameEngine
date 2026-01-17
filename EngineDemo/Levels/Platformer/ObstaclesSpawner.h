@@ -8,45 +8,45 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     private:
-        int xPos;
-        std::vector<double> minSpawnDelays;
-        std::vector<double> maxSpawnDelays;
-        std::vector<double> speeds;
-        std::vector<int> ySpawnPoints;
-        size_t spawnIntensity = 0;
-        double stopSpawningWhenPhaseChangesDuration;
-        double increaseIntensityEverySeconds;
-        double spawnNextProjectileTime;
-        double lastTimeIncreasedIntensity = 0;
+        int x_pos_;
+        std::vector<double> min_spawn_delays_;
+        std::vector<double> max_spawn_delays_;
+        std::vector<double> speeds_;
+        std::vector<int> y_spawn_points_;
+        size_t spawn_intensity_ = 0;
+        double stop_spawning_when_phase_changes_duration_;
+        double increase_intensity_every_seconds_;
+        double spawn_next_projectile_time_;
+        double last_time_increased_intensity_ = 0;
 
         //---------------------------------------------------------- Methods
     public:
         ObstaclesSpawner
         (
-            int xPos,
-            const std::vector<double>& minSpawnDelays,
-            const std::vector<double>& maxSpawnDelays,
+            int x_pos,
+            const std::vector<double>& min_spawn_delays,
+            const std::vector<double>& max_spawn_delays,
             const std::vector<double>& speeds,
-            const std::vector<int>& ySpawnPoints,
-            double increaseIntensityEverySeconds = -1,
-            double stopSpawningWhenPhaseChangesDuration = 0
+            const std::vector<int>& y_spawn_points,
+            double increase_intensity_every_seconds = -1,
+            double stop_spawning_when_phase_changes_duration = 0
         );
 
         ObstaclesSpawner
         (
-            int xPos,
-            double spawnDelay,
+            int x_pos,
+            double spawn_delay,
             double speed,
-            const std::vector<int>& ySpawnPoints
+            const std::vector<int>& y_spawn_points
         );
 
     protected:
         void Update() override;
 
     private:
-        double GetCurrentMinSpawnDelay() const { return minSpawnDelays[spawnIntensity]; }
-        double GetCurrentMaxSpawnDelay() const { return maxSpawnDelays[spawnIntensity]; }
-        double GetCurrentObstaclesSpeed() const { return speeds[spawnIntensity]; }
+        double GetCurrentMinSpawnDelay() const { return min_spawn_delays_[spawn_intensity_]; }
+        double GetCurrentMaxSpawnDelay() const { return max_spawn_delays_[spawn_intensity_]; }
+        double GetCurrentObstaclesSpeed() const { return speeds_[spawn_intensity_]; }
         double GetNextSpawnObstacleTime() const;
         void TryIncreaseIntensity(double time);
     };

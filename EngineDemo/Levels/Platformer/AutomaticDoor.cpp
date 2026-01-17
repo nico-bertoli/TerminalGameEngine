@@ -6,15 +6,15 @@ namespace Platformer
 {
     AutomaticDoor::AutomaticDoor
     (
-        int xPos,
-        int yPos,
-        size_t sizeX,
-        size_t sizeY,
-        char modelChar,
-        double moveSpeed
-    ) : VariableSizeCollider(xPos, yPos, sizeX, sizeY, modelChar), moveSpeed(moveSpeed)
+        int x_pos,
+        int y_pos,
+        size_t size_x,
+        size_t size_y,
+        char model_char,
+        double move_speed
+    ) : VariableSizeCollider(x_pos, y_pos, size_x, size_y, model_char), move_speed_(move_speed)
     {
-        startingPosY = yPos;
+        starting_pos_y_ = y_pos;
     }
 
     void AutomaticDoor::Update()
@@ -22,19 +22,19 @@ namespace Platformer
         VariableSizeCollider::Update();
         if (IsOpen())
         {
-            if (GetPosY() < startingPosY + GetModelHeight())
-                TryMove(Direction::up, moveSpeed);
+            if (GetPosY() < starting_pos_y_ + GetModelHeight())
+                TryMove(Direction::kUp, move_speed_);
         }
         else
         {
-            if (GetPosY() > startingPosY)
-                TryMove(Direction::down, moveSpeed);
+            if (GetPosY() > starting_pos_y_)
+                TryMove(Direction::kDown, move_speed_);
         }
     }
 
     void AutomaticDoor::RemoveEnergySource()
     {
-        if (energySourcesCounter > 0)
-            --energySourcesCounter;
+        if (energy_sources_counter_ > 0)
+            --energy_sources_counter_;
     }
 }

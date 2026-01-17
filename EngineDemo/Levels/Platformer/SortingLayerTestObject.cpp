@@ -6,30 +6,30 @@ namespace Platformer
 {
 	SortingLayerTestObject::SortingLayerTestObject
 	(
-		int xPos,
-		int yPos,
-		size_t sizeX,
-		size_t sizeY,
-		char modelChar,
+		int x_pos,
+		int y_pos,
+		size_t size_x,
+		size_t size_y,
+		char model_char,
 		Engine::TerminalColor color,
-		size_t sortingLayer,
-		double moveSpeed,
-		std::optional<Direction> mainDirection
+		size_t sorting_layer,
+		double move_speed,
+		std::optional<Direction> main_direction
 	) 
 		: 
-		GameObject(xPos, yPos),
-		sizeX(sizeX),
-		sizeY(sizeY),
-		modelChar(modelChar),
-		color(color),
-		sortingLayer(sortingLayer),
-		moveSpeed(moveSpeed),
-		mainDirection(mainDirection){ }
+		GameObject(x_pos, y_pos),
+		size_x_(size_x),
+		size_y_(size_y),
+		model_char_(model_char),
+		color_(color),
+		sorting_layer_(sorting_layer),
+		move_speed_(move_speed),
+		main_direction_(main_direction){ }
 
 	void SortingLayerTestObject::InitModel()
 	{
-		model = CreteModelUsingChar(modelChar, sizeX, sizeY);
-		SetModel(model);
+		model_ = CreteModelUsingChar(model_char_, size_x_, size_y_);
+		SetModel(model_);
 	}
 
 	void SortingLayerTestObject::Update()

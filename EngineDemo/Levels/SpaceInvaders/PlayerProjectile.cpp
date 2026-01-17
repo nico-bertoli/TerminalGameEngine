@@ -9,15 +9,15 @@ using Engine::Direction;
 
 namespace SpaceInvaders
 {
-	const Model PlayerProjectile::MODEL(1, { '|' });
+	const Model PlayerProjectile::kModel(1, { '|' });
 
-	void PlayerProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+	void PlayerProjectile::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
 	{
-		Projectile::OnCollisionEnter(other, collisionDir);
-		shared_ptr<Enemy> otherEnemy = std::dynamic_pointer_cast<Enemy>(other);
-		if (otherEnemy != nullptr)
+		Projectile::OnCollisionEnter(other, collision_dir);
+		shared_ptr<Enemy> other_enemy = std::dynamic_pointer_cast<Enemy>(other);
+		if (other_enemy != nullptr)
 		{
-			Engine::Simulation::Instance().RemoveEntity(otherEnemy);
+			Engine::Simulation::Instance().RemoveEntity(other_enemy);
 		}
 	}
 }

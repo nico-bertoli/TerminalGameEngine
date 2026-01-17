@@ -13,82 +13,82 @@ namespace Pong
 {
     const Model PongBall::MODEL(1, { '@' });
 
-    PongBall::PongBall(PongLevel* level, int xPos, int yPos, double ySpeed)
+    PongBall::PongBall(PongLevel* level, int x_pos, int y_pos, double y_speed)
         :
-        Collider(xPos, yPos),
-        level(level),
-        ySpeed(ySpeed)
+        Collider(x_pos, y_pos),
+        level_(level),
+        y_speed_(y_speed)
     {
-        xSpeed = 0;
-        iSFirstLaunch = true;
+        x_speed_ = 0;
+        is_first_launch_ = true;
 
         if (RandomUtils::GetRandomInt(0, 1) == 1)
-            this->ySpeed = -ySpeed;
+            this->y_speed_ = -y_speed;
     }
 
-    void PongBall::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+    void PongBall::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
     {
-        iSFirstLaunch = false;
+        is_first_launch_ = false;
 
-        if (GetPosY() == level->GetWorldSizeY() - level->GetScreenPadding() - 1)
+        if (GetPosY() == level_->GetWorldSizeY() - level_->GetScreenPadding() - 1)
         {
-            level->IncreaseP1Score();
-            OnGoal.Notify();
+            level_->IncreaseP1Score();
+            on_goal.Notify();
             return;
         }
 
 
-        if (GetPosY() == level->GetScreenPadding())
+        if (GetPosY() == level_->GetScreenPadding())
         {
-            level->IncreaseP2Score();
-            OnGoal.Notify();
+            level_->IncreaseP2Score();
+            on_goal.Notify();
             return;
         }
 
         Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Pong/BallHit1.wav", 0.02);
 
-        if (collisionDir == Direction::up || collisionDir == Direction::down)
+        if (collision_dir == Direction::kUp || collision_dir == Direction::kDown)
         {
-            ySpeed = -ySpeed;
+            y_speed_ = -y_speed_;
             
-            shared_ptr<PongBar> colliderBar = std::dynamic_pointer_cast<PongBar>(other);
-            if (colliderBar != nullptr)
-                HandleBarCollision(colliderBar);
+            shared_ptr<PongBar> collider_bar = std::dynamic_pointer_cast<PongBar>(other);
+            if (collider_bar != nullptr)
+                HandleBarCollision(collider_bar);
         }
         else
         {
-            xSpeed = -xSpeed;
+            x_speed_ = -x_speed_;
         }
     }
 
-    void PongBall::HandleBarCollision(shared_ptr<PongBar> collidingBar)
+    void PongBall::HandleBarCollision(shared_ptr<PongBar> colliding_bar)
     {
-        int otherMidX = (collidingBar->GetMaxPosX() + collidingBar->GetPosX()) / 2;
-        int distanceFromMidPoint = GetPosX() - otherMidX;
+        int other_mid_x = (colliding_bar->GetMaxPosX() + colliding_bar->GetPosX()) / 2;
+        int distance_from_mid_point = GetPosX() - other_mid_x;
 
-        if (distanceFromMidPoint <= 0)
-            distanceFromMidPoint -= 1;
+        if (distance_from_mid_point <= 0)
+            distance_from_mid_point -= 1;
 
-        int originalSign = distanceFromMidPoint > 0 ? 1 : -1;
-        xSpeed = std::pow(std::abs(distanceFromMidPoint), collidingBar->GetDeflectBallFactor());
-        xSpeed *= originalSign;
+        int original_sign = distance_from_mid_point > 0 ? 1 : -1;
+        x_speed_ = std::pow(std::abs(distance_from_mid_point), colliding_bar->GetDeflectBallFactor());
+        x_speed_ *= original_sign;
     }
 
     void PongBall::Update()
     {
-        if (level->IsGameOver())
+        if (level_->IsGameOver())
             return;
 
         Collider::Update();
 
-        if (xSpeed > 0)
-            TryMove(Direction::right, xSpeed);
-        else if (xSpeed < 0)
-            TryMove(Direction::left, xSpeed);
+        if (x_speed_ > 0)
+            TryMove(Direction::kRight, x_speed_);
+        else if (x_speed_ < 0)
+            TryMove(Direction::kLeft, x_speed_);
 
-        if (ySpeed > 0)
-            TryMove(Direction::up, ySpeed);
-        else if (ySpeed < 0)
-            TryMove(Direction::down, ySpeed);
+        if (y_speed_ > 0)
+            TryMove(Direction::kUp, y_speed_);
+        else if (y_speed_ < 0)
+            TryMove(Direction::kDown, y_speed_);
     }
 }

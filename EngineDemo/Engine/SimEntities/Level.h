@@ -12,17 +12,17 @@ namespace Engine
 
         //---------------------------------------------------------- Settings
     private:
-        constexpr static double PRESS_ANY_KEY_TO_TERMINATE_GAME_DELAY = 1.5;
+        constexpr static double kPressAnyKeyToTerminateGameDelay = 1.5;
 
         //---------------------------------------------------------- Fields
     private:
-        bool hasCalledOnPostGameOverDelayEnded = false;
-        double gameOverTime = -1;
-        double levelStartedTime = 0;
-        bool isTerminated = false;
+        bool has_called_on_post_game_over_delay_ended_ = false;
+        double game_over_time_ = -1;
+        double level_started_time_ = 0;
+        bool is_terminated_ = false;
 
     protected:
-        Engine::Frame gameOverWindow;
+        Engine::Frame game_over_window_;
 
         //---------------------------------------------------------- Methods
 
@@ -32,27 +32,27 @@ namespace Engine
         virtual int GetScreenPadding() const = 0;
         virtual const char* GetBackgroundFileName()const { return ""; }
         double GetLevelTime() const;
-        bool IsGameOver() const { return gameOverTime > -1; }
-        bool IsTerminated() const { return isTerminated; }
+        bool IsGameOver() const { return game_over_time_ > -1; }
+        bool IsTerminated() const { return is_terminated_; }
 
-        virtual TerminalColor GetMarginsColor() const { return Color::BLUE_DARK; }
-        virtual TerminalColor GetDefaultFrontColor() const {return Color::WHITE;}
-        virtual TerminalColor GetDefaultBackColor() const { return Color::BG_BLACK; }
-        virtual TerminalColor GetBackgroundCharsColor() const {return Color::WHITE;}
+        virtual TerminalColor GetMarginsColor() const { return color::kBlueDark; }
+        virtual TerminalColor GetDefaultFrontColor() const {return color::kWhite;}
+        virtual TerminalColor GetDefaultBackColor() const { return color::kBgBlack; }
+        virtual TerminalColor GetBackgroundCharsColor() const {return color::kWhite;}
 
     protected:
         virtual void OnGameOver();
         virtual double ShowGameOverScreenDelay() const = 0;
         void Update() override;
-        virtual void OnPostGameOverDelayEnded() { hasCalledOnPostGameOverDelayEnded = true; }
+        virtual void OnPostGameOverDelayEnded() { has_called_on_post_game_over_delay_ended_ = true; }
         virtual void LoadInSimulation();
         virtual const char* GetGameOverWindowPath() { return ""; }
         virtual const char* GetPersistenceFilePath() { return ""; }
-        virtual void ShowGameOverScreen(int score, int savedBestScore){};
+        virtual void ShowGameOverScreen(int score, int saved_best_score){};
 
         bool IsPostGameOverPauseEnded() const;
         bool CanPlayerPressKeyToRestartGame() const;
-        void Terminate() { isTerminated = true; }
+        void Terminate() { is_terminated_ = true; }
 
     };
 }

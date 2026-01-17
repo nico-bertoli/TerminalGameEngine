@@ -15,7 +15,7 @@ namespace Platformer
 
         //----------------- bunny setup
         shared_ptr<Bunny> bunny = std::make_shared<Bunny>(9,5);
-        bunny->OnObstacleHit.Subscribe([this]() { OnGameOver(); });
+        bunny->on_obstacle_hit.Subscribe([this]() { OnGameOver(); });
         simulation.TryAddEntity(bunny);
 
         //----------------- front object
@@ -26,7 +26,7 @@ namespace Platformer
             30,     //sizex
             5,      //sizey
             '#',    //char
-            Engine::Color::RED,
+            Engine::color::kRed,
             200     //sorting layer
         );
         simulation.TryAddEntity(sortingLayerTestObjFront);
@@ -39,7 +39,7 @@ namespace Platformer
             30,      //sizex
             5,      //sizey
             '#',     //char
-            Engine::Color::BLUE,
+            Engine::color::kBlue,
             0       //sorting layer
         );
         simulation.TryAddEntity(sortingLayerTestObjBack);

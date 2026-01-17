@@ -6,25 +6,25 @@ namespace SpaceInvaders
 	class AlienMidScore : public Alien
 	{
 	private:
-		static const Engine::Model MODEL_1;
-		static const Engine::Model MODEL_2;
+		static const Engine::Model kModel1;
+		static const Engine::Model kModel2;
 		//------------------------------------------------------ Methods
 	public:
 		using Alien::Alien;
 
 		size_t GetScore() const override { return 20; }
-		Engine::TerminalColor GetColor() const override { return Engine::Color::CYAN; }
+		Engine::TerminalColor GetColor() const override { return Engine::color::kCyan; }
 
 	protected:
 		void InitModel() override
 		{
-			animationModel1 = &MODEL_1;
-			animationModel2 = &MODEL_2;
-			SetModel(MODEL_1);
+			animation_model_1_ = &kModel1;
+			animation_model_2_ = &kModel2;
+			SetModel(kModel1);
 		}
 	};
 
-	const Engine::Model AlienMidScore::MODEL_1
+	const Engine::Model AlienMidScore::kModel1
 	(
 		4,
 		{
@@ -33,7 +33,7 @@ namespace SpaceInvaders
 		}
 	);
 
-	const Engine::Model AlienMidScore::MODEL_2
+	const Engine::Model AlienMidScore::kModel2
 	(
 		4,
 		{

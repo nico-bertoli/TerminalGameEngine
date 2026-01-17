@@ -10,46 +10,46 @@ using std::unordered_set;
 
 namespace Engine
 {
-	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>collidingObjects, Direction collisionDir)
+	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>colliding_objects, Direction collision_dir)
 	{
-		list<weak_ptr<Collider>>& localDirectionColl = collisions[collisionDir];
-		for (auto obj : collidingObjects)
+		list<weak_ptr<Collider>>& local_direction_coll = collisions_[collision_dir];
+		for (auto obj : colliding_objects)
 		{
-			if(SmartPointersListUtils::WeakPtrListContainsShared(localDirectionColl, obj) == false)
+			if(SmartPointersListUtils::WeakPtrListContainsShared(local_direction_coll, obj) == false)
 			{
-				localDirectionColl.push_back(obj);
-				OnCollisionEnter(obj, collisionDir);
+				local_direction_coll.push_back(obj);
+				OnCollisionEnter(obj, collision_dir);
 			}
 		}
 	}
 
-	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(shared_ptr<Collider> collidingObject, Direction collisionDir)
+	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(shared_ptr<Collider> colliding_object, Direction collision_dir)
 	{
-		CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>{collidingObject}, collisionDir);
+		CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>{colliding_object}, collision_dir);
 	}
 
-	void Collider::CALLED_BY_SIM_UpdateEndedCollisions(const std::array<unordered_set<shared_ptr<Collider>>,4>& newCollisions)
+	void Collider::CALLED_BY_SIM_UpdateEndedCollisions(const std::array<unordered_set<shared_ptr<Collider>>,4>& new_collisions)
 	{
-		for (int i = 0; i < newCollisions.size(); ++i)
+		for (int i = 0; i < new_collisions.size(); ++i)
 		{
-			list<weak_ptr<Collider>>& localDirectionColl = collisions[i];
-			const unordered_set<shared_ptr<Collider>>& newDirectionColl = newCollisions[i];
+			list<weak_ptr<Collider>>& local_direction_coll = collisions_[i];
+			const unordered_set<shared_ptr<Collider>>& new_direction_coll = new_collisions[i];
 
-			list<weak_ptr<Collider>> toRemove;
+			list<weak_ptr<Collider>> to_remove;
 
 			//update collision direction
-			for (weak_ptr<Collider> colliderWeak : localDirectionColl)
+			for (weak_ptr<Collider> collider_weak : local_direction_coll)
 			{
-				auto collider = colliderWeak.lock();
-				if (collider == nullptr || newDirectionColl.find(collider) == newDirectionColl.end())
-					toRemove.push_back(colliderWeak);
+				auto collider = collider_weak.lock();
+				if (collider == nullptr || new_direction_coll.find(collider) == new_direction_coll.end())
+					to_remove.push_back(collider_weak);
 			}	
 
-			for (auto toRemoveObj : toRemove)
-				SmartPointersListUtils::RemoveWeakPointerFromList(localDirectionColl, toRemoveObj);
+			for (auto to_remove_obj : to_remove)
+				SmartPointersListUtils::RemoveWeakPointerFromList(local_direction_coll, to_remove_obj);
 
 			//call on collision exit
-			if (toRemove.size() > 0)
+			if (to_remove.size() > 0)
 				OnCollisionExit(static_cast<Direction>(i));
 		}
 	}

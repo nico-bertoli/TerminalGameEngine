@@ -14,18 +14,18 @@ namespace Platformer
         nbase_kit::Event<> OnTouchBunny;
 
     private:
-        static const Engine::Model flagModel;
-        Engine::Level* level;
+        static const Engine::Model flag_model_;
+        Engine::Level* level_;
 
         //---------------------------------------------------------- Methods
     public:
-        LevelEndFlag(Engine::Level* level, int xPos, int yPos);
-        Engine::TerminalColor GetColor() const override { return Engine::Color::GREEN; }
+        LevelEndFlag(Engine::Level* level, int x_pos, int y_pos);
+        Engine::TerminalColor GetColor() const override { return Engine::color::kGreen; }
 
     protected:
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
-        void InitModel() override { SetModel(flagModel); }
+        void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override;
+        void InitModel() override { SetModel(flag_model_); }
     };
 }

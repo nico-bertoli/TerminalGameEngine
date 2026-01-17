@@ -8,9 +8,8 @@ using std::shared_ptr;
 
 namespace SpaceInvaders
 {
-	const std::array<size_t, 6> Ufo::POSSIBLE_SCORES = { 50,100,150,200,250,300 };
 
-	const Model Ufo::MODEL_1
+	const Model Ufo::model_1
 	(
 		4,
 		{
@@ -21,18 +20,18 @@ namespace SpaceInvaders
 
 	size_t Ufo::GetScore() const
 	{
-		int randomIndex = RandomUtils::GetRandomInt(0, static_cast<int>(POSSIBLE_SCORES.size() - 1));
-		return POSSIBLE_SCORES[randomIndex];
+		int random_index = RandomUtils::GetRandomInt(0, static_cast<int>(kPossibleScores.size() - 1));
+		return kPossibleScores[random_index];
 	}
 
 	void Ufo::Update()
 	{
-		TryMove(moveDirection, MOVE_SPEED);
+		TryMove(move_direction_, kMoveSpeed);
 	}
 
-	void Ufo::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+	void Ufo::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
 	{
-		Enemy::OnCollisionEnter(other, collisionDir);
+		Enemy::OnCollisionEnter(other, collision_dir);
 		Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/UfoDefeated.wav");
 	}
 

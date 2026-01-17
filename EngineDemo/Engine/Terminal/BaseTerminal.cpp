@@ -20,33 +20,33 @@ namespace Engine
 #endif
     }
 
-    void BaseTerminal::SetColor(const char* frontColor, const char* backColor)
+    void BaseTerminal::SetColor(const char* front_color, const char* back_color)
     {
-        if(frontColor == nullptr)
-            frontColor = defaultFrontColor;
-        if(backColor == nullptr)
-            backColor = defaultBackColor;
+        if(front_color == nullptr)
+            front_color = default_front_color_;
+        if(back_color == nullptr)
+            back_color = default_back_color_;
 
-        if(this->frontColor != frontColor)
+        if(this->front_color_ != front_color)
         {
-             std::cout<<frontColor;
-             this->frontColor = frontColor;
+             std::cout<<front_color;
+             this->front_color_ = front_color;
         }
-        if(this->backColor != backColor)
+        if(this->back_color_ != back_color)
         {
-            std::cout<<backColor;
-            this->backColor = backColor;
+            std::cout<<back_color;
+            this->back_color_ = back_color;
         }
     }
 
-    void BaseTerminal::SetDefaultColors(const char* frontColor, const char* backColor)
+    void BaseTerminal::SetDefaultColors(const char* front_color, const char* back_color)
     {
-        assert(frontColor != nullptr);
-        assert(backColor != nullptr);
+        assert(front_color != nullptr);
+        assert(back_color != nullptr);
 
-        defaultFrontColor = frontColor;
-        defaultBackColor = backColor;
+        default_front_color_ = front_color;
+        default_back_color_ = back_color;
 
-        SetColor(defaultFrontColor, defaultBackColor);
+        SetColor(default_front_color_, default_back_color_);
     }
 }

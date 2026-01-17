@@ -12,38 +12,38 @@ namespace Engine
     void TimeManager::OnFrameGenerated()
     {
         double currentTime = GetTime();
-        deltaTime = currentTime - lastTimeFrameGenerated;
-        lastTimeFrameGenerated = currentTime;
+        delta_time_ = currentTime - last_time_frame_generated_;
+        last_time_frame_generated_ = currentTime;
     }
 
     void TimeManager::OnSimulationStepped()
     {
         double currentTime = GetTime();
-        fixedDeltaTime = currentTime - lastTimeSimulationStepped;
-        lastTimeSimulationStepped = currentTime;
+        fixed_delta_time_ = currentTime - last_time_simulation_stepped_;
+        last_time_simulation_stepped_ = currentTime;
     }
 
-    bool TimeManager::IsTimeForFirstOfTwoModels(double changeModelEverySeconds) const
+    bool TimeManager::IsTimeForFirstOfTwoModels(double change_model_every_seconds) const
     {
         double time = GetTime();
 
         if (time == 0)
             return false;
 
-        return std::fmod(time, changeModelEverySeconds) < changeModelEverySeconds / 2;
+        return std::fmod(time, change_model_every_seconds) < change_model_every_seconds / 2;
     }
 
     double TimeManager::GetTime() const
     {
         time_point now = steady_clock::now();
-        std::chrono::duration<double> elapsed = now - startTime;
+        std::chrono::duration<double> elapsed = now - start_time_;
         return elapsed.count();
     }
 
     TimeManager::TimeManager()
     {
-        Simulation::Instance().OnFrameGenerated.Subscribe([this]() { OnFrameGenerated(); });
-        Simulation::Instance().OnSimulationStepped.Subscribe([this]() { OnSimulationStepped(); });
-        startTime = steady_clock::now();
+        Simulation::Instance().on_frame_generated.Subscribe([this]() { OnFrameGenerated(); });
+        Simulation::Instance().on_simulation_stepped.Subscribe([this]() { OnSimulationStepped(); });
+        start_time_ = steady_clock::now();
     }
 }

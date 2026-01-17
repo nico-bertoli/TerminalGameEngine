@@ -9,17 +9,17 @@ namespace Engine
         //---------------------------------------------------------- Fields
 
     public:
-        enum class WindowPosition { CenterX_TopY, CenterX_CenterY };
+        enum class WindowPosition { kCenterXTopY, kCenterXCenterY };
 
     private:
-        static const char MARGIN_HORIZONTAL_CHAR = '=';
-        static const char MARGIN_VERTICAL_CHAR = '|';
+        static constexpr char kMarginHorizontalChar = '=';
+        static constexpr char kMarginVerticalChar = '|';
 
         //---------------------------------------------------------- Methods
     public:
-        UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, TerminalColor marginsColor);
-        void PrintWindow(const Frame& window, TerminalColor color, WindowPosition windowPosition);
-        void PrintOnHeader(const std::string& header, int xPos, TerminalColor color);
+        UIPrinter(size_t screen_size_x, size_t screen_size_y, size_t screen_padding, TerminalColor margins_color);
+        void PrintWindow(const Frame& window, TerminalColor color, WindowPosition window_position);
+        void PrintOnHeader(const std::string& header, int x_pos, TerminalColor color);
 
     private:
         void DrawMargins(TerminalColor color);

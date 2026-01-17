@@ -19,26 +19,26 @@ class LinuxInputManager : public nbase_kit::Singleton<LinuxInputManager>, public
 private:
     inline static const std::unordered_map<Key, KeySym> keyMap =
     {
-        {Key::SPACE,      XK_space},
-        {Key::W,          XK_w},
-        {Key::A,          XK_a},
-        {Key::S,          XK_s},
-        {Key::D,          XK_d},
-        {Key::ARROW_UP,   XK_Up},
-        {Key::ARROW_DOWN, XK_Down},
-        {Key::ARROW_LEFT, XK_Left},
-        {Key::ARROW_RIGHT,XK_Right},
-        {Key::NUM_0,      XK_0},
-        {Key::NUM_1,      XK_1},
-        {Key::NUM_2,      XK_2},
-        {Key::NUM_3,      XK_3},
-        {Key::NUM_4,      XK_4},
-        {Key::NUM_5,      XK_5},
-        {Key::NUM_6,      XK_6},
-        {Key::NUM_7,      XK_7},
-        {Key::NUM_8,      XK_8},
-        {Key::NUM_9,      XK_9},
-        {Key::ESC,        XK_Escape}
+        {Key::kSpace,      XK_space},
+        {Key::kW,          XK_w},
+        {Key::kA,          XK_a},
+        {Key::kS,          XK_s},
+        {Key::kD,          XK_d},
+        {Key::kArrowUp,   XK_Up},
+        {Key::kArrowDown, XK_Down},
+        {Key::kArrowLeft, XK_Left},
+        {Key::kArrowRight,XK_Right},
+        {Key::kNum0,      XK_0},
+        {Key::kNum1,      XK_1},
+        {Key::kNum2,      XK_2},
+        {Key::kNum3,      XK_3},
+        {Key::kNum4,      XK_4},
+        {Key::kNum5,      XK_5},
+        {Key::kNum6,      XK_6},
+        {Key::kNum7,      XK_7},
+        {Key::kNum8,      XK_8},
+        {Key::kNum9,      XK_9},
+        {Key::kEsc,        XK_Escape}
     };
 
     Display* display = nullptr;

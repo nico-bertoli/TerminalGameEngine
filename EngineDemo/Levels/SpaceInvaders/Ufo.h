@@ -10,23 +10,23 @@ namespace SpaceInvaders
 	{
 		//------------------------------------------------------ Fields
 	private:
-		static const Engine::Model MODEL_1;
-		static const std::array<size_t, 6> POSSIBLE_SCORES;
-		static const size_t MOVE_SPEED = 8;
+		static const Engine::Model model_1;
+		static inline constexpr std::array<size_t, 6> kPossibleScores = { 50,100,150,200,250,300 };
+		static constexpr size_t kMoveSpeed = 8;
 
-		Engine::Direction moveDirection;
+		Engine::Direction move_direction_;
 		//------------------------------------------------------ Methods
 	public:
-		Ufo(int xPos, int yPos, Engine::Direction moveDirection) : Enemy(xPos, yPos), moveDirection(moveDirection) {};
+		Ufo(int x_pos, int y_pos, Engine::Direction move_direction) : Enemy(x_pos, y_pos), move_direction_(move_direction) {};
 
 		bool CanExitScreenSpace() const override { return true; }
-		Engine::TerminalColor GetColor() const override { return Engine::Color::RED; }
-		void InitModel() override { SetModel(MODEL_1); }
+		Engine::TerminalColor GetColor() const override { return Engine::color::kRed; }
+		void InitModel() override { SetModel(model_1); }
 		size_t GetScore() const override;
 
 	protected:
 		void Update() override;
-		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collisionDir) override;
-		Engine::TerminalColor GetDestroyedParticlesColor() override { return Engine::Color::RED; }
+		void OnCollisionEnter(std::shared_ptr<Collider> other, Engine::Direction collision_dir) override;
+		Engine::TerminalColor GetDestroyedParticlesColor() override { return Engine::color::kRed; }
 	};
 }

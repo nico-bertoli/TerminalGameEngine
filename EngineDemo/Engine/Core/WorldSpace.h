@@ -26,33 +26,33 @@ namespace Engine
 
 		//---------------------------------------------------------- Margins
 	public:
-		static std::shared_ptr<FakeCollider> WORLD_MARGIN;
-		static std::shared_ptr<FakeCollider> SCREEN_MARGIN;
+		static std::shared_ptr<FakeCollider> kWorldMargin;
+		static std::shared_ptr<FakeCollider> kScreenMargin;
 
 		//---------------------------------------------------------- Fields
-	public:
-		nbase_kit::Matrix<Cell> space;
-		size_t screenPadding;
+	private:
+		nbase_kit::Matrix<Cell> space_;
+		size_t screen_padding_;
 		//---------------------------------------------------------- Methods
 	public:
-		void Init(int xSize, int ySize, size_t screenPadding);
+		void Init(int x_size, int y_size, size_t screen_padding);
 
-		bool CanObjectMoveAtDirection(std::shared_ptr<const GameObject> obj, Direction direction, std::unordered_set<std::shared_ptr<Collider>>& collidingObjects) const;
+		bool CanObjectMoveAtDirection(std::shared_ptr<const GameObject> obj, Direction direction, std::unordered_set<std::shared_ptr<Collider>>& colliding_objects) const;
 		void InsertObject(std::shared_ptr<GameObject> obj);
 		void RemoveObject(std::shared_ptr<GameObject> obj);
 		void MoveObject(std::shared_ptr<GameObject> obj, Direction direction);
-		bool IsCoordinateInsideSpace(int xPos, int yPos) const;
-		bool IsInsideSpaceX(int xPos) const;
-		bool IsInsideSpaceY(int yPos) const;
+		bool IsCoordinateInsideSpace(int x_pos, int y_pos) const;
+		bool IsInsideSpaceX(int x_pos) const;
+		bool IsInsideSpaceY(int y_pos) const;
 
-		bool IsCollidersAreaEmpty(int startingX, int startingY, size_t width, size_t height, std::unordered_set<std::shared_ptr<Collider>>& outAreaObjects) const;
-		bool IsCollidersAreaEmpty(int startingX, int startingY, size_t width, size_t height) const;
+		bool IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height, std::unordered_set<std::shared_ptr<Collider>>& out_area_objects) const;
+		bool IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height) const;
 
 		std::unordered_set<std::shared_ptr<GameObject>> GetAreaTopLayerObjects(std::shared_ptr<GameObject> obj);
-		std::unordered_set<std::shared_ptr<GameObject>> GetAreaTopLayerObjects(int startingX, int startingY, size_t width, size_t height);
+		std::unordered_set<std::shared_ptr<GameObject>> GetAreaTopLayerObjects(int starting_x, int starting_y, size_t width, size_t height);
 
 	private:
-		void WriteSpace(int xStart, int yStart, size_t width, size_t height, std::shared_ptr<GameObject> value);
-		void EraseSpace(int xStart, int yStart, size_t width, size_t height, std::shared_ptr<GameObject> value);
+		void WriteSpace(int x_start, int y_start, size_t width, size_t height, std::shared_ptr<GameObject> obj);
+		void EraseSpace(int x_start, int y_start, size_t width, size_t height, std::shared_ptr<GameObject> obj);
 	};
 }

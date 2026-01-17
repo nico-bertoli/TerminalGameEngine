@@ -19,8 +19,8 @@ namespace Engine
         size_t GetSizeY() const { return chars.GetSizeY(); }
         size_t GetSizeX() const { return chars.GetSizeX(); }
 
-        void ReadFromFile(const char* fileName);
-        void WriteString(const std::string& writenString, char writeOverChar);
+        void ReadFromFile(const char* file_name);
+        void WriteString(const std::string& written_string, char write_over_char);
         bool IsSetup() { return GetSizeY() > 0; }
 
         void RemoveNotAllowedChars(std::string& str);

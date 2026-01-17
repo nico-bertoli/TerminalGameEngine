@@ -21,43 +21,43 @@ using std::list;
 
 namespace Engine
 {
-	size_t Simulation::GetWorldSizeX() const { return level->GetWorldSizeX(); }
-	size_t Simulation::GetWorldSizeY() const { return level->GetWorldSizeY(); }
-	size_t Simulation::GetScreenPadding() const { return level->GetScreenPadding(); }
-	size_t Simulation::GetScreenSizeX() const { return level->GetWorldSizeX() - 2 * level->GetScreenPadding(); }
-	size_t Simulation::GetScreenSizeY() const { return level->GetWorldSizeY() - 2 * level->GetScreenPadding(); }
-	shared_ptr<Level> Simulation::GetActiveLevel() { return level; }
-	UIPrinter& Simulation::GetUIPrinter() { return *uiPrinter; }
+	size_t Simulation::GetWorldSizeX() const { return level_->GetWorldSizeX(); }
+	size_t Simulation::GetWorldSizeY() const { return level_->GetWorldSizeY(); }
+	size_t Simulation::GetScreenPadding() const { return level_->GetScreenPadding(); }
+	size_t Simulation::GetScreenSizeX() const { return level_->GetWorldSizeX() - 2 * level_->GetScreenPadding(); }
+	size_t Simulation::GetScreenSizeY() const { return level_->GetWorldSizeY() - 2 * level_->GetScreenPadding(); }
+	shared_ptr<Level> Simulation::GetActiveLevel() { return level_; }
+	UIPrinter& Simulation::GetUIPrinter() { return *ui_printer_; }
 
 	void Simulation::SpawnParticles
 	(
-		int posX,
-		int posY,
+		int pos_x,
+		int pos_y,
 		size_t width,
 		size_t height,
-		char modelChar,
+		char model_char,
 		TerminalColor color,
 		double speed,
-		size_t movementLifeTime,
+		size_t movement_life_time,
 		double density,
-		std::optional<Direction> mainDirection
+		std::optional<Direction> main_direction
 	)
 	{
-		int densityIntPart = static_cast<int>(density);
-		double densityDecimalPart = density - densityIntPart;
+		int density_int_part = static_cast<int>(density);
+		double density_decimal_part = density - density_int_part;
 
-		for (int y = posY; y < posY + height; ++y)
+		for (int y = pos_y; y < pos_y + height; ++y)
 		{
-			for (int x = posX; x < posX + width; ++x)
+			for (int x = pos_x; x < pos_x + width; ++x)
 			{
 				//add particles depending on density int part
-				for (int density = 0; density <= densityIntPart; ++density)
+				for (int density = 0; density <= density_int_part; ++density)
 				{
 					//add particles depending on density fractional part
-					if (density == densityIntPart && RandomUtils::GetRandomDouble(0, 1) > densityDecimalPart)
+					if (density == density_int_part && RandomUtils::GetRandomDouble(0, 1) > density_decimal_part)
 						continue;
 
-					shared_ptr<Particle> particle = std::make_shared<Particle>(x, y, modelChar, color, speed, movementLifeTime, mainDirection);
+					shared_ptr<Particle> particle = std::make_shared<Particle>(x, y, model_char, color, speed, movement_life_time, main_direction);
 					TryAddEntity(particle);
 				}
 			}
@@ -66,16 +66,16 @@ namespace Engine
 
 	void Simulation::Step()
 	{
-		if (level->IsTerminated())
+		if (level_->IsTerminated())
 			return;
 
-		if (level->IsPostGameOverPauseEnded())
+		if (level_->IsPostGameOverPauseEnded())
 		{
-			level->Update();
+			level_->Update();
 			return;
 		}
 
-		moveRequests.clear();
+		move_requests_.clear();
 
 		UpdateAllEntities();
 
@@ -85,61 +85,61 @@ namespace Engine
 
 		UpdateAllObjectsEndedCollisions();
 
-		bool hasNewFrameBeenGenerated = PrintObjects();
-		if(hasNewFrameBeenGenerated);
+		bool has_new_frame_been_generated = PrintObjects();
+		if(has_new_frame_been_generated);
 		{
-			OnFrameGenerated.Notify();
+			on_frame_generated.Notify();
 			#if DEBUG_MODE && SHOW_FPS
 						DebugManager::Instance().ShowAverageFPS();
 			#endif
 		}
 
-		OnSimulationStepped.Notify();
+		on_simulation_stepped.Notify();
 	}
 
-	void Simulation::RequestMovement(shared_ptr<GameObject> applicantObj, Direction moveDir, double moveSpeed)
+	void Simulation::RequestMovement(shared_ptr<GameObject> applicant_obj, Direction move_dir, double move_speed)
 	{
-		if (IsEntityInSimulation(applicantObj) == false)
+		if (IsEntityInSimulation(applicant_obj) == false)
 		{
 			std::cerr << "object requesting movement but it's not in simulation";
 			return;
 		}
 
-		MoveRequest request(applicantObj, moveDir, moveSpeed);
+		MoveRequest request(applicant_obj, move_dir, move_speed);
 		EnqueueMoveRequestSortingBySpeed(request);
 	}
 
 	void Simulation::EnqueueMoveRequestSortingBySpeed(MoveRequest request)
 	{
-		auto it = moveRequests.begin();
-		while (it != moveRequests.end())
+		auto it = move_requests_.begin();
+		while (it != move_requests_.end())
 		{
-			if (it->moveSpeed > request.moveSpeed)
+			if (it->move_speed > request.move_speed)
 				break;
 			++it;
 		}
-		moveRequests.insert(it, request);
+		move_requests_.insert(it, request);
 	}
 
 	void Simulation::RemoveMarkedEntities()
 	{
-		for (weak_ptr<ISimulationEntity>& entity : toRemoveEntities)
+		for (weak_ptr<ISimulationEntity>& entity : to_remove_entities_)
 		{
-			shared_ptr<ISimulationEntity> entitySp = entity.lock();
-			if (entitySp != nullptr)
+			shared_ptr<ISimulationEntity> entity_sp = entity.lock();
+			if (entity_sp != nullptr)
 			{
-				shared_ptr<GameObject> objectEntity = std::dynamic_pointer_cast<GameObject>(entitySp);
-				if (objectEntity != nullptr)
+				shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<GameObject>(entity_sp);
+				if (object_entity != nullptr)
 				{
-					objectEntity->OnDestroy();
-					simulationPrinter->ClearObject(objectEntity);
-					worldSpace.RemoveObject(objectEntity);
-					MarkAreaToReprint(objectEntity);
+					object_entity->OnDestroy();
+					simulation_printer_->ClearObject(object_entity);
+					world_space_.RemoveObject(object_entity);
+					MarkAreaToReprint(object_entity);
 				}
-				entities.erase(entitySp);
+				entities_.erase(entity_sp);
 			}
 		}
-		toRemoveEntities.clear();
+		to_remove_entities_.clear();
 	}
 
 	void Simulation::RemoveEntity(shared_ptr<ISimulationEntity> entity)
@@ -151,71 +151,71 @@ namespace Engine
 			return;
 
 		//entity will be removed at proper stage of step
-		toRemoveEntities.push_back(entity);
+		to_remove_entities_.push_back(entity);
 	}
 
 	void Simulation::UpdateAllEntities()
 	{
-		level->Update();
-		for (shared_ptr<ISimulationEntity> entity : entities)
+		level_->Update();
+		for (shared_ptr<ISimulationEntity> entity : entities_)
 			entity->Update();
 	}
 
 	void Simulation::ExecuteMoveRequests()
 	{
 		
-		for (auto it = moveRequests.begin(); it != moveRequests.end(); ++it)
+		for (auto it = move_requests_.begin(); it != move_requests_.end(); ++it)
 		{
 
 			shared_ptr<GameObject> obj = it->object.lock();
 			if (obj == nullptr)
 				continue;
 
-			int oldPosX = obj->GetPosX();
-			int oldPosY = obj->GetPosY();
+			int old_pos_x = obj->GetPosX();
+			int old_pos_y = obj->GetPosY();
 
-			if (TryMoveObjectAtDirection(obj, it->moveDir))
+			if (TryMoveObjectAtDirection(obj, it->move_dir))
 			{
-				simulationPrinter->ClearArea(oldPosX, oldPosY, obj->GetModelWidth(), obj->GetModelHeight());
-				MarkAreaToReprintAfterMovement(obj, oldPosX, oldPosY);
+				simulation_printer_->ClearArea(old_pos_x, old_pos_y, obj->GetModelWidth(), obj->GetModelHeight());
+				MarkAreaToReprintAfterMovement(obj, old_pos_x, old_pos_y);
 			}
 		}
 	}
 
 	bool Simulation::PrintObjects()
 	{
-		list<shared_ptr<GameObject>> toBePrintedObjects;
+		list<shared_ptr<GameObject>> to_be_printed_objects;
 
 		//create sorted list
-		for (shared_ptr<ISimulationEntity> entity : entities)
+		for (shared_ptr<ISimulationEntity> entity : entities_)
 		{
-			shared_ptr<GameObject> objEntity = std::dynamic_pointer_cast<GameObject>(entity);
-			if (objEntity && objEntity->mustBeReprinted)
+			shared_ptr<GameObject> obj_entity = std::dynamic_pointer_cast<GameObject>(entity);
+			if (obj_entity && obj_entity->must_be_reprinted_)
 				GameObject::InsertInListUsingRule
 				(
-					objEntity, toBePrintedObjects,
-					[](shared_ptr<GameObject> toInsertObj, shared_ptr<GameObject> listObject) { return  toInsertObj->GetSortingLayer() <= listObject->GetSortingLayer(); }
+					obj_entity, to_be_printed_objects,
+					[](shared_ptr<GameObject> to_insert_obj, shared_ptr<GameObject> list_object) { return  to_insert_obj->GetSortingLayer() <= list_object->GetSortingLayer(); }
 				);
 		}
 
 		//print objects
-		for (auto obj : toBePrintedObjects)
+		for (auto obj : to_be_printed_objects)
 		{
-			simulationPrinter->PrintObject(obj);
+			simulation_printer_->PrintObject(obj);
 			UnmarkObjectToReprint(obj);
 		}
 
 		// force all objects to be printed before proceding if needed
-		if(toBePrintedObjects.size() > 0)
+		if(to_be_printed_objects.size() > 0)
 			Terminal::Instance().Flush(); 
 
-		return toBePrintedObjects.size() > 0;
+		return to_be_printed_objects.size() > 0;
 	}
 
 
 	void Simulation::UpdateAllObjectsEndedCollisions()
 	{
-		for (auto& entity : entities)
+		for (auto& entity : entities_)
 		{
 			shared_ptr<Collider> collider = std::dynamic_pointer_cast<Collider>(entity);
 			if (collider != nullptr)
@@ -225,49 +225,49 @@ namespace Engine
 
 	void Simulation::UpdateObjectEndedCollisions(shared_ptr<Collider> collider)
 	{
-		int xPos = collider->GetPosX();
-		int yPos = collider->GetPosY();
-		int xMax = collider->GetMaxPosX();
-		int yMax = collider->GetMaxPosY();
+		int x_pos = collider->GetPosX();
+		int y_pos = collider->GetPosY();
+		int x_max = collider->GetMaxPosX();
+		int y_max = collider->GetMaxPosY();
 		size_t width = collider->GetModelWidth();
 		size_t height = collider->GetModelHeight();
-		bool canExitScreen = collider->CanExitScreenSpace();
+		bool can_exit_screen = collider->CanExitScreenSpace();
 
 		std::array<unordered_set<shared_ptr<Collider>>, 4> collisions;
 
 		//screen collisions
-		if (!canExitScreen && !IsCoordinateInsideScreenSpace(xPos, yMax + 1))
-			collisions[Direction::up].insert(WorldSpace::SCREEN_MARGIN);
-		if (!canExitScreen && !IsCoordinateInsideScreenSpace(xPos, yPos - 1))
-			collisions[Direction::down].insert(WorldSpace::SCREEN_MARGIN);
-		if (!canExitScreen && !IsCoordinateInsideScreenSpace(xMax + 1, yPos))
-			collisions[Direction::right].insert(WorldSpace::SCREEN_MARGIN);
-		if (!canExitScreen && !IsCoordinateInsideScreenSpace(xPos - 1, yPos))
-			collisions[Direction::left].insert(WorldSpace::SCREEN_MARGIN);
+		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos, y_max + 1))
+			collisions[Direction::kUp].insert(WorldSpace::kScreenMargin);
+		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos, y_pos - 1))
+			collisions[Direction::kDown].insert(WorldSpace::kScreenMargin);
+		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_max + 1, y_pos))
+			collisions[Direction::kRight].insert(WorldSpace::kScreenMargin);
+		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos - 1, y_pos))
+			collisions[Direction::kLeft].insert(WorldSpace::kScreenMargin);
 
 		// object-object collisions
-		worldSpace.IsCollidersAreaEmpty(xPos, yMax + 1, width, 1, collisions[Direction::up]);
-		worldSpace.IsCollidersAreaEmpty(xPos, yPos - 1, width, 1, collisions[Direction::down]);
-		worldSpace.IsCollidersAreaEmpty(xPos - 1, yPos, 1, height, collisions[Direction::left]);
-		worldSpace.IsCollidersAreaEmpty(xMax + 1, yPos, 1, height, collisions[Direction::right]);
+		world_space_.IsCollidersAreaEmpty(x_pos, y_max + 1, width, 1, collisions[Direction::kUp]);
+		world_space_.IsCollidersAreaEmpty(x_pos, y_pos - 1, width, 1, collisions[Direction::kDown]);
+		world_space_.IsCollidersAreaEmpty(x_pos - 1, y_pos, 1, height, collisions[Direction::kLeft]);
+		world_space_.IsCollidersAreaEmpty(x_max + 1, y_pos, 1, height, collisions[Direction::kRight]);
 
 		collider->CALLED_BY_SIM_UpdateEndedCollisions(collisions);
 	}
 
 	bool Simulation::TryAddEntity(shared_ptr<ISimulationEntity> entity)
 	{
-		shared_ptr<GameObject> objectEntity = std::dynamic_pointer_cast<GameObject>(entity);
+		shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<GameObject>(entity);
 
-		if (objectEntity != nullptr)
-			objectEntity->Init();
+		if (object_entity != nullptr)
+			object_entity->Init();
 
 		if (!CanEntityBeAdded(entity))
 			return false;
 		
-		if(objectEntity != nullptr)
-			worldSpace.InsertObject(objectEntity);
+		if(object_entity != nullptr)
+			world_space_.InsertObject(object_entity);
 
-		entities.insert(entity);
+		entities_.insert(entity);
 		return true;
 	}
 
@@ -279,7 +279,7 @@ namespace Engine
 		shared_ptr<const Collider> collider = std::dynamic_pointer_cast<const Collider>(entity);
 		if (collider != nullptr)
 		{
-			return worldSpace.IsCollidersAreaEmpty
+			return world_space_.IsCollidersAreaEmpty
 			(
 				collider->GetPosX(),
 				collider->GetPosY(),
@@ -291,40 +291,40 @@ namespace Engine
 			return true;
 	}
 
-	bool Simulation::IsEntityInSimulation(shared_ptr<ISimulationEntity> newEntity) const
+	bool Simulation::IsEntityInSimulation(shared_ptr<ISimulationEntity> new_entity) const
 	{
-		auto it = entities.find(newEntity);
-		return it != entities.end();
+		auto it = entities_.find(new_entity);
+		return it != entities_.end();
 	}
 
 	bool Simulation::TryMoveObjectAtDirection(shared_ptr<GameObject> obj, Direction direction)
 	{
-		unordered_set<shared_ptr<Collider>> outCollidingObjects;
+		unordered_set<shared_ptr<Collider>> out_colliding_objects;
 
-		shared_ptr<Collider> colliderObj = std::dynamic_pointer_cast<Collider>(obj);
+		shared_ptr<Collider> collider_obj = std::dynamic_pointer_cast<Collider>(obj);
 
-		if (worldSpace.CanObjectMoveAtDirection(obj, direction, outCollidingObjects) == false)
+		if (world_space_.CanObjectMoveAtDirection(obj, direction, out_colliding_objects) == false)
 		{
 			//remove entity if trying to move out of world space
-			if (outCollidingObjects.find(WorldSpace::WORLD_MARGIN) != outCollidingObjects.end())
+			if (out_colliding_objects.find(WorldSpace::kWorldMargin) != out_colliding_objects.end())
 			{
 				RemoveEntity(obj);
 			}
 			else
 			{
-				if (colliderObj != nullptr)
+				if (collider_obj != nullptr)
 				{
-					colliderObj->CALLED_BY_SIM_NotifyCollisionEnter(outCollidingObjects, direction);
+					collider_obj->CALLED_BY_SIM_NotifyCollisionEnter(out_colliding_objects, direction);
 
-					for (auto collidingObj : outCollidingObjects)
-						if (collidingObj != WorldSpace::SCREEN_MARGIN)
-							collidingObj->CALLED_BY_SIM_NotifyCollisionEnter(colliderObj, DirectionUtils::GetInverseDirection(direction));
+					for (auto colliding_obj : out_colliding_objects)
+						if (colliding_obj != WorldSpace::kScreenMargin)
+							colliding_obj->CALLED_BY_SIM_NotifyCollisionEnter(collider_obj, DirectionUtils::GetInverseDirection(direction));
 				}
 			}
 			return false;
 		}
 
-		worldSpace.MoveObject(obj, direction);
+		world_space_.MoveObject(obj, direction);
 
 		obj->CALLED_BY_SIM_Move(direction);
 
@@ -333,10 +333,10 @@ namespace Engine
 
 	void Simulation::LoadLevel(shared_ptr<Level> level)
 	{
-		this->level = level;
+		this->level_ = level;
 
-		entities.clear();
-		worldSpace.Init(level->GetWorldSizeX(), level->GetWorldSizeY(), level->GetScreenPadding());
+		entities_.clear();
+		world_space_.Init(level->GetWorldSizeX(), level->GetWorldSizeY(), level->GetScreenPadding());
 
 #if DEBUG_MODE
 		DebugManager::Instance().Reset(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding());
@@ -350,7 +350,7 @@ namespace Engine
 		Terminal::Instance().SetDefaultColors(level->GetDefaultFrontColor(), level->GetDefaultBackColor());
 		Terminal::Instance().Clear();
 
-		simulationPrinter = std::make_unique<SimulationPrinter>
+		simulation_printer_ = std::make_unique<SimulationPrinter>
 		(
 			GetScreenSizeX(),
 			GetScreenSizeY(),
@@ -359,42 +359,42 @@ namespace Engine
 			level->GetBackgroundFileName()
 		);
 
-		uiPrinter.reset();
-		uiPrinter = std::make_unique<UIPrinter>(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding(), level->GetMarginsColor());
+		ui_printer_.reset();
+		ui_printer_ = std::make_unique<UIPrinter>(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding(), level->GetMarginsColor());
 	}
 
-	bool Simulation::IsInsideScreenY(int yPos) const
+	bool Simulation::IsInsideScreenY(int y_pos) const
 	{
 		return
-			yPos >= GetScreenPadding() &&
-			yPos < GetWorldSizeY() - GetScreenPadding();
+			y_pos >= GetScreenPadding() &&
+			y_pos < GetWorldSizeY() - GetScreenPadding();
 	}
-	bool Simulation::IsInsideScreenX(int xPos) const
+	bool Simulation::IsInsideScreenX(int x_pos) const
 	{
 		return
-			xPos >= GetScreenPadding() &&
-			xPos < GetWorldSizeX() - GetScreenPadding();
+			x_pos >= GetScreenPadding() &&
+			x_pos < GetWorldSizeX() - GetScreenPadding();
 	}
 
-	void Simulation::MarkAreaToReprint(shared_ptr<GameObject> objArea)
+	void Simulation::MarkAreaToReprint(std::shared_ptr<GameObject> obj_area)
 	{
-		std::unordered_set<shared_ptr<GameObject>> toBeReprintedObjects = worldSpace.GetAreaTopLayerObjects(objArea);
-		for (shared_ptr<GameObject> obj : toBeReprintedObjects)
-			obj->mustBeReprinted = true;
+		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(obj_area);
+		for (shared_ptr<GameObject> obj : to_be_reprinted_objects)
+			obj->must_be_reprinted_ = true;
 	}
 
-	void Simulation::MarkAreaToReprintAfterMovement(shared_ptr<GameObject> obj, int oldPosX, int oldPosY)
+	void Simulation::MarkAreaToReprintAfterMovement(std::shared_ptr<GameObject> obj, int old_pos_x, int old_pos_y)
 	{
 		// finding area = combination of old position area + new position area
-		int minX = obj->GetPosX() < oldPosX ? obj->GetPosX() : oldPosX;
-		int minY = obj->GetPosY() < oldPosY ? obj->GetPosY() : oldPosY;
-		bool isMovementHorizontal = oldPosX != obj->GetPosX();
-		size_t width = isMovementHorizontal ? obj->GetModelWidth() + 1 : obj->GetModelWidth();
-		size_t height = !isMovementHorizontal ? obj->GetModelHeight() + 1 : obj->GetModelHeight();
+		int min_x = obj->GetPosX() < old_pos_x ? obj->GetPosX() : old_pos_x;
+		int min_y = obj->GetPosY() < old_pos_y ? obj->GetPosY() : old_pos_y;
+		bool is_movement_horizontal = old_pos_x != obj->GetPosX();
+		size_t width = is_movement_horizontal ? obj->GetModelWidth() + 1 : obj->GetModelWidth();
+		size_t height = !is_movement_horizontal ? obj->GetModelHeight() + 1 : obj->GetModelHeight();
 
-		std::unordered_set<shared_ptr<GameObject>> toBeReprintedObjects = worldSpace.GetAreaTopLayerObjects(minX, minY, width, height);
+		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(min_x, min_y, width, height);
 
-		for (shared_ptr<GameObject> obj : toBeReprintedObjects)
-			obj->mustBeReprinted = true;
+		for (shared_ptr<GameObject> obj : to_be_reprinted_objects)
+			obj->must_be_reprinted_ = true;
 	}
 }

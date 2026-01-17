@@ -22,19 +22,19 @@ namespace SpaceInvaders
 
 	double AliensController::GetSpeedX() const
 	{
-		return BASE_MOVE_SPEED +
-			GetEliminatedAliensMultiplier() * ALL_ALIENS_ELIMINATED_MOVE_SPEED_INCREMENT +
-			GetWaveMultiplier() * WAVE_NUMBER_SPEED_INCREASE_FACTOR;
+		return kBaseMoveSpeed +
+			GetEliminatedAliensMultiplier() * kAllAliensEliminatedMoveSpeedIncrement +
+			GetWaveMultiplier() * kWaveNumberSpeedIncreaseFactor;
 	}
 
 	double AliensController::GetNextShotDelay()const
 	{
-		double delay = BASE_SHOOT_DELAY -
-			GetEliminatedAliensMultiplier() * ALL_ALIENS_ELIMINATED_SHOOT_DELAY_REDUCTION -
-			GetWaveMultiplier() * WAVE_NUMBER_SHOT_DELAY_REDUCTION_FACTOR +
-			RandomUtils::GetRandomDouble(-SHOTS_RANDOMNESS / 2, SHOTS_RANDOMNESS / 2);
+		double delay = kBaseShootDelay -
+			GetEliminatedAliensMultiplier() * kAllAliensEliminatedShootDelayReduction -
+			GetWaveMultiplier() * kWaveNumberShotDelayReductionFactor +
+			RandomUtils::GetRandomDouble(-kShotsRandomness / 2, kShotsRandomness / 2);
 
-		return delay > MIN_SHOW_DELAY ? delay : MIN_SHOW_DELAY;
+		return delay > kMinShowDelay ? delay : kMinShowDelay;
 	}
 
 	double AliensController::GetEliminatedAliensMultiplier()const
@@ -47,11 +47,11 @@ namespace SpaceInvaders
 		return static_cast<double>((level->GetWaveNumber() - 1));
 	}
 
-	void AliensController::Reset(int aliensCountX, int aliensCountY)
+	void AliensController::Reset(int aliens_count_x, int aliens_count_y)
 	{
-		aliensCount = aliensCountX * aliensCountY;
-		aliensGrid.Resize(aliensCountX, aliensCountY);
-		frontLine.Init(aliensCountX);
+		aliens_count_ = aliens_count_x * aliens_count_y;
+		aliensGrid.Resize(aliens_count_x, aliens_count_y);
+		frontLine.Init(aliens_count_x);
 	}
 
 	void AliensController::Update()
@@ -68,37 +68,37 @@ namespace SpaceInvaders
 		HandleShooting();
 	}
 
-	void AliensController::RegisterAlien(shared_ptr<Alien> alien, int xPos, int yPos)
+	void AliensController::RegisterAlien(shared_ptr<Alien> alien, int x_pos, int y_pos)
 	{
 		assert(alien != nullptr);
-		assert(yPos < GetAliensGridHeight());
-		assert(xPos < GetAliensGridWidth());
+		assert(y_pos < GetAliensGridHeight());
+		assert(x_pos < GetAliensGridWidth());
 
-		aliensGrid.Get(xPos, yPos) = alien;
+		aliensGrid.Get(x_pos, y_pos) = alien;
 
-		if (yPos == GetAliensGridHeight() - 1)
-			frontLine.Set(xPos, alien);
+		if (y_pos == GetAliensGridHeight() - 1)
+			frontLine.Set(x_pos, alien);
 
-		alien->OnMove.Subscribe
+		alien->on_move.Subscribe
 		(
 			[this](weak_ptr<GameObject> alien, Direction dir) { OnAlienMovedCallback(alien, dir); }
 		);
 
-		alien->OnDestroyEvent.Subscribe
+		alien->on_destroy_event.Subscribe
 		(
-			[this](weak_ptr<Collider> alienObj) { OnAlienDestroyedCallback(alienObj); }
+			[this](weak_ptr<Collider> alien_obj) { OnAlienDestroyedCallback(alien_obj); }
 		);
 	}
 
-	void AliensController::OnAlienMovedCallback(weak_ptr<GameObject> alienWeak, Direction moveDirection)
+	void AliensController::OnAlienMovedCallback(weak_ptr<GameObject> alien_weak, Direction move_direction)
 	{
-		shared_ptr<GameObject> alien = alienWeak.lock();
-		if (moveDirection == xMoveDirection && alien != nullptr)
+		shared_ptr<GameObject> alien = alien_weak.lock();
+		if (move_direction == x_move_direction_ && alien != nullptr)
 		{
-			int alienXPos = alien->GetPosX();
+			int alien_x_pos = alien->GetPosX();
 			if (
-				alienXPos == level->GetScreenPadding() ||
-				alienXPos == level->GetWorldSizeX() - level->GetScreenPadding() - alien->GetModelWidth()
+				alien_x_pos == level->GetScreenPadding() ||
+				alien_x_pos == level->GetWorldSizeX() - level->GetScreenPadding() - alien->GetModelWidth()
 				)
 				OnAliensReachMargin();
 		}
@@ -118,50 +118,50 @@ namespace SpaceInvaders
 
 	void AliensController::OnAliensReachMargin()
 	{
-		xMoveDirection = DirectionUtils::GetInverseDirection(xMoveDirection);
-		isTimeToMoveAliensDown = true;
+		x_move_direction_ = DirectionUtils::GetInverseDirection(x_move_direction_);
+		is_time_to_move_aliens_down_ = true;
 	}
 
 	static int calledTimes = 0;
 
-	void AliensController::OnAlienDestroyedCallback(weak_ptr<GameObject> alienObjWeak)
+	void AliensController::OnAlienDestroyedCallback(weak_ptr<GameObject> alien_obj_weak)
 	{
-		shared_ptr<GameObject> alienObj = alienObjWeak.lock();
-		if (alienObj != nullptr)
+		shared_ptr<GameObject> alien_obj = alien_obj_weak.lock();
+		if (alien_obj != nullptr)
 		{
-			shared_ptr<Alien> alien = std::dynamic_pointer_cast<Alien>(alienObj);
+			shared_ptr<Alien> alien = std::dynamic_pointer_cast<Alien>(alien_obj);
 			frontLine.ReplaceDestroyedElement(alien, aliensGrid);
 
-			--aliensCount;
-			if (aliensCount == 0)
-				OnWaveCompleted.Notify();
+			--aliens_count_;
+			if (aliens_count_ == 0)
+				on_wave_completed.Notify();
 		}
 	}
 
 	void AliensController::HandleShooting()
 	{
-		if (Engine::TimeManager::Instance().GetTime() - lastShotTime > shotDelay)
+		if (Engine::TimeManager::Instance().GetTime() - last_shot_time_ > shot_delay_)
 		{
-			shared_ptr<Alien> frontLineAlien = frontLine.GetRandom();
-			if (frontLineAlien == nullptr)
+			shared_ptr<Alien> front_line_alien = frontLine.GetRandom();
+			if (front_line_alien == nullptr)
 				return;
-			frontLineAlien->Shot();
-			lastShotTime = Engine::TimeManager::Instance().GetTime();
-			shotDelay = GetNextShotDelay();
+			front_line_alien->Shot();
+			last_shot_time_ = Engine::TimeManager::Instance().GetTime();
+			shot_delay_ = GetNextShotDelay();
 		}
 	}
 
 	void AliensController::HandleMovement()
 	{
-		if (isTimeToMoveAliensDown)
+		if (is_time_to_move_aliens_down_)
 		{
-			if (frontLine.GetMinY() - 1 <= level->GAME_OVER_Y)
-				OnGroundTouched.Notify();
+			if (frontLine.GetMinY() - 1 <= SpaceInvadersLevel::kGameOverY)
+				on_ground_touched.Notify();
 
-			MoveAliens(Direction::down, 9999);
-			isTimeToMoveAliensDown = false;
+			MoveAliens(Direction::kDown, 9999);
+			is_time_to_move_aliens_down_ = false;
 		}
 		else
-			MoveAliens(xMoveDirection, GetSpeedX());
+			MoveAliens(x_move_direction_, GetSpeedX());
 	}
 }

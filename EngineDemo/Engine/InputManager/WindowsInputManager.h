@@ -12,26 +12,26 @@ class WindowsInputManager : public nbase_kit::Singleton<WindowsInputManager>, pu
 private:
     inline static const  std::unordered_map<Key, int> keyMap =
     {
-        {Key::SPACE, VK_SPACE},
-        {Key::W, 0x57},
-        {Key::A, 0x41},
-        {Key::S, 0x53},
-        {Key::D, 0x44},
-        {Key::ARROW_UP, VK_UP},
-        {Key::ARROW_DOWN, VK_DOWN},
-        {Key::ARROW_LEFT, VK_LEFT},
-        {Key::ARROW_RIGHT, VK_RIGHT},
-        {Key::NUM_0, 0x30},
-        {Key::NUM_1, 0x31},
-        {Key::NUM_2, 0x32},
-        {Key::NUM_3, 0x33},
-        {Key::NUM_4, 0x34},
-        {Key::NUM_5, 0x35},
-        {Key::NUM_6, 0x36},
-        {Key::NUM_7, 0x37},
-        {Key::NUM_8, 0x38},
-        {Key::NUM_9, 0x39},
-        {Key::ESC, VK_ESCAPE}
+        {Key::kSpace, VK_SPACE},
+        {Key::kW, 0x57},
+        {Key::kA, 0x41},
+        {Key::kS, 0x53},
+        {Key::kD, 0x44},
+        {Key::kArrowUp, VK_UP},
+        {Key::kArrowDown, VK_DOWN},
+        {Key::kArrowLeft, VK_LEFT},
+        {Key::kArrowRight, VK_RIGHT},
+        {Key::kNum0, 0x30},
+        {Key::kNum1, 0x31},
+        {Key::kNum2, 0x32},
+        {Key::kNum3, 0x33},
+        {Key::kNum4, 0x34},
+        {Key::kNum5, 0x35},
+        {Key::kNum6, 0x36},
+        {Key::kNum7, 0x37},
+        {Key::kNum8, 0x38},
+        {Key::kNum9, 0x39},
+        {Key::kEsc, VK_ESCAPE}
     };
     
 public:

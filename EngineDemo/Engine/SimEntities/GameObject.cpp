@@ -7,11 +7,11 @@ using std::weak_ptr;
 
 namespace Engine
 {
-	GameObject::GameObject(int xPos, int yPos) :
-		xPos(xPos),
-		yPos(yPos),
-		xPosContinuous(xPos),
-		yPosContinuous(yPos)
+	GameObject::GameObject(int x_pos, int y_pos) :
+		x_pos_(x_pos),
+		y_pos_(y_pos),
+		x_pos_continuous_(x_pos),
+		y_pos_continuous_(y_pos)
 	{
 		ResetPartialMovement();
 	}
@@ -23,65 +23,65 @@ namespace Engine
 
 	void GameObject::ApplyGravity()
 	{
-		double gravityScale = GetGravityScale();
-		if (gravityScale == 0)
+		double gravity_scale = GetGravityScale();
+		if (gravity_scale == 0)
 			return;
-		if (gravityScale > 0)
-			TryMove(Direction::down, gravityScale);
+		if (gravity_scale > 0)
+			TryMove(Direction::kDown, gravity_scale);
 		else
-			TryMove(Direction::up, gravityScale);
+			TryMove(Direction::kUp, gravity_scale);
 	}
 
-	void GameObject::TryMove(Direction direction, double moveSpeed)
+	void GameObject::TryMove(Direction direction, double move_speed)
 	{
-		if (canMove == false)
+		if (can_move_ == false)
 			return;
 
-		moveSpeed = abs(moveSpeed);
-		double deltaTime = TimeManager::Instance().GetFixedDeltaTime();
+		move_speed = abs(move_speed);
+		double delta_time = TimeManager::Instance().GetFixedDeltaTime();
 
 		switch (direction)
 		{
-		case Direction::up:
-			yPosContinuous += moveSpeed * deltaTime;
+		case Direction::kUp:
+			y_pos_continuous_ += move_speed * delta_time;
 			break;
-		case Direction::down:
-			yPosContinuous -= moveSpeed * deltaTime;
+		case Direction::kDown:
+			y_pos_continuous_ -= move_speed * delta_time;
 			break;
-		case Direction::right:
-			xPosContinuous += moveSpeed * deltaTime;
+		case Direction::kRight:
+			x_pos_continuous_ += move_speed * delta_time;
 			break;
-		case Direction::left:
-			xPosContinuous -= moveSpeed * deltaTime;
+		case Direction::kLeft:
+			x_pos_continuous_ -= move_speed * delta_time;
 			break;
 		}
 
-		if (direction == Direction::left || direction == Direction::right)
+		if (direction == Direction::kLeft || direction == Direction::kRight)
 		{
-			if (round(xPosContinuous) != xPos)
-				Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, moveSpeed);
+			if (round(x_pos_continuous_) != x_pos_)
+				Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, move_speed);
 		}
-		else if (round(yPosContinuous) != yPos)
-			Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, moveSpeed);
+		else if (round(y_pos_continuous_) != y_pos_)
+			Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, move_speed);
 	}
 
-	Model GameObject::CreteModelUsingChar(char modelChar, size_t sizeX, size_t sizeY) const
+	Model GameObject::CreteModelUsingChar(char model_char, size_t size_x, size_t size_y) const
 	{
 		Model result;
-		result.Resize(sizeX, sizeY);
+		result.Resize(size_x, size_y);
 
 		for (auto& elem : result)
-			elem = modelChar;
+			elem = model_char;
 
 		return result;
 	}
 
-	void GameObject::SetModel(const Model& newModel)
+	void GameObject::SetModel(const Model& new_model)
 	{
-		if (model == &newModel)
+		if (model_ == &new_model)
 			return;
 
-		model = &newModel;
+		model_ = &new_model;
 
 		Simulation::Instance().MarkAreaToReprint(std::dynamic_pointer_cast<GameObject>(shared_from_this()));
 	}
@@ -90,42 +90,42 @@ namespace Engine
 	{
 		switch (direction)
 		{
-		case Direction::up:
-			++yPos;
-			yPosContinuous = yPos;
+		case Direction::kUp:
+			++y_pos_;
+			y_pos_continuous_ = y_pos_;
 			break;
-		case Direction::down:
-			--yPos;
-			yPosContinuous = yPos;
+		case Direction::kDown:
+			--y_pos_;
+			y_pos_continuous_ = y_pos_;
 			break;
-		case Direction::right:
-			++xPos;
-			xPosContinuous = xPos;
+		case Direction::kRight:
+			++x_pos_;
+			x_pos_continuous_ = x_pos_;
 			break;
-		case Direction::left:
-			--xPos;
-			xPosContinuous = xPos;
+		case Direction::kLeft:
+			--x_pos_;
+			x_pos_continuous_ = x_pos_;
 			break;
 		}
-		OnMove.Notify(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction);
+		on_move.Notify(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction);
 	}
 
-	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<shared_ptr<GameObject>>& list, bool(*InsertRule)(shared_ptr<GameObject> newItem, shared_ptr<GameObject> listItem))
+	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<shared_ptr<GameObject>>& list, bool(*insert_rule)(shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item))
 	{
 		auto it = list.begin();
 		for (; it != list.end(); ++it)
-			if(InsertRule(obj,*it))
+			if(insert_rule(obj,*it))
 				break;
 		list.insert(it, obj);
 	}
 
-	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<weak_ptr<GameObject>>& list, bool(*InsertRule)(shared_ptr<GameObject> newItem, shared_ptr<GameObject> listItem))
+	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<weak_ptr<GameObject>>& list, bool(*insert_rule)(shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item))
 	{
 		auto it = list.begin();
 		for (; it != list.end(); ++it)
 		{
-			auto itSharedPtr = it->lock();
-			if (itSharedPtr != nullptr && InsertRule(obj, itSharedPtr))
+			auto it_shared_ptr = it->lock();
+			if (it_shared_ptr != nullptr && insert_rule(obj, it_shared_ptr))
 				break;
 		}
 		list.insert(it, obj);

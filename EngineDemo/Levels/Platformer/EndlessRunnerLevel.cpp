@@ -18,41 +18,34 @@ using WindowPosition = Engine::UIPrinter::WindowPosition;
 
 namespace Platformer
 {
-    const std::array<const char*, EndlessRunnerLevel::MUSIC_FILES_COUNT> EndlessRunnerLevel::MUSIC_FILES =
-    {
-        "Resources/Music/1.wav",
-        "Resources/Music/2.wav",
-        "Resources/Music/3.wav"
-    };
-
     void EndlessRunnerLevel::OnPostGameOverDelayEnded()
     {
         Level::OnPostGameOverDelayEnded();
         int score = static_cast<int>(GetLevelTime());
 
-        int savedBestScore = Engine::PersistenceManager::LoadBestScore(GetPersistenceFilePath());
-        if (score > savedBestScore)
+        int saved_best_score = Engine::PersistenceManager::LoadBestScore(GetPersistenceFilePath());
+        if (score > saved_best_score)
             Engine::PersistenceManager::SaveBestScore(GetPersistenceFilePath(), score);
 
-        ShowGameOverScreen(score, savedBestScore);
+        ShowGameOverScreen(score, saved_best_score);
         Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Platform/ShowEndScreen.wav");
     }
 
-    void EndlessRunnerLevel::ShowGameOverScreen(int score, int bestScore)
+    void EndlessRunnerLevel::ShowGameOverScreen(int score, int best_score)
     {
         //setup gameover message
-        string messageEnding = score > bestScore ? "new record!" : ("best: " + std::to_string(bestScore));
-        string message = "you survived for " + std::to_string(score) + " seconds, " + messageEnding;
+        string message_ending = score > best_score ? "new record!" : ("best: " + std::to_string(best_score));
+        string message = "you survived for " + std::to_string(score) + " seconds, " + message_ending;
 
         //center message
-        string leftSpacing = "";
+        string left_spacing = "";
         for (int i = 0; i < (42 - message.size()) / 2; ++i)
-            leftSpacing += " ";
-        message = leftSpacing + message;
+            left_spacing += " ";
+        message = left_spacing + message;
 
-        gameOverWindow.WriteString(message, '$');
+        game_over_window_.WriteString(message, '$');
 
-        Engine::Simulation::Instance().GetUIPrinter().PrintWindow(gameOverWindow, Engine::Color::WHITE, WindowPosition::CenterX_TopY);
+        Engine::Simulation::Instance().GetUIPrinter().PrintWindow(game_over_window_, Engine::color::kWhite, WindowPosition::kCenterXTopY);
     }
 
     void EndlessRunnerLevel::OnGameOver()
@@ -73,7 +66,7 @@ namespace Platformer
         //----------------- bunny setup
         int bunnyStartingY = static_cast<int>(simulation.GetScreenPadding());
         shared_ptr<Bunny> bunny = std::make_shared<Bunny>(9, bunnyStartingY);
-        bunny->OnObstacleHit.Subscribe([this]() { OnGameOver(); });
+        bunny->on_obstacle_hit.Subscribe([this]() { OnGameOver(); });
         simulation.TryAddEntity(bunny);
 
         //----------------- obstacles spawner setup
@@ -129,20 +122,20 @@ namespace Platformer
 
     void EndlessRunnerLevel::PlayRandomMusic()
     {
-        const char* randomMusic = MUSIC_FILES[RandomUtils::GetRandomInt(0, static_cast<int>(MUSIC_FILES.size() - 1))];
+        const char* randomMusic = kMusicFiles[RandomUtils::GetRandomInt(0, static_cast<int>(kMusicFiles.size() - 1))];
         Engine::AudioManager::Instance().PlayMusic(randomMusic);
     }
 
     void EndlessRunnerLevel::Update()
     {
         Level::Update();
-        double runTime = Engine::Simulation::Instance().GetActiveLevel()->GetLevelTime();
-        int newTime = static_cast<int>(runTime);
-        if (shownTime != newTime)
+        double run_time = Engine::Simulation::Instance().GetActiveLevel()->GetLevelTime();
+        int new_time = static_cast<int>(run_time);
+        if (shown_time_ != new_time)
         {
-            string header = "TIME: " + std::to_string(newTime);
-            Engine::Simulation::Instance().GetUIPrinter().PrintOnHeader(header, 0, Engine::Color::WHITE);
-            shownTime = newTime;
+            string header = "TIME: " + std::to_string(new_time);
+            Engine::Simulation::Instance().GetUIPrinter().PrintOnHeader(header, 0, Engine::color::kWhite);
+            shown_time_ = new_time;
         }
     }
 

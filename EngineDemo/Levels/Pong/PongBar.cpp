@@ -9,19 +9,19 @@ namespace Pong
 {
     PongBar::PongBar
     (
-        int xPos,
-        int yPos,
-        size_t sizeX,
-        size_t sizeY,
-        char modelChar,
-        double moveSpeed,
-        double deflectBallFactor,
-        bool isBottomBar
+        int x_pos,
+        int y_pos,
+        size_t size_x,
+        size_t size_y,
+        char model_char,
+        double move_speed,
+        double deflect_ball_factor,
+        bool is_bottom_bar
     ) :
-        VariableSizeCollider(xPos, yPos, sizeX, sizeY, modelChar),
-        moveSpeed(moveSpeed),
-        deflectBallFactor(deflectBallFactor),
-        isBottomBar(isBottomBar)
+        VariableSizeCollider(x_pos, y_pos, size_x, size_y, model_char),
+        move_speed_(move_speed),
+        deflect_ball_factor_(deflect_ball_factor),
+        is_bottom_bar_(is_bottom_bar)
     {
     }
 
@@ -30,10 +30,10 @@ namespace Pong
         if (Engine::Simulation::Instance().GetActiveLevel()->IsGameOver())
             return;
 
-        if ((isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A)) || !isBottomBar && Engine::InputManager::Instance().Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_LEFT))
-            TryMove(Direction::left, moveSpeed);
-        else if ((isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D)) || (!isBottomBar && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_RIGHT)))
-            TryMove(Direction::right, moveSpeed);
+        if ((is_bottom_bar_ && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kA)) || !is_bottom_bar_ && Engine::InputManager::Instance().Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kArrowLeft))
+            TryMove(Direction::kLeft, move_speed_);
+        else if ((is_bottom_bar_ && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kD)) || (!is_bottom_bar_ && Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kArrowRight)))
+            TryMove(Direction::kRight, move_speed_);
     }
 
 }

@@ -4,7 +4,7 @@
 
 namespace Engine
 {
-	enum Direction { up, down, left, right, COUNT };
+	enum Direction { kUp, kDown, kLeft, kRight, kCount };
 }
 
 namespace DirectionUtils
@@ -13,14 +13,14 @@ namespace DirectionUtils
 	{
 		switch (direction)
 		{
-		case Engine::Direction::up:
-			return Engine::Direction::down;
-		case Engine::Direction::down:
-			return Engine::Direction::up;
-		case Engine::Direction::left:
-			return Engine::Direction::right;
-		case Engine::Direction::right:
-			return Engine::Direction::left;
+		case Engine::Direction::kUp:
+			return Engine::Direction::kDown;
+		case Engine::Direction::kDown:
+			return Engine::Direction::kUp;
+		case Engine::Direction::kLeft:
+			return Engine::Direction::kRight;
+		case Engine::Direction::kRight:
+			return Engine::Direction::kLeft;
 		default:
 			throw std::invalid_argument("Invalid direction");
 		}
@@ -30,14 +30,14 @@ namespace DirectionUtils
 	{
 		switch (direction)
 		{
-		case Engine::Direction::up:
-			return Engine::Direction::right;
-		case Engine::Direction::down:
-			return Engine::Direction::left;
-		case Engine::Direction::left:
-			return Engine::Direction::up;
-		case Engine::Direction::right:
-			return Engine::Direction::down;
+		case Engine::Direction::kUp:
+			return Engine::Direction::kRight;
+		case Engine::Direction::kDown:
+			return Engine::Direction::kLeft;
+		case Engine::Direction::kLeft:
+			return Engine::Direction::kUp;
+		case Engine::Direction::kRight:
+			return Engine::Direction::kDown;
 		default:
 			throw std::invalid_argument("Invalid direction");
 		}
@@ -45,7 +45,7 @@ namespace DirectionUtils
 
 	inline bool IsDirectionHorizontal(Engine::Direction dir)
 	{
-		assert(dir != Engine::Direction::COUNT);
-		return dir == Engine::Direction::left || dir == Engine::Direction::right;
+		assert(dir != Engine::Direction::kCount);
+		return dir == Engine::Direction::kLeft || dir == Engine::Direction::kRight;
 	}
 }

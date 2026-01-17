@@ -11,19 +11,19 @@ namespace Engine
     {
         //------------------------------------------ Settings
     private:
-        const TerminalColor DEBUG_COLOR = Color::CYAN;
-        const size_t FPS_POSITION = 1;
-        const size_t POSITION_COUT_CALLS = 2;
-        const size_t GENERIC_LOG_POSITION = 3;
+        static constexpr TerminalColor kDebugColor = color::kCyan;
+        static constexpr size_t kFpsPosition = 1;
+        static constexpr size_t kPositoinCoutCalls = 2;
+        static constexpr size_t kGenericLogPosition = 3;
 
         //------------------------------------------ Methodss
     public:
         using Printer::Printer;
 
     public:
-        void PrintCoutCallsCount(size_t coutCallsCount);
+        void PrintCoutCallsCount(size_t cout_calls_count);
         void PrintFpsString(size_t fps);
-        void PrintGenericLog(const std::string& log, int lineIndex);
+        void PrintGenericLog(const std::string& log, int line_index);
 
     };
 }

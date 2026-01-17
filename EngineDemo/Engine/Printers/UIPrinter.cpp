@@ -4,29 +4,29 @@ using std::string;
 
 namespace Engine
 {
-    UIPrinter::UIPrinter(size_t screenSizeX, size_t screenSizeY, size_t screenPadding, TerminalColor marginsColor) :
-        Printer(screenSizeX, screenSizeY, screenPadding)
+    UIPrinter::UIPrinter(size_t screen_size_x, size_t screen_size_y, size_t screen_padding, TerminalColor margins_color) :
+        Printer(screen_size_x, screen_size_y, screen_padding)
     {
-        DrawMargins(marginsColor);
+        DrawMargins(margins_color);
     };
 
-    void UIPrinter::PrintWindow(const Frame& window, TerminalColor color, WindowPosition windowPosition)
+    void UIPrinter::PrintWindow(const Frame& window, TerminalColor color, WindowPosition window_position)
     {
         if (window.GetSizeY() == 0)
             return;
 
-        assert(screenSizeX > window.GetSizeX());
-        size_t leftwindowOffset = (screenSizeX - window.GetSizeX()) / 2;
+        assert(screen_size_x_ > window.GetSizeX());
+        size_t left_window_offset = (screen_size_x_ - window.GetSizeX()) / 2;
 
-        size_t printStartY;
-        switch (windowPosition)
+        size_t print_start_y;
+        switch (window_position)
         {
-        case WindowPosition::CenterX_CenterY:
-            printStartY = screenSizeY / 2 - window.GetSizeY() / 2;
+        case WindowPosition::kCenterXCenterY:
+            print_start_y = screen_size_y_ / 2 - window.GetSizeY() / 2;
             break;
 
-        case WindowPosition::CenterX_TopY:
-            printStartY = TOP_MARGIN_SIZE;
+        case WindowPosition::kCenterXTopY:
+            print_start_y = kTopMarginSize;
             break;
         }
 
@@ -37,44 +37,43 @@ namespace Engine
             for (size_t x = 0; x < window.GetSizeX(); ++x)
                 line += window.chars.Get(x, y);
 
-            //terminal.SetCursorPosition(leftwindowOffset + MARGIN_OFFSET_X, GetMaxTerminalY() - y - MARGIN_OFFSET_BOTTOM_Y);
-            terminal.SetCursorPosition(leftwindowOffset + LEFT_MARGIN_SIZE, y + printStartY);
-            terminal.Cout(line);
+            terminal_.SetCursorPosition(left_window_offset + kLeftMarginSize, y + print_start_y);
+            terminal_.Cout(line);
         }
     }
 
-    void UIPrinter::PrintOnHeader(const string& header, int xPos, TerminalColor color)
+    void UIPrinter::PrintOnHeader(const string& header, int x_pos, TerminalColor color)
     {
-        terminal.SetColor(color);
-        terminal.SetCursorPosition(xPos, 0);
-        terminal.Cout(header);
+        terminal_.SetColor(color);
+        terminal_.SetCursorPosition(x_pos, 0);
+        terminal_.Cout(header);
     }
 
     void UIPrinter::DrawMargins(TerminalColor color)
     {
-        terminal.SetColor(color);
+        terminal_.SetColor(color);
 
         //horizontal
-        terminal.SetCursorPosition(0, 1);
+        terminal_.SetCursorPosition(0, 1);
         DrawHorizontalMargin();
-        terminal.SetCursorPosition(0, static_cast<int>(GetMaxTerminalY()));
+        terminal_.SetCursorPosition(0, static_cast<int>(GetMaxTerminalY()));
         DrawHorizontalMargin();
 
         //vertical
-        for (size_t y = TOP_MARGIN_SIZE; y < GetMaxTerminalY(); ++y)
+        for (size_t y = kTopMarginSize; y < GetMaxTerminalY(); ++y)
         {
-            terminal.SetCursorPosition(size_t(0), y);
-            terminal.Cout(MARGIN_VERTICAL_CHAR);
-            terminal.SetCursorPosition(GetMaxTerminalX(), y);
-            terminal.Cout(MARGIN_VERTICAL_CHAR);
+            terminal_.SetCursorPosition(size_t(0), y);
+            terminal_.Cout(kMarginVerticalChar);
+            terminal_.SetCursorPosition(GetMaxTerminalX(), y);
+            terminal_.Cout(kMarginVerticalChar);
         }
     }
 
     void UIPrinter::DrawHorizontalMargin()
     {
         string line = "";
-        for (int x = 0; x < screenSizeX + 2; ++x)
-            line += MARGIN_HORIZONTAL_CHAR;
-        terminal.Cout(line);
+        for (int x = 0; x < screen_size_x_ + 2; ++x)
+            line += kMarginHorizontalChar;
+        terminal_.Cout(line);
     }
 }

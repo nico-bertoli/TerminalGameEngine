@@ -9,7 +9,7 @@ namespace SpaceInvaders
 	public:
 		using Collider::Collider;
 	protected:
-		bool isFirsAnimationFrameTime;
+		bool isFirsAnimationFrameTime_;
 
 		//------------------------------------------------------ Methods
 	public:
@@ -18,6 +18,6 @@ namespace SpaceInvaders
 	protected:
 		double GetGravityScale() const override { return 0; }
 		void OnDestroy() override;
-		virtual Engine::TerminalColor GetDestroyedParticlesColor() { return Engine::Color::GREEN; }
+		virtual Engine::TerminalColor GetDestroyedParticlesColor() { return Engine::color::kGreen; }
 	};
 }

@@ -13,7 +13,7 @@ using std::shared_ptr;
 
 namespace SpaceInvaders
 {
-    const Model PlayerTank::MODEL
+    const Model PlayerTank::kModel
     (
         5,
         {
@@ -33,30 +33,30 @@ namespace SpaceInvaders
 
     void PlayerTank::HandleMovement()
     {
-        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_LEFT))
-            TryMove(Direction::left, MOVE_SPEED);
-        else if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::ARROW_RIGHT))
-            TryMove(Direction::right, MOVE_SPEED);
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kA) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kArrowLeft))
+            TryMove(Direction::kLeft, kMoveSpeed);
+        else if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kD) || Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kArrowRight))
+            TryMove(Direction::kRight, kMoveSpeed);
     }
 
     void PlayerTank::HandleShooting()
     {
-        if (level->IsLoadingWave())
+        if (level_->IsLoadingWave())
             return;
 
-        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE))
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kSpace))
         {
             double time = Engine::TimeManager::Instance().GetTime();
 
 #if CHEAT_SPACEINV_FAST_FIRE
-            if (time - lastTimeShot > 0.08)
-                lastTimeShot = -99;
+            if (time - last_time_shot_ > 0.08)
+                last_time_shot_ = -99;
 #endif
 
-            if (time - lastTimeShot > SHOTS_DELAY)
+            if (time - last_time_shot_ > kShotsDelay)
             {
-                lastTimeShot = Engine::TimeManager::Instance().GetTime();
-                shared_ptr<PlayerProjectile> projectile = std::make_shared<PlayerProjectile>(GetMidPosX(), GetMaxPosY() + 1, Direction::up, PROJECTILE_SPEED);
+                last_time_shot_ = Engine::TimeManager::Instance().GetTime();
+                shared_ptr<PlayerProjectile> projectile = std::make_shared<PlayerProjectile>(GetMidPosX(), GetMaxPosY() + 1, Direction::kUp, kProjectileSpeed);
                 Engine::Simulation::Instance().TryAddEntity(projectile);
                 Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/Shot1.wav");
             }
@@ -66,10 +66,10 @@ namespace SpaceInvaders
     void PlayerTank::TakeDamage()
     {
 #if !CHEAT_SPACEINV_INVINCIBILITY
-        health--;
-        OnDamageTaken.Notify(health);
+        health_--;
+        on_damage_taken.Notify(health_);
 
-        if (health > 0)
+        if (health_ > 0)
             Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/DamageTaken.wav");
 #endif
     }

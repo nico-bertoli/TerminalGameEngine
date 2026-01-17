@@ -8,32 +8,32 @@ using std::string;
 
 namespace Engine
 {
-    void DebugPrinter::PrintCoutCallsCount(size_t coutCallsCount)
+    void DebugPrinter::PrintCoutCallsCount(size_t cout_calls_count)
     {
         TerminalColor originalFrontColor = Terminal::Instance().GetFrontColor();
         TerminalColor originalBackColor = Terminal::Instance().GetBackColor();
 
-        Terminal::Instance().SetColor(DEBUG_COLOR);
-        terminal.SetCursorPosition(0, GetMaxTerminalY() + POSITION_COUT_CALLS);
+        Terminal::Instance().SetColor(kDebugColor);
+        terminal_.SetCursorPosition(0, GetMaxTerminalY() + kPositoinCoutCalls);
         //final space makes sure old string is cleared
-        string output = "COUT CALLS: " + std::to_string(coutCallsCount) + string("     ");
+        string output = "COUT CALLS: " + std::to_string(cout_calls_count) + string("     ");
         std::cout << output;
 
-        terminal.SetColor(originalFrontColor, originalBackColor);
+        terminal_.SetColor(originalFrontColor, originalBackColor);
     }
 
     void DebugPrinter::PrintFpsString(size_t fps)
     {
-        terminal.SetColor(DEBUG_COLOR);
-        terminal.SetCursorPosition(0, GetMaxTerminalY() + FPS_POSITION);
+        terminal_.SetColor(kDebugColor);
+        terminal_.SetCursorPosition(0, GetMaxTerminalY() + kFpsPosition);
         string output = "FPS: " + std::to_string(fps) + '\n';
         std::cout << output;
     }
 
-    void DebugPrinter::PrintGenericLog(const string& log, int lineIndex)
+    void DebugPrinter::PrintGenericLog(const string& log, int line_index)
     {
-        terminal.SetColor(DEBUG_COLOR);
-        terminal.SetCursorPosition(0, GetMaxTerminalY() + GENERIC_LOG_POSITION + lineIndex);
+        terminal_.SetColor(kDebugColor);
+        terminal_.SetCursorPosition(0, GetMaxTerminalY() + kGenericLogPosition + line_index);
         std::cout << log;
     }
 }

@@ -15,86 +15,86 @@ using std::shared_ptr;
 namespace Platformer
 {
     //---------------------------------------------------------- Models
-    const Model Bunny::MODEL_WALK_LEFT
+    const Model Bunny::kModelWalkLeft
     (
         5,
         {
             '(', '\\', '(', '\\', ' ' ,
-            '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-            '/', CHAR_FOOT_UP, CHAR_CHEST, '_', '|'
+            '(', kCharEye, kCharNose, kCharEye, ')',
+            '/', kCharFootUp, kCharChest, '_', '|'
         }
     );
 
 
-    const Model Bunny::MODEL_WALK_RIGHT
+    const Model Bunny::kModelWalkRight
     (
         5,
         {
             ' ', '/', ')', '/', ')' ,
-            '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')' ,
-            '|', '_', CHAR_CHEST, CHAR_FOOT_UP, '\\'
+            '(', kCharEye, kCharNose, kCharEye, ')' ,
+            '|', '_', kCharChest, kCharFootUp, '\\'
         }
     );
 
 
-    const Model Bunny::MODEL_JUMP_RIGHT
+    const Model Bunny::kModelJumpRight
     (
         5,
         {
             ' ', '/', ')', '/', ')' ,
-             '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')' ,
-             '\\', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '/'
+             '(', kCharEye, kCharNose, kCharEye, ')' ,
+             '\\', kCharFootUp, kCharChest, kCharFootUp, '/'
         }
     );
 
-    const Model Bunny::MODEL_JUMP_LEFT
+    const Model Bunny::kModelJumpLeft
     (
         5,
         {
             '(', '\\', '(', '\\', ' ',
-            '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-            '\\', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '/'
+            '(', kCharEye, kCharNose, kCharEye, ')',
+            '\\', kCharFootUp, kCharChest, kCharFootUp, '/'
         }
     );
 
-    const Model Bunny::MODEL_DEFEATED
+    const Model Bunny::kModelDefeated
     (
         5,
         {
             ' ', '/', ')', '/', ')',
-            '(', CHAR_GAMEOVER_EYE, CHAR_NOSE, CHAR_GAMEOVER_EYE, ')',
-            '|', CHAR_FOOT_UP, CHAR_CHEST, CHAR_FOOT_UP, '|'
+            '(', kCharGameoverEye, kCharNose, kCharGameoverEye, ')',
+            '|', kCharFootUp, kCharChest, kCharFootUp, '|'
         }
     );
 
-    const Model Bunny::MODEL_IDLE_RIGHT
+    const Model Bunny::kModelIdleRight
     (
         5,
         {
             ' ', '/', ')', '/', ')',
-            '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-            '|', '_', CHAR_CHEST, '_', '|'
+            '(', kCharEye, kCharNose, kCharEye, ')',
+            '|', '_', kCharChest, '_', '|'
         }
     );
 
-    const Model Bunny::MODEL_IDLE_LEFT
+    const Model Bunny::kModelIdleLeft
     (
         5,
         {
          '(', '\\', '(', '\\', ' ',
-         '(', CHAR_EYE, CHAR_NOSE, CHAR_EYE, ')',
-         '|', '_', CHAR_CHEST, '_', '|'
+         '(', kCharEye, kCharNose, kCharEye, ')',
+         '|', '_', kCharChest, '_', '|'
         }
     );
 
     //---------------------------------------------------------- Methods
 
-    Bunny::Bunny(int xPos, int yPos) : Collider(xPos, yPos)
+    Bunny::Bunny(int x_pos, int y_pos) : Collider(x_pos, y_pos)
     {
-        SetState(State::idle);
+        SetState(State::kIdle);
         ActivateLeftModels(true);
-        previousPositionX = GetPosX();
-        OnMove.Subscribe([this](weak_ptr<GameObject> _, Direction dir) { OnMoveCallback(dir); });
+        previous_position_x_ = GetPosX();
+        on_move.Subscribe([this](weak_ptr<GameObject> _, Direction dir) { OnMoveCallback(dir); });
     }
 
     void Bunny::Update()
@@ -103,11 +103,11 @@ namespace Platformer
 
         SwitchWalkIdleState();
 
-        if (state == State::walking && GetPosX() != previousPositionX)
+        if (state == State::kWalking && GetPosX() != previous_position_x_)
         {
-            previousPositionX = GetPosX();
-            bool isTimeForLeftModel = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(STEP_ANIM_EVERY_SECONDS);
-            ActivateLeftModels(isTimeForLeftModel);
+            previous_position_x_ = GetPosX();
+            bool is_time_for_left_model = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(kStepAnimEverySeconds);
+            ActivateLeftModels(is_time_for_left_model);
         }
 
         //prevent movement when game is over
@@ -122,152 +122,152 @@ namespace Platformer
 
     void Bunny::ActivateLeftModels(bool activate)
     {
-        activeModelJump = activate ? MODEL_JUMP_LEFT : MODEL_JUMP_RIGHT;
-        activeModelIdle = activate ? MODEL_IDLE_LEFT : MODEL_IDLE_RIGHT;
-        activeModelWalk = activate ? MODEL_WALK_LEFT : MODEL_WALK_RIGHT;
+        active_model_jump_ = activate ? kModelJumpLeft : kModelJumpRight;
+        active_model_idle_ = activate ? kModelIdleLeft : kModelIdleRight;
+        active_model_walk_ = activate ? kModelWalkLeft : kModelWalkRight;
     }
 
     void Bunny::UpdateModel()
     {
         switch (state)
         {
-        case State::defeated:
-            SetModel(MODEL_DEFEATED);
+        case State::kDefeated:
+            SetModel(kModelDefeated);
             break;
 
-        case State::idle:
-            SetModel(activeModelIdle);
+        case State::kIdle:
+            SetModel(active_model_idle_);
             break;
 
-        case State::jumpingUp:
-        case State::jumpingDown:
-            SetModel(activeModelJump);
+        case State::kJumpingUp:
+        case State::kJumpingDown:
+            SetModel(active_model_jump_);
             break;
 
-        case State::walking:
-            SetModel(activeModelWalk);
+        case State::kWalking:
+            SetModel(active_model_walk_);
             break;
         }
     }
 
     void Bunny::SwitchWalkIdleState()
     {
-        if (Engine::TimeManager::Instance().GetTime() - lastTimeMovedOnX > 0.2)
+        if (Engine::TimeManager::Instance().GetTime() - last_time_moved_on_x_ > 0.2)
         {
-            if (state == State::walking)
-                SetState(State::idle);
+            if (state == State::kWalking)
+                SetState(State::kIdle);
             return;
         }
-        else if (state == State::idle)
+        else if (state == State::kIdle)
         {
-            SetState(State::walking);
+            SetState(State::kWalking);
         }
     }
 
     void  Bunny::HandleVerticalMovement()
     {
-        bool isPressingSpace = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE);
+        bool is_pressing_space = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kSpace);
 
-        if (isPressingSpace == false && IsTouchingGround() && IsJumping())
-            SetState(State::walking);
+        if (is_pressing_space == false && IsTouchingGround() && IsJumping())
+            SetState(State::kWalking);
 
 
         switch (state)
         {
-        case State::idle:
-        case State::walking:
-            if (isPressingSpace)
+        case State::kIdle:
+        case State::kWalking:
+            if (is_pressing_space)
             {
-                jumpStartingY = GetPosY();
-                SetState(State::jumpingUp);
+                jump_starting_y_ = GetPosY();
+                SetState(State::kJumpingUp);
             }
             break;
 
-        case State::jumpingUp:
-            if (isPressingSpace)
+        case State::kJumpingUp:
+            if (is_pressing_space)
             {
-                TryMove(Direction::up, MOVE_UP_SPEED);
+                TryMove(Direction::kUp, kMoveUpSpeed);
             }
             else
             {
-                SetState(State::jumpingDown);
+                SetState(State::kJumpingDown);
                 return;
             }
 
 
-            if (GetPosY() == jumpStartingY + JUMP_HEIGHT)
-                SetState(State::jumpingDown);
+            if (GetPosY() == jump_starting_y_ + kJumpHeight)
+                SetState(State::kJumpingDown);
             break;
         }
     }
 
     void Bunny::HandleHorizontalMovement()
     {
-        bool isPressingA = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::A);
-        bool isPressingD = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::D);
+        bool is_pressing_a = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kA);
+        bool is_pressing_d = Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kD);
 
-        if ((isPressingA && isPressingD) || state == State::defeated)
+        if ((is_pressing_a && is_pressing_d) || state == State::kDefeated)
             return;
 
-        if (isPressingA)
-            TryMove(Direction::left, SIDE_MOVEMENT_SPEED);
-        if (isPressingD)
-            TryMove(Direction::right, SIDE_MOVEMENT_SPEED);
+        if (is_pressing_a)
+            TryMove(Direction::kLeft, kSideMovementSpeed);
+        if (is_pressing_d)
+            TryMove(Direction::kRight, kSideMovementSpeed);
     }
 
-    void Bunny::SetState(State newState)
+    void Bunny::SetState(State new_state)
     {
-        if (state == newState)
+        if (state == new_state)
             return;
 
-        if (state == State::defeated)
+        if (state == State::kDefeated)
             return;
 
-        HandleSounds(state, newState);
+        HandleSounds(state, new_state);
 
-        state = newState;
+        state = new_state;
     }
 
-    void Bunny::HandleSounds(State oldState, State newState)
+    void Bunny::HandleSounds(State old_state, State new_state)
     {
-        if (newState == State::jumpingUp)
+        if (new_state == State::kJumpingUp)
             Engine::AudioManager::Instance().PlayFx("Resources/Sounds/Platform/Jump.wav", 0.1);
     }
 
     double Bunny::GetGravityScale() const
     {
-        if (state == State::jumpingUp)
+        if (state == State::kJumpingUp)
             return 0;
 
-        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::SPACE) && state == State::jumpingDown)
-            return MOVE_DOWN_CONTROLLED_SPEED;
+        if (Engine::InputManager::Instance().IsKeyPressed(Engine::Key::kSpace) && state == State::kJumpingDown)
+            return kMoveDownControlledSpeed;
 
-        return MOVE_DOWN_SPEED;
+        return kMoveDownSpeed;
     }
 
     void Bunny::OnMoveCallback(Direction dir)
     {
-        if (dir == Direction::right || dir == Direction::left)
-            lastTimeMovedOnX = Engine::TimeManager::Instance().GetTime();
+        if (dir == Direction::kRight || dir == Direction::kLeft)
+            last_time_moved_on_x_ = Engine::TimeManager::Instance().GetTime();
     }
 
-    void Bunny::OnCollisionEnter(shared_ptr<Collider> other, Direction collisionDir)
+    void Bunny::OnCollisionEnter(shared_ptr<Collider> other, Direction collision_dir)
     {
         if(std::dynamic_pointer_cast<Obstacle>(other))
         {
-            SetState(State::defeated);
-            OnObstacleHit.Notify();
+            SetState(State::kDefeated);
+            on_obstacle_hit.Notify();
             return;
         }
 
-        switch (collisionDir)
+        switch (collision_dir)
         {
-        case Direction::down:
-            SetState(State::idle);
+        case Direction::kDown:
+            SetState(State::kIdle);
             break;
-        case Direction::up:
-            if (state == State::jumpingUp)
-                SetState(State::jumpingDown);
+        case Direction::kUp:
+            if (state == State::kJumpingUp)
+                SetState(State::kJumpingDown);
             break;
         }
     }

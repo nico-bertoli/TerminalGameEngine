@@ -9,27 +9,27 @@ namespace Platformer
     {
         //---------------------------------------------------------- Fields
     private:
-        double moveSpeed;
-        int startingPosY;
-        int energySourcesCounter = 0;
+        double move_speed_;
+        int starting_pos_y_;
+        int energy_sources_counter_ = 0;
 
         //---------------------------------------------------------- Methods
     public:
         AutomaticDoor
         (
-            int xPos,
-            int yPos,
-            size_t sizeX,
-            size_t sizeY,
-            char modelChar,
-            double moveSpeed
+            int x_pos,
+            int y_pos,
+            size_t size_x,
+            size_t size_y,
+            char model_char,
+            double move_speed
         );
 
-        bool IsOpen() const { return energySourcesCounter > 0; }
+        bool IsOpen() const { return energy_sources_counter_ > 0; }
         bool CanExitScreenSpace() const override { return false; }
         double GetGravityScale() const override { return 0; }
-        Engine::TerminalColor GetColor() const { return Engine::Color::CYAN; }
-        void AddEnergySource() { ++energySourcesCounter; }
+        Engine::TerminalColor GetColor() const { return Engine::color::kCyan; }
+        void AddEnergySource() { ++energy_sources_counter_; }
         void RemoveEnergySource();
 
     protected:

@@ -13,22 +13,22 @@ namespace SpaceInvaders
 	{
 		Enemy::OnDestroy();
 		Engine::AudioManager::Instance().PlayFx("Resources/Sounds/SpaceInvaders/AlienDeath2.wav");
-		OnDestroyEvent.Notify(std::dynamic_pointer_cast<Collider>(shared_from_this()));
+		on_destroy_event.Notify(std::dynamic_pointer_cast<Collider>(shared_from_this()));
 	}
 
 	void Alien::Shot()
 	{
-		shared_ptr<EnemyProjectile> projectile = std::make_shared<EnemyProjectile>(GetMidPosX(), GetPosY() - 2, Direction::down, PROJECTILE_SPEED);
+		shared_ptr<EnemyProjectile> projectile = std::make_shared<EnemyProjectile>(GetMidPosX(), GetPosY() - 2, Direction::kDown, PROJECTILE_SPEED);
 		Engine::Simulation::Instance().TryAddEntity(projectile);
 	}
 
 	void Alien::Update()
 	{
-		bool showFirstAnimFrameNew = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(1);
-		if (isFirsAnimationFrameTime != showFirstAnimFrameNew)
+		bool show_first_anim_frame_new = Engine::TimeManager::Instance().IsTimeForFirstOfTwoModels(1);
+		if (is_first_animation_frame_time_ != show_first_anim_frame_new)
 		{
 			StepAnimation();
-			isFirsAnimationFrameTime = showFirstAnimFrameNew;
+			is_first_animation_frame_time_ = show_first_anim_frame_new;
 		}
 	}
 }
