@@ -6,10 +6,10 @@ using std::unordered_set;
 
 namespace terme
 {
-	shared_ptr<fake_collider> world_space::kWorldMargin = std::make_shared<fake_collider>();
-	shared_ptr<fake_collider> world_space::kScreenMargin = std::make_shared<fake_collider>();
+	shared_ptr<FakeCollider> WorldSpace::kWorldMargin = std::make_shared<FakeCollider>();
+	shared_ptr<FakeCollider> WorldSpace::kScreenMargin = std::make_shared<FakeCollider>();
 
-	void world_space::Init(int x_size, int y_size, size_t screen_padding)
+	void WorldSpace::Init(int x_size, int y_size, size_t screen_padding)
 	{
 		space_.Clear();
 		space_.Resize(x_size, y_size);
@@ -20,17 +20,17 @@ namespace terme
 		this->screen_padding_ = screen_padding;
 	}
 
-	void world_space::InsertObject(shared_ptr<game_object> obj)
+	void WorldSpace::InsertObject(shared_ptr<game_object> obj)
 	{
 		WriteSpace(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), obj);
 	}
 
-	void world_space::RemoveObject(shared_ptr<game_object> obj)
+	void WorldSpace::RemoveObject(shared_ptr<game_object> obj)
 	{
 		EraseSpace(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), obj);
 	}
 
-	void world_space::MoveObject(shared_ptr<game_object> obj, Direction direction)
+	void WorldSpace::MoveObject(shared_ptr<game_object> obj, Direction direction)
 	{
 		switch (direction)
 		{
@@ -70,7 +70,7 @@ namespace terme
 		}
 	}
 
-	void world_space::WriteSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
+	void WorldSpace::WriteSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
 	{
 		assert(obj != nullptr);
 
@@ -79,12 +79,12 @@ namespace terme
 			{
 				Cell& cell = space_.Get(x, y);
 
-				game_object::InsertInListUsingRule
+					GameObject::InsertInListUsingRule
 				(
 					obj, 
 					cell.objects ,
 					// add high sorting layer objects at top of list
-					[](shared_ptr<game_object> new_item, shared_ptr<game_object> list_item){ return new_item->GetSortingLayer() >= list_item->GetSortingLayer();}
+					[](shared_ptr<GameObject> new_item, shared_ptr<GameObject> list_item){ return new_item->GetSortingLayer() >= list_item->GetSortingLayer();}
 				);
 
 				shared_ptr<Collider> obj_collider = std::dynamic_pointer_cast<Collider>(obj);
@@ -96,7 +96,7 @@ namespace terme
 			}
 	}
 
-	void world_space::EraseSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
+	void WorldSpace::EraseSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
 	{
 		assert(obj != nullptr);
 
@@ -126,7 +126,7 @@ namespace terme
 			}
 	}
 
-	bool world_space::IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height, unordered_set<shared_ptr<Collider>>& out_area_objects) const
+	bool WorldSpace::IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height, unordered_set<shared_ptr<Collider>>& out_area_objects) const
 	{
 		for (int y = starting_y; y < starting_y + height; ++y)
 		{
@@ -141,7 +141,7 @@ namespace terme
 		return out_area_objects.size() == 0;
 	}
 
-	bool world_space::IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height) const
+	bool WorldSpace::IsCollidersAreaEmpty(int starting_x, int starting_y, size_t width, size_t height) const
 	{
 		for (int y = starting_y; y < starting_y + height; ++y)
 			for (int x = starting_x; x < starting_x + width; ++x)
@@ -152,25 +152,25 @@ namespace terme
 	}
 
 
-	bool world_space::IsCoordinateInsideSpace(int x_pos, int y_pos) const
+	bool WorldSpace::IsCoordinateInsideSpace(int x_pos, int y_pos) const
 	{
 		return IsInsideSpaceX(x_pos) && IsInsideSpaceY(y_pos);
 	}
 
 
-	bool world_space::IsInsideSpaceX(int x_pos) const
+	bool WorldSpace::IsInsideSpaceX(int x_pos) const
 	{
 		return x_pos >= 0 && x_pos < space_.GetSizeX();
 	}
 
-	bool world_space::IsInsideSpaceY(int y_pos) const
+	bool WorldSpace::IsInsideSpaceY(int y_pos) const
 	{
 		return y_pos >= 0 && y_pos < space_.GetSizeY();
 	}
 
-	bool world_space::CanObjectMoveAtDirection
+	bool WorldSpace::CanObjectMoveAtDirection
 	(
-		shared_ptr<const game_object> object,
+		shared_ptr<const GameObject> object,
 		Direction direction,
 		unordered_set<shared_ptr<Collider>>& colliding_objects
 	) const
@@ -280,14 +280,14 @@ namespace terme
 		}
 	}
 
-	unordered_set<shared_ptr<game_object>> world_space::GetAreaTopLayerObjects(shared_ptr<game_object> obj)
+	unordered_set<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(shared_ptr<GameObject> obj)
 	{
 		return GetAreaTopLayerObjects(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight());
 	}
 
-	unordered_set<shared_ptr<game_object>> world_space::GetAreaTopLayerObjects(int starting_x, int starting_y, size_t width, size_t height)
+	unordered_set<shared_ptr<GameObject>> WorldSpace::GetAreaTopLayerObjects(int starting_x, int starting_y, size_t width, size_t height)
 	{
-		unordered_set<shared_ptr<game_object>> objects;
+		unordered_set<shared_ptr<GameObject>> objects;
 		for (int y = starting_y; y < starting_y + height; ++y)
 		{
 			for (int x = starting_x; x < starting_x + width; ++x)

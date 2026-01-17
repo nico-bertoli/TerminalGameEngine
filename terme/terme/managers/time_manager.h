@@ -6,9 +6,9 @@
 
 namespace terme
 {
-    class time_manager : public nbase_kit::Singleton<time_manager>
+    class TimeManager : public nbase_kit::Singleton<TimeManager>
     {
-        friend class nbase_kit::Singleton<time_manager>;
+        friend class nbase_kit::Singleton<TimeManager>;
 
         //---------------------------------------------------------- Fields
     private:
@@ -34,6 +34,6 @@ namespace terme
         double GetTime() const;
 
     private:
-        time_manager();
+        TimeManager();
     };
 }

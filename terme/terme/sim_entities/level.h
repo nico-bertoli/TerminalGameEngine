@@ -6,7 +6,7 @@
 
 namespace terme
 {
-    class Level : public i_simulation_entity
+    class Level : public ISimulationEntity
     {
         friend class Simulation;
 

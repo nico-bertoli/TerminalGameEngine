@@ -4,23 +4,23 @@
 
 namespace terme
 {
-    void base_terminal::Cout(std::string_view s) const
+    void BaseTerminal::Cout(std::string_view s) const
     {
         std::cout << s;
 #if DEBUG_MODE && SHOW_COUT_CALLS
-        debug_manager::Instance().IncrementCoutCalls();
+        DebugManager::Instance().IncrementCoutCalls();
 #endif
     }
 
-    void base_terminal::Cout(char c) const
+    void BaseTerminal::Cout(char c) const
     {
         std::cout << c;
 #if DEBUG_MODE && SHOW_COUT_CALLS
-        debug_manager::Instance().IncrementCoutCalls();
+        DebugManager::Instance().IncrementCoutCalls();
 #endif
     }
 
-    void base_terminal::SetColor(const char* front_color, const char* back_color)
+    void BaseTerminal::SetColor(const char* front_color, const char* back_color)
     {
         if(front_color == nullptr)
             front_color = default_front_color_;
@@ -39,7 +39,7 @@ namespace terme
         }
     }
 
-    void base_terminal::SetDefaultColors(const char* front_color, const char* back_color)
+    void BaseTerminal::SetDefaultColors(const char* front_color, const char* back_color)
     {
         assert(front_color != nullptr);
         assert(back_color != nullptr);

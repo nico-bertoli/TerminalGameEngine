@@ -16,7 +16,7 @@ using std::string;
 
 namespace terme
 {
-    simulation_printer::simulation_printer
+    SimulationPrinter::SimulationPrinter
     (
         size_t screen_size_x,
         size_t screen_size_y,
@@ -28,24 +28,24 @@ namespace terme
         InitBackground(background_file_name);
     }
 
-    void simulation_printer::PrintObject(shared_ptr<game_object> go)
+    void SimulationPrinter::PrintObject(shared_ptr<game_object> go)
     {
         Model model = go->GetModel();
         assert(model.GetSizeX() > 0 && model.GetSizeY() > 0);
         PrintInternal(go->GetPosX(), go->GetPosY(), go->GetModelWidth(), go->GetModelHeight(), go);
     }
 
-    void simulation_printer::ClearObject(shared_ptr<game_object> obj)
+    void SimulationPrinter::ClearObject(shared_ptr<game_object> obj)
     {
         PrintInternal(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), nullptr);
     }
 
-    void simulation_printer::ClearArea(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size)
+    void SimulationPrinter::ClearArea(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size)
     {
         PrintInternal(world_x_pos, world_y_pos, x_size, y_size, nullptr);
     }
 
-    void simulation_printer::PrintInternal(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size, shared_ptr<game_object> go)
+    void SimulationPrinter::PrintInternal(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size, shared_ptr<game_object> go)
     {
         terminal_.SetColor(go == nullptr ? nullptr : go->GetColor(), go == nullptr ? nullptr : go->GetBackColor());
         for (int y_screen = ConvertWorldPosToScreenPos(world_y_pos), y_model = 0; y_model < y_size && y_screen < screen_size_y_; ++y_screen, ++y_model)
@@ -70,7 +70,7 @@ namespace terme
         }
     }
 
-    void simulation_printer::PrintBackground()
+    void SimulationPrinter::PrintBackground()
     {
         if (!background_.IsSetup())
             return;
@@ -94,7 +94,7 @@ namespace terme
         }
     }
 
-    void simulation_printer::InitBackground(const char* background_file_name)
+    void SimulationPrinter::InitBackground(const char* background_file_name)
     {
         if (background_file_name[0] == '\0')
             return;

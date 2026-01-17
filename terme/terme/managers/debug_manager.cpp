@@ -7,9 +7,9 @@
 
 namespace terme
 {
-	void debug_manager::PrintGenericLog(const std::string& str, int lineIndex) { debugPrinter->PrintGenericLog(str, lineIndex); }
+	void DebugManager::PrintGenericLog(const std::string& str, int lineIndex) { debugPrinter->PrintGenericLog(str, lineIndex); }
 
-	void debug_manager::Reset
+	void DebugManager::Reset
 	(
 		size_t screenSizeX,
 		size_t screenSizeY,
@@ -19,18 +19,18 @@ namespace terme
 		fpsRecord.clear();
 		coutCallsCount = 0;
 
-		debugPrinter = std::make_unique<debug_printer>(screenSizeX, screenSizeY, screenPadding);
+		debugPrinter = std::make_unique<DebugPrinter>(screenSizeX, screenSizeY, screenPadding);
 	}
 
-	void debug_manager::ShowAverageFPS()
+	void DebugManager::ShowAverageFPS()
 	{
 		if (debugPrinter != nullptr)
 			debugPrinter->PrintFpsString(GetAverageFps());
 	}
 
-	size_t debug_manager::GetAverageFps()
+	size_t DebugManager::GetAverageFps()
 	{
-		double fps = time_manager::Instance().GetFPS();
+		double fps = TimeManager::Instance().GetFPS();
 		fpsRecord.push_back(fps);
 
 		if (time_manager::Instance().GetTime() - lastTimePrintedFps > kRefreshFpsEverySeconds)
@@ -47,7 +47,7 @@ namespace terme
 		return static_cast<size_t>(averageFPS);
 	}
 
-	void debug_manager::IncrementCoutCalls()
+	void DebugManager::IncrementCoutCalls()
 	{
 		if (debugPrinter == nullptr)
 			return;

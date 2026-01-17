@@ -6,7 +6,7 @@
 
 namespace terme
 {
-	class moving_straight_object : public Collider
+	class MovingStraightObject : public Collider
 	{
 		//---------------------------------------------------------- Fields
 	private:
@@ -15,7 +15,7 @@ namespace terme
 
 		//---------------------------------------------------------- Methods
 	public:
-		moving_straight_object(int x_pos, int y_pos, Direction move_dir, double move_speed);
+		MovingStraightObject(int x_pos, int y_pos, Direction move_dir, double move_speed);
 
 	protected:
 		void Update() override;

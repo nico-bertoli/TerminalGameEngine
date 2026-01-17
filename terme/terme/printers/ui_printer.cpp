@@ -4,13 +4,13 @@ using std::string;
 
 namespace terme
 {
-    ui_printer::ui_printer(size_t screen_size_x, size_t screen_size_y, size_t screen_padding, TerminalColor margins_color) :
+    UIPrinter::UIPrinter(size_t screen_size_x, size_t screen_size_y, size_t screen_padding, TerminalColor margins_color) :
         Printer(screen_size_x, screen_size_y, screen_padding)
     {
         DrawMargins(margins_color);
     };
 
-    void ui_printer::PrintWindow(const Frame& window, TerminalColor color, WindowPosition window_position)
+    void UIPrinter::PrintWindow(const Frame& window, TerminalColor color, WindowPosition window_position)
     {
         if (window.GetSizeY() == 0)
             return;
@@ -42,14 +42,14 @@ namespace terme
         }
     }
 
-    void ui_printer::PrintOnHeader(const string& header, int x_pos, TerminalColor color)
+    void UIPrinter::PrintOnHeader(const string& header, int x_pos, TerminalColor color)
     {
         terminal_.SetColor(color);
         terminal_.SetCursorPosition(x_pos, 0);
         terminal_.Cout(header);
     }
 
-    void ui_printer::DrawMargins(TerminalColor color)
+    void UIPrinter::DrawMargins(TerminalColor color)
     {
         terminal_.SetColor(color);
 
@@ -69,7 +69,7 @@ namespace terme
         }
     }
 
-    void ui_printer::DrawHorizontalMargin()
+    void UIPrinter::DrawHorizontalMargin()
     {
         string line = "";
         for (int x = 0; x < screen_size_x_ + 2; ++x)

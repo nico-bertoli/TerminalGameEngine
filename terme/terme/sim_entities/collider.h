@@ -6,7 +6,7 @@
 
 namespace terme
 {
-	class Collider : public game_object
+	class Collider : public GameObject
 	{
 		friend class Simulation;
 
@@ -17,7 +17,7 @@ namespace terme
 
 		//---------------------------------------------------------- Methods
 	public:
-		using game_object::game_object;
+		using GameObject::GameObject;
 
 	protected:
 
@@ -25,8 +25,8 @@ namespace terme
 		virtual void OnCollisionExit(Direction ending_collision_dir) {}
 
 	private:
-		void CALLED_BY_SIM_NotifyCollisionEnter(std::unordered_set<std::shared_ptr<Collider>>colliding_objects, Direction collision_dir);
-		void CALLED_BY_SIM_NotifyCollisionEnter(std::shared_ptr<Collider> colliding_object, Direction collision_dir);
-		void CALLED_BY_SIM_UpdateEndedCollisions(const std::array<std::unordered_set<std::shared_ptr<Collider>>, 4>& new_collisions);
+		void CalledBySimNotifyCollisionEnter(std::unordered_set<std::shared_ptr<Collider>>colliding_objects, Direction collision_dir);
+		void CalledBySimNotifyCollisionEnter(std::shared_ptr<Collider> colliding_object, Direction collision_dir);
+		void CalledBySimUpdateEndedCollisions(const std::array<std::unordered_set<std::shared_ptr<Collider>>, 4>& new_collisions);
 	};
 }

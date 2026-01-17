@@ -9,21 +9,21 @@ using std::chrono::time_point;
 
 namespace terme
 {
-    void time_manager::OnFrameGenerated()
+    void TimeManager::OnFrameGenerated()
     {
         double currentTime = GetTime();
         delta_time_ = currentTime - last_time_frame_generated_;
         last_time_frame_generated_ = currentTime;
     }
 
-    void time_manager::OnSimulationStepped()
+    void TimeManager::OnSimulationStepped()
     {
         double currentTime = GetTime();
         fixed_delta_time_ = currentTime - last_time_simulation_stepped_;
         last_time_simulation_stepped_ = currentTime;
     }
 
-    bool time_manager::IsTimeForFirstOfTwoModels(double change_model_every_seconds) const
+    bool TimeManager::IsTimeForFirstOfTwoModels(double change_model_every_seconds) const
     {
         double time = GetTime();
 
@@ -33,14 +33,14 @@ namespace terme
         return std::fmod(time, change_model_every_seconds) < change_model_every_seconds / 2;
     }
 
-    double time_manager::GetTime() const
+    double TimeManager::GetTime() const
     {
         time_point now = steady_clock::now();
         std::chrono::duration<double> elapsed = now - start_time_;
         return elapsed.count();
     }
 
-    time_manager::time_manager()
+    TimeManager::TimeManager()
     {
         Simulation::Instance().on_frame_generated.Subscribe([this]() { OnFrameGenerated(); });
         Simulation::Instance().on_simulation_stepped.Subscribe([this]() { OnSimulationStepped(); });

@@ -7,7 +7,7 @@
 
 namespace terme
 {
-    class debug_printer : public Printer
+    class DebugPrinter : public Printer
     {
         //------------------------------------------ Settings
     private:

@@ -30,7 +30,7 @@ namespace terme
             kEsc,
         };
 
-    class base_input_manager 
+    class BaseInputManager 
     {
 public:
         virtual bool IsKeyPressed(Key key) = 0;

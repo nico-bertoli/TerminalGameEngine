@@ -54,7 +54,7 @@ namespace terme
     }
 
     ////////////////////////////////////////////////////////////////// base_terminal
-    class base_terminal
+    class BaseTerminal
     {
     protected:
         const char* front_color_;
@@ -66,7 +66,7 @@ namespace terme
         //================================================================= ANSI Color Constants
 
     public:
-        virtual ~base_terminal(){SetColor(color::kUserTerminal, color::kBgUserTerminal);}
+        virtual ~BaseTerminal(){SetColor(color::kUserTerminal, color::kBgUserTerminal);}
 
         const char* GetFrontColor(){ return front_color_; };
         const char* GetBackColor(){ return back_color_; };
@@ -82,7 +82,7 @@ namespace terme
         void Flush() const { std::cout << std::flush; } //grants cout termination before proceeding
 
     protected:
-        base_terminal() : front_color_(color::kWhite), back_color_(color::kBgBlack), default_back_color_(color::kBgBlack) { HideCursor(); }
+        BaseTerminal() : front_color_(color::kWhite), back_color_(color::kBgBlack), default_back_color_(color::kBgBlack) { HideCursor(); }
         virtual void HideCursor() {}
     };
 }

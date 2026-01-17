@@ -7,9 +7,9 @@
 
 namespace terme
 {
-	class audio_manager : public nbase_kit::Singleton<audio_manager>
+	class AudioManager : public nbase_kit::Singleton<AudioManager>
 	{
-		friend class nbase_kit::Singleton<audio_manager>;
+		friend class nbase_kit::Singleton<AudioManager>;
 
 		//---------------------------------------------------------- Fields
 	private:
@@ -23,7 +23,7 @@ namespace terme
 		void StopMusic();
 
 	private:
-		audio_manager();
+		AudioManager();
 		bool TryGetBufferAndSound(sf::SoundBuffer*& outBuffer, sf::Sound*& outSound);
 	};
 }

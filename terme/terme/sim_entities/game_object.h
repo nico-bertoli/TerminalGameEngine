@@ -14,13 +14,13 @@ namespace terme
 {
 	using Model = nbase_kit::Matrix<char>;
 
-	class game_object : public i_simulation_entity
+	class GameObject : public ISimulationEntity
 	{
 		friend class Simulation;
 
 		//---------------------------------------------------------- Fields
 	public:
-		nbase_kit::Event<std::weak_ptr<game_object>, Direction> on_move;
+		nbase_kit::Event<std::weak_ptr<GameObject>, Direction> on_move;
 		// generic on destroy event could be added
 
 	protected:
@@ -39,7 +39,7 @@ namespace terme
 
 		//---------------------------------------------------------- Methods
 	public:
-		game_object(int x_pos, int y_pos);
+		GameObject(int x_pos, int y_pos);
 
 		virtual TerminalColor GetColor() const { return nullptr; }
 		virtual TerminalColor GetBackColor() const { return nullptr; }
@@ -55,8 +55,8 @@ namespace terme
 		size_t GetModelHeight()const { return model_->GetSizeY(); }
 		const Model& GetModel()const { return *model_; }
 		virtual bool CanExitScreenSpace() const = 0;
-		static void InsertInListUsingRule(std::shared_ptr<game_object> obj, std::list<std::shared_ptr<game_object>>& list, bool(*insert_rule)(std::shared_ptr<game_object> new_item, std::shared_ptr<game_object> list_item));
-		static void InsertInListUsingRule(std::shared_ptr<game_object> obj, std::list<std::weak_ptr<game_object>>& list, bool(*insert_rule)(std::shared_ptr<game_object> new_item, std::shared_ptr<game_object> list_item));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::shared_ptr<GameObject>>& list, bool(*insert_rule)(std::shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item));
+		static void InsertInListUsingRule(std::shared_ptr<GameObject> obj, std::list<std::weak_ptr<GameObject>>& list, bool(*insert_rule)(std::shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item));
 
 	protected:
 		virtual void InitModel() = 0;
@@ -70,7 +70,7 @@ namespace terme
 	private:
 		void ResetPartialMovement() { x_pos_continuous_ = x_pos_; y_pos_continuous_ = y_pos_; }
 		void ApplyGravity();
-		void CALLED_BY_SIM_Move(Direction direction);
+		void CalledBySimMove(Direction direction);
 	};
 
 

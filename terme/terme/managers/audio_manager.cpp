@@ -6,7 +6,7 @@
 
 namespace terme
 {
-	audio_manager::audio_manager()
+	AudioManager::AudioManager()
 	{
 #if ALLOW_SOUNDS
 		for (int i = 0; i < sounds.size(); ++i)
@@ -17,7 +17,7 @@ namespace terme
 #endif
 	}
 
-	void audio_manager::PlayFx(const char* fileName, const double randomPitch)
+	void AudioManager::PlayFx(const char* fileName, const double randomPitch)
 	{
 #if ALLOW_SOUNDS
 		sf::Sound* sound = nullptr;
@@ -39,7 +39,7 @@ namespace terme
 #endif
 	}
 
-	void audio_manager::PlayMusic(const char* fileName)
+	void AudioManager::PlayMusic(const char* fileName)
 	{
 #if ALLOW_SOUNDS
 		StopMusic();
@@ -49,7 +49,7 @@ namespace terme
 #endif
 	}
 
-	bool audio_manager::TryGetBufferAndSound(sf::SoundBuffer * &outBuffer, sf::Sound*& outSound)
+	bool AudioManager::TryGetBufferAndSound(sf::SoundBuffer * &outBuffer, sf::Sound*& outSound)
 	{
 		for (int i = 0; i < sounds.size(); ++i)
 		{
@@ -63,7 +63,7 @@ namespace terme
 		return false;
 	}
 
-	void audio_manager::StopMusic()
+	void AudioManager::StopMusic()
 	{
 #if ALLOW_SOUNDS
 		if (music.getStatus() == sf::SoundSource::Playing)

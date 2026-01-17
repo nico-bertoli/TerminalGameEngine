@@ -7,7 +7,7 @@
 
 namespace terme
 {
-	class Particle : public game_object
+	class Particle : public GameObject
 	{
 	//----------------------------------------- Fields
 	private:

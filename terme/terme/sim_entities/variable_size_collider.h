@@ -3,7 +3,7 @@
 
 namespace terme
 {
-    class variable_size_collider : public Collider
+    class VariableSizeCollider : public Collider
     {
         //---------------------------------------------------------- Fields
         char model_char_;
@@ -12,7 +12,7 @@ namespace terme
         Model model_;
         //---------------------------------------------------------- Methods
     public:
-        variable_size_collider
+        VariableSizeCollider
         (
             int x_pos,
             int y_pos,

@@ -14,7 +14,7 @@ using std::cout;
 
 namespace terme
 {
-    linux_terminal::linux_terminal()
+    LinuxTerminal::LinuxTerminal()
     {
         struct termios newTermios;
         if (tcgetattr(STDIN_FILENO, &newTermios) == 0)
@@ -27,13 +27,13 @@ namespace terme
         HideCursor();
     }
 
-    void linux_terminal::HideCursor()
+    void LinuxTerminal::HideCursor()
     {
         std::cout << "\033[?25l";
         std::cout.flush();
     }
 
-    void linux_terminal::Clear()
+    void LinuxTerminal::Clear()
     {
         cout << kClearTerminal;
         cout << "\033[2J\033[H"; //apply bg color
@@ -41,7 +41,7 @@ namespace terme
         HideCursor();
     }
 
-    void linux_terminal::SetCursorPosition(const vector2_int& position)
+    void LinuxTerminal::SetCursorPosition(const vector2_int& position)
     {
         printf("\033[%d;%dH", position.Y + 1, position.X + 1);
     }

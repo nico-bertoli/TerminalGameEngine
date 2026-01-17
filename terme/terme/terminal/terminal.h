@@ -10,8 +10,8 @@
 namespace terme
 {
     #if IS_LINUX_BUILD
-        using Terminal = linux_terminal;
+        using Terminal = LinuxTerminal;
     #else
-        using Terminal = windows_terminal;
+        using Terminal = WindowsTerminal;
     #endif
 }

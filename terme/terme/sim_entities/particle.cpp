@@ -18,7 +18,7 @@ namespace terme
 		std::optional<Direction> main_direction
 	)
 		:
-		game_object(x_pos, y_pos),
+		GameObject(x_pos, y_pos),
 		model_char_(model_char),
 		color_(color),
 		remaining_movements_before_destruction_(moves_before_destruction)
@@ -54,7 +54,7 @@ namespace terme
 			if (direction_utils::IsDirectionHorizontal(move_directions_[i]))
 				move_speeds_[i] *= 2;
 
-		on_move.Subscribe([this](weak_ptr<game_object> _, Direction __) { OnMoveCallback(); });
+		on_move.Subscribe([this](weak_ptr<GameObject> _, Direction __) { OnMoveCallback(); });
 	}
 
 	void Particle::InitModel()

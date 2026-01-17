@@ -8,7 +8,7 @@ using std::string;
 
 namespace terme
 {
-    void debug_printer::PrintCoutCallsCount(size_t cout_calls_count)
+    void DebugPrinter::PrintCoutCallsCount(size_t cout_calls_count)
     {
         TerminalColor originalFrontColor = Terminal::Instance().GetFrontColor();
         TerminalColor originalBackColor = Terminal::Instance().GetBackColor();
@@ -22,7 +22,7 @@ namespace terme
         terminal_.SetColor(originalFrontColor, originalBackColor);
     }
 
-    void debug_printer::PrintFpsString(size_t fps)
+    void DebugPrinter::PrintFpsString(size_t fps)
     {
         terminal_.SetColor(kDebugColor);
         terminal_.SetCursorPosition(0, GetMaxTerminalY() + kFpsPosition);
@@ -30,7 +30,7 @@ namespace terme
         std::cout << output;
     }
 
-    void debug_printer::PrintGenericLog(const string& log, int line_index)
+    void DebugPrinter::PrintGenericLog(const string& log, int line_index)
     {
         terminal_.SetColor(kDebugColor);
         terminal_.SetCursorPosition(0, GetMaxTerminalY() + kGenericLogPosition + line_index);

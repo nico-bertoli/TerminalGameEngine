@@ -4,16 +4,16 @@
 
 namespace terme
 {
-    class linux_terminal : public nbase_kit::Singleton<linux_terminal>, public base_terminal
+    class LinuxTerminal : public nbase_kit::Singleton<LinuxTerminal>, public BaseTerminal
     {
-        friend class nbase_kit::Singleton<linux_terminal>;
+        friend class nbase_kit::Singleton<LinuxTerminal>;
 
         //================================================================= Fields
         static constexpr const char* kClearTerminal = "\033[2J\033[3J";
 
     //================================================================= Constructor/Destructor
     protected:
-        linux_terminal();
+        LinuxTerminal();
 
     //================================================================= Override Methods
     public:
@@ -25,6 +25,6 @@ namespace terme
 
     //================================================================= Methods
     public:
-        using base_terminal::SetCursorPosition;
+        using BaseTerminal::SetCursorPosition;
     };
 }

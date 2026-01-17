@@ -4,11 +4,11 @@
 
 namespace terme
 {
-    class static_collider : public variable_size_collider
+    class StaticCollider : public VariableSizeCollider
     {
         //---------------------------------------------------------- Methods
     public:
-        static_collider
+        StaticCollider
         (
             int x_pos,
             int y_pos,

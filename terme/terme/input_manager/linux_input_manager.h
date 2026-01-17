@@ -14,7 +14,7 @@
 namespace terme
 {
 
-class LinuxInputManager : public nbase_kit::Singleton<LinuxInputManager>, public base_input_manager
+class LinuxInputManager : public nbase_kit::Singleton<LinuxInputManager>, public BaseInputManager
 {
 private:
     inline static const std::unordered_map<Key, KeySym> kKeyMap =

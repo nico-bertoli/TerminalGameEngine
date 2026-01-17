@@ -7,7 +7,7 @@
 namespace terme
 {
 
-class WindowsInputManager : public nbase_kit::Singleton<WindowsInputManager>, public base_input_manager
+class WindowsInputManager : public nbase_kit::Singleton<WindowsInputManager>, public BaseInputManager
 {
 private:
     inline static const std::unordered_map<Key, int> kKeyMap =

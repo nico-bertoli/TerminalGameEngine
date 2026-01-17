@@ -27,7 +27,7 @@ namespace terme
 	size_t Simulation::GetScreenSizeX() const { return level_->GetWorldSizeX() - 2 * level_->GetScreenPadding(); }
 	size_t Simulation::GetScreenSizeY() const { return level_->GetWorldSizeY() - 2 * level_->GetScreenPadding(); }
 	shared_ptr<Level> Simulation::GetActiveLevel() { return level_; }
-	ui_printer& Simulation::Getui_printer() { return *ui_printer_; }
+	UIPrinter& Simulation::GetUIPrinter() { return *ui_printer_; }
 
 	void Simulation::SpawnParticles
 	(
@@ -90,7 +90,7 @@ namespace terme
 		{
 			on_frame_generated.Notify();
 			#if DEBUG_MODE && SHOW_FPS
-						debug_manager::Instance().ShowAverageFPS();
+						DebugManager::Instance().ShowAverageFPS();
 			#endif
 		}
 
@@ -125,10 +125,10 @@ namespace terme
 	{
 		for (weak_ptr<i_simulation_entity>& entity : to_remove_entities_)
 		{
-			shared_ptr<i_simulation_entity> entity_sp = entity.lock();
+			shared_ptr<ISimulationEntity> entity_sp = entity.lock();
 			if (entity_sp != nullptr)
 			{
-				shared_ptr<game_object> object_entity = std::dynamic_pointer_cast<game_object>(entity_sp);
+				shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<game_object>(entity_sp);
 				if (object_entity != nullptr)
 				{
 					object_entity->OnDestroy();
@@ -167,7 +167,7 @@ namespace terme
 		for (auto it = move_requests_.begin(); it != move_requests_.end(); ++it)
 		{
 
-			shared_ptr<game_object> obj = it->object.lock();
+			shared_ptr<GameObject> obj = it->object.lock();
 			if (obj == nullptr)
 				continue;
 
@@ -184,17 +184,17 @@ namespace terme
 
 	bool Simulation::PrintObjects()
 	{
-		list<shared_ptr<game_object>> to_be_printed_objects;
+		list<shared_ptr<GameObject>> to_be_printed_objects;
 
 		//create sorted list
 		for (shared_ptr<i_simulation_entity> entity : entities_)
 		{
-			shared_ptr<game_object> obj_entity = std::dynamic_pointer_cast<game_object>(entity);
+			shared_ptr<GameObject> obj_entity = std::dynamic_pointer_cast<game_object>(entity);
 			if (obj_entity && obj_entity->must_be_reprinted_)
-				game_object::InsertInListUsingRule
+				GameObject::InsertInListUsingRule
 				(
 					obj_entity, to_be_printed_objects,
-					[](shared_ptr<game_object> to_insert_obj, shared_ptr<game_object> list_object) { return  to_insert_obj->GetSortingLayer() <= list_object->GetSortingLayer(); }
+					[](shared_ptr<GameObject> to_insert_obj, shared_ptr<GameObject> list_object) { return  to_insert_obj->GetSortingLayer() <= list_object->GetSortingLayer(); }
 				);
 		}
 
@@ -251,12 +251,12 @@ namespace terme
 		world_space_.IsCollidersAreaEmpty(x_pos - 1, y_pos, 1, height, collisions[Direction::kLeft]);
 		world_space_.IsCollidersAreaEmpty(x_max + 1, y_pos, 1, height, collisions[Direction::kRight]);
 
-		collider->CALLED_BY_SIM_UpdateEndedCollisions(collisions);
+		collider->CalledBySimUpdateEndedCollisions(collisions);
 	}
 
 	bool Simulation::TryAddEntity(shared_ptr<i_simulation_entity> entity)
 	{
-		shared_ptr<game_object> object_entity = std::dynamic_pointer_cast<game_object>(entity);
+		shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<game_object>(entity);
 
 		if (object_entity != nullptr)
 			object_entity->Init();
@@ -314,11 +314,11 @@ namespace terme
 			{
 				if (collider_obj != nullptr)
 				{
-					collider_obj->CALLED_BY_SIM_NotifyCollisionEnter(out_colliding_objects, direction);
+					collider_obj->CalledBySimNotifyCollisionEnter(out_colliding_objects, direction);
 
 					for (auto colliding_obj : out_colliding_objects)
 						if (colliding_obj != world_space::kScreenMargin)
-							colliding_obj->CALLED_BY_SIM_NotifyCollisionEnter(collider_obj, direction_utils::GetInverseDirection(direction));
+							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, direction_utils::GetInverseDirection(direction));
 				}
 			}
 			return false;
@@ -326,7 +326,7 @@ namespace terme
 
 		world_space_.MoveObject(obj, direction);
 
-		obj->CALLED_BY_SIM_Move(direction);
+		obj->CalledBySimMove(direction);
 
 		return true;
 	}
@@ -339,7 +339,7 @@ namespace terme
 		world_space_.Init(level->GetWorldSizeX(), level->GetWorldSizeY(), level->GetScreenPadding());
 
 #if DEBUG_MODE
-		debug_manager::Instance().Reset(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding());
+		DebugManager::Instance().Reset(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding());
 #endif
 		ResetPrinters(level);
 		level->LoadInSimulation();
@@ -350,7 +350,7 @@ namespace terme
 		Terminal::Instance().SetDefaultColors(level->GetDefaultFrontColor(), level->GetDefaultBackColor());
 		Terminal::Instance().Clear();
 
-		simulation_printer_ = std::make_unique<simulation_printer>
+		simulation_printer_ = std::make_unique<SimulationPrinter>
 		(
 			GetScreenSizeX(),
 			GetScreenSizeY(),
@@ -360,7 +360,7 @@ namespace terme
 		);
 
 		ui_printer_.reset();
-		ui_printer_ = std::make_unique<ui_printer>(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding(), level->GetMarginsColor());
+		ui_printer_ = std::make_unique<UIPrinter>(GetScreenSizeX(), GetScreenSizeY(), GetScreenPadding(), level->GetMarginsColor());
 	}
 
 	bool Simulation::IsInsideScreenY(int y_pos) const
@@ -378,7 +378,7 @@ namespace terme
 
 	void Simulation::MarkAreaToReprint(std::shared_ptr<game_object> obj_area)
 	{
-		std::unordered_set<shared_ptr<game_object>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(obj_area);
+		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(obj_area);
 		for (shared_ptr<game_object> obj : to_be_reprinted_objects)
 			obj->must_be_reprinted_ = true;
 	}
@@ -392,7 +392,7 @@ namespace terme
 		size_t width = is_movement_horizontal ? obj->GetModelWidth() + 1 : obj->GetModelWidth();
 		size_t height = !is_movement_horizontal ? obj->GetModelHeight() + 1 : obj->GetModelHeight();
 
-		std::unordered_set<shared_ptr<game_object>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(min_x, min_y, width, height);
+		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(min_x, min_y, width, height);
 
 		for (shared_ptr<game_object> obj : to_be_reprinted_objects)
 			obj->must_be_reprinted_ = true;

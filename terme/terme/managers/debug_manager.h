@@ -12,14 +12,14 @@
 
 namespace terme
 {
-	class debug_manager : public nbase_kit::Singleton<debug_manager>
+	class DebugManager : public nbase_kit::Singleton<DebugManager>
 	{
-		friend class nbase_kit::Singleton<debug_manager>;
+		friend class nbase_kit::Singleton<DebugManager>;
 		//---------------------------------------------------------- Settings
 	private:
 		static constexpr double kRefreshFpsEverySeconds = 0.5;
 		//---------------------------------------------------------- Fields
-		std::unique_ptr<debug_printer> debugPrinter;
+		std::unique_ptr<DebugPrinter> debugPrinter;
 
 		//fps
 		std::list<double> fpsRecord;

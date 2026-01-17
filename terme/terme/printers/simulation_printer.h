@@ -9,10 +9,10 @@
 
 namespace terme
 {
-	class game_object;
+	class GameObject;
 	class Frame;
 
-	class simulation_printer : public Printer
+	class SimulationPrinter : public Printer
 	{
 		//---------------------------------------------------------- Fields
 	private:
@@ -20,7 +20,7 @@ namespace terme
 		Frame background_;
 		//---------------------------------------------------------- Methods
 	public:
-		simulation_printer
+		SimulationPrinter
 		(
 			size_t screen_size_x,
 			size_t screen_size_y,
@@ -29,12 +29,12 @@ namespace terme
 			const char* background_file_name = ""
 		);
 
-		void PrintObject(std::shared_ptr<game_object> obj);
-		void ClearObject(std::shared_ptr<game_object> obj);
+		void PrintObject(std::shared_ptr<GameObject> obj);
+		void ClearObject(std::shared_ptr<GameObject> obj);
 		void ClearArea(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size);
 
 	private:
-		void PrintInternal(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size, std::shared_ptr<game_object> go);
+		void PrintInternal(int world_x_pos, int world_y_pos, size_t x_size, size_t y_size, std::shared_ptr<GameObject> go);
 		void InitBackground(const char* background_file_name);
 		void PrintBackground();
 	};

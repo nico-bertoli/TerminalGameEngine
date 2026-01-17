@@ -5,10 +5,10 @@
 
 namespace terme
 {
-	class fake_collider : public terme::Collider
+	class FakeCollider : public terme::Collider
 	{
 	public:
-		fake_collider() : terme::Collider(0, 0) {}
+		FakeCollider() : terme::Collider(0, 0) {}
 	private:
 		bool CanExitScreenSpace() const override { assert(false); return true; }
 		double GetGravityScale() const override { assert(false); return 0; }

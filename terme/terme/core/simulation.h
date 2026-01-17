@@ -13,27 +13,27 @@
 namespace terme
 {
 	class Collider;
-	class game_object;
-	class i_simulation_entity;
+	class GameObject;
+	class ISimulationEntity;
 	class Frame;
-	class simulation_printer;
-	class ui_printer;
+	class SimulationPrinter;
+	class UIPrinter;
 	class Level;
 
 	class Simulation : public nbase_kit::Singleton<Simulation>
 	{
 		//------------------------------------------------------------------------------------ Friend Classes
 		friend class nbase_kit::Singleton<Simulation>;
-		friend class game_object;
+		friend class GameObject;
 
 		//------------------------------------------------------------------------------------ Structs
 		struct MoveRequest
 		{
-			std::weak_ptr<game_object> object;
+			std::weak_ptr<GameObject> object;
 			Direction move_dir;
 			double move_speed;
 
-			MoveRequest(std::shared_ptr<game_object> object, Direction direction, double speed)
+			MoveRequest(std::shared_ptr<GameObject> object, Direction direction, double speed)
 				:object(object), move_dir(direction), move_speed(speed){ }
 		};
 
@@ -43,12 +43,12 @@ namespace terme
 		nbase_kit::Event<> on_simulation_stepped;
 
 	private:
-		std::unique_ptr<simulation_printer> simulation_printer_;
-		std::unique_ptr<ui_printer> ui_printer_;
+		std::unique_ptr<SimulationPrinter> simulation_printer_;
+		std::unique_ptr<UIPrinter> ui_printer_;
 		std::shared_ptr<Level> level_;
-		world_space world_space_;
-		std::unordered_set<std::shared_ptr<i_simulation_entity>> entities_;
-		std::list<std::weak_ptr<i_simulation_entity>> to_remove_entities_;
+		WorldSpace world_space_;
+		std::unordered_set<std::shared_ptr<ISimulationEntity>> entities_;
+		std::list<std::weak_ptr<ISimulationEntity>> to_remove_entities_;
 
 		// move requests are sorted from slower to faster
 		// slower objects have to move before faster ones to prevent false collisions detection
@@ -58,16 +58,16 @@ namespace terme
 	public:
 		void LoadLevel(std::shared_ptr<Level> level);
 		void Step();
-		bool TryAddEntity(std::shared_ptr<i_simulation_entity> entity);
-		void RemoveEntity(std::shared_ptr<i_simulation_entity> entity);
-		void RequestMovement(std::shared_ptr<game_object> applicant_obj, Direction move_dir, double move_speed);
+		bool TryAddEntity(std::shared_ptr<ISimulationEntity> entity);
+		void RemoveEntity(std::shared_ptr<ISimulationEntity> entity);
+		void RequestMovement(std::shared_ptr<GameObject> applicant_obj, Direction move_dir, double move_speed);
 		size_t GetWorldSizeX() const;
 		size_t GetWorldSizeY() const;
 		size_t GetScreenPadding() const;
 		size_t GetScreenSizeX() const;
 		size_t GetScreenSizeY() const;
 		std::shared_ptr<Level> GetActiveLevel();
-		ui_printer& Getui_printer();
+		UIPrinter& GetUIPrinter();
 
 		void SpawnParticles
 		(
@@ -84,9 +84,9 @@ namespace terme
 		);
 
 	private:
-		bool TryMoveObjectAtDirection(std::shared_ptr<game_object> obj, Direction direction);
-		bool CanEntityBeAdded(std::shared_ptr<i_simulation_entity> entity) const;
-		bool IsEntityInSimulation(std::shared_ptr<i_simulation_entity> new_entity) const;
+		bool TryMoveObjectAtDirection(std::shared_ptr<GameObject> obj, Direction direction);
+		bool CanEntityBeAdded(std::shared_ptr<ISimulationEntity> entity) const;
+		bool IsEntityInSimulation(std::shared_ptr<ISimulationEntity> new_entity) const;
 		void UpdateObjectEndedCollisions(std::shared_ptr<Collider> colliding_obj);
 		void ResetPrinters(std::shared_ptr<const Level> level);
 		void EnqueueMoveRequestSortingBySpeed(MoveRequest request);
@@ -100,8 +100,8 @@ namespace terme
 		bool IsInsideScreenY(int y_pos) const;
 		bool IsCoordinateInsideScreenSpace(int x_pos, int y_pos) const { return IsInsideScreenX(x_pos) && IsInsideScreenY(y_pos); }
 
-		void MarkAreaToReprint(std::shared_ptr<game_object> obj_area);
-		void MarkAreaToReprintAfterMovement(std::shared_ptr<game_object> obj, int old_pos_x, int old_pos_y);
-		void UnmarkObjectToReprint(std::shared_ptr<game_object> obj) { obj->must_be_reprinted_ = false; }
+		void MarkAreaToReprint(std::shared_ptr<GameObject> obj_area);
+		void MarkAreaToReprintAfterMovement(std::shared_ptr<GameObject> obj, int old_pos_x, int old_pos_y);
+		void UnmarkObjectToReprint(std::shared_ptr<GameObject> obj) { obj->must_be_reprinted_ = false; }
 	};
 }

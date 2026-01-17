@@ -10,7 +10,7 @@ using std::unordered_set;
 
 namespace terme
 {
-	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>colliding_objects, Direction collision_dir)
+	void Collider::CalledBySimNotifyCollisionEnter(unordered_set<shared_ptr<Collider>>colliding_objects, Direction collision_dir)
 	{
 		list<weak_ptr<Collider>>& local_direction_coll = collisions_[collision_dir];
 		for (auto obj : colliding_objects)
@@ -23,12 +23,12 @@ namespace terme
 		}
 	}
 
-	void Collider::CALLED_BY_SIM_NotifyCollisionEnter(shared_ptr<Collider> colliding_object, Direction collision_dir)
+	void Collider::CalledBySimNotifyCollisionEnter(shared_ptr<Collider> colliding_object, Direction collision_dir)
 	{
-		CALLED_BY_SIM_NotifyCollisionEnter(unordered_set<shared_ptr<Collider>>{colliding_object}, collision_dir);
+		CalledBySimNotifyCollisionEnter(unordered_set<shared_ptr<Collider>>{colliding_object}, collision_dir);
 	}
 
-	void Collider::CALLED_BY_SIM_UpdateEndedCollisions(const std::array<unordered_set<shared_ptr<Collider>>,4>& new_collisions)
+	void Collider::CalledBySimUpdateEndedCollisions(const std::array<unordered_set<shared_ptr<Collider>>,4>& new_collisions)
 	{
 		for (int i = 0; i < new_collisions.size(); ++i)
 		{

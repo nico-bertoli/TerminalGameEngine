@@ -14,7 +14,7 @@ using string = std::string;
 
 namespace terme
 {
-    void windows_terminal::Clear()
+    void WindowsTerminal::Clear()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         COORD coord = { 0, 0 };
@@ -36,7 +36,7 @@ namespace terme
         SetCursorPosition(coord.X,coord.Y);
     }
 
-    void windows_terminal::SetCursorPosition(const vector2_int& position)
+    void WindowsTerminal::SetCursorPosition(const vector2_int& position)
     {
         COORD coord;
         coord.X = static_cast<short>(position.X);
@@ -44,7 +44,7 @@ namespace terme
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
     }
 
-    void windows_terminal::HideCursor()
+    void WindowsTerminal::HideCursor()
     {
         CONSOLE_CURSOR_INFO cursorInfo;
         GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);

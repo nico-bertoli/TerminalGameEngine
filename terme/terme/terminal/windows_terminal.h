@@ -5,9 +5,9 @@
 
 namespace terme
 {
-    class windows_terminal : public nbase_kit::Singleton<windows_terminal>, public base_terminal
+    class WindowsTerminal : public nbase_kit::Singleton<WindowsTerminal>, public BaseTerminal
     {
-        friend class nbase_kit::Singleton<windows_terminal>;
+        friend class nbase_kit::Singleton<WindowsTerminal>;
 
     //================================================================= Override Methods
     public:
@@ -19,6 +19,6 @@ namespace terme
 
     //================================================================= Methods
     public:
-        using base_terminal::SetCursorPosition;
+        using BaseTerminal::SetCursorPosition;
     };
 }
