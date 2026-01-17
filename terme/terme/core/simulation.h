@@ -1,0 +1,107 @@
+#pragma once
+
+#include <terme/config.h>
+#include <terme/core/world_space.h>
+#include <terme/printers/ui_printer.h>
+#include <terme/printers/simulation_printer.h>
+#include <list>
+#include <unordered_set>
+#include <optional>
+#include <memory>
+#include <nbase_kit/singleton.h>
+
+namespace terme
+{
+	class Collider;
+	class game_object;
+	class i_simulation_entity;
+	class Frame;
+	class simulation_printer;
+	class ui_printer;
+	class Level;
+
+	class Simulation : public nbase_kit::Singleton<Simulation>
+	{
+		//------------------------------------------------------------------------------------ Friend Classes
+		friend class nbase_kit::Singleton<Simulation>;
+		friend class game_object;
+
+		//------------------------------------------------------------------------------------ Structs
+		struct MoveRequest
+		{
+			std::weak_ptr<game_object> object;
+			Direction move_dir;
+			double move_speed;
+
+			MoveRequest(std::shared_ptr<game_object> object, Direction direction, double speed)
+				:object(object), move_dir(direction), move_speed(speed){ }
+		};
+
+		//------------------------------------------------------------------------------------ Fields
+	public:
+		nbase_kit::Event<> on_frame_generated;
+		nbase_kit::Event<> on_simulation_stepped;
+
+	private:
+		std::unique_ptr<simulation_printer> simulation_printer_;
+		std::unique_ptr<ui_printer> ui_printer_;
+		std::shared_ptr<Level> level_;
+		world_space world_space_;
+		std::unordered_set<std::shared_ptr<i_simulation_entity>> entities_;
+		std::list<std::weak_ptr<i_simulation_entity>> to_remove_entities_;
+
+		// move requests are sorted from slower to faster
+		// slower objects have to move before faster ones to prevent false collisions detection
+		std::list<MoveRequest> move_requests_;
+
+		//------------------------------------------------------------------------------------ Methods
+	public:
+		void LoadLevel(std::shared_ptr<Level> level);
+		void Step();
+		bool TryAddEntity(std::shared_ptr<i_simulation_entity> entity);
+		void RemoveEntity(std::shared_ptr<i_simulation_entity> entity);
+		void RequestMovement(std::shared_ptr<game_object> applicant_obj, Direction move_dir, double move_speed);
+		size_t GetWorldSizeX() const;
+		size_t GetWorldSizeY() const;
+		size_t GetScreenPadding() const;
+		size_t GetScreenSizeX() const;
+		size_t GetScreenSizeY() const;
+		std::shared_ptr<Level> GetActiveLevel();
+		ui_printer& Getui_printer();
+
+		void SpawnParticles
+		(
+			int pos_x,
+			int pos_y,
+			size_t width,
+			size_t height,
+			char model_char,
+			TerminalColor color,
+			double speed,
+			size_t movement_life_time,
+			double density,
+			std::optional<Direction> main_direction = std::nullopt
+		);
+
+	private:
+		bool TryMoveObjectAtDirection(std::shared_ptr<game_object> obj, Direction direction);
+		bool CanEntityBeAdded(std::shared_ptr<i_simulation_entity> entity) const;
+		bool IsEntityInSimulation(std::shared_ptr<i_simulation_entity> new_entity) const;
+		void UpdateObjectEndedCollisions(std::shared_ptr<Collider> colliding_obj);
+		void ResetPrinters(std::shared_ptr<const Level> level);
+		void EnqueueMoveRequestSortingBySpeed(MoveRequest request);
+		void UpdateAllEntities();
+		void ExecuteMoveRequests();
+		void UpdateAllObjectsEndedCollisions();
+		bool PrintObjects();
+		void RemoveMarkedEntities();
+
+		bool IsInsideScreenX(int x_pos) const;
+		bool IsInsideScreenY(int y_pos) const;
+		bool IsCoordinateInsideScreenSpace(int x_pos, int y_pos) const { return IsInsideScreenX(x_pos) && IsInsideScreenY(y_pos); }
+
+		void MarkAreaToReprint(std::shared_ptr<game_object> obj_area);
+		void MarkAreaToReprintAfterMovement(std::shared_ptr<game_object> obj, int old_pos_x, int old_pos_y);
+		void UnmarkObjectToReprint(std::shared_ptr<game_object> obj) { obj->must_be_reprinted_ = false; }
+	};
+}
