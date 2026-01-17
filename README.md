@@ -1,4 +1,4 @@
-An engine for creating 2D terminal-based games, built without any graphics libraries.
+An engine for creating 2D terminal rendered games, built without any graphics libraries.
 
 - Cross platform (Linux/Windows)
 - Framerate-independent simulation (delta-time based)
