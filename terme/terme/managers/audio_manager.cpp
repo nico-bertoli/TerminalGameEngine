@@ -32,7 +32,7 @@ namespace terme
 
 		float pitch = 1;
 		if (randomPitch != 0.0)
-			pitch += static_cast<float>(random_utils::GetRandomDouble(1.0 - randomPitch, 1.0 + randomPitch));
+			pitch += static_cast<float>(RandomUtils::GetRandomDouble(1.0 - randomPitch, 1.0 + randomPitch));
 
 		sound->setPitch(pitch);
 		sound->play();

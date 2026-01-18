@@ -54,7 +54,7 @@ namespace terme
 				for (int density = 0; density <= density_int_part; ++density)
 				{
 					//add particles depending on density fractional part
-					if (density == density_int_part && random_utils::GetRandomDouble(0, 1) > density_decimal_part)
+					if (density == density_int_part && RandomUtils::GetRandomDouble(0, 1) > density_decimal_part)
 						continue;
 
 					shared_ptr<Particle> particle = std::make_shared<Particle>(x, y, model_char, color, speed, movement_life_time, main_direction);
@@ -318,7 +318,7 @@ namespace terme
 
 					for (auto colliding_obj : out_colliding_objects)
 						if (colliding_obj != WorldSpace::kScreenMargin)
-							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, direction_utils::GetInverseDirection(direction));
+							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, DirectionUtils::GetInverseDirection(direction));
 				}
 			}
 			return false;

@@ -15,7 +15,7 @@ namespace terme
 		list<weak_ptr<Collider>>& local_direction_coll = collisions_[collision_dir];
 		for (auto obj : colliding_objects)
 		{
-			if(smart_pointers_list_utils::WeakPtrListContainsShared(local_direction_coll, obj) == false)
+			if(SmartPointersListUtils::WeakPtrListContainsShared(local_direction_coll, obj) == false)
 			{
 				local_direction_coll.push_back(obj);
 				OnCollisionEnter(obj, collision_dir);
@@ -46,7 +46,7 @@ namespace terme
 			}	
 
 			for (auto to_remove_obj : to_remove)
-				smart_pointers_list_utils::RemoveWeakPointerFromList(local_direction_coll, to_remove_obj);
+				SmartPointersListUtils::RemoveWeakPointerFromList(local_direction_coll, to_remove_obj);
 
 			//call on collision exit
 			if (to_remove.size() > 0)

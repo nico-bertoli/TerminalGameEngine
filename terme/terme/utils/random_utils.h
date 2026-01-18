@@ -2,7 +2,7 @@
 #include <terme/managers/time_manager.h>
 #include <cmath>
 
-namespace random_utils
+namespace RandomUtils
 {
 	inline double GetRandomDouble(double min, double max)
 	{

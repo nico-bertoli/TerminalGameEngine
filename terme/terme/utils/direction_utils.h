@@ -7,7 +7,7 @@ namespace terme
 	enum Direction { kUp, kDown, kLeft, kRight, kCount };
 }
 
-namespace direction_utils
+namespace DirectionUtils
 {
 	inline terme::Direction GetInverseDirection(terme::Direction direction)
 	{

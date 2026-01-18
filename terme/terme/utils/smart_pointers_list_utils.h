@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace smart_pointers_list_utils
+namespace SmartPointersListUtils
 {
 	template<typename T>
 	bool WeakPtrListContainsShared(const std::list<std::weak_ptr<T>>& list, const std::shared_ptr<T>& sharedPtr)

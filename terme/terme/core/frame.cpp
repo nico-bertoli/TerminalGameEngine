@@ -43,10 +43,10 @@ namespace terme
 
     void Frame::RemoveNotAllowedChars(string& str)
     {
-        string_utils::RemoveInstancesOfChar(str, '\n');
-        string_utils::RemoveInstancesOfChar(str, '\r');
-        string_utils::RemoveInstancesOfChar(str, '\t');
-        string_utils::RemoveInstancesOfChar(str, '\0');
+        StringUtils::RemoveInstancesOfChar(str, '\n');
+        StringUtils::RemoveInstancesOfChar(str, '\r');
+        StringUtils::RemoveInstancesOfChar(str, '\t');
+        StringUtils::RemoveInstancesOfChar(str, '\0');
     }
 
     void Frame::WriteString(const string& written_string, char write_over_char)

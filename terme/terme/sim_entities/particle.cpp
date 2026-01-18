@@ -27,7 +27,7 @@ namespace terme
 
 		if (!main_direction.has_value()) //main direction = random value
 		{
-			move_directions_[0] = static_cast<Direction>(random_utils::GetRandomInt(0, Direction::kCount - 1));
+			move_directions_[0] = static_cast<Direction>(RandomUtils::GetRandomInt(0, Direction::kCount - 1));
 		}
 		else //main direction is chosen randomly between given direction and orthogonal ones
 		{
@@ -36,14 +36,14 @@ namespace terme
 
 		//--------- evaluate orthogonal direction
 
-		Direction orthogonal_direction = direction_utils::GetClockwiseDirection(move_directions_[0]);
-		if (random_utils::GetRandomBool())
-			orthogonal_direction = direction_utils::GetInverseDirection(orthogonal_direction);
+		Direction orthogonal_direction = DirectionUtils::GetClockwiseDirection(move_directions_[0]);
+		if (RandomUtils::GetRandomBool())
+			orthogonal_direction = DirectionUtils::GetInverseDirection(orthogonal_direction);
 		move_directions_[1] = orthogonal_direction;
 
 		//--------- evaluate directions speeds
 
-		double orthogonal_speed = random_utils::GetRandomDouble(0, move_speed);
+		double orthogonal_speed = RandomUtils::GetRandomDouble(0, move_speed);
 		move_speed -= orthogonal_speed;
 
 		move_speeds_[0] = move_speed;
@@ -51,7 +51,7 @@ namespace terme
 
 		//--------- boost horizzontal speed (cause cells are smaller on x side)
 		for (int i = 0; i < move_directions_.size(); ++i)
-			if (direction_utils::IsDirectionHorizontal(move_directions_[i]))
+			if (DirectionUtils::IsDirectionHorizontal(move_directions_[i]))
 				move_speeds_[i] *= 2;
 
 		on_move.Subscribe([this](weak_ptr<GameObject> _, Direction __) { OnMoveCallback(); });

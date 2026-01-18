@@ -2,7 +2,7 @@
 #include <string>
 #include <algorithm>
 
-namespace string_utils
+namespace StringUtils
 {
 	void RemoveInstancesOfChar(std::string& str, char charToRemove)
 	{
