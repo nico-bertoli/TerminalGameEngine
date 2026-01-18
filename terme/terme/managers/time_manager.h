@@ -1,14 +1,14 @@
 #pragma once
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 
 #include <chrono>
 #include <math.h>
 
 namespace terme
 {
-    class TimeManager : public nbase_kit::Singleton<TimeManager>
+    class TimeManager : public nbkit::Singleton<TimeManager>
     {
-        friend class nbase_kit::Singleton<TimeManager>;
+        friend class nbkit::Singleton<TimeManager>;
 
         //---------------------------------------------------------- Fields
     private:

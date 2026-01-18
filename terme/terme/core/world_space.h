@@ -1,7 +1,7 @@
 #pragma once
 #include <terme/utils/direction_utils.h>
 #include <terme/sim_entities/fake_collider.h>
-#include <nbase_kit/matrix.h>
+#include <nbkit/matrix.h>
 #include <memory>
 
 #include <cassert>
@@ -31,7 +31,7 @@ namespace terme
 
 		//---------------------------------------------------------- Fields
 	private:
-		nbase_kit::Matrix<Cell> space_;
+		nbkit::Matrix<Cell> space_;
 		size_t screen_padding_;
 		//---------------------------------------------------------- Methods
 	public:

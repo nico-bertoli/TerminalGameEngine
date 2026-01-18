@@ -1,13 +1,13 @@
 #pragma once
 #include <terme/terminal/base_terminal.h>
-#include <nbase_kit/singleton.h>
-#include <nbase_kit/matrix.h>
+#include <nbkit/singleton.h>
+#include <nbkit/matrix.h>
 
 namespace terme
 {
-    class WindowsTerminal : public nbase_kit::Singleton<WindowsTerminal>, public BaseTerminal
+    class WindowsTerminal : public nbkit::Singleton<WindowsTerminal>, public BaseTerminal
     {
-        friend class nbase_kit::Singleton<WindowsTerminal>;
+        friend class nbkit::Singleton<WindowsTerminal>;
 
     //================================================================= Override Methods
     public:

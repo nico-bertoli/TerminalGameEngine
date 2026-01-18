@@ -8,7 +8,7 @@
 #include <unordered_set>
 #include <optional>
 #include <memory>
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 
 namespace terme
 {
@@ -20,10 +20,10 @@ namespace terme
 	class UIPrinter;
 	class Level;
 
-	class Simulation : public nbase_kit::Singleton<Simulation>
+	class Simulation : public nbkit::Singleton<Simulation>
 	{
 		//------------------------------------------------------------------------------------ Friend Classes
-		friend class nbase_kit::Singleton<Simulation>;
+		friend class nbkit::Singleton<Simulation>;
 		friend class GameObject;
 
 		//------------------------------------------------------------------------------------ Structs
@@ -39,8 +39,8 @@ namespace terme
 
 		//------------------------------------------------------------------------------------ Fields
 	public:
-		nbase_kit::Event<> on_frame_generated;
-		nbase_kit::Event<> on_simulation_stepped;
+		nbkit::Event<> on_frame_generated;
+		nbkit::Event<> on_simulation_stepped;
 
 	private:
 		std::unique_ptr<SimulationPrinter> simulation_printer_;

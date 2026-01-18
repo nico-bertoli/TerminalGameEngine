@@ -1,6 +1,6 @@
 #pragma once
 #include <terme/config.h>
-#include <nbase_kit/matrix.h>
+#include <nbkit/matrix.h>
 
 #include <vector>
 #include <fstream>
@@ -13,7 +13,7 @@ namespace terme
     class Frame
     {
     public:
-        nbase_kit::Matrix<char> chars;
+        nbkit::Matrix<char> chars;
 
     public:
         size_t GetSizeY() const { return chars.GetSizeY(); }

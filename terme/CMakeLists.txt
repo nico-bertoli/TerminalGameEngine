@@ -17,17 +17,17 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
-#---------------------------------------- NbaseKit
+#---------------------------------------- nbkit
 include(FetchContent)
-set(NbaseKitVersion 1.0.0)
+set(nbkit_version 1.0.0)
 
 FetchContent_Declare(  # Download library
-    NbaseKit
-    URL https://raw.githubusercontent.com/nico-bertoli/NbaseKit/master/packages/NbaseKit-${NbaseKitVersion}.tar.gz
+    nbkit
+    URL https://raw.githubusercontent.com/nico-bertoli/nbkit/master/packages/nbkit-${nbkit_version}.tar.gz
     DOWNLOAD_EXTRACT_TIMESTAMP true
 )
 
-FetchContent_MakeAvailable(NbaseKit)  # Configure library and make it available
+FetchContent_MakeAvailable(nbkit)  # Configure library and make it available
 
 # ---------------------------------------- SFML
 set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Dependencies/SFML")  # Use bundled SFML
@@ -38,7 +38,7 @@ target_link_directories(${PROJECT_NAME} PUBLIC "${SFML_DIR}/lib")  # Tells linke
 
 target_link_libraries(${PROJECT_NAME}  # Tells linker which libraries to link
     PRIVATE
-        NbaseKit
+        nbkit
         sfml-system
         sfml-audio
 )

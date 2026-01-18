@@ -3,7 +3,7 @@
 
 #if DEBUG_MODE
 
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 #include <terme/managers/debug_manager.h>
 #include <terme/printers/debug_printer.h>
 #include <list>
@@ -12,9 +12,9 @@
 
 namespace terme
 {
-	class DebugManager : public nbase_kit::Singleton<DebugManager>
+	class DebugManager : public nbkit::Singleton<DebugManager>
 	{
-		friend class nbase_kit::Singleton<DebugManager>;
+		friend class nbkit::Singleton<DebugManager>;
 		//---------------------------------------------------------- Settings
 	private:
 		static constexpr double kRefreshFpsEverySeconds = 0.5;

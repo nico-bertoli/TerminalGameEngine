@@ -8,13 +8,13 @@
 
 #include <unordered_map>
 
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 #include <terme/input_manager/base_input_manager.h>
 
 namespace terme
 {
 
-class LinuxInputManager : public nbase_kit::Singleton<LinuxInputManager>, public BaseInputManager
+class LinuxInputManager : public nbkit::Singleton<LinuxInputManager>, public BaseInputManager
 {
 private:
     inline static const std::unordered_map<Key, KeySym> kKeyMap =

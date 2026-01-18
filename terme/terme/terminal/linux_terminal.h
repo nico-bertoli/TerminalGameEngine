@@ -1,12 +1,12 @@
 #pragma once
 #include <terme/terminal/base_terminal.h>
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 
 namespace terme
 {
-    class LinuxTerminal : public nbase_kit::Singleton<LinuxTerminal>, public BaseTerminal
+    class LinuxTerminal : public nbkit::Singleton<LinuxTerminal>, public BaseTerminal
     {
-        friend class nbase_kit::Singleton<LinuxTerminal>;
+        friend class nbkit::Singleton<LinuxTerminal>;
 
         //================================================================= Fields
         static constexpr const char* kClearTerminal = "\033[2J\033[3J";

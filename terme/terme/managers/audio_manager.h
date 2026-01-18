@@ -1,15 +1,15 @@
 #pragma once
 #include <terme/config.h>
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 
 #include <array>
 #include <SFML/Audio.hpp>
 
 namespace terme
 {
-	class AudioManager : public nbase_kit::Singleton<AudioManager>
+	class AudioManager : public nbkit::Singleton<AudioManager>
 	{
-		friend class nbase_kit::Singleton<AudioManager>;
+		friend class nbkit::Singleton<AudioManager>;
 
 		//---------------------------------------------------------- Fields
 	private:

@@ -4,15 +4,15 @@
 #include <terme/sim_entities/i_simulation_entity.h>
 #include <terme/terminal/terminal.h>
 #include <terme/general/vector2_int.h>
-#include <nbase_kit/matrix.h>
-#include <nbase_kit/event.h>
+#include <nbkit/matrix.h>
+#include <nbkit/event.h>
 
 #include <list>
 #include <memory>
 
 namespace terme
 {
-	using Model = nbase_kit::Matrix<char>;
+	using Model = nbkit::Matrix<char>;
 
 	class GameObject : public ISimulationEntity
 	{
@@ -20,7 +20,7 @@ namespace terme
 
 		//---------------------------------------------------------- Fields
 	public:
-		nbase_kit::Event<std::weak_ptr<GameObject>, Direction> on_move;
+		nbkit::Event<std::weak_ptr<GameObject>, Direction> on_move;
 		// generic on destroy event could be added
 
 	protected:

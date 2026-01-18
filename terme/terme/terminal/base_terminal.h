@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-#include <nbase_kit/singleton.h>
+#include <nbkit/singleton.h>
 #include <terme/general/vector2_int.h>
 
 namespace terme

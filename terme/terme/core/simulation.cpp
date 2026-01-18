@@ -9,7 +9,7 @@
 #include <terme/sim_entities/particle.h>
 #include <terme/terminal/terminal.h>
 
-#include <nbase_kit/random_utils.h>
+#include <nbkit/random_utils.h>
 
 #include <cassert>
 #include <stdexcept>
@@ -55,7 +55,7 @@ namespace terme
 				for (int density = 0; density <= density_int_part; ++density)
 				{
 					//add particles depending on density fractional part
-					if (density == density_int_part && nbase_kit::random_utils::GetRandomDouble(0, 1) > density_decimal_part)
+					if (density == density_int_part && nbkit::random_utils::GetRandomDouble(0, 1) > density_decimal_part)
 						continue;
 
 					shared_ptr<Particle> particle = std::make_shared<Particle>(x, y, model_char, color, speed, movement_life_time, main_direction);
