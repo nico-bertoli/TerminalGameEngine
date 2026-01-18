@@ -1,7 +1,7 @@
 #pragma once
 #include <terme/config.h>
 #include <terme/core/direction.h>
-#include <terme/sim_entities/i_simulation_entity.h>
+#include <terme/entities/i_simulation_entity.h>
 #include <terme/terminal/terminal.h>
 #include <terme/general/vector2_int.h>
 #include <nbkit/matrix.h>

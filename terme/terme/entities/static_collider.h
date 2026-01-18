@@ -1,6 +1,6 @@
 #pragma once
 #include <terme/config.h>
-#include <terme/sim_entities/variable_size_collider.h>
+#include <terme/entities/variable_size_collider.h>
 
 namespace terme
 {

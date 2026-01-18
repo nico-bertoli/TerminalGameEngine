@@ -1,5 +1,5 @@
 #include <terme/core/world_space.h>
-#include <terme/sim_entities/collider.h>
+#include <terme/entities/collider.h>
 
 using std::shared_ptr;
 using std::unordered_set;

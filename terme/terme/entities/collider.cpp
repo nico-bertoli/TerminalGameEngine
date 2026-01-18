@@ -1,4 +1,4 @@
-#include <terme/sim_entities/collider.h>
+#include <terme/entities/collider.h>
 #include <terme/managers/time_manager.h>
 #include <terme/core/simulation.h>
 

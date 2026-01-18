@@ -1,4 +1,4 @@
-#include <terme/sim_entities/level.h>
+#include <terme/entities/level.h>
 
 #include <terme/managers/time_manager.h>
 #include <terme/input_manager/input_manager.h>

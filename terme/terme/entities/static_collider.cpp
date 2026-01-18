@@ -1,4 +1,4 @@
-#include <terme/sim_entities/static_collider.h>
+#include <terme/entities/static_collider.h>
 
 namespace terme
 {

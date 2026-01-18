@@ -1,12 +1,12 @@
 #include <terme/core/simulation.h>
-#include <terme/sim_entities/collider.h>
-#include <terme/sim_entities/i_simulation_entity.h>
-#include <terme/sim_entities/game_object.h>
-#include <terme/sim_entities/level.h>
+#include <terme/entities/collider.h>
+#include <terme/entities/i_simulation_entity.h>
+#include <terme/entities/game_object.h>
+#include <terme/entities/level.h>
 #include <terme/managers/time_manager.h>
 #include <terme/core/world_space.h>
 #include <terme/managers/debug_manager.h>
-#include <terme/sim_entities/particle.h>
+#include <terme/entities/particle.h>
 #include <terme/terminal/terminal.h>
 
 #include <nbkit/random_utils.h>

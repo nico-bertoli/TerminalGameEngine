@@ -1,6 +1,6 @@
 #pragma once
 
-#include <terme/sim_entities/i_simulation_entity.h>
+#include <terme/entities/i_simulation_entity.h>
 #include <terme/terminal/terminal.h>
 #include <terme/core/frame.h>
 

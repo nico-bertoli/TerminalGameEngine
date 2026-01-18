@@ -1,4 +1,4 @@
-#include <terme/sim_entities/particle.h>
+#include <terme/entities/particle.h>
 #include <nbkit/random_utils.h>
 #include <terme/core/direction.h>
 #include <terme/core/simulation.h>

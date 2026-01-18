@@ -1,5 +1,5 @@
 #pragma once
-#include <terme/sim_entities/collider.h>
+#include <terme/entities/collider.h>
 
 namespace terme
 {

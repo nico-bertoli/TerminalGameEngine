@@ -1,6 +1,6 @@
 #pragma once
 #include <terme/core/direction.h>
-#include <terme/sim_entities/fake_collider.h>
+#include <terme/entities/fake_collider.h>
 #include <nbkit/matrix.h>
 #include <memory>
 

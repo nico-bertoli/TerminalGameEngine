@@ -1,4 +1,4 @@
-#include <terme/sim_entities/moving_straight_object.h>
+#include <terme/entities/moving_straight_object.h>
 
 
 

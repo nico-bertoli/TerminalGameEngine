@@ -1,10 +1,10 @@
 #include <terme/printers/simulation_printer.h>
 
-#include <terme/sim_entities/collider.h>
-#include <terme/sim_entities/game_object.h>
+#include <terme/entities/collider.h>
+#include <terme/entities/game_object.h>
 #include <terme/core/simulation.h>
 #include <terme/config.h>
-#include <terme/sim_entities/level.h>
+#include <terme/entities/level.h>
 #include <terme/managers/time_manager.h>
 #include <terme/managers/debug_manager.h>
 

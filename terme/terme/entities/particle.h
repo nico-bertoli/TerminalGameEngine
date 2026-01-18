@@ -1,7 +1,7 @@
 #pragma once
-#include <terme/sim_entities/i_simulation_entity.h>
+#include <terme/entities/i_simulation_entity.h>
 #include <terme/core/direction.h>
-#include <terme/sim_entities/game_object.h>
+#include <terme/entities/game_object.h>
 #include <array>
 #include <optional>
 
