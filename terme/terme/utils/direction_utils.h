@@ -5,47 +5,47 @@
 namespace terme
 {
 	enum Direction { kUp, kDown, kLeft, kRight, kCount };
-}
 
-namespace DirectionUtils
-{
-	inline terme::Direction GetInverseDirection(terme::Direction direction)
+	namespace direction_utils
 	{
-		switch (direction)
+		inline Direction GetInverseDirection(Direction direction)
 		{
-		case terme::Direction::kUp:
-			return terme::Direction::kDown;
-		case terme::Direction::kDown:
-			return terme::Direction::kUp;
-		case terme::Direction::kLeft:
-			return terme::Direction::kRight;
-		case terme::Direction::kRight:
-			return terme::Direction::kLeft;
-		default:
-			throw std::invalid_argument("Invalid direction");
+			switch (direction)
+			{
+			case Direction::kUp:
+				return Direction::kDown;
+			case Direction::kDown:
+				return Direction::kUp;
+			case Direction::kLeft:
+				return Direction::kRight;
+			case Direction::kRight:
+				return Direction::kLeft;
+			default:
+				throw std::invalid_argument("Invalid direction");
+			}
 		}
-	}
 
-	inline terme::Direction GetClockwiseDirection(terme::Direction direction)
-	{
-		switch (direction)
+		inline Direction GetClockwiseDirection(Direction direction)
 		{
-		case terme::Direction::kUp:
-			return terme::Direction::kRight;
-		case terme::Direction::kDown:
-			return terme::Direction::kLeft;
-		case terme::Direction::kLeft:
-			return terme::Direction::kUp;
-		case terme::Direction::kRight:
-			return terme::Direction::kDown;
-		default:
-			throw std::invalid_argument("Invalid direction");
+			switch (direction)
+			{
+			case Direction::kUp:
+				return Direction::kRight;
+			case Direction::kDown:
+				return Direction::kLeft;
+			case Direction::kLeft:
+				return Direction::kUp;
+			case Direction::kRight:
+				return Direction::kDown;
+			default:
+				throw std::invalid_argument("Invalid direction");
+			}
 		}
-	}
 
-	inline bool IsDirectionHorizontal(terme::Direction dir)
-	{
-		assert(dir != terme::Direction::kCount);
-		return dir == terme::Direction::kLeft || dir == terme::Direction::kRight;
+		inline bool IsDirectionHorizontal(Direction dir)
+		{
+			assert(dir != Direction::kCount);
+			return dir == Direction::kLeft || dir == Direction::kRight;
+		}
 	}
 }

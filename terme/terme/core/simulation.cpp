@@ -318,7 +318,7 @@ namespace terme
 
 					for (auto colliding_obj : out_colliding_objects)
 						if (colliding_obj != WorldSpace::kScreenMargin)
-							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, DirectionUtils::GetInverseDirection(direction));
+							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, direction_utils::GetInverseDirection(direction));
 				}
 			}
 			return false;
