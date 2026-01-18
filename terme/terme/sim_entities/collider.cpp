@@ -1,7 +1,6 @@
 #include <terme/sim_entities/collider.h>
 #include <terme/managers/time_manager.h>
 #include <terme/core/simulation.h>
-#include <terme/utils/smart_pointers_list_utils.h>
 
 using std::weak_ptr;
 using std::shared_ptr;
@@ -10,12 +9,43 @@ using std::unordered_set;
 
 namespace terme
 {
+	//---------------------------- local utility methods
+	template<typename T>
+	bool WeakPtrListContainsShared(const std::list<std::weak_ptr<T>>& list, const std::shared_ptr<T>& sharedPtr)
+	{
+		for (const auto& weakItem : list)
+			if (auto sharedItem = weakItem.lock())
+				if (sharedItem == sharedPtr)
+					return true;
+
+		return false;
+	}
+
+	template<typename T>
+	void RemoveWeakPointerFromList(std::list<std::weak_ptr<T>>& weakList, const std::weak_ptr<T>& targetWeak)
+	{
+		std::shared_ptr<T> target = targetWeak.lock();
+		if (target == nullptr)
+			return;
+
+		for (auto itWeak = weakList.begin(); itWeak != weakList.end(); ++itWeak)
+		{
+			if (auto it = itWeak->lock())
+				if (it == target)
+				{
+					weakList.erase(itWeak);
+					return;
+				}
+		}
+	}
+	//----------------------------
+
 	void Collider::CalledBySimNotifyCollisionEnter(unordered_set<shared_ptr<Collider>>colliding_objects, Direction collision_dir)
 	{
 		list<weak_ptr<Collider>>& local_direction_coll = collisions_[collision_dir];
 		for (auto obj : colliding_objects)
 		{
-			if(SmartPointersListUtils::WeakPtrListContainsShared(local_direction_coll, obj) == false)
+			if(WeakPtrListContainsShared(local_direction_coll, obj) == false)
 			{
 				local_direction_coll.push_back(obj);
 				OnCollisionEnter(obj, collision_dir);
@@ -46,7 +76,7 @@ namespace terme
 			}	
 
 			for (auto to_remove_obj : to_remove)
-				SmartPointersListUtils::RemoveWeakPointerFromList(local_direction_coll, to_remove_obj);
+				RemoveWeakPointerFromList(local_direction_coll, to_remove_obj);
 
 			//call on collision exit
 			if (to_remove.size() > 0)
