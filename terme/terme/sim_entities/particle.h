@@ -1,6 +1,6 @@
 #pragma once
 #include <terme/sim_entities/i_simulation_entity.h>
-#include <terme/utils/direction_utils.h>
+#include <terme/core/direction.h>
 #include <terme/sim_entities/game_object.h>
 #include <array>
 #include <optional>

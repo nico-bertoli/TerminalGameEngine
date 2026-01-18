@@ -1,5 +1,5 @@
 #pragma once
-#include <terme/utils/direction_utils.h>
+#include <terme/core/direction.h>
 #include <terme/sim_entities/fake_collider.h>
 #include <nbkit/matrix.h>
 #include <memory>
