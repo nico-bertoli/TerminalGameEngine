@@ -30,17 +30,22 @@ FetchContent_Declare(  # Download library
 FetchContent_MakeAvailable(nbkit)  # Configure library and make it available
 
 # ---------------------------------------- SFML
-set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Dependencies/SFML")  # Use bundled SFML
+# Select the appropriate SFML distribution based on platform
+if(WIN32)
+    set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/SFML-2.6.2-windows-mingw")  # Windows SFML
+else()
+    set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dependencies/SFML-2.6.2-linux-gcc")  # Linux SFML
+endif()
 message(STATUS "SFML_DIR = ${SFML_DIR}")
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${SFML_DIR}/include")  # Tells compiler where to find haders
 target_link_directories(${PROJECT_NAME} PUBLIC "${SFML_DIR}/lib")  # Tells linker where to find library files (.so/a/dll/lib)
 
-target_link_libraries(${PROJECT_NAME}  # Tells linker which libraries to link
+target_link_libraries(${PROJECT_NAME}  # Tells linker which libraries to link (static linking)
     PRIVATE
         nbkit
-        sfml-system
-        sfml-audio
+        sfml-system-s
+        sfml-audio-s
 )
 
 #----------------------- CPack Configuration 
