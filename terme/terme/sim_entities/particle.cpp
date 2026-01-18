@@ -1,5 +1,5 @@
 #include <terme/sim_entities/particle.h>
-#include <terme/utils/random_utils.h>
+#include <nbase_kit/random_utils.h>
 #include <terme/utils/direction_utils.h>
 #include <terme/core/simulation.h>
 
@@ -27,7 +27,7 @@ namespace terme
 
 		if (!main_direction.has_value()) //main direction = random value
 		{
-			move_directions_[0] = static_cast<Direction>(RandomUtils::GetRandomInt(0, Direction::kCount - 1));
+			move_directions_[0] = static_cast<Direction>(nbase_kit::random_utils::GetRandomInt(0, Direction::kCount - 1));
 		}
 		else //main direction is chosen randomly between given direction and orthogonal ones
 		{
@@ -37,13 +37,13 @@ namespace terme
 		//--------- evaluate orthogonal direction
 
 		Direction orthogonal_direction = direction_utils::GetClockwiseDirection(move_directions_[0]);
-		if (RandomUtils::GetRandomBool())
+		if (nbase_kit::random_utils::GetRandomBool())
 			orthogonal_direction = direction_utils::GetInverseDirection(orthogonal_direction);
 		move_directions_[1] = orthogonal_direction;
 
 		//--------- evaluate directions speeds
 
-		double orthogonal_speed = RandomUtils::GetRandomDouble(0, move_speed);
+		double orthogonal_speed = nbase_kit::random_utils::GetRandomDouble(0, move_speed);
 		move_speed -= orthogonal_speed;
 
 		move_speeds_[0] = move_speed;

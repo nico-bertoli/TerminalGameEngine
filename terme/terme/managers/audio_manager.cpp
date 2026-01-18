@@ -1,6 +1,6 @@
 #include <terme/config.h>
 #include <terme/managers/audio_manager.h>
-#include <terme/utils/random_utils.h>
+#include <nbase_kit/random_utils.h>
 
 
 
@@ -32,7 +32,7 @@ namespace terme
 
 		float pitch = 1;
 		if (randomPitch != 0.0)
-			pitch += static_cast<float>(RandomUtils::GetRandomDouble(1.0 - randomPitch, 1.0 + randomPitch));
+			pitch += static_cast<float>(nbase_kit::random_utils::GetRandomDouble(1.0 - randomPitch, 1.0 + randomPitch));
 
 		sound->setPitch(pitch);
 		sound->play();
