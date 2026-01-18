@@ -97,7 +97,7 @@ namespace terme
 		on_simulation_stepped.Notify();
 	}
 
-	void Simulation::RequestMovement(shared_ptr<game_object> applicant_obj, Direction move_dir, double move_speed)
+	void Simulation::RequestMovement(shared_ptr<GameObject> applicant_obj, Direction move_dir, double move_speed)
 	{
 		if (IsEntityInSimulation(applicant_obj) == false)
 		{
@@ -123,12 +123,12 @@ namespace terme
 
 	void Simulation::RemoveMarkedEntities()
 	{
-		for (weak_ptr<i_simulation_entity>& entity : to_remove_entities_)
+		for (weak_ptr<ISimulationEntity>& entity : to_remove_entities_)
 		{
 			shared_ptr<ISimulationEntity> entity_sp = entity.lock();
 			if (entity_sp != nullptr)
 			{
-				shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<game_object>(entity_sp);
+				shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<GameObject>(entity_sp);
 				if (object_entity != nullptr)
 				{
 					object_entity->OnDestroy();
@@ -142,7 +142,7 @@ namespace terme
 		to_remove_entities_.clear();
 	}
 
-	void Simulation::RemoveEntity(shared_ptr<i_simulation_entity> entity)
+	void Simulation::RemoveEntity(shared_ptr<ISimulationEntity> entity)
 	{
 		if (entity == nullptr)
 			return;
@@ -157,7 +157,7 @@ namespace terme
 	void Simulation::UpdateAllEntities()
 	{
 		level_->Update();
-		for (shared_ptr<i_simulation_entity> entity : entities_)
+		for (shared_ptr<ISimulationEntity> entity : entities_)
 			entity->Update();
 	}
 
@@ -187,9 +187,9 @@ namespace terme
 		list<shared_ptr<GameObject>> to_be_printed_objects;
 
 		//create sorted list
-		for (shared_ptr<i_simulation_entity> entity : entities_)
+		for (shared_ptr<ISimulationEntity> entity : entities_)
 		{
-			shared_ptr<GameObject> obj_entity = std::dynamic_pointer_cast<game_object>(entity);
+			shared_ptr<GameObject> obj_entity = std::dynamic_pointer_cast<GameObject>(entity);
 			if (obj_entity && obj_entity->must_be_reprinted_)
 				GameObject::InsertInListUsingRule
 				(
@@ -237,13 +237,13 @@ namespace terme
 
 		//screen collisions
 		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos, y_max + 1))
-			collisions[Direction::kUp].insert(world_space::kScreenMargin);
+			collisions[Direction::kUp].insert(WorldSpace::kScreenMargin);
 		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos, y_pos - 1))
-			collisions[Direction::kDown].insert(world_space::kScreenMargin);
+			collisions[Direction::kDown].insert(WorldSpace::kScreenMargin);
 		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_max + 1, y_pos))
-			collisions[Direction::kRight].insert(world_space::kScreenMargin);
+			collisions[Direction::kRight].insert(WorldSpace::kScreenMargin);
 		if (!can_exit_screen && !IsCoordinateInsideScreenSpace(x_pos - 1, y_pos))
-			collisions[Direction::kLeft].insert(world_space::kScreenMargin);
+			collisions[Direction::kLeft].insert(WorldSpace::kScreenMargin);
 
 		// object-object collisions
 		world_space_.IsCollidersAreaEmpty(x_pos, y_max + 1, width, 1, collisions[Direction::kUp]);
@@ -254,9 +254,9 @@ namespace terme
 		collider->CalledBySimUpdateEndedCollisions(collisions);
 	}
 
-	bool Simulation::TryAddEntity(shared_ptr<i_simulation_entity> entity)
+	bool Simulation::TryAddEntity(shared_ptr<ISimulationEntity> entity)
 	{
-		shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<game_object>(entity);
+		shared_ptr<GameObject> object_entity = std::dynamic_pointer_cast<GameObject>(entity);
 
 		if (object_entity != nullptr)
 			object_entity->Init();
@@ -271,7 +271,7 @@ namespace terme
 		return true;
 	}
 
-	bool Simulation::CanEntityBeAdded(shared_ptr<i_simulation_entity> entity) const
+	bool Simulation::CanEntityBeAdded(shared_ptr<ISimulationEntity> entity) const
 	{
 		if (IsEntityInSimulation(entity))
 			return false;
@@ -291,13 +291,13 @@ namespace terme
 			return true;
 	}
 
-	bool Simulation::IsEntityInSimulation(shared_ptr<i_simulation_entity> new_entity) const
+	bool Simulation::IsEntityInSimulation(shared_ptr<ISimulationEntity> new_entity) const
 	{
 		auto it = entities_.find(new_entity);
 		return it != entities_.end();
 	}
 
-	bool Simulation::TryMoveObjectAtDirection(shared_ptr<game_object> obj, Direction direction)
+	bool Simulation::TryMoveObjectAtDirection(shared_ptr<GameObject> obj, Direction direction)
 	{
 		unordered_set<shared_ptr<Collider>> out_colliding_objects;
 
@@ -306,7 +306,7 @@ namespace terme
 		if (world_space_.CanObjectMoveAtDirection(obj, direction, out_colliding_objects) == false)
 		{
 			//remove entity if trying to move out of world space
-			if (out_colliding_objects.find(world_space::kWorldMargin) != out_colliding_objects.end())
+			if (out_colliding_objects.find(WorldSpace::kWorldMargin) != out_colliding_objects.end())
 			{
 				RemoveEntity(obj);
 			}
@@ -317,7 +317,7 @@ namespace terme
 					collider_obj->CalledBySimNotifyCollisionEnter(out_colliding_objects, direction);
 
 					for (auto colliding_obj : out_colliding_objects)
-						if (colliding_obj != world_space::kScreenMargin)
+						if (colliding_obj != WorldSpace::kScreenMargin)
 							colliding_obj->CalledBySimNotifyCollisionEnter(collider_obj, direction_utils::GetInverseDirection(direction));
 				}
 			}
@@ -376,14 +376,14 @@ namespace terme
 			x_pos < GetWorldSizeX() - GetScreenPadding();
 	}
 
-	void Simulation::MarkAreaToReprint(std::shared_ptr<game_object> obj_area)
+	void Simulation::MarkAreaToReprint(std::shared_ptr<GameObject> obj_area)
 	{
 		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(obj_area);
-		for (shared_ptr<game_object> obj : to_be_reprinted_objects)
+		for (shared_ptr<GameObject> obj : to_be_reprinted_objects)
 			obj->must_be_reprinted_ = true;
 	}
 
-	void Simulation::MarkAreaToReprintAfterMovement(std::shared_ptr<game_object> obj, int old_pos_x, int old_pos_y)
+	void Simulation::MarkAreaToReprintAfterMovement(std::shared_ptr<GameObject> obj, int old_pos_x, int old_pos_y)
 	{
 		// finding area = combination of old position area + new position area
 		int min_x = obj->GetPosX() < old_pos_x ? obj->GetPosX() : old_pos_x;
@@ -394,7 +394,7 @@ namespace terme
 
 		std::unordered_set<shared_ptr<GameObject>> to_be_reprinted_objects = world_space_.GetAreaTopLayerObjects(min_x, min_y, width, height);
 
-		for (shared_ptr<game_object> obj : to_be_reprinted_objects)
+		for (shared_ptr<GameObject> obj : to_be_reprinted_objects)
 			obj->must_be_reprinted_ = true;
 	}
 }

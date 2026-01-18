@@ -33,7 +33,7 @@ namespace terme
 		double fps = TimeManager::Instance().GetFPS();
 		fpsRecord.push_back(fps);
 
-		if (time_manager::Instance().GetTime() - lastTimePrintedFps > kRefreshFpsEverySeconds)
+		if (TimeManager::Instance().GetTime() - lastTimePrintedFps > kRefreshFpsEverySeconds)
 		{
 			averageFPS = 0;
 
@@ -42,7 +42,7 @@ namespace terme
 			averageFPS /= fpsRecord.size();
 
 			fpsRecord.clear();
-			lastTimePrintedFps = time_manager::Instance().GetTime();
+			lastTimePrintedFps = TimeManager::Instance().GetTime();
 		}
 		return static_cast<size_t>(averageFPS);
 	}

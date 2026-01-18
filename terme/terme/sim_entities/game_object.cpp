@@ -59,10 +59,10 @@ namespace terme
 		if (direction == Direction::kLeft || direction == Direction::kRight)
 		{
 			if (round(x_pos_continuous_) != x_pos_)
-				Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<game_object>(shared_from_this()), direction, move_speed);
+				Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, move_speed);
 		}
 		else if (round(y_pos_continuous_) != y_pos_)
-			Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<game_object>(shared_from_this()), direction, move_speed);
+			Simulation::Instance().RequestMovement(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction, move_speed);
 	}
 
 	Model GameObject::CreteModelUsingChar(char model_char, size_t size_x, size_t size_y) const
@@ -83,7 +83,7 @@ namespace terme
 
 		model_ = &new_model;
 
-		Simulation::Instance().MarkAreaToReprint(std::dynamic_pointer_cast<game_object>(shared_from_this()));
+		Simulation::Instance().MarkAreaToReprint(std::dynamic_pointer_cast<GameObject>(shared_from_this()));
 	}
 
 	void GameObject::CalledBySimMove(Direction direction)
@@ -107,10 +107,10 @@ namespace terme
 			x_pos_continuous_ = x_pos_;
 			break;
 		}
-		on_move.Notify(std::dynamic_pointer_cast<game_object>(shared_from_this()), direction);
+		on_move.Notify(std::dynamic_pointer_cast<GameObject>(shared_from_this()), direction);
 	}
 
-	void GameObject::InsertInListUsingRule(shared_ptr<game_object> obj, std::list<shared_ptr<game_object>>& list, bool(*insert_rule)(shared_ptr<game_object> new_item, std::shared_ptr<game_object> list_item))
+	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<shared_ptr<GameObject>>& list, bool(*insert_rule)(shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item))
 	{
 		auto it = list.begin();
 		for (; it != list.end(); ++it)
@@ -119,7 +119,7 @@ namespace terme
 		list.insert(it, obj);
 	}
 
-	void GameObject::InsertInListUsingRule(shared_ptr<game_object> obj, std::list<weak_ptr<game_object>>& list, bool(*insert_rule)(shared_ptr<game_object> new_item, std::shared_ptr<game_object> list_item))
+	void GameObject::InsertInListUsingRule(shared_ptr<GameObject> obj, std::list<weak_ptr<GameObject>>& list, bool(*insert_rule)(shared_ptr<GameObject> new_item, std::shared_ptr<GameObject> list_item))
 	{
 		auto it = list.begin();
 		for (; it != list.end(); ++it)

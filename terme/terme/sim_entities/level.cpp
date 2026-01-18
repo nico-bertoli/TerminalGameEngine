@@ -12,14 +12,14 @@ namespace terme
         if (IsGameOver())
             return game_over_time_ - level_started_time_;
         else
-            return time_manager::Instance().GetTime() - level_started_time_;
+            return TimeManager::Instance().GetTime() - level_started_time_;
     }
 
     void Level::LoadInSimulation()
     {
         is_terminated_ = false;
         game_over_time_ = -1;
-        level_started_time_ = time_manager::Instance().GetTime();
+        level_started_time_ = TimeManager::Instance().GetTime();
         has_called_on_post_game_over_delay_ended_ = false;
 
         game_over_window_.ReadFromFile(GetGameOverWindowPath());
@@ -27,12 +27,12 @@ namespace terme
 
     bool Level::IsPostGameOverPauseEnded() const
     {
-        return game_over_time_ > 0 && time_manager::Instance().GetTime() - game_over_time_ > ShowGameOverScreenDelay();
+        return game_over_time_ > 0 && TimeManager::Instance().GetTime() - game_over_time_ > ShowGameOverScreenDelay();
     }
 
     bool Level::CanPlayerPressKeyToRestartGame() const
     {
-        return time_manager::Instance().GetTime() - game_over_time_ > ShowGameOverScreenDelay() + kPressAnyKeyToTerminateGameDelay;
+        return TimeManager::Instance().GetTime() - game_over_time_ > ShowGameOverScreenDelay() + kPressAnyKeyToTerminateGameDelay;
     }
 
     void Level::OnGameOver()
@@ -40,7 +40,7 @@ namespace terme
         if (IsGameOver())
             return;
 
-        game_over_time_ = time_manager::Instance().GetTime();
+        game_over_time_ = TimeManager::Instance().GetTime();
     }
 
     void Level::Update()

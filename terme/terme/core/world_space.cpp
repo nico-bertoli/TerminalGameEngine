@@ -20,17 +20,17 @@ namespace terme
 		this->screen_padding_ = screen_padding;
 	}
 
-	void WorldSpace::InsertObject(shared_ptr<game_object> obj)
+	void WorldSpace::InsertObject(shared_ptr<GameObject> obj)
 	{
 		WriteSpace(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), obj);
 	}
 
-	void WorldSpace::RemoveObject(shared_ptr<game_object> obj)
+	void WorldSpace::RemoveObject(shared_ptr<GameObject> obj)
 	{
 		EraseSpace(obj->GetPosX(), obj->GetPosY(), obj->GetModelWidth(), obj->GetModelHeight(), obj);
 	}
 
-	void WorldSpace::MoveObject(shared_ptr<game_object> obj, Direction direction)
+	void WorldSpace::MoveObject(shared_ptr<GameObject> obj, Direction direction)
 	{
 		switch (direction)
 		{
@@ -70,7 +70,7 @@ namespace terme
 		}
 	}
 
-	void WorldSpace::WriteSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
+	void WorldSpace::WriteSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<GameObject> obj)
 	{
 		assert(obj != nullptr);
 
@@ -96,7 +96,7 @@ namespace terme
 			}
 	}
 
-	void WorldSpace::EraseSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<game_object> obj)
+	void WorldSpace::EraseSpace(int x_start, int y_start, size_t width, size_t height, shared_ptr<GameObject> obj)
 	{
 		assert(obj != nullptr);
 
