@@ -4,7 +4,7 @@
 
 namespace terme
 {
-	namespace persistence_manager
+	namespace PersistenceManager
 	{
 		inline void SaveBestScore(const char* persistenceFile, int bestScore)
 		{
