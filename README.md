@@ -13,7 +13,7 @@ Main features:
 - Backgrounds support
 
 #
-You can checkout the [youtube trailer here](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
+Checkout the [youtube trailer](https://www.youtube.com/watch?v=TqpGVI95oNU&ab_channel=Nicol%C3%B2Bertoli)
 
 
 <img src="screenshots/screen1.png" style="height:500px; max-width:100%;">
