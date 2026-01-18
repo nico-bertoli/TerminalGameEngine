@@ -1,6 +1,7 @@
 #include <terme/core/frame.h>
-#include <terme/utils/string_utils.h>
 #include <cassert>
+#include <string>
+#include <algorithm>
 
 using std::string;
 
@@ -43,10 +44,10 @@ namespace terme
 
     void Frame::RemoveNotAllowedChars(string& str)
     {
-        StringUtils::RemoveInstancesOfChar(str, '\n');
-        StringUtils::RemoveInstancesOfChar(str, '\r');
-        StringUtils::RemoveInstancesOfChar(str, '\t');
-        StringUtils::RemoveInstancesOfChar(str, '\0');
+        str.erase(std::remove(str.begin(), str.end(),  '\n'), str.end());
+        str.erase(std::remove(str.begin(), str.end(),  '\r'), str.end());
+        str.erase(std::remove(str.begin(), str.end(),  '\t'), str.end());
+        str.erase(std::remove(str.begin(), str.end(),  '\0'), str.end());
     }
 
     void Frame::WriteString(const string& written_string, char write_over_char)
