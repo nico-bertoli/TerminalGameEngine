@@ -44,6 +44,7 @@ target_link_directories(${PROJECT_NAME} PUBLIC "${SFML_DIR}/lib")  # Tells linke
 target_link_libraries(${PROJECT_NAME}  # Tells linker which libraries to link (static linking)
     PRIVATE
         nbkit
+    PUBLIC
         sfml-system-s
         sfml-audio-s
 )
