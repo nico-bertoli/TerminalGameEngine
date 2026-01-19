@@ -65,6 +65,7 @@ set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/packages") # Output directory
 #----------------------- CPack Installation Rules
 install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/terme" DESTINATION .)  # Install Engine/ directory
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt" DESTINATION .)  # Install CMakeLists.txt
+install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/dependencies" DESTINATION .)  # Install dependencies/ directory (contains SFML)
 include(CPack)  # Initialize CPack (must be after install commands)
 
 # ---------------------------------------- Include X11 lib on linux
